@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/KuangjuX.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/KuangjuX.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="最近应工作室要求学习PHP框架Laravel，接触到了MVC软件架构模式,即Model-View-Controller，这里我将使用Laravel框架介绍MVC架构模式，并且阐述自己对MVC软件架构浅薄的理解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从Laravel框架浅谈MVC架构">
+<meta property="og:url" content="http://yoursite.com/2020/03/07/1/index.html">
+<meta property="og:site_name" content="KuangjuX(狂且)">
+<meta property="og:description" content="最近应工作室要求学习PHP框架Laravel，接触到了MVC软件架构模式,即Model-View-Controller，这里我将使用Laravel框架介绍MVC架构模式，并且阐述自己对MVC软件架构浅薄的理解。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/03/07/1/%5Ctalk-MVC%5CMVC.png">
+<meta property="article:published_time" content="2020-03-07T08:39:27.000Z">
+<meta property="article:modified_time" content="2020-03-07T09:20:36.108Z">
+<meta property="article:author" content="KuangjuX">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/07/1/%5Ctalk-MVC%5CMVC.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/03/07/1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>从Laravel框架浅谈MVC架构 | KuangjuX(狂且)</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KuangjuX(狂且)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-message">
+
+    <a href="/message/" rel="section"><i class="fa fa-fw fa-comment"></i>message</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/07/1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KuangjuX(狂且)">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从Laravel框架浅谈MVC架构
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-07 16:39:27 / Modified: 17:20:36" itemprop="dateCreated datePublished" datetime="2020-03-07T16:39:27+08:00">2020-03-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>  最近应工作室要求学习PHP框架Laravel，接触到了MVC软件架构模式,即Model-View-Controller，这里我将使用Laravel框架介绍MVC架构模式，并且阐述自己对MVC软件架构浅薄的理解。</p>
+<p><img src="/2020/03/07/1/%5Ctalk-MVC%5CMVC.png" alt></p>
+<a id="more"></a>
+
+<h2 id="MVC架构简述："><a href="#MVC架构简述：" class="headerlink" title="MVC架构简述："></a>MVC架构简述：</h2><h4 id="由图所示，简单地理解MVC架构模式可以认为："><a href="#由图所示，简单地理解MVC架构模式可以认为：" class="headerlink" title="由图所示，简单地理解MVC架构模式可以认为："></a>由图所示，简单地理解MVC架构模式可以认为：</h4><p>1.View（视图）：是用户直接接触的界面，一般由前端处理，主要用来展示模型中的内容和用来输入表单数据。</p>
+<p>2.Controller（控制器）：主要用于处理视图和模型之间的逻辑关系，例如从视图中post的数据，到底如何进入模型并存入数据库中，我们是否应该对于用户的数据进行过滤以防止SQL注入等问题，又或者从数据库中取出的数据哪些应该展示在视图上，有什么判断标准，都需要控制器进行判断。</p>
+<p>3.Model（模型）：即底层同应用程序的接口，我们可以从Model中获取数据并进行处理。</p>
+<p>以上是我对于MVC的一些理解，因为刚刚接触这种软件架构模式，所以理解不深，如果有兴趣者可以自行去深入了解。</p>
+<h4 id="以下给出MVC的一些友情链接："><a href="#以下给出MVC的一些友情链接：" class="headerlink" title="以下给出MVC的一些友情链接："></a>以下给出MVC的一些友情链接：</h4><p><a href [https: en.wikipedia.org wiki model%e2%80%93view%e2%80%93controller]">维基百科</a></p>
+<p><a href https: draveness.me mvx"">浅谈MVC、MVP和MVVM架构模式</a></p>
+<h2 id="Laravel实例："><a href="#Laravel实例：" class="headerlink" title="Laravel实例："></a>Laravel实例：</h2><h4 id="接下来我将使用Laravel对于这一架构模式进行说明（Laravel只是媒介，这里不涉及Laravel语法细节）："><a href="#接下来我将使用Laravel对于这一架构模式进行说明（Laravel只是媒介，这里不涉及Laravel语法细节）：" class="headerlink" title="接下来我将使用Laravel对于这一架构模式进行说明（Laravel只是媒介，这里不涉及Laravel语法细节）："></a>接下来我将使用Laravel对于这一架构模式进行说明（Laravel只是媒介，这里不涉及Laravel语法细节）：</h4><p>假如说我们需要写一个登录界面那么我们使用MVC如何处理呢？</p>
+<p>首先，我们需要一个登陆界面，这个登录界面是需要让用户看到的，并且在这个界面中，我们还需要让用户在登录界面中输入数据并且可以让控制器接收到，因此我们可以写html，php或者Laravel支持的blade模板，总之，不管使用哪种形式，最重要的是让用户有可视化界面并且实现登陆功能。</p>
+<p>我用blade模板进行举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">@extends(&quot;common.layout&quot;)</span><br><span class="line">@section(&quot;title&quot;)</span><br><span class="line">    Login</span><br><span class="line">@stop</span><br><span class="line"></span><br><span class="line">@section(&quot;content&quot;)</span><br><span class="line"></span><br><span class="line">    &lt;div class&#x3D;&quot;xiao-container&quot;&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;xiao-register-box&quot;&gt;</span><br><span class="line">            &lt;div class&#x3D;&quot;xiao-title-box&quot;&gt;</span><br><span class="line">                &lt;span&gt;登录&lt;&#x2F;span&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;form action&#x3D;&quot;&#123;&#123;url(&#39;at&#x2F;save&#39;)&#125;&#125;&quot; method&#x3D;&quot;post&quot;&gt;</span><br><span class="line">                &#123;&#123;csrf_field()&#125;&#125;</span><br><span class="line">                &lt;div class&#x3D;&quot;xiao-username-box&quot;&gt;</span><br><span class="line">                    &lt;span class&#x3D;&quot;xiao-require&quot;&gt;*&lt;&#x2F;span&gt;</span><br><span class="line">                    &lt;label for&#x3D;&quot;account&quot;&gt;账户&lt;&#x2F;label&gt;</span><br><span class="line">                    &lt;div class&#x3D;&quot;xiao-username-input&quot;&gt;</span><br><span class="line">                        &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;account&quot; name&#x3D;&quot;account&quot; placeholder&#x3D;&quot;账户：&quot;&#x2F;&gt;</span><br><span class="line">                    &lt;&#x2F;div&gt;</span><br><span class="line">                &lt;&#x2F;div&gt;</span><br><span class="line">                &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">                &lt;div class&#x3D;&quot;xiao-userPassword-box&quot;&gt;</span><br><span class="line">                    &lt;span class&#x3D;&quot;xiao-require&quot;&gt;*&lt;&#x2F;span&gt;</span><br><span class="line">                    &lt;label for&#x3D;&quot;password&quot;&gt;密码&lt;&#x2F;label&gt;</span><br><span class="line">                    &lt;div class&#x3D;&quot;xiao-userPassword-input&quot;&gt;</span><br><span class="line">                        &lt;input type&#x3D;&quot;password&quot; id&#x3D;&quot;password&quot; name&#x3D;&quot;password&quot; placeholder&#x3D;&quot;密码：&quot; &#x2F;&gt;</span><br><span class="line">                    &lt;&#x2F;div&gt;</span><br><span class="line">                &lt;&#x2F;div&gt;</span><br><span class="line">                &lt;div class&#x3D;&quot;xiao-submit-box&quot;&gt;</span><br><span class="line">                    &lt;input id &#x3D; &quot;xiao-submit-button&quot; type&#x3D;&quot;submit&quot; value&#x3D;&quot;登录&quot;&gt;</span><br><span class="line">                &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;&#x2F;form&gt;</span><br><span class="line">            @if ($errors-&gt;any())</span><br><span class="line">                &lt;div class&#x3D;&quot;alert alert-danger&quot;&gt;</span><br><span class="line">                    &lt;ul&gt;</span><br><span class="line">                        @foreach ($errors-&gt;all() as $error)</span><br><span class="line">                            &lt;li&gt;&#123;&#123; $error &#125;&#125;&lt;&#x2F;li&gt;</span><br><span class="line">                        @endforeach</span><br><span class="line">                    &lt;&#x2F;ul&gt;</span><br><span class="line">                &lt;&#x2F;div&gt;</span><br><span class="line">            @endif</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">@stop</span><br></pre></td></tr></table></figure>
+
+<p>我们无需管语法细节，只需要注意，我们在这里设计了一个表单，并且将方法设置为post，因此可以使控制器接收到数据，那么相应地，我们也需要设置相应的路由与控制器方法（路由是用户访问url所必需的）</p>
+<h4 id="路由："><a href="#路由：" class="headerlink" title="路由："></a>路由：</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Route::any(<span class="string">'at/login'</span>,[<span class="string">'uses'</span> =&gt; <span class="string">'StudentController@login'</span>]);</span><br><span class="line">Route::any(<span class="string">'at/save'</span>,[<span class="string">"uses"</span> =&gt; <span class="string">"StudentController@save"</span>]);</span><br></pre></td></tr></table></figure>
+
+<h4 id="控制器："><a href="#控制器：" class="headerlink" title="控制器："></a>控制器：</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StudentController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> view(<span class="string">'student.login'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">save</span><span class="params">(Request $request)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $validate= $request-&gt;validate(</span><br><span class="line">            [</span><br><span class="line">                <span class="string">"account"</span> =&gt; <span class="string">"required|string|max:20"</span>,</span><br><span class="line">                <span class="string">"password"</span> =&gt; <span class="string">"required|string|max:20"</span></span><br><span class="line">            ]</span><br><span class="line">        );</span><br><span class="line">        <span class="keyword">if</span>($validate)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;judge($request-&gt;input(<span class="string">"account"</span>),$request-&gt;input(<span class="string">"password"</span>)))</span><br><span class="line">            &#123;<span class="keyword">return</span> <span class="keyword">true</span>;&#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"账号不正确或密码不存在"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">judge</span><span class="params">($account,$password)</span></span></span><br><span class="line"><span class="function">    </span>&#123;<span class="keyword">return</span> Student::where(<span class="string">"account"</span>,$account)-&gt;value(<span class="string">'password'</span>)==$password;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就可以了解到从登录界面post的数据，被控制器中的save的$request变量捕获了，并且将其进行了表单验证，我们需要进行两次验证，第一次验证用户输入是否合法，如果不合法，该方法将会重定向到登录页面要求你重新输入，否则的话，进行第二次验证，从Model里（我们在Model封装了数据库，这里不再展示）取出数据进行比对，如果账号密码都符合条件，就成功验证，否则会告诉你账号或密码输入不正确。</p>
+<p>现在，我们就完成了最简单的MVC与User之间的交互模式。</p>
+
+    </div>
+
+    
+    
+    
+      
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/05/1/" rel="prev" title="我不适合写作文">
+      <i class="fa fa-chevron-left"></i> 我不适合写作文
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC架构简述："><span class="nav-number">1.</span> <span class="nav-text">MVC架构简述：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#由图所示，简单地理解MVC架构模式可以认为："><span class="nav-number">1.0.1.</span> <span class="nav-text">由图所示，简单地理解MVC架构模式可以认为：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#以下给出MVC的一些友情链接："><span class="nav-number">1.0.2.</span> <span class="nav-text">以下给出MVC的一些友情链接：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Laravel实例："><span class="nav-number">2.</span> <span class="nav-text">Laravel实例：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#接下来我将使用Laravel对于这一架构模式进行说明（Laravel只是媒介，这里不涉及Laravel语法细节）："><span class="nav-number">2.0.1.</span> <span class="nav-text">接下来我将使用Laravel对于这一架构模式进行说明（Laravel只是媒介，这里不涉及Laravel语法细节）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#路由："><span class="nav-number">2.0.2.</span> <span class="nav-text">路由：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#控制器："><span class="nav-number">2.0.3.</span> <span class="nav-text">控制器：</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">博主</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/KuangjuX" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;KuangjuX" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:qcx@tju.edu.cn" title="E-Mail → mailto:qcx@tju.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope-square"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/6040719620/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;6040719620&#x2F;profile?rightmod&#x3D;1&amp;wvr&#x3D;6&amp;mod&#x3D;personinfo&amp;is_all&#x3D;1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/jLZBEG2R0UJ5zXK" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;jLZBEG2R0UJ5zXK" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100038941065555" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100038941065555" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/qi-cheng-xiang-59" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;qi-cheng-xiang-59" rel="noopener" target="_blank"><i class="fa fa-fw fa-snapchat"></i>Zhihu</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">博主</span>
+</div>
+<!--
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+-->
+  <span class="post-meta-divider">|</span>
+<!--
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.1
+  </div>
+-->
+
+<div class="powered-by">
+  <i class="fa fa-user-md"></i>
+  <span id="busuanzi_container_site_uv">
+    本站总访客数:<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;|
+  </span>
+  <span id="busuanzi_container_site_pv">
+      &nbsp;本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  </div>
+  </div>
+
+ <script>
+      var now = new Date();
+      function createtime() {
+          var grt= new Date("03/12/2019 12:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+          document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+      }
+  setInterval("createtime()",250);
+  </script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'true';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
