@@ -43,7 +43,7 @@
 <meta property="og:description" content="Last week I learned data structure about Linked List , in which include an algorithm for reversing a linked list . And in this chapter I will introduce this algorithm.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-02T03:10:50.000Z">
-<meta property="article:modified_time" content="2020-03-06T02:33:21.992Z">
+<meta property="article:modified_time" content="2020-03-08T02:00:19.832Z">
 <meta property="article:author" content="KuangjuX">
 <meta property="article:tag" content="Leetcode">
 <meta property="article:tag" content="C++">
@@ -215,7 +215,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-06 10:33:21" itemprop="dateModified" datetime="2020-03-06T10:33:21+08:00">2020-03-06</time>
+                <time title="Modified: 2020-03-08 10:00:19" itemprop="dateModified" datetime="2020-03-08T10:00:19+08:00">2020-03-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -228,6 +228,20 @@
             </span>
 
           
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/03/02/1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/02/1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -255,6 +269,21 @@
     
     
       
+
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/hh.JPG" alt="博主 Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
 
 
       <footer class="post-footer">
@@ -289,6 +318,7 @@
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -557,6 +587,35 @@
     
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'C9bJJw8aiGhDjMSdFRUE3o8S-gzGzoHsz',
+      appKey     : 'y2X5kwL33MfJiyudCdCtg93C',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>

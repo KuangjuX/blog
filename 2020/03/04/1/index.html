@@ -45,7 +45,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/03/04/1/1.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/03/04/1/2.jpg">
 <meta property="article:published_time" content="2020-03-04T12:04:18.000Z">
-<meta property="article:modified_time" content="2020-03-04T23:32:29.755Z">
+<meta property="article:modified_time" content="2020-03-08T01:59:55.167Z">
 <meta property="article:author" content="KuangjuX">
 <meta property="article:tag" content="movie">
 <meta property="article:tag" content="philosophy">
@@ -218,7 +218,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-05 07:32:29" itemprop="dateModified" datetime="2020-03-05T07:32:29+08:00">2020-03-05</time>
+                <time title="Modified: 2020-03-08 09:59:55" itemprop="dateModified" datetime="2020-03-08T09:59:55+08:00">2020-03-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -231,6 +231,20 @@
             </span>
 
           
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/03/04/1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/04/1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -261,6 +275,21 @@
     
     
       
+
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/hh.JPG" alt="博主 Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
 
 
       <footer class="post-footer">
@@ -295,6 +324,7 @@
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -563,6 +593,35 @@
     
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'C9bJJw8aiGhDjMSdFRUE3o8S-gzGzoHsz',
+      appKey     : 'y2X5kwL33MfJiyudCdCtg93C',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>
