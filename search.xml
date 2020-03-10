@@ -7,7 +7,7 @@
 
 <h3 id="Source-code"><a href="#Source-code" class="headerlink" title="Source code:"></a>Source code:</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isAsciiDigit</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> judge1=!((x+<span class="number">1</span>+(~<span class="number">0x30</span>))&gt;&gt;<span class="number">31</span>);</span><br><span class="line">    <span class="keyword">int</span> judge2=!((<span class="number">0x39</span>+(~x+<span class="number">1</span>))&gt;&gt;<span class="number">31</span>);</span><br><span class="line">    <span class="keyword">return</span> judge1&amp;judge2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="Thought"><a href="#Thought" class="headerlink" title="Thought:"></a>Thought:</h3><p>判断给定数字是否在0x30到0x39之间，只需判断给定数字与0x30与0x39比较大小即可，在位级运算中，正数x的相反数为<del>x+1,所以判断0x30与该数的大小关系大小只需判断x+1+(</del>0x30)即可，然后将其右移31位取！，如果满足该数大于0x30条件的话，这部分会得到1，下一个与0x39比较同理，然后两个结构去与运算即可得到结果。</p>
+<h3 id="Thought"><a href="#Thought" class="headerlink" title="Thought:"></a>Thought:</h3><p>判断给定数字是否在0x30到0x39之间，只需判断给定数字与0x30与0x39比较大小即可，在位级运算中，正数x的相反数为x取反+1,所以判断0x30与该数的大小关系大小只需判断x+1+（~0x30）即可，然后将其右移31位取！，如果满足该数大于0x30条件的话，这部分会得到1，下一个与0x39比较同理，然后两个结果去做与运算即可得到结果。</p>
 ]]></content>
       <categories>
         <category>Technology</category>
