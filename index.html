@@ -573,7 +573,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-10 17:01:13 / Modified: 20:00:54" itemprop="dateCreated datePublished" datetime="2020-03-10T17:01:13+08:00">2020-03-10</time>
+              <time title="Created: 2020-03-10 17:01:13 / Modified: 23:01:40" itemprop="dateCreated datePublished" datetime="2020-03-10T17:01:13+08:00">2020-03-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -612,7 +612,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>567</span>
+              <span>950</span>
             </span>
 
         </div>
@@ -628,7 +628,12 @@
 
 <h3 id="Source-code"><a href="#Source-code" class="headerlink" title="Source code:"></a>Source code:</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isAsciiDigit</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> judge1=!((x+<span class="number">1</span>+(~<span class="number">0x30</span>))&gt;&gt;<span class="number">31</span>);</span><br><span class="line">    <span class="keyword">int</span> judge2=!((<span class="number">0x39</span>+(~x+<span class="number">1</span>))&gt;&gt;<span class="number">31</span>);</span><br><span class="line">    <span class="keyword">return</span> judge1&amp;judge2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="Thought"><a href="#Thought" class="headerlink" title="Thought:"></a>Thought:</h3><p>判断给定数字是否在0x30到0x39之间，只需判断给定数字与0x30与0x39比较大小即可，在位级运算中，正数x的相反数为x取反+1,所以判断0x30与该数的大小关系大小只需判断x+1+（~0x30）即可，然后将其右移31位取！，如果满足该数大于0x30条件的话，这部分会得到1，下一个与0x39比较同理，然后两个结果去做与运算即可得到结果。</p>
+<h3 id="Thought"><a href="#Thought" class="headerlink" title="Thought:"></a>Thought:</h3><p>判断给定数字是否在0x30到0x39之间，只需判断给定数字与0x30与0x39比较大小即可，在位级运算中，正数x的相反数为对x取反并加1,所以判断0x30与该数的大小关系大小只需判断x+1+（~0x30）即可，然后将其右移31位取！，如果满足该数大于0x30条件的话，这部分会得到1，下一个与0x39比较同理，然后两个结果去做与运算即可得到结果。</p>
+<h2 id="anyEvenBit"><a href="#anyEvenBit" class="headerlink" title="anyEvenBit"></a>anyEvenBit</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description:"></a>Description:</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * anyEvenBit - return 1 if any even-numbered bit in word set to 1</span></span><br><span class="line"><span class="comment"> *   Examples anyEvenBit(0xA) = 0, anyEvenBit(0xE) = 1</span></span><br><span class="line"><span class="comment"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span><br><span class="line"><span class="comment"> *   Max ops: 12</span></span><br><span class="line"><span class="comment"> *   Rating: 2</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code:"></a>Source Code:</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">anyEvenBit</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t=<span class="number">0x55</span>;</span><br><span class="line">    <span class="keyword">int</span> temp=(t&lt;&lt;<span class="number">8</span>) | t;</span><br><span class="line">    <span class="keyword">int</span> mask = (temp&lt;&lt;<span class="number">16</span>) | temp;</span><br><span class="line">    <span class="keyword">return</span> !!(mask&amp;x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Thought-1"><a href="#Thought-1" class="headerlink" title="Thought:"></a>Thought:</h3><p>构造一个偶数位全为1，奇数位全为0的数，与目标数按位与运算，并取两次非（因为当偶数位为1时返回值为大于1的整数）。</p>
 
       
     </div>
