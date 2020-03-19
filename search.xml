@@ -119,8 +119,8 @@
         <category>Technology</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>C/C++</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -164,17 +164,21 @@
   <entry>
     <title>庄颜、神仙姐姐与爱情幻想</title>
     <url>/2020/02/28/1/</url>
-    <content><![CDATA[<p>我酝酿这篇文章已经两周了，之前一直没有想好应当怎样写这篇文章，之所以取这个名字，是因为这两个小说之中的人物是颇为复合我这篇文章的主题的。</p>
-<a id="more"></a>
-
-<p>好吧，我现在也没想好怎么写</p>
-]]></content>
+    <content><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="" />
+    <label for="hbePass">Hey, password is required here.</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="2604ec89e52be6674c536131ab743352118fb0097f458e1f3d6042c32f628460">974a10538692d123775750fa4cd57060c51ca00670dff0798dcebf9171161591d27e6e9ffde021ff9e7f762d001aa4c27698281cb13fe572aa3aba24792fe2e1ac28f6bc84f9e6a559096062249f63067bf1a08f600e6bbf366793e263514fb653c919a4852a3b6ad88924bec16a1a3c8890d700437a414c80e9ead39d13934708be39fc605e6b8999688cecdc7b5e20b9ba2cf524e7851e382991355692dca0f13cc4d3402f44e3e09a9a3725ea499a614ff270d970f6662eb2e69f1ca53a06b73786a7517e74b5e926fd2f3403eb030aee5edfc98c534a7657f5decca6e51700199af01e234eb44e7dbeec4e030708e734d65fb4d9e6f5b07c79dc965b5a9f4d6e33fd4e7cdf6721c2a4b919fae95757e60b58f59ed51adbdd215d8358b673</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
         <category>Scribble</category>
       </categories>
       <tags>
-        <tag>杂论</tag>
         <tag>爱情</tag>
+        <tag>杂论</tag>
       </tags>
   </entry>
   <entry>
