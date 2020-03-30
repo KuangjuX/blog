@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>strict of child</title>
+    <url>/2020/03/27/1/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>Data Lab</title>
     <url>/2020/03/10/1/</url>
     <content><![CDATA[<h2 id="isAsciiDight"><a href="#isAsciiDight" class="headerlink" title="isAsciiDight"></a>isAsciiDight</h2><h3 id="Dsecription"><a href="#Dsecription" class="headerlink" title="Dsecription:"></a>Dsecription:</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * isAsciiDigit - return 1 if 0x30 &lt;= x &lt;= 0x39 (ASCII codes for characters '0' to '9')</span></span><br><span class="line"><span class="comment"> *   Example: isAsciiDigit(0x35) = 1.</span></span><br><span class="line"><span class="comment"> *            isAsciiDigit(0x3a) = 0.</span></span><br><span class="line"><span class="comment"> *            isAsciiDigit(0x05) = 0.</span></span><br><span class="line"><span class="comment"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span><br><span class="line"><span class="comment"> *   Max ops: 15</span></span><br><span class="line"><span class="comment"> *   Rating: 3</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
@@ -177,8 +182,8 @@
         <category>Scribble</category>
       </categories>
       <tags>
-        <tag>爱情</tag>
         <tag>杂论</tag>
+        <tag>爱情</tag>
       </tags>
   </entry>
   <entry>
