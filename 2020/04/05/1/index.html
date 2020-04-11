@@ -45,7 +45,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/04/05/1/phase1.png">
 <meta property="og:image" content="http://yoursite.com/2020/04/05/1/phase2.png">
 <meta property="article:published_time" content="2020-04-05T01:57:06.000Z">
-<meta property="article:modified_time" content="2020-04-05T14:45:14.576Z">
+<meta property="article:modified_time" content="2020-04-07T12:35:27.839Z">
 <meta property="article:author" content="KuangjuX">
 <meta property="article:tag" content="汇编">
 <meta property="article:tag" content="CSAPP">
@@ -252,10 +252,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-04-05 09:57:06 / Modified: 22:45:14" itemprop="dateCreated datePublished" datetime="2020-04-05T09:57:06+08:00">2020-04-05</time>
+              <time title="Created: 2020-04-05 09:57:06" itemprop="dateCreated datePublished" datetime="2020-04-05T09:57:06+08:00">2020-04-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-07 20:35:27" itemprop="dateModified" datetime="2020-04-07T20:35:27+08:00">2020-04-07</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -300,7 +306,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>7.7k</span>
+              <span>9.6k</span>
             </span>
 
         </div>
@@ -401,6 +407,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">That&#39;s number 2.  Keep going!</span><br></pre></td></tr></table></figure>
 
 <h3 id="运行结果：-1"><a href="#运行结果：-1" class="headerlink" title="运行结果："></a>运行结果：</h3><p><img src="/2020/04/05/1/phase2.png" alt></p>
+<h2 id="phase-3"><a href="#phase-3" class="headerlink" title="phase_3"></a>phase_3</h2><h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><p>main函数和前面实验过程一样，直接看<code>phase_3</code>函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">0000000000400f43 &lt;phase_3&gt;:</span><br><span class="line">  400f43:  48 83 ec 18            sub    $0x18,%rsp</span><br><span class="line">  400f47:  48 8d 4c 24 0c         lea    0xc(%rsp),%rcx</span><br><span class="line">  400f4c:  48 8d 54 24 08         lea    0x8(%rsp),%rdx</span><br><span class="line">  400f51:  be cf 25 40 00         mov    $0x4025cf,%esi</span><br><span class="line">  400f56:  b8 00 00 00 00         mov    $0x0,%eax</span><br><span class="line">  400f5b:  e8 90 fc ff ff         callq  400bf0 &lt;__isoc99_sscanf@plt&gt;</span><br><span class="line">  400f60:  83 f8 01               cmp    $0x1,%eax</span><br><span class="line">  400f63:  7f 05                  jg     400f6a &lt;phase_3+0x27&gt;</span><br><span class="line">  400f65:  e8 d0 04 00 00         callq  40143a &lt;explode_bomb&gt;</span><br><span class="line">  400f6a:  83 7c 24 08 07         cmpl   $0x7,0x8(%rsp)</span><br><span class="line">  400f6f:  77 3c                  ja     400fad &lt;phase_3+0x6a&gt;</span><br><span class="line">  400f71:  8b 44 24 08            mov    0x8(%rsp),%eax</span><br><span class="line">  400f75:  ff 24 c5 70 24 40 00   jmpq   *0x402470(,%rax,8)</span><br><span class="line">  400f7c:  b8 cf 00 00 00         mov    $0xcf,%eax</span><br><span class="line">  400f81:  eb 3b                  jmp    400fbe &lt;phase_3+0x7b&gt;</span><br><span class="line">  400f83:  b8 c3 02 00 00         mov    $0x2c3,%eax</span><br><span class="line">  400f88:  eb 34                  jmp    400fbe &lt;phase_3+0x7b&gt;</span><br><span class="line">  400f8a:  b8 00 01 00 00         mov    $0x100,%eax</span><br><span class="line">  400f8f:  eb 2d                  jmp    400fbe &lt;phase_3+0x7b&gt;</span><br><span class="line">  400f91:  b8 85 01 00 00         mov    $0x185,%eax</span><br><span class="line">  400f96:  eb 26                  jmp    400fbe &lt;phase_3+0x7b&gt;</span><br><span class="line">  400f98:  b8 ce 00 00 00         mov    $0xce,%eax</span><br><span class="line">  400f9d:  eb 1f                  jmp    400fbe &lt;phase_3+0x7b&gt;</span><br><span class="line">  400f9f:  b8 aa 02 00 00         mov    $0x2aa,%eax</span><br><span class="line">  400fa4:  eb 18                  jmp    400fbe &lt;phase_3+0x7b&gt;</span><br><span class="line">  400fa6:  b8 47 01 00 00         mov    $0x147,%eax</span><br><span class="line">  400fab:  eb 11                  jmp    400fbe &lt;phase_3+0x7b&gt;</span><br><span class="line">  400fad:  e8 88 04 00 00         callq  40143a &lt;explode_bomb&gt;</span><br><span class="line">  400fb2:  b8 00 00 00 00         mov    $0x0,%eax</span><br><span class="line">  400fb7:  eb 05                  jmp    400fbe &lt;phase_3+0x7b&gt;</span><br><span class="line">  400fb9:  b8 37 01 00 00         mov    $0x137,%eax</span><br><span class="line">  400fbe:  3b 44 24 0c            cmp    0xc(%rsp),%eax</span><br><span class="line">  400fc2:  74 05                  je     400fc9 &lt;phase_3+0x86&gt;</span><br><span class="line">  400fc4:  e8 71 04 00 00         callq  40143a &lt;explode_bomb&gt;</span><br><span class="line">  400fc9:  48 83 c4 18            add    $0x18,%rsp</span><br><span class="line">  400fcd:  c3                     retq</span><br></pre></td></tr></table></figure>
+
+<p>首先看到进入函数后首先把栈顶指针%rsp寄存器向下减了8位，然后将（%rsp+8）和（%rsp+12）中的内容存在%rdx和%rcx寄存器中。再往后看，出现了一个奇怪的地址，我们将这个地址打印出来，显示的是“%d %d”，这个同第二题一样，表示我们输入的格式，应该输入两个数，中间使用空格进行区分。</p>
+<p>然后调用了<code>&lt;__isoc99_sscanf@plt&gt;</code>函数，将返回值与1进行比较，如果输入的数量大于1，则进行跳转，否则引爆炸弹。经过与前面进行比较与推断，可知分辨要将输入的两个数保存在%rdx和%rcx寄存器中。然后将0x8（%rsp）即%rdx的数值与7进行比较，如果大于7的话，就引爆炸弹，否则继续执行，考虑到跳转指令使用的<code>ja</code>指令，由此可知对应的第一个数的输入范围是[0,7]。向下看，发现将0x8(%rsp)中的值放到了%eax</p>
+<p>中。</p>
+<p>下一条指令使用的是<code>jmpq   *0x402470(,%rax,8)</code>，这是一条switch语句的命令，根据输入的第一个参数的内容对基于<code>*0x402470</code>的首地址进行跳转，第一个参数有八个取值，从0到7</p>
 
     </div>
 
@@ -504,7 +517,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实验简介"><span class="nav-number">1.</span> <span class="nav-text">实验简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Phase-1"><span class="nav-number">1.1.</span> <span class="nav-text">Phase_1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验过程："><span class="nav-number">1.1.1.</span> <span class="nav-text">实验过程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行结果："><span class="nav-number">1.1.2.</span> <span class="nav-text">运行结果：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phase-2"><span class="nav-number">1.2.</span> <span class="nav-text">Phase_2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验过程：-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">实验过程：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#观察函数read-six-numbers"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">观察函数read_six_numbers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回到phase-2函数部分"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">回到phase_2函数部分</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行结果：-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">运行结果：</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实验简介"><span class="nav-number">1.</span> <span class="nav-text">实验简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Phase-1"><span class="nav-number">1.1.</span> <span class="nav-text">Phase_1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验过程："><span class="nav-number">1.1.1.</span> <span class="nav-text">实验过程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行结果："><span class="nav-number">1.1.2.</span> <span class="nav-text">运行结果：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phase-2"><span class="nav-number">1.2.</span> <span class="nav-text">Phase_2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验过程：-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">实验过程：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#观察函数read-six-numbers"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">观察函数read_six_numbers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回到phase-2函数部分"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">回到phase_2函数部分</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行结果：-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">运行结果：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#phase-3"><span class="nav-number">1.3.</span> <span class="nav-text">phase_3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验过程"><span class="nav-number">1.3.1.</span> <span class="nav-text">实验过程</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -520,7 +533,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -533,7 +546,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -590,7 +603,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">24k</span>
+    <span title="Symbols count total">26k</span>
 </div>
 <!--
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0

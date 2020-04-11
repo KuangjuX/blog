@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Linux命令总结（持续更新中）</title>
+    <url>/2020/04/12/1/</url>
+    <content><![CDATA[<h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx:"></a>Nginx:</h1><ul>
+<li>查看端口：netstat -ntpl;</li>
+<li>结束监听：kill (number)</li>
+<li>启动nginx服务：sudo service nginx start</li>
+<li>停止nginx服务：sudo service nginx stop</li>
+<li>重启nginx服务：service nginx restart；systemctl restart nginx</li>
+<li>nginx访问日志的默认路径:/var/log/nginx</li>
+<li>nginx配置文件：/etc/nginx/nginx.conf</li>
+<li>nginx服务器默认目录:/usr/share/nginx/html</li>
+<li>nginx -t 测试配置文件语法，同时告诉配置文件位置</li>
+</ul>
+<h1 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h1><ul>
+<li>查看php所有软件包：rpm -qa|grep php</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Technology</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>服务器</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>西方没有资本再傲慢了</title>
     <url>/2020/04/06/1/</url>
     <content><![CDATA[<h1 id="一种病毒，两种制度？"><a href="#一种病毒，两种制度？" class="headerlink" title="一种病毒，两种制度？"></a>一种病毒，两种制度？</h1><blockquote>
@@ -145,6 +171,13 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">That&#39;s number 2.  Keep going!</span><br></pre></td></tr></table></figure>
 
 <h3 id="运行结果：-1"><a href="#运行结果：-1" class="headerlink" title="运行结果："></a>运行结果：</h3><p><img src="/2020/04/05/1/phase2.png" alt></p>
+<h2 id="phase-3"><a href="#phase-3" class="headerlink" title="phase_3"></a>phase_3</h2><h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><p>main函数和前面实验过程一样，直接看<code>phase_3</code>函数：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0000000000400f43 &lt;phase_3&gt;:</span><br><span class="line">  400f43:  48 83 ec 18            sub    $0x18,%rsp</span><br><span class="line">  400f47:  48 8d 4c 24 0c         lea    0xc(%rsp),%rcx</span><br><span class="line">  400f4c:  48 8d 54 24 08         lea    0x8(%rsp),%rdx</span><br><span class="line">  400f51:  be cf 25 40 00         mov    $0x4025cf,%esi</span><br><span class="line">  400f56:  b8 00 00 00 00         mov    $0x0,%eax</span><br><span class="line">  400f5b:  e8 90 fc ff ff         callq  400bf0 &lt;__isoc99_sscanf@plt&gt;</span><br><span class="line">  400f60:  83 f8 01               cmp    $0x1,%eax</span><br><span class="line">  400f63:  7f 05                  jg     400f6a &lt;phase_3+0x27&gt;</span><br><span class="line">  400f65:  e8 d0 04 00 00         callq  40143a &lt;explode_bomb&gt;</span><br><span class="line">  400f6a:  83 7c 24 08 07         cmpl   $0x7,0x8(%rsp)</span><br><span class="line">  400f6f:  77 3c                  ja     400fad &lt;phase_3+0x6a&gt;</span><br><span class="line">  400f71:  8b 44 24 08            mov    0x8(%rsp),%eax</span><br><span class="line">  400f75:  ff 24 c5 70 24 40 00   jmpq   *0x402470(,%rax,8)</span><br><span class="line">  400f7c:  b8 cf 00 00 00         mov    $0xcf,%eax</span><br><span class="line">  400f81:  eb 3b                  jmp    400fbe &lt;phase_3+0x7b&gt;</span><br><span class="line">  400f83:  b8 c3 02 00 00         mov    $0x2c3,%eax</span><br><span class="line">  400f88:  eb 34                  jmp    400fbe &lt;phase_3+0x7b&gt;</span><br><span class="line">  400f8a:  b8 00 01 00 00         mov    $0x100,%eax</span><br><span class="line">  400f8f:  eb 2d                  jmp    400fbe &lt;phase_3+0x7b&gt;</span><br><span class="line">  400f91:  b8 85 01 00 00         mov    $0x185,%eax</span><br><span class="line">  400f96:  eb 26                  jmp    400fbe &lt;phase_3+0x7b&gt;</span><br><span class="line">  400f98:  b8 ce 00 00 00         mov    $0xce,%eax</span><br><span class="line">  400f9d:  eb 1f                  jmp    400fbe &lt;phase_3+0x7b&gt;</span><br><span class="line">  400f9f:  b8 aa 02 00 00         mov    $0x2aa,%eax</span><br><span class="line">  400fa4:  eb 18                  jmp    400fbe &lt;phase_3+0x7b&gt;</span><br><span class="line">  400fa6:  b8 47 01 00 00         mov    $0x147,%eax</span><br><span class="line">  400fab:  eb 11                  jmp    400fbe &lt;phase_3+0x7b&gt;</span><br><span class="line">  400fad:  e8 88 04 00 00         callq  40143a &lt;explode_bomb&gt;</span><br><span class="line">  400fb2:  b8 00 00 00 00         mov    $0x0,%eax</span><br><span class="line">  400fb7:  eb 05                  jmp    400fbe &lt;phase_3+0x7b&gt;</span><br><span class="line">  400fb9:  b8 37 01 00 00         mov    $0x137,%eax</span><br><span class="line">  400fbe:  3b 44 24 0c            cmp    0xc(%rsp),%eax</span><br><span class="line">  400fc2:  74 05                  je     400fc9 &lt;phase_3+0x86&gt;</span><br><span class="line">  400fc4:  e8 71 04 00 00         callq  40143a &lt;explode_bomb&gt;</span><br><span class="line">  400fc9:  48 83 c4 18            add    $0x18,%rsp</span><br><span class="line">  400fcd:  c3                     retq</span><br></pre></td></tr></table></figure>
+
+<p>首先看到进入函数后首先把栈顶指针%rsp寄存器向下减了8位，然后将（%rsp+8）和（%rsp+12）中的内容存在%rdx和%rcx寄存器中。再往后看，出现了一个奇怪的地址，我们将这个地址打印出来，显示的是“%d %d”，这个同第二题一样，表示我们输入的格式，应该输入两个数，中间使用空格进行区分。</p>
+<p>然后调用了<code>&lt;__isoc99_sscanf@plt&gt;</code>函数，将返回值与1进行比较，如果输入的数量大于1，则进行跳转，否则引爆炸弹。经过与前面进行比较与推断，可知分辨要将输入的两个数保存在%rdx和%rcx寄存器中。然后将0x8（%rsp）即%rdx的数值与7进行比较，如果大于7的话，就引爆炸弹，否则继续执行，考虑到跳转指令使用的<code>ja</code>指令，由此可知对应的第一个数的输入范围是[0,7]。向下看，发现将0x8(%rsp)中的值放到了%eax</p>
+<p>中。</p>
+<p>下一条指令使用的是<code>jmpq   *0x402470(,%rax,8)</code>，这是一条switch语句的命令，根据输入的第一个参数的内容对基于<code>*0x402470</code>的首地址进行跳转，第一个参数有八个取值，从0到7</p>
 ]]></content>
       <categories>
         <category>Technology</category>
