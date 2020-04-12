@@ -3,7 +3,9 @@
   <entry>
     <title>Linux命令总结（持续更新中）</title>
     <url>/2020/04/12/1/</url>
-    <content><![CDATA[<h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx:"></a>Nginx:</h1><ul>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx:"></a>Nginx:</h1><ul>
 <li>查看端口：netstat -ntpl;</li>
 <li>结束监听：kill (number)</li>
 <li>启动nginx服务：sudo service nginx start</li>
