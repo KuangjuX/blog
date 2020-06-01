@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Cache Lab</title>
+    <url>/2020/04/29/1/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>CSAPP</tag>
+        <tag>C/C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux命令总结（持续更新中）</title>
     <url>/2020/04/12/1/</url>
     <content><![CDATA[<a id="more"></a>
@@ -21,7 +33,7 @@
 </ul>
 ]]></content>
       <categories>
-        <category>Technology</category>
+        <category>技术</category>
       </categories>
       <tags>
         <tag>Linux</tag>
@@ -74,7 +86,7 @@
 <p><strong>这是我们应当做的。</strong></p>
 ]]></content>
       <categories>
-        <category>Scribble</category>
+        <category>杂文</category>
       </categories>
       <tags>
         <tag>杂论</tag>
@@ -539,7 +551,7 @@
 <p>输出信息：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">12Wow! You&#39;ve defused the secret stage!</span><br><span class="line">Congratulations! You&#39;ve defused the bomb!</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Technology</category>
+        <category>技术</category>
       </categories>
       <tags>
         <tag>汇编</tag>
@@ -654,7 +666,7 @@
 <p><img src="/2020/04/02/1/level3.png" alt></p>
 ]]></content>
       <categories>
-        <category>Technology</category>
+        <category>技术</category>
       </categories>
       <tags>
         <tag>汇编</tag>
@@ -673,7 +685,7 @@
 <p>因为恐惧……</p>
 ]]></content>
       <categories>
-        <category>Scribble</category>
+        <category>杂文</category>
       </categories>
       <tags>
         <tag>杂论</tag>
@@ -697,7 +709,7 @@
 <h3 id="Thought-1"><a href="#Thought-1" class="headerlink" title="Thought:"></a>Thought:</h3><p>构造一个偶数位全为1，奇数位全为0的数，与目标数按位与运算，并取两次非（因为当偶数位为1时返回值为大于1的整数）。</p>
 ]]></content>
       <categories>
-        <category>Technology</category>
+        <category>技术</category>
       </categories>
       <tags>
         <tag>CSAPP</tag>
@@ -731,7 +743,7 @@
 <p>现在，我们就完成了最简单的MVC与User之间的交互模式。</p>
 ]]></content>
       <categories>
-        <category>Technology</category>
+        <category>技术</category>
       </categories>
       <tags>
         <tag>Laravel</tag>
@@ -748,7 +760,7 @@
 <p>  我觉得写文章是自己的事，是不能被其他人的其他标准所评判的。</p>
 ]]></content>
       <categories>
-        <category>Scribble</category>
+        <category>杂文</category>
       </categories>
       <tags>
         <tag>吐槽</tag>
@@ -774,7 +786,7 @@
 <p><img src="/2020/03/04/1/2.jpg" alt></p>
 ]]></content>
       <categories>
-        <category>Scribble</category>
+        <category>杂文</category>
       </categories>
       <tags>
         <tag>movie</tag>
@@ -796,7 +808,7 @@
 
 ]]></content>
       <categories>
-        <category>Technology</category>
+        <category>技术</category>
       </categories>
       <tags>
         <tag>C/C++</tag>
@@ -835,7 +847,7 @@
 <h3 id="传说中罗密欧与朱丽叶相遇的地方"><a href="#传说中罗密欧与朱丽叶相遇的地方" class="headerlink" title="传说中罗密欧与朱丽叶相遇的地方"></a>传说中罗密欧与朱丽叶相遇的地方</h3><p><img src="/2020/02/29/1/Italy28.jpg" alt="传说中罗密欧与朱丽叶相遇的地方" title="传说中罗密欧与朱丽叶相遇的地方"></p>
 ]]></content>
       <categories>
-        <category>Journey</category>
+        <category>旅行</category>
       </categories>
       <tags>
         <tag>旅行</tag>
@@ -854,7 +866,7 @@
 </div>
 <script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
-        <category>Scribble</category>
+        <category>杂文</category>
       </categories>
       <tags>
         <tag>爱情</tag>
