@@ -686,7 +686,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/03/10/1/" class="post-title-link" itemprop="url">Data Lab</a>
+            <a href="/2020/03/10/1/" class="post-title-link" itemprop="url">Data Lab实验报告</a>
         </h1>
 
         <div class="post-meta">
@@ -703,7 +703,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-29 23:43:42" itemprop="dateModified" datetime="2020-04-29T23:43:42+08:00">2020-04-29</time>
+                <time title="Modified: 2020-06-02 15:45:38" itemprop="dateModified" datetime="2020-06-02T15:45:38+08:00">2020-06-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -716,7 +716,7 @@
             </span>
 
           
-            <span id="/2020/03/10/1/" class="post-meta-item leancloud_visitors" data-flag-title="Data Lab" title="Views">
+            <span id="/2020/03/10/1/" class="post-meta-item leancloud_visitors" data-flag-title="Data Lab实验报告" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -742,7 +742,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>950</span>
+              <span>4.9k</span>
             </span>
 
         </div>
@@ -754,11 +754,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="isAsciiDight"><a href="#isAsciiDight" class="headerlink" title="isAsciiDight"></a>isAsciiDight</h2><h3 id="Dsecription"><a href="#Dsecription" class="headerlink" title="Dsecription:"></a>Dsecription:</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * isAsciiDigit - return 1 if 0x30 &lt;= x &lt;= 0x39 (ASCII codes for characters '0' to '9')</span></span><br><span class="line"><span class="comment"> *   Example: isAsciiDigit(0x35) = 1.</span></span><br><span class="line"><span class="comment"> *            isAsciiDigit(0x3a) = 0.</span></span><br><span class="line"><span class="comment"> *            isAsciiDigit(0x05) = 0.</span></span><br><span class="line"><span class="comment"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span><br><span class="line"><span class="comment"> *   Max ops: 15</span></span><br><span class="line"><span class="comment"> *   Rating: 3</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Source-code"><a href="#Source-code" class="headerlink" title="Source code:"></a>Source code:</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isAsciiDigit</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> judge1=!((x+<span class="number">1</span>+(~<span class="number">0x30</span>))&gt;&gt;<span class="number">31</span>);</span><br><span class="line">    <span class="keyword">int</span> judge2=!((<span class="number">0x39</span>+(~x+<span class="number">1</span>))&gt;&gt;<span class="number">31</span>);</span><br><span class="line">    <span class="keyword">return</span> judge1&amp;judge2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Thought"><a href="#Thought" class="headerlink" title="Thought:"></a>Thought:</h3><p>判断给定数字是否在0x30到0x39之间，只需判断给定数字与0x30与0x39比较大小即可，在位级运算中，正数x的相反数为对x取反并加1,所以判断0x30与该数的大小关系大小只需判断x+1+（~0x30）即可，然后将其右移31位取！，如果满足该数大于0x30条件的话，这部分会得到1，下一个与0x39比较同理，然后两个结果去做与运算即可得到结果。</p>
+          <p><img src="/2020/03/10/1/csapp.jpg" alt></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/03/10/1/#more" rel="contents">
@@ -923,7 +919,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">80k</span>
+    <span title="Symbols count total">84k</span>
 </div>
 <!--
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0

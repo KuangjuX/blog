@@ -36,19 +36,19 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="isAsciiDightDsecription:123456789&#x2F;* * isAsciiDigit - return 1 if 0x30 &lt;&#x3D; x &lt;&#x3D; 0x39 (ASCII codes for characters &#39;0&#39; to &#39;9&#39;) *   Example: isAsciiDigit(0x35) &#x3D; 1. *            isAsciiDigit(0x3a) &#x3D;">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Data Lab">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Data Lab实验报告">
 <meta property="og:url" content="http://yoursite.com/2020/03/10/1/">
 <meta property="og:site_name" content="KuangjuX(狂且)">
-<meta property="og:description" content="isAsciiDightDsecription:123456789&#x2F;* * isAsciiDigit - return 1 if 0x30 &lt;&#x3D; x &lt;&#x3D; 0x39 (ASCII codes for characters &#39;0&#39; to &#39;9&#39;) *   Example: isAsciiDigit(0x35) &#x3D; 1. *            isAsciiDigit(0x3a) &#x3D;">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/03/10/1/csapp.jpg">
 <meta property="article:published_time" content="2020-03-10T09:01:13.000Z">
-<meta property="article:modified_time" content="2020-04-29T15:43:42.975Z">
+<meta property="article:modified_time" content="2020-06-02T07:45:38.819Z">
 <meta property="article:author" content="KuangjuX">
 <meta property="article:tag" content="CSAPP">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/10/1/csapp.jpg">
 
 <link rel="canonical" href="http://yoursite.com/2020/03/10/1/">
 
@@ -62,7 +62,7 @@
   };
 </script>
 
-  <title>Data Lab | KuangjuX(狂且)</title>
+  <title>Data Lab实验报告 | KuangjuX(狂且)</title>
   
 
 
@@ -241,7 +241,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Data Lab
+          Data Lab实验报告
         </h1>
 
         <div class="post-meta">
@@ -258,7 +258,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-29 23:43:42" itemprop="dateModified" datetime="2020-04-29T23:43:42+08:00">2020-04-29</time>
+                <time title="Modified: 2020-06-02 15:45:38" itemprop="dateModified" datetime="2020-06-02T15:45:38+08:00">2020-06-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -271,7 +271,7 @@
             </span>
 
           
-            <span id="/2020/03/10/1/" class="post-meta-item leancloud_visitors" data-flag-title="Data Lab" title="Views">
+            <span id="/2020/03/10/1/" class="post-meta-item leancloud_visitors" data-flag-title="Data Lab实验报告" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -304,7 +304,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>950</span>
+              <span>4.9k</span>
             </span>
 
         </div>
@@ -316,18 +316,107 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="isAsciiDight"><a href="#isAsciiDight" class="headerlink" title="isAsciiDight"></a>isAsciiDight</h2><h3 id="Dsecription"><a href="#Dsecription" class="headerlink" title="Dsecription:"></a>Dsecription:</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * isAsciiDigit - return 1 if 0x30 &lt;= x &lt;= 0x39 (ASCII codes for characters '0' to '9')</span></span><br><span class="line"><span class="comment"> *   Example: isAsciiDigit(0x35) = 1.</span></span><br><span class="line"><span class="comment"> *            isAsciiDigit(0x3a) = 0.</span></span><br><span class="line"><span class="comment"> *            isAsciiDigit(0x05) = 0.</span></span><br><span class="line"><span class="comment"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span><br><span class="line"><span class="comment"> *   Max ops: 15</span></span><br><span class="line"><span class="comment"> *   Rating: 3</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Source-code"><a href="#Source-code" class="headerlink" title="Source code:"></a>Source code:</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isAsciiDigit</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> judge1=!((x+<span class="number">1</span>+(~<span class="number">0x30</span>))&gt;&gt;<span class="number">31</span>);</span><br><span class="line">    <span class="keyword">int</span> judge2=!((<span class="number">0x39</span>+(~x+<span class="number">1</span>))&gt;&gt;<span class="number">31</span>);</span><br><span class="line">    <span class="keyword">return</span> judge1&amp;judge2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Thought"><a href="#Thought" class="headerlink" title="Thought:"></a>Thought:</h3><p>判断给定数字是否在0x30到0x39之间，只需判断给定数字与0x30与0x39比较大小即可，在位级运算中，正数x的相反数为对x取反并加1,所以判断0x30与该数的大小关系大小只需判断x+1+（~0x30）即可，然后将其右移31位取！，如果满足该数大于0x30条件的话，这部分会得到1，下一个与0x39比较同理，然后两个结果去做与运算即可得到结果。</p>
+        <p><img src="/2020/03/10/1/csapp.jpg" alt></p>
 <a id="more"></a>
 
-<h2 id="anyEvenBit"><a href="#anyEvenBit" class="headerlink" title="anyEvenBit"></a>anyEvenBit</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description:"></a>Description:</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * anyEvenBit - return 1 if any even-numbered bit in word set to 1</span></span><br><span class="line"><span class="comment"> *   Examples anyEvenBit(0xA) = 0, anyEvenBit(0xE) = 1</span></span><br><span class="line"><span class="comment"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span><br><span class="line"><span class="comment"> *   Max ops: 12</span></span><br><span class="line"><span class="comment"> *   Rating: 2</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<h1 id="CSAPP-Data-Lab实验报告"><a href="#CSAPP-Data-Lab实验报告" class="headerlink" title="CSAPP Data Lab实验报告"></a>CSAPP Data Lab实验报告</h1><h5 id="1-isAsciiDight-int-x"><a href="#1-isAsciiDight-int-x" class="headerlink" title="1.isAsciiDight(int x)"></a>1.<code>isAsciiDight(int x)</code></h5><p><strong>实现代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int isAsciiDigit(int x) &#123;</span><br><span class="line">    return(!((x+~48+1)&gt;&gt;31))&amp;!!((x+~58+1)&gt;&gt;31);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code:"></a>Source Code:</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">anyEvenBit</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t=<span class="number">0x55</span>;</span><br><span class="line">    <span class="keyword">int</span> temp=(t&lt;&lt;<span class="number">8</span>) | t;</span><br><span class="line">    <span class="keyword">int</span> mask = (temp&lt;&lt;<span class="number">16</span>) | temp;</span><br><span class="line">    <span class="keyword">return</span> !!(mask&amp;x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>实现思想：</strong></p>
+<p>题目要求当参数x大于等于48小于等于57的时候返回1，否则返回0。</p>
+<p>于是我们将x减去48并将其右移31位保留其符号位，此时若x减去48大于等于0则符号位为0因此要将其进行取反；同样，将x减去58并将其右移31位，此时真好同上面那种情况相反，因此要对符号位取两次反，最后再取与运算获得结果。</p>
+<h5 id="2-int-anyEvenBit-int-x"><a href="#2-int-anyEvenBit-int-x" class="headerlink" title="2. int anyEvenBit(int x)"></a>2. <code>int anyEvenBit(int x)</code></h5><p><strong>实现代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int anyEvenBit(int x) &#123;</span><br><span class="line">    int t&#x3D;0x55 | (0x55&lt;&lt;8);</span><br><span class="line">    int mask&#x3D;t | (t&lt;&lt;16);</span><br><span class="line">    return !!(x&amp;mask);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="Thought-1"><a href="#Thought-1" class="headerlink" title="Thought:"></a>Thought:</h3><p>构造一个偶数位全为1，奇数位全为0的数，与目标数按位与运算，并取两次非（因为当偶数位为1时返回值为大于1的整数）。</p>
+<p><strong>实现思想：</strong></p>
+<p>题目要求当参数x有任何偶数位设置为1时返回1，否则返回0。</p>
+<p>因此我们构造一个掩码，令该掩码的偶数位全为1，奇数位全为0，再令输入的参数x和该掩码进行与运算，若x中有偶数位被设置为1的话则与之后必不为0，因此两次取反返回。</p>
+<h5 id="3-int-copyLSB-int-x"><a href="#3-int-copyLSB-int-x" class="headerlink" title="3. int copyLSB(int x)"></a>3. <code>int copyLSB(int x)</code></h5><p><strong>实现代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int copyLSB(int x) &#123;</span><br><span class="line">    return ((x&lt;&lt;31)&gt;&gt;31);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实现思想：</strong></p>
+<p>本题要求设置所有位为参数x的最低位，所以先左移31位再右移31位进行符号位扩展。</p>
+<h5 id="4-int-leastBitPos-int-x"><a href="#4-int-leastBitPos-int-x" class="headerlink" title="4. int leastBitPos(int x)"></a>4. <code>int leastBitPos(int x)</code></h5><p><strong>实现代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int leastBitPos(int x) &#123;</span><br><span class="line">    return x&amp;(~x+1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实现思想：</strong></p>
+<p>本题要求返回参数x最低设置为1的数。</p>
+<p>我们先将x按位取反，取反后的数与原数据正好每一位都相反，我们再将该数加1，则此数会向前进一位，此时当且仅当原数的最低取取1位和取反后数据该位都为1，因此进行与运算后得到结果。</p>
+<h5 id="int-divpwr2-int-x-int-n"><a href="#int-divpwr2-int-x-int-n" class="headerlink" title="int divpwr2(int x, int n)"></a><code>int divpwr2(int x, int n)</code></h5><p><strong>实现代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int divpwr2(int x, int n) &#123;</span><br><span class="line">    int sign &#x3D;(x&gt;&gt;31)&amp;1;</span><br><span class="line">    int bias &#x3D; (sign&lt;&lt;n)+~sign +1;</span><br><span class="line">    return (x+bias)&gt;&gt;n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实现思路：</strong></p>
+<p>实验要求返回所给参数x/2^n的结果。</p>
+<p>首先判断所给参数x的标志位，将x右移31位再和1进行与运算，若是正数则为0，负数则为1。</p>
+<p>然后就是设置正数和负数的取整问题。当x为正数的时候，右移后向下取整，和题目要求相同，但是当x为负数时，也是向下取整，但此时题目要求要向上取整，因此要给负数加上一个偏置值再进行右移操作。因此负数要加上2^n-1来保证取整。</p>
+<h5 id="6-int-bitCount-int-x"><a href="#6-int-bitCount-int-x" class="headerlink" title="6.int bitCount(int x)"></a>6.<code>int bitCount(int x)</code></h5><p><strong>实现代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">int bitCount(int x) &#123;</span><br><span class="line">    int t &#x3D; 0x55 + (0x55&lt;&lt;8);</span><br><span class="line">    int mask &#x3D; t + (t&lt;&lt;16);</span><br><span class="line">    x &#x3D; (x&amp;mask) + ((x&gt;&gt;1)&amp;mask);</span><br><span class="line"></span><br><span class="line">    t &#x3D; 0x33 + (0x33&lt;&lt;8);</span><br><span class="line">    mask &#x3D; t + (t&lt;&lt;16);</span><br><span class="line">    x &#x3D; (x&amp;mask) + ((x&gt;&gt;2)&amp;mask);</span><br><span class="line"></span><br><span class="line">    t &#x3D; 0xf + (0xf&lt;&lt;8);</span><br><span class="line">    mask &#x3D; t + (t&lt;&lt;16);</span><br><span class="line">    x &#x3D; (x&amp;mask) + ((x&gt;&gt;4)&amp;mask);</span><br><span class="line"></span><br><span class="line">    mask &#x3D; 0xff + (0xff&lt;&lt;16);</span><br><span class="line">    x &#x3D; (x&amp;mask) + ((x&gt;&gt;8)&amp;mask);</span><br><span class="line"></span><br><span class="line">    mask &#x3D; 0xff + (0xff&lt;&lt;8);</span><br><span class="line">    x &#x3D; (x&amp;mask) + ((x&gt;&gt;16)&amp;mask);</span><br><span class="line"></span><br><span class="line">    return x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实现思路：</strong></p>
+<p>问题要求返回参数x的位为1的个数。</p>
+<p>所以我们需要一个个检查参数的每一位是否为1，并且将之累加起来。</p>
+<p>从两位比特位入手，计算两位比特数中1的个数，就是高位与低位之和。</p>
+<p>00: 0+0=(00)<sub>2</sub></p>
+<p>01: 0+1=(01)<sub>2</sub></p>
+<p>10: 1+0=(01)<sub>2</sub></p>
+<p>11: 1+1=(10)<sub>2</sub></p>
+<p>令一个二进制数B为b<sub>32</sub>b<sub>31</sub>….b<sub>1</sub></p>
+<p>则L(l,r)表示一个二进制数在l和r区间之间的1的个数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">L(l,r)&#x3D; L(l,x)+ L(x+1,r) (l&lt;&#x3D;x&lt;r)</span><br><span class="line">L(l,r)&#x3D; bl (l&#x3D;r)</span><br></pre></td></tr></table></figure>
+
+<p>对于一个32位的整数来说，可以用动态规划的思想自底向上计算。先计算L(1,1)+L(2,2)。</p>
+<p>先构造一个只有低位L(1,1)的数<code>a=x&amp;x=0x01</code>和高位L(2,2)的数<code>b=(x&gt;&gt;1)&amp;0x01</code>,但我们发现可以同时计算L(3,3)和L(4,4)等数。只需将构造改为：</p>
+<p><code>a=x&amp;0x55555555</code>,<code>b=(x&gt;&gt;1)&amp;0x55555555</code>, <code>x=a+b</code></p>
+<p>计算L(1,2)和L(3,4)以此类推：</p>
+<p><code>a=x&amp;0x33333333</code>, <code>b=(x&gt;&gt;1)&amp;0x33333333</code>, `x=a+b</p>
+<h5 id="7-int-conditional-int-x-int-y-int-z"><a href="#7-int-conditional-int-x-int-y-int-z" class="headerlink" title="7. int conditional(int x, int y, int z)"></a>7. <code>int conditional(int x, int y, int z)</code></h5><p><strong>实现代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int conditional(int x, int y, int z) &#123;</span><br><span class="line">  x &#x3D; (!!x)&lt;&lt;31&gt;&gt;31;</span><br><span class="line">  return (y&amp;x)|(z&amp;~x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实现思路：</strong></p>
+<p>题目要求该函数实现三元运算符，若x为真，则返回y,否则返回z。</p>
+<p>若<code>x</code>的取值为<code>0x00000000</code>或<code>0xFFFFFFFF</code>。则答案为<code>(x&amp;y)|(~x&amp;z)</code>。</p>
+<p>若<code>x！=0</code>时，将<code>x=0xFFFFFFFF</code>。<code>x = (!!x)&lt;&lt;31&gt;&gt;31</code>。</p>
+<h5 id="8-int-isNonNegative-int-x"><a href="#8-int-isNonNegative-int-x" class="headerlink" title="8. int isNonNegative(int x)"></a>8. <code>int isNonNegative(int x)</code></h5><p><strong>实现代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int isNonNegative(int x) &#123;</span><br><span class="line">    return !(x&gt;&gt;31);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实现思路：</strong></p>
+<p>判断最高位。</p>
+<h5 id="9-int-isGreater-int-x-int-y"><a href="#9-int-isGreater-int-x-int-y" class="headerlink" title="9.int isGreater(int x, int y)"></a>9.<code>int isGreater(int x, int y)</code></h5><p><strong>实现代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int isGreater(int x, int y) &#123;</span><br><span class="line">    int sign_x&#x3D;x&gt;&gt;31;</span><br><span class="line">    int sign_y&#x3D;y&gt;&gt;31;</span><br><span class="line">    int equal&#x3D;!(sign_x^sign_y)&amp;((~y+x)&gt;&gt;31);</span><br><span class="line">    int notequal&#x3D;sign_x&amp;!sign_y;</span><br><span class="line">    return !(equal|notequal);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实现思路：</strong></p>
+<p>题目要求如果x&gt;y返回1否则返回0。</p>
+<p>以下情况会返回<code>1</code>：</p>
+<p>当<code>x&gt;0,y&lt;0</code>，或者当<code>x</code>和<code>y</code>符号相同时<code>mark_ = ~((x^y)&gt;&gt;31)</code>，满足<code>x+~y+1&gt;0</code>，<code>x!=y</code>时，<code>equl_ = !!(x^y)=1</code>，<code>x+~y+1&gt;=0</code>时，<code>(~(x+~y+1))&gt;&gt;31 = 0xffffffff</code></p>
+<h5 id="10-int-absVal-int-x"><a href="#10-int-absVal-int-x" class="headerlink" title="10.int absVal(int x)"></a>10.<code>int absVal(int x)</code></h5><p><strong>实现代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int absVal(int x) &#123;</span><br><span class="line">  int sign&#x3D;x&gt;&gt;31;</span><br><span class="line">  return (x^sign)+(sign&amp;1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实现思路：</strong></p>
+<p>返回x的绝对值。</p>
+<p>首先判断x的符号位，即右移31位。</p>
+<p>倘若为正数，则返回值不变；则先用x与sign异或再加上sign与1与运算。</p>
+<p>倘若为负数则异或后（即按位取反减1）后要再加上。</p>
+<h5 id="11-int-isPower2-int-x"><a href="#11-int-isPower2-int-x" class="headerlink" title="11. int isPower2(int x)"></a>11. <code>int isPower2(int x)</code></h5><p><strong>实现代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int isPower2(int x) &#123;</span><br><span class="line">    int sign1&#x3D;!(x&gt;&gt;31);</span><br><span class="line">    int sign2&#x3D;!!x;</span><br><span class="line">    int sign3&#x3D;!(x&amp;(x+~0));</span><br><span class="line">    return (sign1&amp;sign2&amp;sign3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实现思路：</strong></p>
+<p>题目要求如果参数x是2的权重返回1，否则返回0（负数都返回0）。</p>
+<p>首先<code>sign1</code>判断x是正数还是负数，<code>sign2</code>判断x是否为0。若x为2的倍数，则x的位中则只有一位为1，因此当x为2的倍数时x和（x-1）按位与的结果必然为0，否则为1，因此将<code>!(x&amp;(x+~0))</code>作为<code>sign3</code>最后取与运算则得到结果。</p>
+<h5 id="12-unsigned-float-neg-unsigned-uf"><a href="#12-unsigned-float-neg-unsigned-uf" class="headerlink" title="12.unsigned float_neg(unsigned uf)"></a>12.<code>unsigned float_neg(unsigned uf)</code></h5><p><strong>实现代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">unsigned float_neg(unsigned uf) &#123;</span><br><span class="line">    if((uf&amp;0x7fffffff)&gt;0x7f800000)return uf;</span><br><span class="line">    return uf^0x80000000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实现思路：</strong></p>
+<p>直接使用<code>&gt;</code>判断即可，但需要注意<code>+0/-0</code>还有<code>NaN</code>这两种特殊情况。</p>
+<p>判断<code>NaN</code>时，指数段为<code>0xff</code>，小数段不全为<code>0</code>，<code>(uf&amp;0x7fffffff) &gt; 0x7f800000</code>。</p>
+<h5 id="13-unsigned-float-i2f-int-x"><a href="#13-unsigned-float-i2f-int-x" class="headerlink" title="13.unsigned float_i2f(int x)"></a>13.<code>unsigned float_i2f(int x)</code></h5><p><strong>实现代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">unsigned float_i2f(int x) &#123;</span><br><span class="line">  int s_ &#x3D; x&amp;0x80000000;</span><br><span class="line">  int n_ &#x3D; 30;</span><br><span class="line">  if(!x) return 0;</span><br><span class="line">  if(x&#x3D;&#x3D;0x80000000) return 0xcf000000;</span><br><span class="line">  if(s_) x &#x3D; ~x+1;</span><br><span class="line">  while(!(x&amp;(1&lt;&lt;n_))) n_--;</span><br><span class="line">  if(n_&lt;&#x3D;23) x&lt;&lt;&#x3D;(23-n_);</span><br><span class="line">  else&#123;</span><br><span class="line">    x+&#x3D;(1&lt;&lt;(n_-24));</span><br><span class="line">    if(x&lt;&lt;(55-n_)) ;else x&amp;&#x3D;(0xffffffff&lt;&lt;(n_-22));</span><br><span class="line">    if(x&amp;(1&lt;&lt;n_))  ;else n_++;</span><br><span class="line">    x &gt;&gt;&#x3D; (n_-23);</span><br><span class="line">  &#125;</span><br><span class="line">  x&#x3D;x&amp;0x007fffff;</span><br><span class="line">  n_&#x3D;(n_+127)&lt;&lt;23;</span><br><span class="line">  return x|n_|s_;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实现思路：</strong></p>
+<p>分三部分处理，获取符号位<code>s_ = x&amp;0x80000000</code>，若为负数<code>-x</code>，变为正数，则<code>0x80000000</code>为特殊情况分开处理，考虑特殊情况，<code>0x0</code>和<code>0x80000000</code>，这两种情况直接返回<code>0</code>和<code>0xcf000000</code>。</p>
+<p>获取最高位的<code>1</code>所在位置，<code>while(!(x&amp;(1&lt;&lt;n_))) n_--;</code>。</p>
+<p>若<code>n_ &lt;= 23</code>这个数需要向左移动到小数部分起始位置（将<code>1</code>放在第<code>23</code>位上），<code>if(n_&lt;=23) x&lt;&lt;=(23-n_);</code>。</p>
+<p>若<code>n_ &gt; 23</code>这个数需要向右移动到小数部分起始位置（将<code>1</code>放在第<code>23</code>位上），这时候需要考虑移出部分的舍入问题，若移出部分大于<code>0.5</code>则向上舍入，若小于<code>0.5</code>则向下舍去，若等于<code>0.5</code>则向偶数舍入。</p>
+<p>先将<code>&gt;=0.5</code>情况等同考虑，向上舍入<code>x+=(1&lt;&lt;(n_-24))</code>。若<code>==0.5</code>时，舍入情况若为奇数，我们需要<code>-1</code>操作变为偶数，即将最低位的<code>1</code>变为<code>0</code>，<code>x&amp;=(0xffffffff&lt;&lt;(n_-22))</code>，若向上舍入时最高位产生了进位，还需要加上进位<code>if(x&amp;(1&lt;&lt;n_)) ;else n_++;</code>。之后拼接浮点数即可。</p>
 
     </div>
 
@@ -431,7 +520,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#isAsciiDight"><span class="nav-number">1.</span> <span class="nav-text">isAsciiDight</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dsecription"><span class="nav-number">1.1.</span> <span class="nav-text">Dsecription:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Source-code"><span class="nav-number">1.2.</span> <span class="nav-text">Source code:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Thought"><span class="nav-number">1.3.</span> <span class="nav-text">Thought:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#anyEvenBit"><span class="nav-number">2.</span> <span class="nav-text">anyEvenBit</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description"><span class="nav-number">2.1.</span> <span class="nav-text">Description:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Source-Code"><span class="nav-number">2.2.</span> <span class="nav-text">Source Code:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Thought-1"><span class="nav-number">2.3.</span> <span class="nav-text">Thought:</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSAPP-Data-Lab实验报告"><span class="nav-number">1.</span> <span class="nav-text">CSAPP Data Lab实验报告</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-isAsciiDight-int-x"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">1.isAsciiDight(int x)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-int-anyEvenBit-int-x"><span class="nav-number">1.0.0.0.2.</span> <span class="nav-text">2. int anyEvenBit(int x)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-int-copyLSB-int-x"><span class="nav-number">1.0.0.0.3.</span> <span class="nav-text">3. int copyLSB(int x)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-int-leastBitPos-int-x"><span class="nav-number">1.0.0.0.4.</span> <span class="nav-text">4. int leastBitPos(int x)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#int-divpwr2-int-x-int-n"><span class="nav-number">1.0.0.0.5.</span> <span class="nav-text">int divpwr2(int x, int n)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-int-bitCount-int-x"><span class="nav-number">1.0.0.0.6.</span> <span class="nav-text">6.int bitCount(int x)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-int-conditional-int-x-int-y-int-z"><span class="nav-number">1.0.0.0.7.</span> <span class="nav-text">7. int conditional(int x, int y, int z)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-int-isNonNegative-int-x"><span class="nav-number">1.0.0.0.8.</span> <span class="nav-text">8. int isNonNegative(int x)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-int-isGreater-int-x-int-y"><span class="nav-number">1.0.0.0.9.</span> <span class="nav-text">9.int isGreater(int x, int y)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-int-absVal-int-x"><span class="nav-number">1.0.0.0.10.</span> <span class="nav-text">10.int absVal(int x)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-int-isPower2-int-x"><span class="nav-number">1.0.0.0.11.</span> <span class="nav-text">11. int isPower2(int x)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12-unsigned-float-neg-unsigned-uf"><span class="nav-number">1.0.0.0.12.</span> <span class="nav-text">12.unsigned float_neg(unsigned uf)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#13-unsigned-float-i2f-int-x"><span class="nav-number">1.0.0.0.13.</span> <span class="nav-text">13.unsigned float_i2f(int x)</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -517,7 +606,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">80k</span>
+    <span title="Symbols count total">84k</span>
 </div>
 <!--
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
