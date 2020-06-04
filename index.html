@@ -574,7 +574,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/06/04/1/" class="post-title-link" itemprop="url">ARM嵌入式系统</a>
+            <a href="/2020/06/04/1/" class="post-title-link" itemprop="url">ARM Linux嵌入式系统</a>
         </h1>
 
         <div class="post-meta">
@@ -585,7 +585,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-06-04 14:16:40 / Modified: 15:16:55" itemprop="dateCreated datePublished" datetime="2020-06-04T14:16:40+08:00">2020-06-04</time>
+              <time title="Created: 2020-06-04 14:16:40 / Modified: 19:27:11" itemprop="dateCreated datePublished" datetime="2020-06-04T14:16:40+08:00">2020-06-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -602,7 +602,7 @@
             </span>
 
           
-            <span id="/2020/06/04/1/" class="post-meta-item leancloud_visitors" data-flag-title="ARM嵌入式系统" title="Views">
+            <span id="/2020/06/04/1/" class="post-meta-item leancloud_visitors" data-flag-title="ARM Linux嵌入式系统" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -655,53 +655,14 @@
 <p><strong>4.SBC指令</strong></p>
 <p>用于带借位的减法运算</p>
 <p><code>SBC{条件}{S} &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
-<h3 id="逻辑运算指令"><a href="#逻辑运算指令" class="headerlink" title="逻辑运算指令"></a>逻辑运算指令</h3><p><strong>1.AND指令</strong></p>
-<p><code>AND{条件}{S} &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
-<p><strong>2.EOR指令</strong></p>
-<p>异或运算</p>
-<p><code>EOR{条件}{S} &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
-<p><strong>3.MOV指令</strong></p>
-<p>MOV可以在两个操作数之间复制数据</p>
-<p><code>MOV{条件}{S} &lt;dest&gt;, &lt;op_1&gt;</code></p>
-<h3 id="分支指令"><a href="#分支指令" class="headerlink" title="分支指令"></a>分支指令</h3><p><strong>B指令</strong></p>
-<p>B指令可以根据设置的条件跳转带指定的代码位置</p>
-<p><code>B{条件} &lt;地址&gt;</code></p>
-<h3 id="数据传送指令"><a href="#数据传送指令" class="headerlink" title="数据传送指令"></a>数据传送指令</h3><p><strong>1.单一数据传送指令</strong></p>
-<p>单一数据传送指令用于向内存转载和存储一个字节或者一个字长的数据。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LDR&#123;条件&#125;   Rd，&lt;地址&gt;</span><br><span class="line">STR&#123;条件&#125;   Rd，&lt;地址&gt;</span><br><span class="line">LDR&#123;条件&#125;B   Rd，&lt;地址&gt;</span><br><span class="line">STR&#123;条件&#125;B   Rd，&lt;地址&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">STR   Rd, [Rbase]          ;存储Rd到Rbase所包含的有效地址</span><br><span class="line">STR   Rd, [Rbase, Rindex]  ;存储到Rd到Rbase+Rindex缩合成的有效地址</span><br><span class="line">STR   Rd, [Rbase, $index]  ;存储到Rd到Rbase+index所合成的有效地址</span><br></pre></td></tr></table></figure>
-
-<p><strong>2.多数据传送指令</strong></p>
-<p>多数据传送指令用于向内存装载和存储多个字节或字的数据。</p>
-<p><code>xxM{条件}{类型} Rn{!}, &lt;寄存器列表&gt;{^}</code></p>
-<p>其中，xx可以是LD，表示装载，也可以为ST，表示存储。多数据传送指令用于寄存器和内存中多个数据的复制。指令包括：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">LDMED    LDMED    ;装载前增加地址，相当于C中的++p</span><br><span class="line">LDMFD    LDMIA    ;装载后增加地址，相当于C中的p++</span><br><span class="line">LDMED    LDMED    ;装载前减小值，相当于C中的++*p</span><br><span class="line">LDMED    LDMED    ;装载后减小值，相当于C中的*p++</span><br><span class="line">STMFA    STMIB    ;存储前增加地址</span><br><span class="line">STMEA    STMIA    ;存储后增加地址</span><br><span class="line">STMFD    STMDB    ;存储前增加值</span><br><span class="line">STMED    STMDA    ;存储后增加值</span><br></pre></td></tr></table></figure>
-
-<h2 id="ARM结构"><a href="#ARM结构" class="headerlink" title="ARM结构"></a>ARM结构</h2><h3 id="寻址方式"><a href="#寻址方式" class="headerlink" title="寻址方式"></a>寻址方式</h3><p><strong>1.立即寻址</strong></p>
-<p>立即寻址方式中操作数已经写在了指令里面，取出指令时会把操作数也取出来。这是最简单的寻址方式。</p>
-<p><strong>2.寄存器寻址</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOV R1, R2     ;把R2的值赋给R1</span><br><span class="line">SUB R0, R1, R2 ;把R1-R2的值写给R0</span><br></pre></td></tr></table></figure>
-
-<p><strong>3.寄存器偏移寻址</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOV R0, R1, LSL #3       ;把R1的值左移三位写入R0</span><br><span class="line">ANDS R0, R1, R2, LSL #R3 ;把R2的值左移R3位，然后与R1做与操作，结果写入R0</span><br></pre></td></tr></table></figure>
-
-<p><strong>4.寄存器间接寻址</strong></p>
-<p>该方式把寄存器的值当做地址，然后从对应的内存中取出数据。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LDR R0, [R1]        ;把R1的值当做地址，从内存中取出数据存放到R0</span><br><span class="line">SWP R0, R0, [R1]    ;把R1的值当做地址，从内存中取出数据与R0交换</span><br></pre></td></tr></table></figure>
-
-<p><strong>5，基址寻址</strong></p>
-<p>该方式把寄存器的内容与指定的偏移相加，得到数据地址，然后从内存取得数据。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LDR R0, [R1, #0xf]      ;把R1的数值与0xf相加得到数据地址</span><br><span class="line">STR R0，[R1, #-2]</span><br></pre></td></tr></table></figure>
-
-<p><strong>6.多寄存器寻址</strong></p>
-<p>该方式允许一次可以传输多个寄存器的值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LDMIA R1!, &#123;R2-R7,R12&#125;   ;把R1单元中的数据读出到R2~R7和R12，R1指定的地址自动加1</span><br><span class="line">STMIA R0,  &#123;R3-R6,R10&#125;   ;把R3~R6和R10中的数据保存到R0指向的地址，R0的地址自动加1</span><br></pre></td></tr></table></figure>
-
-<p><strong>7.栈寻址</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">STMFD SP!, &#123;R0~R7, LR&#125;     ;把R0~R7的内容压入堆栈</span><br><span class="line">LDMFD SP!, &#123;R0,R7, LR&#125;     ;从堆栈中取出数据到R0~R7和LR</span><br></pre></td></tr></table></figure>
-
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/04/1/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

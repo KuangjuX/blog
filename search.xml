@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ARM嵌入式系统</title>
+    <title>ARM Linux嵌入式系统</title>
     <url>/2020/06/04/1/</url>
     <content><![CDATA[<h2 id="ARM指令集"><a href="#ARM指令集" class="headerlink" title="ARM指令集"></a>ARM指令集</h2><h3 id="算术运算指令"><a href="#算术运算指令" class="headerlink" title="算术运算指令"></a>算术运算指令</h3><p><strong>1.ADD指令</strong></p>
 <p><code>ADD{条件} {S} &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
@@ -18,6 +18,8 @@
 <p><strong>4.SBC指令</strong></p>
 <p>用于带借位的减法运算</p>
 <p><code>SBC{条件}{S} &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
+<a id="more"></a>
+
 <h3 id="逻辑运算指令"><a href="#逻辑运算指令" class="headerlink" title="逻辑运算指令"></a>逻辑运算指令</h3><p><strong>1.AND指令</strong></p>
 <p><code>AND{条件}{S} &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
 <p><strong>2.EOR指令</strong></p>
