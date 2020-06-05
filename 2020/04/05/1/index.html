@@ -45,7 +45,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/04/05/1/phase1.png">
 <meta property="og:image" content="http://yoursite.com/2020/04/05/1/phase2.png">
 <meta property="article:published_time" content="2020-04-05T01:57:06.000Z">
-<meta property="article:modified_time" content="2020-04-29T15:43:08.893Z">
+<meta property="article:modified_time" content="2020-06-05T01:03:02.516Z">
 <meta property="article:author" content="KuangjuX">
 <meta property="article:tag" content="汇编">
 <meta property="article:tag" content="CSAPP">
@@ -260,7 +260,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-29 23:43:08" itemprop="dateModified" datetime="2020-04-29T23:43:08+08:00">2020-04-29</time>
+                <time title="Modified: 2020-06-05 09:03:02" itemprop="dateModified" datetime="2020-06-05T09:03:02+08:00">2020-06-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -470,15 +470,15 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Solution</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> kBegin = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> kEnd   = <span class="number">14</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"The solutions are:"</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = kBegin; i &lt;= kEnd; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (func4(i, kBegin, kEnd) == <span class="number">0</span>)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">" %d"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>输出结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">The solutions are: 0 1 3 7</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The solutions are: 0 1 3 7</span><br></pre></td></tr></table></figure>
 
 <p>即为第 1 个整数可能的值。</p>
 <p>综上，本关密码即为 <code>0 0</code>, <code>1 0</code>, <code>3 0</code>, <code>7 0</code>。</p>
 <h5 id="4-2-5-测试"><a href="#4-2-5-测试" class="headerlink" title="4.2.5 测试"></a>4.2.5 测试</h5><p>这里以 <code>7 0</code> 为例，在 gdb 中输入 Phase 4 的密码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">7 0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7 0</span><br></pre></td></tr></table></figure>
 
 <p>输出信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">So you got that one.  Try this one.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">So you got that one.  Try this one.</span><br></pre></td></tr></table></figure>
 
 <h3 id="5-Phase-5-pointers"><a href="#5-Phase-5-pointers" class="headerlink" title="5. Phase 5: pointers"></a>5. Phase 5: pointers</h3><h4 id="5-1-本关密码"><a href="#5-1-本关密码" class="headerlink" title="5.1 本关密码"></a>5.1 本关密码</h4><p><code>9ON567</code>（不唯一）</p>
 <h4 id="5-2-解题过程"><a href="#5-2-解题过程" class="headerlink" title="5.2 解题过程"></a>5.2 解题过程</h4><blockquote>
@@ -516,14 +516,14 @@
 </ol>
 <p>因此，由 <code>0x40245e</code> 指向的字符串倒推得对应的 6 个索引 <code>index</code>，再根据这些 <code>index</code> 得到输入的字符串 <code>input</code> 的 6 个字符，就可以得到本关的密码。</p>
 <h5 id="5-2-2-确定目标字符串-word-的值"><a href="#5-2-2-确定目标字符串-word-的值" class="headerlink" title="5.2.2 确定目标字符串 word 的值"></a>5.2.2 确定目标字符串 word 的值</h5><p>使用 gdb 查看地址 <code>0x40245e</code> 存放的内容：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> 复制</span><br><span class="line"><span class="number">1</span></span><br><span class="line">(gdb) x/s <span class="number">0x40245e</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) x/s <span class="number">0x40245e</span></span><br></pre></td></tr></table></figure>
 
 <p>输出信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> 复制</span><br><span class="line">1</span><br><span class="line">0x40245e:       &quot;flyers&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x40245e:       &quot;flyers&quot;</span><br></pre></td></tr></table></figure>
 
 <p>这就是我们需要构造的目标字符串 <code>word</code> 的值。</p>
 <h5 id="5-2-3-确定-6-个索引-index-的值"><a href="#5-2-3-确定-6-个索引-index-的值" class="headerlink" title="5.2.3 确定 6 个索引 index 的值"></a>5.2.3 确定 6 个索引 index 的值</h5><p>使用 gdb 查看地址 <code>0x4024b0</code> 存放的内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">(gdb) x&#x2F;s 0x4024b0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) x&#x2F;s 0x4024b0</span><br></pre></td></tr></table></figure>
 
 <p>输出信息：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">0x4024b0 &lt;array.3449&gt;:  &quot;maduiersnfotvbylSo you think you can stop the bomb with ctrl-c, do you?&quot;</span><br></pre></td></tr></table></figure>
@@ -532,10 +532,10 @@
 <h5 id="5-2-4-确定输入的-6-个字符"><a href="#5-2-4-确定输入的-6-个字符" class="headerlink" title="5.2.4 确定输入的 6 个字符"></a>5.2.4 确定输入的 6 个字符</h5><p>由于索引 <code>index</code> 是字符 <code>input[i]</code> 的最后 4 位（二进制），通过 ASCII 码表 [^6] 找到最后 4 位为 <code>index</code> 的字符即可。于是得到对应的 6 个字符为：<code>9</code>, <code>O</code>, <code>N</code>, <code>5</code>, <code>6</code>, <code>7</code>（答案不唯一，这里就不一一列举了）。</p>
 <p>因此，本关密码即为 <code>9ON567</code>。</p>
 <h5 id="5-2-5-测试"><a href="#5-2-5-测试" class="headerlink" title="5.2.5 测试"></a>5.2.5 测试</h5><p>在 gdb 中输入 Phase 5 的密码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">9ON567</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">9ON567</span><br></pre></td></tr></table></figure>
 
 <p>输出信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">Good work!  On to the next...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Good work!  On to the next...</span><br></pre></td></tr></table></figure>
 
 <h3 id="6-Phase-6-linked-lists-pointers-structs"><a href="#6-Phase-6-linked-lists-pointers-structs" class="headerlink" title="6. Phase 6: linked lists / pointers / structs"></a>6. Phase 6: linked lists / pointers / structs</h3><h4 id="6-1-本关密码"><a href="#6-1-本关密码" class="headerlink" title="6.1 本关密码"></a>6.1 本关密码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4 3 2 1 6 5</span><br></pre></td></tr></table></figure>
 
@@ -567,7 +567,7 @@
 <h5 id="6-2-3-第三部分（401153-40116d）"><a href="#6-2-3-第三部分（401153-40116d）" class="headerlink" title="6.2.3 第三部分（401153 ~ 40116d）"></a>6.2.3 第三部分（401153 ~ 40116d）</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">401153:   48 8d 74 24 18          lea    0x18(%rsp),%rsi</span><br><span class="line">401158:   4c 89 f0                mov    %r14,%rax</span><br><span class="line">40115b:   b9 07 00 00 00          mov    $0x7,%ecx</span><br><span class="line">401160:   89 ca                   mov    %ecx,%edx</span><br><span class="line">401162:   2b 10                   sub    (%rax),%edx</span><br><span class="line">401164:   89 10                   mov    %edx,(%rax)</span><br><span class="line">401166:   48 83 c0 04             add    $0x4,%rax</span><br><span class="line">40116a:   48 39 f0                cmp    %rsi,%rax</span><br><span class="line">40116d:   75 f1                   jne    401160 &lt;phase_6+0x6c&gt;</span><br></pre></td></tr></table></figure>
 
 <p>试译成 C 语言代码（经整理及部分改写）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> 复制1234567&#x2F;&#x2F; begin_pos &#x3D; rsp;                             &#x2F;&#x2F; begin_pos in %r14</span><br><span class="line">end_pos &#x3D; rsp + 6;                              &#x2F;&#x2F; end_pos in %rsi</span><br><span class="line">minuend &#x3D; 7;                                    &#x2F;&#x2F; minuend in %ecx</span><br><span class="line">for (i &#x3D; begin_pos; i !&#x3D; end_pos; ++i) &#123;        &#x2F;&#x2F; i in %rax</span><br><span class="line">    new_num &#x3D; minuend - *i;                     &#x2F;&#x2F; new_num in %edx</span><br><span class="line">    *i      &#x3D; new_num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">begin_pos &#x3D; rsp;                             &#x2F;&#x2F; begin_pos in %r14</span><br><span class="line">end_pos &#x3D; rsp + 6;                              &#x2F;&#x2F; end_pos in %rsi</span><br><span class="line">minuend &#x3D; 7;                                    &#x2F;&#x2F; minuend in %ecx</span><br><span class="line">for (i &#x3D; begin_pos; i !&#x3D; end_pos; ++i) &#123;        &#x2F;&#x2F; i in %rax</span><br><span class="line">    new_num &#x3D; minuend - *i;                     &#x2F;&#x2F; new_num in %edx</span><br><span class="line">    *i      &#x3D; new_num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>可见，保存在栈中的这 6 个整数 <code>nums[i]</code> 被依次修改成了 <code>7 - nums[i]</code>。</p>
 <h5 id="6-2-4-第四部分（40116f-4011a9）"><a href="#6-2-4-第四部分（40116f-4011a9）" class="headerlink" title="6.2.4 第四部分（40116f ~ 4011a9）"></a>6.2.4 第四部分（40116f ~ 4011a9）</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">40116f:   be 00 00 00 00          mov    $0x0,%esi</span><br><span class="line"> 401174:   eb 21                   jmp    401197 &lt;phase_6+0xa3&gt;</span><br><span class="line"> 401176:   48 8b 52 08             mov    0x8(%rdx),%rdx</span><br><span class="line"> 40117a:   83 c0 01                add    $0x1,%eax</span><br><span class="line"> 40117d:   39 c8                   cmp    %ecx,%eax</span><br><span class="line"> 40117f:   75 f5                   jne    401176 &lt;phase_6+0x82&gt;</span><br><span class="line"> 401181:   eb 05                   jmp    401188 &lt;phase_6+0x94&gt;</span><br><span class="line"> 401183:   ba d0 32 60 00          mov    $0x6032d0,%edx</span><br><span class="line"> 401188:   48 89 54 74 20          mov    %rdx,0x20(%rsp,%rsi,2)</span><br><span class="line"> 40118d:   48 83 c6 04             add    $0x4,%rsi</span><br><span class="line"> 401191:   48 83 fe 18             cmp    $0x18,%rsi</span><br><span class="line"> 401195:   74 14                   je     4011ab &lt;phase_6+0xb7&gt;</span><br><span class="line"> 401197:   8b 0c 34                mov    (%rsp,%rsi,1),%ecx</span><br><span class="line"> 40119a:   83 f9 01                cmp    $0x1,%ecx</span><br><span class="line"> 40119d:   7e e4                   jle    401183 &lt;phase_6+0x8f&gt;</span><br><span class="line"> 40119f:   b8 01 00 00 00          mov    $0x1,%eax</span><br><span class="line"> 4011a4:   ba d0 32 60 00          mov    $0x6032d0,%edx</span><br><span class="line"> 4011a9:   eb cb                   jmp    401176 &lt;phase_6+0x82&gt;</span><br><span class="line"> 4011ab:   48 8b 5c 24 20          mov    0x20(%rsp),%rbx</span><br><span class="line"> ...</span><br></pre></td></tr></table></figure>
@@ -582,10 +582,10 @@
 </blockquote>
 <p>由之前的分析，<code>nums[i]</code> 是 1 ~ 6 的一个全排列，由此可以得到这 6 个结点的地址。</p>
 <p>以进行 1 次操作为例，使用 gdb 查看此时 <code>p_node</code> 的值（原 <code>p_node</code> + <code>0x8</code> 所指向的内容）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">(gdb) x&#x2F;xw 0x6032d8</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) x&#x2F;xw 0x6032d8</span><br></pre></td></tr></table></figure>
 
 <p>输出信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">0x6032d8 &lt;node1+8&gt;:     0x006032e0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x6032d8 &lt;node1+8&gt;:     0x006032e0</span><br></pre></td></tr></table></figure>
 
 <p>这就是 2 号结点的地址 <code>p_node2</code>。</p>
 <p>用同样的方式得到 6 个结点的地址：</p>
@@ -606,10 +606,10 @@
 
 <p>由上一节的分析，<code>*cur_node</code> 即 <code>cur_node-&gt;val</code>，<code>*(cur_node + 1)</code> 即 <code>cur_node-&gt;next</code>。通过这段代码，可以发现链表各个结点的数据 <code>val</code> 需要是顺序递减的。</p>
 <p>以 1 号结点 <code>node1</code> 为例，使用 gdb 查看其数据 <code>val</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">(gdb) x&#x2F;d 0x6032d0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) x&#x2F;d 0x6032d0</span><br></pre></td></tr></table></figure>
 
 <p>输出信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">1</span><br><span class="line">0x6032d0 &lt;node1&gt;:       332</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x6032d0 &lt;node1&gt;:       332</span><br></pre></td></tr></table></figure>
 
 <p>用同样的方式得到链表 6 个结点的数据：</p>
 <blockquote>
@@ -619,10 +619,10 @@
 <h5 id="6-2-7-确定输入的-6-个整数"><a href="#6-2-7-确定输入的-6-个整数" class="headerlink" title="6.2.7 确定输入的 6 个整数"></a>6.2.7 确定输入的 6 个整数</h5><p>由之前的分析，<code>nums[i]</code> 在第三部分的代码中被依次修改成了 <code>7 - nums[i]</code>，而修改后的值分别对应栈中结点的标号 <code>3</code>, <code>4</code>, <code>5</code>, <code>6</code>, <code>1</code>, <code>2</code>。</p>
 <p>因此，最开始输入的 6 个整数也就是 <code>4</code>, <code>3</code>, <code>2</code>, <code>1</code>, <code>6</code>, <code>5</code>，本关密码即为 <code>4 3 2 1 6 5</code>。</p>
 <h5 id="6-2-8-测试"><a href="#6-2-8-测试" class="headerlink" title="6.2.8 测试"></a>6.2.8 测试</h5><p>在 gdb 中输入 Phase 6 的密码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">4 3 2 1 6 5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4 3 2 1 6 5</span><br></pre></td></tr></table></figure>
 
 <p>输出信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">Congratulations! You&#39;ve defused the bomb!</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Congratulations! You&#39;ve defused the bomb!</span><br></pre></td></tr></table></figure>
 
 <h3 id="7-结束了吗"><a href="#7-结束了吗" class="headerlink" title="7. 结束了吗"></a>7. 结束了吗</h3><p>在 bomb.c 文件的最后，留下了这样一句耐人寻味的话：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* Wow, they got it!  But isn&#39;t something... missing?  Perhaps</span><br><span class="line"> * something they overlooked?  Mua ha ha ha ha! *&#x2F;</span><br></pre></td></tr></table></figure>
@@ -649,10 +649,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">4015e1:   4c 8d 44 24 10          lea    0x10(%rsp),%r8</span><br><span class="line">4015e6:   48 8d 4c 24 0c          lea    0xc(%rsp),%rcx</span><br><span class="line">4015eb:   48 8d 54 24 08          lea    0x8(%rsp),%rdx</span><br><span class="line">4015f0:   be 19 26 40 00          mov    $0x402619,%esi</span><br><span class="line">4015f5:   bf 70 38 60 00          mov    $0x603870,%edi</span><br><span class="line">4015fa:   e8 f1 f5 ff ff          callq  400bf0 &lt;__isoc99_sscanf@plt&gt;</span><br></pre></td></tr></table></figure>
 
 <p>这段代码我们已经十分熟悉。<code>0x402619</code> 指向的应该是一个格式化字符串。使用 gdb 查看地址 <code>0x402619</code> 存放的内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">(gdb) x&#x2F;s 0x402619</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) x&#x2F;s 0x402619</span><br></pre></td></tr></table></figure>
 
 <p>输出信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">0x402619:       &quot;%d %d %s&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x402619:       &quot;%d %d %s&quot;</span><br></pre></td></tr></table></figure>
 
 <p>因此，在某处我们需要按这个格式输入 2 个整数和 1 个字符串。这 2 个整数将被保存在 <code>0x8(%rsp)</code> 和 <code>0xc(%rsp)</code> 中，字符串将被保存在 <code>0x10(%rsp)</code> 中。需要注意的是这里还额外传入了一个地址 <code>0x603870</code>，根据我对系统函数 <code>sscanf</code> 的理解，这应当指的是那个被用来解析的字符串的地址。</p>
 <p>读取完毕后，栈内保存的信息为：</p>
@@ -661,13 +661,13 @@
 </blockquote>
 <p>其中，<code>nums[0]</code> 和 <code>nums[1]</code> 表示 <code>0x603870</code> 指向的字符串中解析得到的（前）2 个整数，<code>password</code> 表示之后解析得到的（前）1 个字符串。</p>
 <p>在函数 <code>phase_defused</code> 的入口处设置一个断点。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">(gdb) b phase_defused</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) b phase_defused</span><br></pre></td></tr></table></figure>
 
 <p>每通过一个关卡后，使用 gdb 查看地址 <code>0x603870</code> 存放的内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">(gdb) x&#x2F;s 0x603870</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) x&#x2F;s 0x603870</span><br></pre></td></tr></table></figure>
 
 <p>发现在通过 Phase 4 后，输出信息产生了变化：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">0x603870 &lt;input_strings+240&gt;:   &quot;7 0&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x603870 &lt;input_strings+240&gt;:   &quot;7 0&quot;</span><br></pre></td></tr></table></figure>
 
 <p>可见，<code>0x603870</code> 指向的是 Phase 4 中输入的字符串 <code>7 0</code>。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">4015ff:   83 f8 03                cmp    $0x3,%eax</span><br><span class="line">401602:   75 31                   jne    401635 &lt;phase_defused+0x71&gt;</span><br><span class="line">...</span><br><span class="line">401630:   e8 0d fc ff ff          callq  401242 &lt;secret_phase&gt;</span><br><span class="line">401635:   bf 58 25 40 00          mov    $0x402558,%edi</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
@@ -680,10 +680,10 @@
 <p>%rdi = 0x10(%rsp) = password<br>%esi = 0x402622</p>
 </blockquote>
 <p>这段代码我们也已经十分熟悉。<code>0x402622</code> 指向的应该是一个字符串。使用 gdb 查看地址 <code>0x402622</code> 存放的内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">(gdb) x&#x2F;s 0x402622</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) x&#x2F;s 0x402622</span><br></pre></td></tr></table></figure>
 
 <p>输出信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">0x402622:       &quot;DrEvil&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x402622:       &quot;DrEvil&quot;</span><br></pre></td></tr></table></figure>
 
 <p>此后，函数 <code>strings_not_equal</code> 检查 %rdi 和 %rsi 寄存器指向的字符串是否相等，即 <code>password</code> 是否等于 <code>DrEvil</code>，是则返回 <code>0</code>，否则返回 <code>1</code>。</p>
 <p>401613: <code>test %eax,%eax</code> 和 401615: <code>jne 401635</code> 判断函数 <code>strings_not_equal</code> 的返回值是否为 <code>0</code>，是则继续执行之后的语句，否则直接跳到 401635: <code>mov $0x402558,%edi</code>，也就是跳过了隐藏关。</p>
@@ -692,7 +692,7 @@
 
 <p>这段就是输出几行提示文本，待会儿我们可以直接看到。以及，调用函数 <code>secret_phase</code> 开启隐藏关。</p>
 <h5 id="8-2-2-开启隐藏关"><a href="#8-2-2-开启隐藏关" class="headerlink" title="8.2.2 开启隐藏关"></a>8.2.2 开启隐藏关</h5><p>运行到 Phase 4 时，在 gdb 中输入修改后的字符串：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">7 0 DrEvil</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7 0 DrEvil</span><br></pre></td></tr></table></figure>
 
 <p>继续跑完全部 6 个关卡，输出信息：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">12Curses, you&#39;ve found the secret phase!</span><br><span class="line">But finding it and solving it are quite different...</span><br></pre></td></tr></table></figure>
@@ -741,7 +741,7 @@
 
 <p>如此这个递归函数的作用就很清晰了。</p>
 <h5 id="8-2-5-确定输入的整数"><a href="#8-2-5-确定输入的整数" class="headerlink" title="8.2.5 确定输入的整数"></a>8.2.5 确定输入的整数</h5><p>接下来，使用 gdb 查看作为参数传入的地址 <code>0x6030f0</code> 开始的连续内存中的值（经试验可知第 60 个 8 bytes 之后的地址中存放的都是无关数据，因此这里只需显示前 60 个地址）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">x&#x2F;60xg 0x6030f0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x&#x2F;60xg 0x6030f0</span><br></pre></td></tr></table></figure>
 
 <p>输出信息：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">0x6030f0 &lt;n1&gt;:   0x0000000000000024      0x0000000000603110</span><br><span class="line">0x603100 &lt;n1+16&gt;:        0x0000000000603130       0x0000000000000000</span><br><span class="line">0x603110 &lt;n21&gt;:  0x0000000000000008      0x0000000000603190</span><br><span class="line">0x603120 &lt;n21+16&gt;:       0x0000000000603150       0x0000000000000000</span><br><span class="line">0x603130 &lt;n22&gt;:  0x0000000000000032      0x0000000000603170</span><br><span class="line">0x603140 &lt;n22+16&gt;:       0x00000000006031b0       0x0000000000000000</span><br><span class="line">0x603150 &lt;n32&gt;:  0x0000000000000016      0x0000000000603270</span><br><span class="line">0x603160 &lt;n32+16&gt;:       0x0000000000603230       0x0000000000000000</span><br><span class="line">0x603170 &lt;n33&gt;:  0x000000000000002d      0x00000000006031d0</span><br><span class="line">0x603180 &lt;n33+16&gt;:       0x0000000000603290       0x0000000000000000</span><br><span class="line">0x603190 &lt;n31&gt;:  0x0000000000000006      0x00000000006031f0</span><br><span class="line">0x6031a0 &lt;n31+16&gt;:       0x0000000000603250       0x0000000000000000</span><br><span class="line">0x6031b0 &lt;n34&gt;:  0x000000000000006b      0x0000000000603210</span><br><span class="line">0x6031c0 &lt;n34+16&gt;:       0x00000000006032b0       0x0000000000000000</span><br><span class="line">0x6031d0 &lt;n45&gt;:  0x0000000000000028      0x0000000000000000</span><br><span class="line">0x6031e0 &lt;n45+16&gt;:       0x0000000000000000       0x0000000000000000</span><br><span class="line">0x6031f0 &lt;n41&gt;:  0x0000000000000001      0x0000000000000000</span><br><span class="line">0x603200 &lt;n41+16&gt;:       0x0000000000000000       0x0000000000000000</span><br><span class="line">0x603210 &lt;n47&gt;:  0x0000000000000063      0x0000000000000000</span><br><span class="line">0x603220 &lt;n47+16&gt;:       0x0000000000000000       0x0000000000000000</span><br><span class="line">0x603230 &lt;n44&gt;:  0x0000000000000023      0x0000000000000000</span><br><span class="line">0x603240 &lt;n44+16&gt;:       0x0000000000000000       0x0000000000000000</span><br><span class="line">0x603250 &lt;n42&gt;:  0x0000000000000007      0x0000000000000000</span><br><span class="line">0x603260 &lt;n42+16&gt;:       0x0000000000000000       0x0000000000000000</span><br><span class="line">0x603270 &lt;n43&gt;:  0x0000000000000014      0x0000000000000000</span><br><span class="line">0x603280 &lt;n43+16&gt;:       0x0000000000000000       0x0000000000000000</span><br><span class="line">0x603290 &lt;n46&gt;:  0x000000000000002f      0x0000000000000000</span><br><span class="line">0x6032a0 &lt;n46+16&gt;:       0x0000000000000000       0x0000000000000000</span><br><span class="line">0x6032b0 &lt;n48&gt;:  0x00000000000003e9      0x0000000000000000</span><br><span class="line">0x6032c0 &lt;n48+16&gt;:       0x0000000000000000       0x0000000000000000</span><br></pre></td></tr></table></figure>
@@ -768,7 +768,7 @@
 <p>满足条件的结点的值有 2 个：<code>22</code>, <code>20</code>，即为所求。</p>
 <p>于是得到本关的 2 个解：<code>22</code>, <code>20</code>。</p>
 <h5 id="8-2-6-测试"><a href="#8-2-6-测试" class="headerlink" title="8.2.6 测试"></a>8.2.6 测试</h5><p>这里以 <code>22</code> 为例，在 gdb 中输入 Secret phase 的密码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">22</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">22</span><br></pre></td></tr></table></figure>
 
 <p>输出信息：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">12Wow! You&#39;ve defused the secret stage!</span><br><span class="line">Congratulations! You&#39;ve defused the bomb!</span><br></pre></td></tr></table></figure>
