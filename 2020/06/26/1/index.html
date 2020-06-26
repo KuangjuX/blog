@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/KuangjuX.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/KuangjuX.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Nginx基本概念：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx学习笔记">
+<meta property="og:url" content="http://yoursite.com/2020/06/26/1/">
+<meta property="og:site_name" content="KuangjuX(狂且)">
+<meta property="og:description" content="Nginx基本概念：">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/06/26/1/nginx.png">
+<meta property="article:published_time" content="2020-06-26T10:43:44.000Z">
+<meta property="article:modified_time" content="2020-06-26T12:48:35.686Z">
+<meta property="article:author" content="KuangjuX">
+<meta property="article:tag" content="服务器">
+<meta property="article:tag" content="Nginx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/06/26/1/nginx.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/26/1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Nginx学习笔记 | KuangjuX(狂且)</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KuangjuX(狂且)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">风声雨声读书声 声声入耳 家事国事天下事 事事关心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-message">
+
+    <a href="/message/" rel="section"><i class="fa fa-fw fa-comment"></i>message</a>
+
+  </li>
+        <li class="menu-item menu-item-top">
+
+    <a href="/top/" rel="section"><i class="fa fa-fw fa-signal"></i>排行榜</a>
+
+  </li>
+        <li class="menu-item menu-item-books">
+
+    <a href="/books/" rel="section"><i class="fa fa-fw fa-book"></i>books</a>
+
+  </li>
+        <li class="menu-item menu-item-movies">
+
+    <a href="/movies/" rel="section"><i class="fa fa-fw fa-video-camera"></i>movies</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/26/1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/KuangjuX.png">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="狂且的人文及技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KuangjuX(狂且)">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Nginx学习笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-26 18:43:44 / Modified: 20:48:35" itemprop="dateCreated datePublished" datetime="2020-06-26T18:43:44+08:00">2020-06-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/06/26/1/" class="post-meta-item leancloud_visitors" data-flag-title="Nginx学习笔记" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count">℃</span>
+            </span>
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/06/26/1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/26/1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>11k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Nginx基本概念："><a href="#Nginx基本概念：" class="headerlink" title="Nginx基本概念："></a>Nginx基本概念：</h2><p><img src="/2020/06/26/1/nginx.png" alt></p>
+<a id="more"></a>
+
+<p>一个高性能HTTP和反向代理web服务器，专为性能优化而开发。</p>
+<p><strong>反向代理：</strong>我么只需要将请求发送到反向代理服务器，由反向代理服务器去选择目标服务器获取数据后，再返回给客户端，此时反向代理服务器和目标服务器对外就是一个服务器，暴露的是代理服务器地址，隐藏了真实服务器IP地址。</p>
+<p>正向代理：把局域网外的Internet想象成一个巨大的资源库，则局域网中的客户端要访问Internet，则需要通过代理服务器来访问，这种代理服务就称为正向代理。</p>
+<p><strong>负载均衡：</strong>单个服务器解决不了，我们增加服务器的数量，然后将请求分发到各个服务器上，将原先请求集中到单个服务器上的情况改为将请求分发到多个服务器上，将负载分发到不同的服务器，也就是<strong>负载均衡</strong>。</p>
+<p><strong>动静分离：</strong>为了加快网站的解析速度，可以把动态页面和静态页面有不同的服务器来解析，加快解析速度，降低原来单个服务器的压力。</p>
+<h2 id="Nginx操作的常用命令："><a href="#Nginx操作的常用命令：" class="headerlink" title="Nginx操作的常用命令："></a>Nginx操作的常用命令：</h2><p><strong>查看nginx版本号：</strong>nginx -v</p>
+<p><strong>启动nginx：</strong>nginx</p>
+<p><strong>关闭nginx：</strong>nginx -s stop</p>
+<p><strong>重新加载命令：</strong>nginx -s reload</p>
+<h2 id="Nginx配置文件："><a href="#Nginx配置文件：" class="headerlink" title="Nginx配置文件："></a>Nginx配置文件：</h2><p><code>/etc/nginx/nginx.conf</code> </p>
+<h3 id="第一部分：全局块"><a href="#第一部分：全局块" class="headerlink" title="第一部分：全局块"></a>第一部分：全局块</h3><p>从配置文件开始到events块之间的内容，主要会设置一些影响nginx服务器整体运行的配置指令，主要包括配置运行nginx服务器的用户（组）、允许生成的worker process数，进程 PID 存放路径、日志存放路径和类型以及配置文件的引入等。</p>
+<h3 id="第二部分：event块"><a href="#第二部分：event块" class="headerlink" title="第二部分：event块"></a>第二部分：event块</h3><p>events块涉及的指令主要影响Nginx服务器与用户的网络连接，常用的设置包括是否开启对多work process下的网络连接进行序列化，是否允许同时接受多个网络连接，选取哪种事件驱动模型来处理连接请求，每个word process可以同时支持的最大连接数等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">events &#123;</span><br><span class="line">    worker_connections 1024;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>支持的最大连接数。</p>
+<h3 id="第三部分：http块"><a href="#第三部分：http块" class="headerlink" title="第三部分：http块"></a>第三部分：http块</h3><p>是Nginx服务器配置中最频繁的部分，代理、缓存和日志定义等绝大多数功能和第三方模块的配置都在这里。</p>
+<p>http块也可以包括http全局块和server块。</p>
+<p><strong>server块：</strong>这和虚拟主机有密切关系，虚拟主机从用户角度看，和一台独立的硬件主机是完全一样的，该技术的忏悔说呢过是为了节省互联网服务器硬件成本。</p>
+<p>每个http块可以包括多个server块，而每个server块就相当于一个虚拟主机。</p>
+<p>而每个server块也分为全局server块，以及可以同时包含多个location块。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span>       <span class="number">80</span> default_server;</span><br><span class="line">        <span class="attribute">listen</span>       [::]:<span class="number">80</span> default_server;</span><br><span class="line">        <span class="attribute">server_name</span>  </span><br><span class="line">        root         /usr/share/nginx/html;</span><br><span class="line">	<span class="attribute">default_type</span> <span class="string">'text/html'</span>;</span><br><span class="line">	<span class="attribute">charset</span> utf-<span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Load configuration files for the default server block.</span></span><br><span class="line"></span><br><span class="line">​        include /etc/nginx/default.d/*.conf;</span><br><span class="line"></span><br><span class="line">​        location / &#123;</span><br><span class="line">​		index index.html index.php index.htm;</span><br><span class="line">​		charset utf-8;</span><br><span class="line">​        &#125;</span><br><span class="line"></span><br><span class="line">​        error_page 404 /404.html;</span><br><span class="line">​            location = /40x.html &#123;</span><br><span class="line">​        &#125;</span><br><span class="line"></span><br><span class="line">​        error_page 500 502 503 504 /50x.html;</span><br><span class="line">​            location = /50x.html &#123;</span><br><span class="line">​        &#125;</span><br><span class="line">​	location ~ \.php$ &#123;</span><br><span class="line">​		fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">​		fastcgi_index index.php;</span><br><span class="line">​		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">​		include       fastcgi_params;</span><br><span class="line">​	&#125;</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="详解："><a href="#详解：" class="headerlink" title="详解："></a>详解：</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义Nginx运行的用户和用户组</span></span><br><span class="line"><span class="attribute">user</span> www www; </span><br><span class="line"></span><br><span class="line"><span class="comment">#nginx进程数，通常设置成和cpu的数量相等</span></span><br><span class="line"><span class="attribute">worker_processes</span> <span class="number">4</span>; </span><br><span class="line"></span><br><span class="line"><span class="comment">#全局错误日志定义类型，[debug | info | notice | warn | error | crit]</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  notice;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  info;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#进程pid文件</span></span><br><span class="line"><span class="comment">#pid        logs/nginx.pid;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#指定进程可以打开的最大描述符：数目</span></span><br><span class="line"><span class="comment">#工作模式与连接数上限</span></span><br><span class="line"><span class="comment">##这个指令是指当一个nginx进程打开的最多文件描述符数目，理论值应该是最多打开文件数（ulimit -n）与nginx进程数相除，但是nginx分配请求并不是那么均匀，所以最好与ulimit -n 的值保持一致。</span></span><br><span class="line"><span class="comment">#这是因为nginx调度时分配请求到进程并不是那么的均衡，所以假如填写10240，总并发量达到3-4万时就有进程可能超过10240了，这时会返回502错误。</span></span><br><span class="line"><span class="attribute">worker_rlimit_nofile</span> <span class="number">65535</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="comment">#参考事件模型，use [ kqueue | rtsig | epoll | /dev/poll | select | poll ]; epoll模型</span></span><br><span class="line">    <span class="comment">#是Linux 2.6以上版本内核中的高性能网络I/O模型，linux建议epoll，如果跑在FreeBSD上面，就用kqueue模型。</span></span><br><span class="line">    <span class="comment">#补充说明：</span></span><br><span class="line">    <span class="comment">#与apache相类，nginx针对不同的操作系统，有不同的事件模型</span></span><br><span class="line">    <span class="comment">#A）标准事件模型</span></span><br><span class="line">    <span class="comment">#Select、poll属于标准事件模型，如果当前系统不存在更有效的方法，nginx会选择select或poll</span></span><br><span class="line">    <span class="comment">#B）高效事件模型</span></span><br><span class="line">    <span class="comment">#Kqueue：使用于FreeBSD 4.1+, OpenBSD 2.9+, NetBSD 2.0 和 MacOS X.使用双处理器的MacOS X系统使用kqueue可能会造成内核崩溃。</span></span><br><span class="line">    <span class="comment">#Epoll：使用于Linux内核2.6版本及以后的系统。</span></span><br><span class="line">    <span class="comment">#/dev/poll：使用于Solaris 7 11/99+，HP/UX 11.22+ (eventport)，IRIX 6.5.15+ 和 Tru64 UNIX 5.1A+。</span></span><br><span class="line">    <span class="comment">#Eventport：使用于Solaris 10。 为了防止出现内核崩溃的问题， 有必要安装安全补丁。</span></span><br><span class="line">    <span class="attribute">use</span> <span class="literal">epoll</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">#单个进程最大连接数（最大连接数=连接数+进程数）</span></span><br><span class="line">    <span class="comment">#根据硬件调整，和前面工作进程配合起来用，尽量大，但是别把cup跑到100%就行。</span></span><br><span class="line">    worker_connections  <span class="number">1024</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#keepalive 超时时间</span></span><br><span class="line">    <span class="attribute">keepalive_timeout</span> <span class="number">60</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#客户端请求头部的缓冲区大小。这个可以根据你的系统分页大小来设置，一般一个请求头的大小不会超过1k，不过由于一般系统分页都要大于1k，所以这里设置为分页大小。</span></span><br><span class="line">    <span class="comment">#分页大小可以用命令getconf PAGESIZE 取得。</span></span><br><span class="line">    <span class="comment">#[root@web001 ~]# getconf PAGESIZE</span></span><br><span class="line">    <span class="comment">#但也有client_header_buffer_size超过4k的情况，但是client_header_buffer_size该值必须设置为“系统分页大小”的整倍数。</span></span><br><span class="line">    <span class="attribute">client_header_buffer_size</span> <span class="number">4k</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#这个将为打开文件指定缓存，默认是没有启用的，max指定缓存数量，建议和打开文件数一致，inactive是指经过多长时间文件没被请求后删除缓存。</span></span><br><span class="line">    <span class="attribute">open_file_cache</span> max=<span class="number">65535</span> inactive=<span class="number">60s</span>;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">#这个是指多长时间检查一次缓存的有效信息。</span></span><br><span class="line">    <span class="comment">#语法:open_file_cache_valid time 默认值:open_file_cache_valid 60 使用字段:http, server, location 这个指令指定了何时需要检查open_file_cache中缓存项目的有效信息.</span></span><br><span class="line">    <span class="attribute">open_file_cache_valid</span> <span class="number">80s</span>;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">#open_file_cache指令中的inactive参数时间内文件的最少使用次数，如果超过这个数字，文件描述符一直是在缓存中打开的，如上例，如果有一个文件在inactive时间内一次没被使用，它将被移除。</span></span><br><span class="line">    <span class="comment">#语法:open_file_cache_min_uses number 默认值:open_file_cache_min_uses 1 使用字段:http, server, location  这个指令指定了在open_file_cache指令无效的参数中一定的时间范围内可以使用的最小文件数,如果使用更大的值,文件描述符在cache中总是打开状态.</span></span><br><span class="line">    <span class="attribute">open_file_cache_min_uses</span> <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#语法:open_file_cache_errors on | off 默认值:open_file_cache_errors off 使用字段:http, server, location 这个指令指定是否在搜索一个文件是记录cache错误.</span></span><br><span class="line">    <span class="attribute">open_file_cache_errors</span> <span class="literal">on</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#设定http服务器，利用它的反向代理功能提供负载均衡支持</span></span><br><span class="line">http&#123;</span><br><span class="line">    <span class="comment">#文件扩展名与文件类型映射表</span></span><br><span class="line">    <span class="attribute">include</span> mime.types;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#默认文件类型</span></span><br><span class="line">    <span class="attribute">default_type</span> application/octet-stream;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#默认编码</span></span><br><span class="line">    <span class="attribute">charset</span> utf-<span class="number">8</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#服务器名字的hash表大小</span></span><br><span class="line">    <span class="comment">#保存服务器名字的hash表是由指令server_names_hash_max_size 和server_names_hash_bucket_size所控制的。参数hash bucket size总是等于hash表的大小，并且是一路处理器缓存大小的倍数。在减少了在内存中的存取次数后，使在处理器中加速查找hash表键值成为可能。如果hash bucket size等于一路处理器缓存的大小，那么在查找键的时候，最坏的情况下在内存中查找的次数为2。第一次是确定存储单元的地址，第二次是在存储单元中查找键 值。因此，如果Nginx给出需要增大hash max size 或 hash bucket size的提示，那么首要的是增大前一个参数的大小.</span></span><br><span class="line">    <span class="attribute">server_names_hash_bucket_size</span> <span class="number">128</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#客户端请求头部的缓冲区大小。这个可以根据你的系统分页大小来设置，一般一个请求的头部大小不会超过1k，不过由于一般系统分页都要大于1k，所以这里设置为分页大小。分页大小可以用命令getconf PAGESIZE取得。</span></span><br><span class="line">    <span class="attribute">client_header_buffer_size</span> <span class="number">32k</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#客户请求头缓冲大小。nginx默认会用client_header_buffer_size这个buffer来读取header值，如果header过大，它会使用large_client_header_buffers来读取。</span></span><br><span class="line">    <span class="attribute">large_client_header_buffers</span> <span class="number">4</span> <span class="number">64k</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#设定通过nginx上传文件的大小</span></span><br><span class="line">    <span class="attribute">client_max_body_size</span> <span class="number">8m</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#开启高效文件传输模式，sendfile指令指定nginx是否调用sendfile函数来输出文件，对于普通应用设为 on，如果用来进行下载等应用磁盘IO重负载应用，可设置为off，以平衡磁盘与网络I/O处理速度，降低系统的负载。注意：如果图片显示不正常把这个改成off。</span></span><br><span class="line">    <span class="comment">#sendfile指令指定 nginx 是否调用sendfile 函数（zero copy 方式）来输出文件，对于普通应用，必须设为on。如果用来进行下载等应用磁盘IO重负载应用，可设置为off，以平衡磁盘与网络IO处理速度，降低系统uptime。</span></span><br><span class="line">    <span class="attribute">sendfile</span> <span class="literal">on</span>;</span><br><span class="line">    </span><br><span class="line">     <span class="comment">#开启目录列表访问，合适下载服务器，默认关闭。</span></span><br><span class="line">    <span class="attribute">autoindex</span> <span class="literal">on</span>;</span><br><span class="line">    </span><br><span class="line">      <span class="comment">#此选项允许或禁止使用socke的TCP_CORK的选项，此选项仅在使用sendfile的时候使用</span></span><br><span class="line">    <span class="attribute">tcp_nopush</span> <span class="literal">on</span>;</span><br><span class="line">     </span><br><span class="line">    <span class="attribute">tcp_nodelay</span> <span class="literal">on</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#长连接超时时间，单位是秒</span></span><br><span class="line">    <span class="attribute">keepalive_timeout</span> <span class="number">120</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#FastCGI相关参数是为了改善网站的性能：减少资源占用，提高访问速度。下面参数看字面意思都能理解。</span></span><br><span class="line">    <span class="attribute">fastcgi_connect_timeout</span> <span class="number">300</span>;</span><br><span class="line">    <span class="attribute">fastcgi_send_timeout</span> <span class="number">300</span>;</span><br><span class="line">    <span class="attribute">fastcgi_read_timeout</span> <span class="number">300</span>;</span><br><span class="line">    <span class="attribute">fastcgi_buffer_size</span> <span class="number">64k</span>;</span><br><span class="line">    <span class="attribute">fastcgi_buffers</span> <span class="number">4</span> <span class="number">64k</span>;</span><br><span class="line">    <span class="attribute">fastcgi_busy_buffers_size</span> <span class="number">128k</span>;</span><br><span class="line">    <span class="attribute">fastcgi_temp_file_write_size</span> <span class="number">128k</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#gzip模块设置</span></span><br><span class="line">    <span class="attribute">gzip</span> <span class="literal">on</span>; <span class="comment">#开启gzip压缩输出</span></span><br><span class="line">    <span class="attribute">gzip_min_length</span> <span class="number">1k</span>;    <span class="comment">#最小压缩文件大小</span></span><br><span class="line">    <span class="attribute">gzip_buffers</span> <span class="number">4</span> <span class="number">16k</span>;    <span class="comment">#压缩缓冲区</span></span><br><span class="line">    <span class="attribute">gzip_http_version</span> <span class="number">1</span>.<span class="number">0</span>; <span class="comment">#压缩版本（默认1.1，前端如果是squid2.5请使用1.0）</span></span><br><span class="line">    <span class="attribute">gzip_comp_level</span> <span class="number">2</span>;     <span class="comment">#压缩等级</span></span><br><span class="line">    <span class="attribute">gzip_types</span> text/plain application/x-javascript text/css application/xml;    <span class="comment">#压缩类型，默认就已经包含textml，所以下面就不用再写了，写上去也不会有问题，但是会有一个warn。</span></span><br><span class="line">    <span class="attribute">gzip_vary</span> <span class="literal">on</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#开启限制IP连接数的时候需要使用</span></span><br><span class="line">    <span class="comment">#limit_zone crawler $binary_remote_addr 10m;</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">#负载均衡配置</span></span><br><span class="line">    <span class="attribute">upstream</span> piao.jd.com &#123;</span><br><span class="line">     </span><br><span class="line">        <span class="comment">#upstream的负载均衡，weight是权重，可以根据机器配置定义权重。weigth参数表示权值，权值越高被分配到的几率越大。</span></span><br><span class="line">        <span class="attribute">server</span> <span class="number">192.168.80.121:80</span> weight=<span class="number">3</span>;</span><br><span class="line">        <span class="attribute">server</span> <span class="number">192.168.80.122:80</span> weight=<span class="number">2</span>;</span><br><span class="line">        <span class="attribute">server</span> <span class="number">192.168.80.123:80</span> weight=<span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#nginx的upstream目前支持4种方式的分配</span></span><br><span class="line">        <span class="comment">#1、轮询（默认）</span></span><br><span class="line">        <span class="comment">#每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。</span></span><br><span class="line">        <span class="comment">#2、weight</span></span><br><span class="line">        <span class="comment">#指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。</span></span><br><span class="line">        <span class="comment">#例如：</span></span><br><span class="line">        <span class="comment">#upstream bakend &#123;</span></span><br><span class="line">        <span class="comment">#    server 192.168.0.14 weight=10;</span></span><br><span class="line">        <span class="comment">#    server 192.168.0.15 weight=10;</span></span><br><span class="line">        <span class="comment">#&#125;</span></span><br><span class="line">        <span class="comment">#2、ip_hash</span></span><br><span class="line">        <span class="comment">#每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session的问题。</span></span><br><span class="line">        <span class="comment">#例如：</span></span><br><span class="line">        <span class="comment">#upstream bakend &#123;</span></span><br><span class="line">        <span class="comment">#    ip_hash;</span></span><br><span class="line">        <span class="comment">#    server 192.168.0.14:88;</span></span><br><span class="line">        <span class="comment">#    server 192.168.0.15:80;</span></span><br><span class="line">        <span class="comment">#&#125;</span></span><br><span class="line">        <span class="comment">#3、fair（第三方）</span></span><br><span class="line">        <span class="comment">#按后端服务器的响应时间来分配请求，响应时间短的优先分配。</span></span><br><span class="line">        <span class="comment">#upstream backend &#123;</span></span><br><span class="line">        <span class="comment">#    server server1;</span></span><br><span class="line">        <span class="comment">#    server server2;</span></span><br><span class="line">        <span class="comment">#    fair;</span></span><br><span class="line">        <span class="comment">#&#125;</span></span><br><span class="line">        <span class="comment">#4、url_hash（第三方）</span></span><br><span class="line">        <span class="comment">#按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存时比较有效。</span></span><br><span class="line">        <span class="comment">#例：在upstream中加入hash语句，server语句中不能写入weight等其他的参数，hash_method是使用的hash算法</span></span><br><span class="line">        <span class="comment">#upstream backend &#123;</span></span><br><span class="line">        <span class="comment">#    server squid1:3128;</span></span><br><span class="line">        <span class="comment">#    server squid2:3128;</span></span><br><span class="line">        <span class="comment">#    hash $request_uri;</span></span><br><span class="line">        <span class="comment">#    hash_method crc32;</span></span><br><span class="line">        <span class="comment">#&#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#tips:</span></span><br><span class="line">        <span class="comment">#upstream bakend&#123;#定义负载均衡设备的Ip及设备状态&#125;&#123;</span></span><br><span class="line">        <span class="comment">#    ip_hash;</span></span><br><span class="line">        <span class="comment">#    server 127.0.0.1:9090 down;</span></span><br><span class="line">        <span class="comment">#    server 127.0.0.1:8080 weight=2;</span></span><br><span class="line">        <span class="comment">#    server 127.0.0.1:6060;</span></span><br><span class="line">        <span class="comment">#    server 127.0.0.1:7070 backup;</span></span><br><span class="line">        <span class="comment">#&#125;</span></span><br><span class="line">        <span class="comment">#在需要使用负载均衡的server中增加 proxy_pass http://bakend/;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#每个设备的状态设置为:</span></span><br><span class="line">        <span class="comment">#1.down表示单前的server暂时不参与负载</span></span><br><span class="line">        <span class="comment">#2.weight为weight越大，负载的权重就越大。</span></span><br><span class="line">        <span class="comment">#3.max_fails：允许请求失败的次数默认为1.当超过最大次数时，返回proxy_next_upstream模块定义的错误</span></span><br><span class="line">        <span class="comment">#4.fail_timeout:max_fails次失败后，暂停的时间。</span></span><br><span class="line">        <span class="comment">#5.backup： 其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#nginx支持同时设置多组的负载均衡，用来给不用的server来使用。</span></span><br><span class="line">        <span class="comment">#client_body_in_file_only设置为On 可以讲client post过来的数据记录到文件中用来做debug</span></span><br><span class="line">        <span class="comment">#client_body_temp_path设置记录文件的目录 可以设置最多3层目录</span></span><br><span class="line">        <span class="comment">#location对URL进行匹配.可以进行重定向或者进行新的代理 负载均衡</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">#虚拟主机的配置</span></span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="comment">#监听端口</span></span><br><span class="line">        <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#域名可以有多个，用空格隔开</span></span><br><span class="line">        <span class="attribute">server_name</span> www.jd.com jd.com;</span><br><span class="line">        <span class="comment">#默认入口文件名称</span></span><br><span class="line">        <span class="attribute">index</span> index.html index.htm index.php;</span><br><span class="line">        <span class="attribute">root</span> /data/www/jd;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#对******进行负载均衡</span></span><br><span class="line">        <span class="attribute">location</span> <span class="regexp">~ .*.(php|php5)?$</span></span><br><span class="line"><span class="regexp"></span>        &#123;</span><br><span class="line">            <span class="attribute">fastcgi_pass</span> <span class="number">127.0.0.1:9000</span>;</span><br><span class="line">            <span class="attribute">fastcgi_index</span> index.php;</span><br><span class="line">            <span class="attribute">include</span> fastcgi.conf;</span><br><span class="line">        &#125;</span><br><span class="line">         </span><br><span class="line">        <span class="comment">#图片缓存时间设置</span></span><br><span class="line">        <span class="attribute">location</span> <span class="regexp">~ .*.(gif|jpg|jpeg|png|bmp|swf)$</span></span><br><span class="line"><span class="regexp"></span>        &#123;</span><br><span class="line">            <span class="attribute">expires</span> <span class="number">10d</span>;</span><br><span class="line">        &#125;</span><br><span class="line">         </span><br><span class="line">        <span class="comment">#JS和CSS缓存时间设置</span></span><br><span class="line">        <span class="attribute">location</span> <span class="regexp">~ .*.(js|css)?$</span></span><br><span class="line"><span class="regexp"></span>        &#123;</span><br><span class="line">            <span class="attribute">expires</span> <span class="number">1h</span>;</span><br><span class="line">        &#125;</span><br><span class="line">         </span><br><span class="line">        <span class="comment">#日志格式设定</span></span><br><span class="line">        <span class="comment">#$remote_addr与$http_x_forwarded_for用以记录客户端的ip地址；</span></span><br><span class="line">        <span class="comment">#$remote_user：用来记录客户端用户名称；</span></span><br><span class="line">        <span class="comment">#$time_local： 用来记录访问时间与时区；</span></span><br><span class="line">        <span class="comment">#$request： 用来记录请求的url与http协议；</span></span><br><span class="line">        <span class="comment">#$status： 用来记录请求状态；成功是200，</span></span><br><span class="line">        <span class="comment">#$body_bytes_sent ：记录发送给客户端文件主体内容大小；</span></span><br><span class="line">        <span class="comment">#$http_referer：用来记录从那个页面链接访问过来的；</span></span><br><span class="line">        <span class="comment">#$http_user_agent：记录客户浏览器的相关信息；</span></span><br><span class="line">        <span class="comment">#通常web服务器放在反向代理的后面，这样就不能获取到客户的IP地址了，通过$remote_add拿到的IP地址是反向代理服务器的iP地址。反向代理服务器在转发请求的http头信息中，可以增加x_forwarded_for信息，用以记录原有客户端的IP地址和原来客户端的请求的服务器地址。</span></span><br><span class="line">        <span class="attribute">log_format</span> access <span class="string">'<span class="variable">$remote_addr</span> - <span class="variable">$remote_user</span> [<span class="variable">$time_local</span>] "<span class="variable">$request</span>" '</span></span><br><span class="line">        <span class="string">'<span class="variable">$status</span> <span class="variable">$body_bytes_sent</span> "<span class="variable">$http_referer</span>" '</span></span><br><span class="line">        <span class="string">'"<span class="variable">$http_user_agent</span>" <span class="variable">$http_x_forwarded_for</span>'</span>;</span><br><span class="line">         </span><br><span class="line">        <span class="comment">#定义本虚拟主机的访问日志</span></span><br><span class="line">        <span class="attribute">access_log</span>  /usr/local/nginx/logs/host.access.log  main;</span><br><span class="line">        <span class="attribute">access_log</span>  /usr/local/nginx/logs/host.access.<span class="number">404</span>.log  log404;</span><br><span class="line">         </span><br><span class="line">        <span class="comment">#对 "/connect-controller" 启用反向代理</span></span><br><span class="line">        <span class="attribute">location</span> /connect-controller &#123;</span><br><span class="line">            <span class="attribute">proxy_pass</span> http://127.0.0.1:88; <span class="comment">#请注意此处端口号不能与虚拟主机监听的端口号一样（也就是server监听的端口）</span></span><br><span class="line">            <span class="attribute">proxy_redirect</span> <span class="literal">off</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">             </span><br><span class="line">            <span class="comment">#后端的Web服务器可以通过X-Forwarded-For获取用户真实IP</span></span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">             </span><br><span class="line">            <span class="comment">#以下是一些反向代理的配置，可选。</span></span><br><span class="line">            <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#允许客户端请求的最大单文件字节数</span></span><br><span class="line">            <span class="attribute">client_max_body_size</span> <span class="number">10m</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#缓冲区代理缓冲用户端请求的最大字节数，</span></span><br><span class="line">            <span class="comment">#如果把它设置为比较大的数值，例如256k，那么，无论使用firefox还是IE浏览器，来提交任意小于256k的图片，都很正常。如果注释该指令，使用默认的client_body_buffer_size设置，也就是操作系统页面大小的两倍，8k或者16k，问题就出现了。</span></span><br><span class="line">            <span class="comment">#无论使用firefox4.0还是IE8.0，提交一个比较大，200k左右的图片，都返回500 Internal Server Error错误</span></span><br><span class="line">            <span class="attribute">client_body_buffer_size</span> <span class="number">128k</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#表示使nginx阻止HTTP应答代码为400或者更高的应答。</span></span><br><span class="line">            <span class="attribute">proxy_intercept_errors</span> <span class="literal">on</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#后端服务器连接的超时时间_发起握手等候响应超时时间</span></span><br><span class="line">            <span class="comment">#nginx跟后端服务器连接超时时间(代理连接超时)</span></span><br><span class="line">            <span class="attribute">proxy_connect_timeout</span> <span class="number">90</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#后端服务器数据回传时间(代理发送超时)</span></span><br><span class="line">            <span class="comment">#后端服务器数据回传时间_就是在规定时间之内后端服务器必须传完所有的数据</span></span><br><span class="line">            <span class="attribute">proxy_send_timeout</span> <span class="number">90</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#连接成功后，后端服务器响应时间(代理接收超时)</span></span><br><span class="line">            <span class="comment">#连接成功后_等候后端服务器响应时间_其实已经进入后端的排队之中等候处理（也可以说是后端服务器处理请求的时间）</span></span><br><span class="line">            <span class="attribute">proxy_read_timeout</span> <span class="number">90</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#设置代理服务器（nginx）保存用户头信息的缓冲区大小</span></span><br><span class="line">            <span class="comment">#设置从被代理服务器读取的第一部分应答的缓冲区大小，通常情况下这部分应答中包含一个小的应答头，默认情况下这个值的大小为指令proxy_buffers中指定的一个缓冲区的大小，不过可以将其设置为更小</span></span><br><span class="line">            <span class="attribute">proxy_buffer_size</span> <span class="number">4k</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#proxy_buffers缓冲区，网页平均在32k以下的设置</span></span><br><span class="line">            <span class="comment">#设置用于读取应答（来自被代理服务器）的缓冲区数目和大小，默认情况也为分页大小，根据操作系统的不同可能是4k或者8k</span></span><br><span class="line">            <span class="attribute">proxy_buffers</span> <span class="number">4</span> <span class="number">32k</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#高负荷下缓冲大小（proxy_buffers*2）</span></span><br><span class="line">            <span class="attribute">proxy_busy_buffers_size</span> <span class="number">64k</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#设置在写入proxy_temp_path时数据的大小，预防一个工作进程在传递文件时阻塞太长</span></span><br><span class="line">            <span class="comment">#设定缓存文件夹大小，大于这个值，将从upstream服务器传</span></span><br><span class="line">            <span class="attribute">proxy_temp_file_write_size</span> <span class="number">64k</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#本地动静分离反向代理配置</span></span><br><span class="line">        <span class="comment">#所有jsp的页面均交由tomcat或resin处理</span></span><br><span class="line">        <span class="attribute">location</span> <span class="regexp">~ .(jsp|jspx|do)?$</span> &#123;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            <span class="attribute">proxy_pass</span> http://127.0.0.1:8080;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Nginx配置实例-反向代理"><a href="#Nginx配置实例-反向代理" class="headerlink" title="Nginx配置实例-反向代理"></a>Nginx配置实例-反向代理</h2>
+    </div>
+
+    
+    
+    
+      
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2020/06/26/1/">Nginx学习笔记</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 KuangjuX 的个人博客">KuangjuX</a></p>
+  <p><span>发布时间:</span>2020年06月26日 - 18:06</p>
+  <p><span>最后更新:</span>2020年06月26日 - 20:06</p>
+  <p><span>原始链接:</span><a href="/2020/06/26/1/" title="Nginx学习笔记">http://yoursite.com/2020/06/26/1/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2020/06/26/1/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          html: false,
+          timer: 500,
+          showConfirmButton: false
+        });
+      });
+    }));
+</script>
+
+
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/hh.JPG" alt="博主 Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag"><i class="fa fa-tags"></i> 服务器</a>
+              <a href="/tags/Nginx/" rel="tag"><i class="fa fa-tags"></i> Nginx</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/21/1/" rel="prev" title="1Q84">
+      <i class="fa fa-chevron-left"></i> 1Q84
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx基本概念："><span class="nav-number">1.</span> <span class="nav-text">Nginx基本概念：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx操作的常用命令："><span class="nav-number">2.</span> <span class="nav-text">Nginx操作的常用命令：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx配置文件："><span class="nav-number">3.</span> <span class="nav-text">Nginx配置文件：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一部分：全局块"><span class="nav-number">3.1.</span> <span class="nav-text">第一部分：全局块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二部分：event块"><span class="nav-number">3.2.</span> <span class="nav-text">第二部分：event块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三部分：http块"><span class="nav-number">3.3.</span> <span class="nav-text">第三部分：http块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#详解："><span class="nav-number">3.4.</span> <span class="nav-text">详解：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx配置实例-反向代理"><span class="nav-number">4.</span> <span class="nav-text">Nginx配置实例-反向代理</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="博主"
+      src="/images/KuangjuX.png">
+  <p class="site-author-name" itemprop="name">博主</p>
+  <div class="site-description" itemprop="description">狂且的人文及技术博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/KuangjuX" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;KuangjuX" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:qcx@tju.edu.cn" title="E-Mail → mailto:qcx@tju.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope-square"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/6040719620/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;6040719620&#x2F;profile?rightmod&#x3D;1&amp;wvr&#x3D;6&amp;mod&#x3D;personinfo&amp;is_all&#x3D;1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/jLZBEG2R0UJ5zXK" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;jLZBEG2R0UJ5zXK" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100038941065555" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100038941065555" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/qi-cheng-xiang-59" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;qi-cheng-xiang-59" rel="noopener" target="_blank"><i class="fa fa-fw fa-snapchat"></i>Zhihu</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <script
+  async
+  src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"
+></script>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">博主</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="Symbols count total">99k</span>
+</div>
+<!--
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+-->
+  <span class="post-meta-divider">|</span>
+<!--
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.1
+  </div>
+-->
+
+<div class="powered-by">
+  <i class="fa fa-user-md"></i>
+  <span id="busuanzi_container_site_uv">
+    本站总访客数:<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;|
+  </span>
+  <span id="busuanzi_container_site_pv">
+      &nbsp;本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  </div>
+  </div>
+
+ <script>
+      var now = new Date();
+      function createtime() {
+          var grt= new Date("03/12/2019 12:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+          document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+      }
+  setInterval("createtime()",250);
+  </script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
+          }
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=eKljXKTgtsvOEn324j1ORaUs-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id'     : 'eKljXKTgtsvOEn324j1ORaUs-gzGzoHsz',
+            'X-LC-Key'    : 'Jw4A0FzyFHKIw8taE6VXOKzD',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  <script src="//code.tidio.co/lpgsqeqcpf78423oj25nkj3nsugth3ud.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'true';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'C9bJJw8aiGhDjMSdFRUE3o8S-gzGzoHsz',
+      appKey     : 'y2X5kwL33MfJiyudCdCtg93C',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+   
+<script async src="//code.tidio.co/lpgsqeqcpf78423oj25nkj3nsugth3ud.js"></script>
+
+
+
+
+  <canvas id="evanyou"></canvas>
+  <style>
+    #evanyou {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+  </style>
+  <script src="/js/evan-you.js"></script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>
