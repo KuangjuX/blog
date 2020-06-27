@@ -43,7 +43,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/06/27/1/docker.png">
 <meta property="article:published_time" content="2020-06-27T13:19:02.000Z">
-<meta property="article:modified_time" content="2020-06-27T08:31:27.423Z">
+<meta property="article:modified_time" content="2020-06-27T14:41:37.113Z">
 <meta property="article:author" content="KuangjuX">
 <meta property="article:tag" content="服务器">
 <meta property="article:tag" content="Docker">
@@ -253,7 +253,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-06-27 21:19:02 / Modified: 16:31:27" itemprop="dateCreated datePublished" datetime="2020-06-27T21:19:02+08:00">2020-06-27</time>
+              <time title="Created: 2020-06-27 21:19:02 / Modified: 22:41:37" itemprop="dateCreated datePublished" datetime="2020-06-27T21:19:02+08:00">2020-06-27</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -299,7 +299,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>710</span>
+              <span>1.3k</span>
             </span>
 
         </div>
@@ -325,6 +325,18 @@
 <p><strong>Linux容器不是模拟一个完整的操作系统</strong>，而是对进程进行隔离。有了容器，就可以将软件运行时所需的所有资源打包到一个隔离的容器中。容器与虚拟机不同，不需要捆绑一整套操作系统，只需要将软件工作所需的库资源和设置。系统因此而变得高效轻量并保证部署在任何环境下的软件都能始终如一地运行。</p>
 <h3 id="开发-运维（DevOps）"><a href="#开发-运维（DevOps）" class="headerlink" title="开发/运维（DevOps）"></a>开发/运维（DevOps）</h3><p>开发者自己运维</p>
 <p><strong>一次构建、随处运行</strong></p>
+<h2 id="Docker的安装"><a href="#Docker的安装" class="headerlink" title="Docker的安装"></a>Docker的安装</h2><h3 id="CentOS-Docker安装"><a href="#CentOS-Docker安装" class="headerlink" title="CentOS Docker安装"></a>CentOS Docker安装</h3><p>Docker支持以下的CentOS版本：</p>
+<p>CentOS 7（64bit）</p>
+<p>CentOS 6.5 （64bit）或更高版本</p>
+<h3 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h3><p>目前，CentOS仅发行版中的内核支持Docker。</p>
+<p>Docker运行在CentOS 7上，要求系统为64位，系统内核版本为3.10以上。</p>
+<p>Docker运行在CentOS 6.5或更高版本的CentOS上，要求系统为64位，系统内核版本为2.6.32-431或者更高版本。</p>
+<p>使用<code>uname -r</code>查看CentOS版本。</p>
+<h3 id="Docker的基本组成"><a href="#Docker的基本组成" class="headerlink" title="Docker的基本组成"></a>Docker的基本组成</h3><p><strong>镜像（image）</strong>就是一个<strong>只读</strong>的模板，镜像可以用来创建Docker容器，一个镜像可以创建很多容器。</p>
+<p><strong>容器（container）</strong>Docker利用容器独立运行的一个或一组应用。容器是镜像创建的运行实例。它可以被启动、开始、停止、删除。每个容器都是互相隔离的、保证安全的平台。</p>
+<p>可以把容器看成是一个简易版的Linux环境（包括root用户权限、进程空间、用户空间和网络空间等）和运行在其中的应用程序。</p>
+<p>容器的定义和镜像几乎一模一样，也是一堆层的统一视角，唯一区别在于容器的最上面那一层是可读可写的。</p>
+<p><strong>仓库（repository）</strong>是集中存放镜像文件的地方。仓库（repository）和仓库注册服务器（registry）是有区别的。仓库注册服务器上往往存放着多个仓库，每个仓库又包含了多个镜像，每个镜像有不同的标签（tag）。</p>
 
     </div>
 
@@ -341,7 +353,7 @@
   <p><span>本文标题:</span><a href="/2020/06/27/1/">Docker学习笔记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 KuangjuX 的个人博客">KuangjuX</a></p>
   <p><span>发布时间:</span>2020年06月27日 - 21:06</p>
-  <p><span>最后更新:</span>2020年06月27日 - 16:06</p>
+  <p><span>最后更新:</span>2020年06月27日 - 22:06</p>
   <p><span>原始链接:</span><a href="/2020/06/27/1/" title="Docker学习笔记">http://yoursite.com/2020/06/27/1/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2020/06/27/1/"  aria-label="复制成功！"></i></span>
   </p>
@@ -456,7 +468,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker是什么"><span class="nav-number">1.</span> <span class="nav-text">Docker是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker能做什么"><span class="nav-number">2.</span> <span class="nav-text">Docker能做什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#之前的虚拟机技术："><span class="nav-number">2.1.</span> <span class="nav-text">之前的虚拟机技术：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器虚拟化技术"><span class="nav-number">2.2.</span> <span class="nav-text">容器虚拟化技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发-运维（DevOps）"><span class="nav-number">2.3.</span> <span class="nav-text">开发&#x2F;运维（DevOps）</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker是什么"><span class="nav-number">1.</span> <span class="nav-text">Docker是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker能做什么"><span class="nav-number">2.</span> <span class="nav-text">Docker能做什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#之前的虚拟机技术："><span class="nav-number">2.1.</span> <span class="nav-text">之前的虚拟机技术：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器虚拟化技术"><span class="nav-number">2.2.</span> <span class="nav-text">容器虚拟化技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发-运维（DevOps）"><span class="nav-number">2.3.</span> <span class="nav-text">开发&#x2F;运维（DevOps）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker的安装"><span class="nav-number">3.</span> <span class="nav-text">Docker的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS-Docker安装"><span class="nav-number">3.1.</span> <span class="nav-text">CentOS Docker安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前提条件"><span class="nav-number">3.2.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker的基本组成"><span class="nav-number">3.3.</span> <span class="nav-text">Docker的基本组成</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
