@@ -4,7 +4,20 @@
     <title>Docker学习笔记</title>
     <url>/2020/06/26/1/</url>
     <content><![CDATA[<p><img src="/2020/06/26/1/docker.png" alt></p>
-<a id="more"></a>]]></content>
+<a id="more"></a>
+
+<h2 id="Docker是什么"><a href="#Docker是什么" class="headerlink" title="Docker是什么"></a>Docker是什么</h2><p>将程序、开发环境、配置打包放到一个容器中，不需要在部署时进行环境的配置。解决了运行环境和配置问题软件容器，方便做持续集成并有助于整体发布的容器虚拟化技术。</p>
+<p>Docker是基于Go语言实现的云开源项目。</p>
+<p>Docker的主要目标是“Build，Ship and Run Any App，Anywhere”，也就是对应用组件进行封装、分发、部署、运行等生命周期的管理，使用户的APP（可以是一个WEB应用或数据库应用等等）及其运行环境能够做到“一次封装，到处运行”。</p>
+<p><strong>Docker包含两方面技术：</strong></p>
+<p>镜像技术：“镜像即应用”，（运行文档、配置环境、运行环境、运行依赖包、操作系统发行版、内核）</p>
+<h2 id="Docker能做什么"><a href="#Docker能做什么" class="headerlink" title="Docker能做什么"></a>Docker能做什么</h2><h3 id="之前的虚拟机技术："><a href="#之前的虚拟机技术：" class="headerlink" title="之前的虚拟机技术："></a>之前的虚拟机技术：</h3><p>虚拟机就是带环境安装的一种解决方案。</p>
+<p>它可以在一种操作系统里面运行另一种操作系统，比如在Windows系统里面运行Linux系统。应用程序对此毫无感知，因为虚拟机看上去跟真实系统一模一样，而对于底层系统来说，虚拟机就是一个普通文件，不需要了就删掉，对其他部分毫无影响，这类虚拟机完美地运行了另一套系统，能够使应用程序，操作系统和硬件三者之间逻辑不变。</p>
+<h3 id="容器虚拟化技术"><a href="#容器虚拟化技术" class="headerlink" title="容器虚拟化技术"></a>容器虚拟化技术</h3><p>Linux发展出了另一种虚拟化技术：Linux容器（Linux Containers 简写为LXC）。</p>
+<p><strong>Linux容器不是模拟一个完整的操作系统</strong>，而是对进程进行隔离。有了容器，就可以将软件运行时所需的所有资源打包到一个隔离的容器中。容器与虚拟机不同，不需要捆绑一整套操作系统，只需要将软件工作所需的库资源和设置。系统因此而变得高效轻量并保证部署在任何环境下的软件都能始终如一地运行。</p>
+<h3 id="开发-运维（DevOps）"><a href="#开发-运维（DevOps）" class="headerlink" title="开发/运维（DevOps）"></a>开发/运维（DevOps）</h3><p>开发者自己运维</p>
+<p><strong>一次构建、随处运行</strong></p>
+]]></content>
       <categories>
         <category>技术</category>
       </categories>
