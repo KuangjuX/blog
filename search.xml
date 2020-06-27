@@ -2,8 +2,8 @@
 <search>
   <entry>
     <title>Docker学习笔记</title>
-    <url>/2020/06/26/1/</url>
-    <content><![CDATA[<p><img src="/2020/06/26/1/docker.png" alt></p>
+    <url>/2020/06/27/1/</url>
+    <content><![CDATA[<p><img src="/2020/06/27/1/docker.png" alt></p>
 <a id="more"></a>
 
 <h2 id="Docker是什么"><a href="#Docker是什么" class="headerlink" title="Docker是什么"></a>Docker是什么</h2><p>将程序、开发环境、配置打包放到一个容器中，不需要在部署时进行环境的配置。解决了运行环境和配置问题软件容器，方便做持续集成并有助于整体发布的容器虚拟化技术。</p>
