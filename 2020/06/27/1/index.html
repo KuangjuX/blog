@@ -43,7 +43,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/06/27/1/docker.png">
 <meta property="article:published_time" content="2020-06-27T13:19:02.000Z">
-<meta property="article:modified_time" content="2020-06-28T06:44:22.886Z">
+<meta property="article:modified_time" content="2020-06-28T14:48:00.112Z">
 <meta property="article:author" content="KuangjuX">
 <meta property="article:tag" content="服务器">
 <meta property="article:tag" content="Docker">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-28 14:44:22" itemprop="dateModified" datetime="2020-06-28T14:44:22+08:00">2020-06-28</time>
+                <time title="Modified: 2020-06-28 22:48:00" itemprop="dateModified" datetime="2020-06-28T22:48:00+08:00">2020-06-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -305,7 +305,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3.8k</span>
+              <span>4.2k</span>
             </span>
 
         </div>
@@ -392,8 +392,13 @@
 <p><strong>配置镜像加速：</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /etc/docker</span><br><span class="line">vim /etc/docker/daemon.json</span><br><span class="line">(配置网易云或者阿里云镜像加速)</span><br><span class="line"><span class="meta">#</span><span class="bash">网易</span></span><br><span class="line">&#123;</span><br><span class="line">    "registry-mirrors":["http://hub-mirror.c.163.com"]</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#</span><span class="bash">阿里云</span></span><br><span class="line">&#123;</span><br><span class="line">	"registry-mirrors":["https://&#123;自己的编码&#125;.mirror.aliyuncs.com"]</span><br><span class="line">&#125;</span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
 
-
-
+<h2 id="Docker运行底层原理"><a href="#Docker运行底层原理" class="headerlink" title="Docker运行底层原理"></a>Docker运行底层原理</h2><p>（1）docker有着比虚拟机更少的抽象层，由于docker不需要Hypervisor实现硬件资源虚拟化，运行在docker容器上的程序直接使用的都是实际物理机的硬件资源。因此在CPU、内存利用率上docker将会在效率上有明显优势。</p>
+<p>（2）docker利用的是宿主机的内核，而不需要Guest OS。因此，当新建一个容器时，docker不需要和虚拟机一样重新加载一个操作系统内核。仍可避免引寻、加载操作系统内核返个比较费时费资源的过程，当新建一个虚拟机时，虚拟机软件需要加载Guest OS,返个新建过程是分钟级别的。而docker由于直接利用宿主机的操作系统，则省略了返个过程，因此新建一个docker容器只需要几秒钟。</p>
+<h2 id="Docker常用命令"><a href="#Docker常用命令" class="headerlink" title="Docker常用命令"></a>Docker常用命令</h2><h3 id="Docker帮助命令"><a href="#Docker帮助命令" class="headerlink" title="Docker帮助命令"></a>Docker帮助命令</h3><p><strong>docker version</strong></p>
+<p><strong>docker info</strong></p>
+<p><strong>docker –help</strong></p>
+<h3 id="Docker镜像命令"><a href="#Docker镜像命令" class="headerlink" title="Docker镜像命令"></a>Docker镜像命令</h3><p><strong>docker images</strong></p>
+<p>列出本地镜像说明</p>
 
     </div>
 
@@ -410,7 +415,7 @@
   <p><span>本文标题:</span><a href="/2020/06/27/1/">Docker学习笔记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 KuangjuX 的个人博客">KuangjuX</a></p>
   <p><span>发布时间:</span>2020年06月27日 - 21:06</p>
-  <p><span>最后更新:</span>2020年06月28日 - 14:06</p>
+  <p><span>最后更新:</span>2020年06月28日 - 22:06</p>
   <p><span>原始链接:</span><a href="/2020/06/27/1/" title="Docker学习笔记">http://yoursite.com/2020/06/27/1/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2020/06/27/1/"  aria-label="复制成功！"></i></span>
   </p>
@@ -528,7 +533,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker是什么"><span class="nav-number">1.</span> <span class="nav-text">Docker是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker能做什么"><span class="nav-number">2.</span> <span class="nav-text">Docker能做什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#之前的虚拟机技术："><span class="nav-number">2.1.</span> <span class="nav-text">之前的虚拟机技术：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器虚拟化技术"><span class="nav-number">2.2.</span> <span class="nav-text">容器虚拟化技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发-运维（DevOps）"><span class="nav-number">2.3.</span> <span class="nav-text">开发&#x2F;运维（DevOps）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker的安装"><span class="nav-number">3.</span> <span class="nav-text">Docker的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS-Docker安装"><span class="nav-number">3.1.</span> <span class="nav-text">CentOS Docker安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前提条件"><span class="nav-number">3.2.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker的基本组成"><span class="nav-number">3.3.</span> <span class="nav-text">Docker的基本组成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS-7安装Docker"><span class="nav-number">4.</span> <span class="nav-text">CentOS 7安装Docker</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker是什么"><span class="nav-number">1.</span> <span class="nav-text">Docker是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker能做什么"><span class="nav-number">2.</span> <span class="nav-text">Docker能做什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#之前的虚拟机技术："><span class="nav-number">2.1.</span> <span class="nav-text">之前的虚拟机技术：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器虚拟化技术"><span class="nav-number">2.2.</span> <span class="nav-text">容器虚拟化技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发-运维（DevOps）"><span class="nav-number">2.3.</span> <span class="nav-text">开发&#x2F;运维（DevOps）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker的安装"><span class="nav-number">3.</span> <span class="nav-text">Docker的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS-Docker安装"><span class="nav-number">3.1.</span> <span class="nav-text">CentOS Docker安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前提条件"><span class="nav-number">3.2.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker的基本组成"><span class="nav-number">3.3.</span> <span class="nav-text">Docker的基本组成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS-7安装Docker"><span class="nav-number">4.</span> <span class="nav-text">CentOS 7安装Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker运行底层原理"><span class="nav-number">5.</span> <span class="nav-text">Docker运行底层原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker常用命令"><span class="nav-number">6.</span> <span class="nav-text">Docker常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker帮助命令"><span class="nav-number">6.1.</span> <span class="nav-text">Docker帮助命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker镜像命令"><span class="nav-number">6.2.</span> <span class="nav-text">Docker镜像命令</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -614,7 +619,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">104k</span>
+    <span title="Symbols count total">107k</span>
 </div>
 <!--
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
