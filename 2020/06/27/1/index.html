@@ -43,7 +43,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/06/27/1/docker.png">
 <meta property="article:published_time" content="2020-06-27T13:19:02.000Z">
-<meta property="article:modified_time" content="2020-06-28T14:48:00.112Z">
+<meta property="article:modified_time" content="2020-06-29T05:52:29.659Z">
 <meta property="article:author" content="KuangjuX">
 <meta property="article:tag" content="服务器">
 <meta property="article:tag" content="Docker">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-28 22:48:00" itemprop="dateModified" datetime="2020-06-28T22:48:00+08:00">2020-06-28</time>
+                <time title="Modified: 2020-06-29 13:52:29" itemprop="dateModified" datetime="2020-06-29T13:52:29+08:00">2020-06-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -305,7 +305,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4.2k</span>
+              <span>4.8k</span>
             </span>
 
         </div>
@@ -398,7 +398,46 @@
 <p><strong>docker info</strong></p>
 <p><strong>docker –help</strong></p>
 <h3 id="Docker镜像命令"><a href="#Docker镜像命令" class="headerlink" title="Docker镜像命令"></a>Docker镜像命令</h3><p><strong>docker images</strong></p>
-<p>列出本地镜像说明</p>
+<p>列出本地主机上的镜像。</p>
+<p>选项说明：</p>
+<p>-a：列出本地所有的镜像（含中间映像层）</p>
+<p>-q：只显示镜像ID。</p>
+<p>–digests：显示镜像的摘要信息。</p>
+<p>–no-trunc：显示完整的镜像信息。</p>
+<p><strong>docker search [OPTIONS] 镜像名字</strong></p>
+<p>选项说明：</p>
+<p>–no-trunc：显示完整的镜像描述</p>
+<p>-s：列出收藏数不小于指定值的镜像。</p>
+<p>–automated：只列出automated build类型的镜像</p>
+<p><strong>docker pull [OPTIONS] 镜像名字 [:TAG]</strong></p>
+<p><strong>docker rmi 删除某个镜像</strong></p>
+<h3 id="Docker容器命令"><a href="#Docker容器命令" class="headerlink" title="Docker容器命令"></a>Docker容器命令</h3><p><strong>新建并启动一个容器：</strong>docker run [OPTIONS] IMAGE [COMMAND] [ARG…]</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it centos</span><br></pre></td></tr></table></figure>
+
+<p><strong>列出当前所有正在运行的容器</strong></p>
+<p>docker ps [OPTIONS]</p>
+<p>OPTIONS说明（常用）</p>
+<p>-a：列出当前所有正在运行的容器+历史运行过的</p>
+<p>-l：显示最近创建的容器</p>
+<p>-n：显示最近n个创建的容器</p>
+<p>-q：静默模式，只显示容器编号</p>
+<p>–not-trunc：不截断输出</p>
+<p><strong>退出容器</strong></p>
+<p>exit：容器停止退出</p>
+<p>ctrl+P+Q：容器不停止退出</p>
+<p><strong>启动容器</strong></p>
+<p>docker start 容器ID或者容器名</p>
+<p><strong>重启容器</strong></p>
+<p>docker restart 容器ID或者容器名</p>
+<p><strong>停止容器</strong></p>
+<p>docker stop 容器ID或者容器名</p>
+<p><strong>强制停止容器</strong></p>
+<p>docker kill 容器ID或者容器名</p>
+<p><strong>删除容器</strong></p>
+<p>docker rm 容器ID或者容器名</p>
+<p><strong>一次性删除多个容器</strong></p>
+<p>docker rm -f $(docker ps -a -q)</p>
+<p>docker ps -a -1 | xargs docker rm</p>
 
     </div>
 
@@ -415,7 +454,7 @@
   <p><span>本文标题:</span><a href="/2020/06/27/1/">Docker学习笔记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 KuangjuX 的个人博客">KuangjuX</a></p>
   <p><span>发布时间:</span>2020年06月27日 - 21:06</p>
-  <p><span>最后更新:</span>2020年06月28日 - 22:06</p>
+  <p><span>最后更新:</span>2020年06月29日 - 13:06</p>
   <p><span>原始链接:</span><a href="/2020/06/27/1/" title="Docker学习笔记">http://yoursite.com/2020/06/27/1/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2020/06/27/1/"  aria-label="复制成功！"></i></span>
   </p>
@@ -533,7 +572,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker是什么"><span class="nav-number">1.</span> <span class="nav-text">Docker是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker能做什么"><span class="nav-number">2.</span> <span class="nav-text">Docker能做什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#之前的虚拟机技术："><span class="nav-number">2.1.</span> <span class="nav-text">之前的虚拟机技术：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器虚拟化技术"><span class="nav-number">2.2.</span> <span class="nav-text">容器虚拟化技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发-运维（DevOps）"><span class="nav-number">2.3.</span> <span class="nav-text">开发&#x2F;运维（DevOps）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker的安装"><span class="nav-number">3.</span> <span class="nav-text">Docker的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS-Docker安装"><span class="nav-number">3.1.</span> <span class="nav-text">CentOS Docker安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前提条件"><span class="nav-number">3.2.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker的基本组成"><span class="nav-number">3.3.</span> <span class="nav-text">Docker的基本组成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS-7安装Docker"><span class="nav-number">4.</span> <span class="nav-text">CentOS 7安装Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker运行底层原理"><span class="nav-number">5.</span> <span class="nav-text">Docker运行底层原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker常用命令"><span class="nav-number">6.</span> <span class="nav-text">Docker常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker帮助命令"><span class="nav-number">6.1.</span> <span class="nav-text">Docker帮助命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker镜像命令"><span class="nav-number">6.2.</span> <span class="nav-text">Docker镜像命令</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker是什么"><span class="nav-number">1.</span> <span class="nav-text">Docker是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker能做什么"><span class="nav-number">2.</span> <span class="nav-text">Docker能做什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#之前的虚拟机技术："><span class="nav-number">2.1.</span> <span class="nav-text">之前的虚拟机技术：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器虚拟化技术"><span class="nav-number">2.2.</span> <span class="nav-text">容器虚拟化技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发-运维（DevOps）"><span class="nav-number">2.3.</span> <span class="nav-text">开发&#x2F;运维（DevOps）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker的安装"><span class="nav-number">3.</span> <span class="nav-text">Docker的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS-Docker安装"><span class="nav-number">3.1.</span> <span class="nav-text">CentOS Docker安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前提条件"><span class="nav-number">3.2.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker的基本组成"><span class="nav-number">3.3.</span> <span class="nav-text">Docker的基本组成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS-7安装Docker"><span class="nav-number">4.</span> <span class="nav-text">CentOS 7安装Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker运行底层原理"><span class="nav-number">5.</span> <span class="nav-text">Docker运行底层原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker常用命令"><span class="nav-number">6.</span> <span class="nav-text">Docker常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker帮助命令"><span class="nav-number">6.1.</span> <span class="nav-text">Docker帮助命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker镜像命令"><span class="nav-number">6.2.</span> <span class="nav-text">Docker镜像命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker容器命令"><span class="nav-number">6.3.</span> <span class="nav-text">Docker容器命令</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
