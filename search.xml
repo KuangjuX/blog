@@ -3,7 +3,7 @@
   <entry>
     <title>深入理解Laravel</title>
     <url>/2020/06/28/1/</url>
-    <content><![CDATA[<p>![](deep understanding of laravel\laravel.png)</p>
+    <content><![CDATA[<p><img src="/2020/06/28/1/deep-understanding-of-laravel%5Claravel.png" alt></p>
 <a id="more"></a>
 
 <h2 id="组件化开发与composer"><a href="#组件化开发与composer" class="headerlink" title="组件化开发与composer"></a>组件化开发与composer</h2><h3 id="composer"><a href="#composer" class="headerlink" title="composer"></a>composer</h3><h4 id="组件安装"><a href="#组件安装" class="headerlink" title="组件安装"></a>组件安装</h4><h4 id="自动加载"><a href="#自动加载" class="headerlink" title="自动加载"></a>自动加载</h4><p>PSR-0和PSR-4标准</p>
@@ -942,8 +942,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>汇编</tag>
         <tag>CSAPP</tag>
+        <tag>汇编</tag>
       </tags>
   </entry>
   <entry>
@@ -1057,8 +1057,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>汇编</tag>
         <tag>CSAPP</tag>
+        <tag>汇编</tag>
       </tags>
   </entry>
   <entry>
