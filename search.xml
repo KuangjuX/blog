@@ -3,11 +3,11 @@
   <entry>
     <title>深入理解Laravel</title>
     <url>/2020/06/28/1/</url>
-    <content><![CDATA[<p><img src="/2020/06/28/1/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Laravel%5Claravel.png" alt></p>
+    <content><![CDATA[<p>![](deep understanding of laravel\laravel.png)</p>
 <a id="more"></a>
 
 <h2 id="组件化开发与composer"><a href="#组件化开发与composer" class="headerlink" title="组件化开发与composer"></a>组件化开发与composer</h2><h3 id="composer"><a href="#composer" class="headerlink" title="composer"></a>composer</h3><h4 id="组件安装"><a href="#组件安装" class="headerlink" title="组件安装"></a>组件安装</h4><h4 id="自动加载"><a href="#自动加载" class="headerlink" title="自动加载"></a>自动加载</h4><p>PSR-0和PSR-4标准</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">"autoload"</span>:&#123;</span><br><span class="line">		<span class="attr">"psr-4"</span>:&#123;<span class="attr">"APP\\"</span>	:	<span class="string">"app/"</span></span><br><span class="line">				 <span class="string">"BPP\\"</span>	:	<span class="string">"bpp/"</span></span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">"autoload"</span>:&#123;</span><br><span class="line">		<span class="attr">"psr-4"</span>:&#123;<span class="attr">"APP\\"</span>:<span class="string">"app/"</span></span><br><span class="line">				 <span class="string">"BPP\\"</span>:<span class="string">"bpp/"</span></span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h4><p><strong>include和require关键字</strong></p>
 <p>include和require关键字用于包含并运行指定文件。两者作用几乎一样，只是处理失败的方式不同，require在出错时会导致脚本程序运行终止，而include只是发出警告，而脚本程序会继续运行。</p>
