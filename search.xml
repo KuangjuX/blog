@@ -41,7 +41,7 @@
 <p>上面的输岀内容是Laravel框架对请求处理的部分流程，这里面大部分与上一节中装饰 者模式形式相似，但通过回调函数生成整个处理流程的过程还是比较难以理解。这里给一个 简单的实例用于理解，代码如下：</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Step</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">go</span><span class="params">(Closure $next)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FirstStep</span> <span class="keyword">implements</span> <span class="title">Step</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">go</span><span class="params">(Closure $next)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"开启 session,获取数据"</span>.<span class="string">'&lt;br&gt;'</span>;</span><br><span class="line">		$next ();</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"保存数据,关闭 session"</span>.<span class="string">'&lt;br&gt;'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;	</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">goFun</span><span class="params">($step, $className)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span> <span class="title">use</span><span class="params">($stepx $className)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> $className::go($step);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">then</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	$steps = [MFirstStepn];</span><br><span class="line">	$prepare = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;<span class="keyword">echo</span> <span class="string">"请求向路由器传递，返回响应"</span>；&#125;</span><br><span class="line">	$go = array_reduce($steps, ngoFunH, $prepare);</span><br><span class="line">	$go()；</span><br><span class="line">&#125;</span><br><span class="line">then ();</span><br><span class="line">输出：</span><br><span class="line">开启session，获取数据</span><br><span class="line">请求向路由器传递，返回响应</span><br><span class="line">保存数据，关闭session</span><br></pre></td></tr></table></figure>
 
-]]></content>
+<h2 id="请求到响应的生命周期"><a href="#请求到响应的生命周期" class="headerlink" title="请求到响应的生命周期"></a>请求到响应的生命周期</h2>]]></content>
       <categories>
         <category>技术</category>
       </categories>
@@ -174,6 +174,36 @@
 <p><strong>一次性删除多个容器</strong></p>
 <p>docker rm -f $(docker ps -a -q)</p>
 <p>docker ps -a -1 | xargs docker rm</p>
+<h3 id="重要命令"><a href="#重要命令" class="headerlink" title="重要命令"></a>重要命令</h3><p><strong>启动守护式容器：</strong></p>
+<p>docker run -d </p>
+<p><strong>查看容器日志：</strong></p>
+<p>docker logs -f -t –tail 容器ID</p>
+<p><strong>显示docker内部进程</strong></p>
+<p>docker top 容器ID</p>
+<p><strong>查看容器内部细节</strong></p>
+<p>docker inspect 容器ID</p>
+<p><strong>进入正在运行的容器并以命令行交互</strong></p>
+<p>docker exex -it 容器ID bashShell</p>
+<p>重新进入docker attach 容器ID</p>
+<p><strong>上述两者区别：</strong></p>
+<p>attach直接进入容器启动命令的终端，不会启动新的进程</p>
+<p>exec是在容器中打开新的终端，并且可以启动新的进程</p>
+<p><strong>从容器内拷贝文件到主机上</strong></p>
+<p>docker cp 容器ID：容器内路径 目的主机路径</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker cp id: /tmp/log /root</span><br></pre></td></tr></table></figure>
+
+<h2 id="Docker镜像"><a href="#Docker镜像" class="headerlink" title="Docker镜像"></a>Docker镜像</h2><p>镜像是一种轻量级、可执行的独立软件包，用来打包软件运行环境和基于运行环境开发的软件，它包含运行某个软件所需的所有内容，包括代码、运行时、库、环境变量和配置文件。</p>
+<h3 id="UnionFS（联合文件系统）"><a href="#UnionFS（联合文件系统）" class="headerlink" title="UnionFS（联合文件系统）"></a>UnionFS（联合文件系统）</h3><p>联合文件系统（Union File System）：2004年由纽约州立大学石溪分校开发，它可以把多个目录(也叫分支)内容联合挂载到同一个目录下，而目录的物理位置是分开的。UnionFS允许只读和可读写目录并存，就是说可同时删除和增加内容。UnionFS应用的地方很多，比如在多个磁盘分区上合并不同文件系统的主目录，或把几张CD光盘合并成一个统一的光盘目录(归档)。另外，具有写时复制(copy-on-write)功能UnionFS可以把只读和可读写文件系统合并在一起，虚拟上允许只读文件系统的修改可以保存到可写文件系统当中。</p>
+<p>特性：一次同时加载多个文件系统，但从外面看起来，只能看到一个文件系统，联合加载会把各层文件叠加起来，这样最终的文件系统会包含所有底层的文件和目录。</p>
+<h3 id="镜像加载原理"><a href="#镜像加载原理" class="headerlink" title="镜像加载原理"></a>镜像加载原理</h3><p>rootfs和bootfs</p>
+<p>任何程序运行时都会有依赖，无论是开发语言层的依赖库，还是各种系统lib、操作系统等，不同的系统上这些库可能是不一样的，或者有缺失的。为了让容器运行时一致，docker将依赖的操作系统、各种lib依赖整合打包在一起（即镜像），然后容器启动时，作为它的根目录（根文件系统rootfs），使得容器进程的各种依赖调用都在这个根目录里，这样就做到了环境的一致性。</p>
+<p>不过，这时你可能已经发现了另一个问题：<strong>难道每开发一个应用，都要重复制作一次rootfs吗（那每次pull/push一个系统岂不疯掉）？</strong></p>
+<p>比如，我现在用Debian操作系统的ISO做了一个rootfs，然后又在里面安装了Golang环境，用来部署我的应用A。那么，我的另一个同事在发布他的Golang应用B时，希望能够直接使用我安装过Golang环境的rootfs，而不是重复这个流程，那么本文的主角UnionFS就派上用场了。</p>
+<p><strong>Docker镜像的设计中，引入了层（layer）的概念</strong>，也就是说，用户制作镜像的每一步操作，都会生成一个层，也就是一个增量rootfs（一个目录），这样应用A和应用B所在的容器共同引用相同的Debian操作系统层、Golang环境层（作为只读层），而各自有各自应用程序层，和可写层。启动容器的时候通过UnionFS把相关的层挂载到一个目录，作为容器的根文件系统。</p>
+<p>需要注意的是，rootfs只是一个操作系统所包含的文件、配置和目录，并不包括操作系统内核。这就意味着，如果你的应用程序需要配置内核参数、加载额外的内核模块，以及跟内核进行直接的交互，你就需要注意了：<strong>这些操作和依赖的对象，都是宿主机操作系统的内核，它对于该机器上的所有容器来说是一个“全局变量”，牵一发而动全身。</strong></p>
+<h3 id="Docker镜像commit操作"><a href="#Docker镜像commit操作" class="headerlink" title="Docker镜像commit操作"></a>Docker镜像commit操作</h3><p>docker commit 提交容器副本使之成为新的镜像</p>
+<p>docker commit -m=”提交的描述信息” -a=”作者” 容器ID 要创建的目标镜像名：[标签名]</p>
+<p>docker run -it p 8080:8080 tomcat</p>
 ]]></content>
       <categories>
         <category>技术</category>
