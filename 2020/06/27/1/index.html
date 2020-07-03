@@ -43,7 +43,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/06/27/1/docker.png">
 <meta property="article:published_time" content="2020-06-27T13:19:02.000Z">
-<meta property="article:modified_time" content="2020-06-30T11:05:14.144Z">
+<meta property="article:modified_time" content="2020-07-03T14:16:16.310Z">
 <meta property="article:author" content="KuangjuX">
 <meta property="article:tag" content="服务器">
 <meta property="article:tag" content="Docker">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-30 19:05:14" itemprop="dateModified" datetime="2020-06-30T19:05:14+08:00">2020-06-30</time>
+                <time title="Modified: 2020-07-03 22:16:16" itemprop="dateModified" datetime="2020-07-03T22:16:16+08:00">2020-07-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -305,7 +305,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>6.4k</span>
+              <span>6.9k</span>
             </span>
 
         </div>
@@ -468,6 +468,20 @@
 <h3 id="Docker镜像commit操作"><a href="#Docker镜像commit操作" class="headerlink" title="Docker镜像commit操作"></a>Docker镜像commit操作</h3><p>docker commit 提交容器副本使之成为新的镜像</p>
 <p>docker commit -m=”提交的描述信息” -a=”作者” 容器ID 要创建的目标镜像名：[标签名]</p>
 <p>docker run -it p 8080:8080 tomcat</p>
+<h2 id="容器数据卷"><a href="#容器数据卷" class="headerlink" title="容器数据卷"></a>容器数据卷</h2><p>容器的持久化、容器间继承和共享数据。</p>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>1.数据卷可在容器之间共享或重用数据</p>
+<p>2.卷中的更改可以直接生效</p>
+<p>3.数据卷中的更改不会包含在镜像的更新中</p>
+<p>4.数据卷的生命周期一直持续到没有容器使用它为止</p>
+<h3 id="容器内添加数据卷"><a href="#容器内添加数据卷" class="headerlink" title="容器内添加数据卷"></a>容器内添加数据卷</h3><h4 id="直接命令添加"><a href="#直接命令添加" class="headerlink" title="直接命令添加"></a>直接命令添加</h4><p>docker run -it -v /宿主机绝对路径目录:/容器内目录 镜像名</p>
+<p>命令（带权限）:docker run -it -v /宿主机绝对路径目录:/容器内目录:ro 镜像名  (read only)</p>
+<h4 id="容器是否挂载成功"><a href="#容器是否挂载成功" class="headerlink" title="容器是否挂载成功"></a>容器是否挂载成功</h4><p>docker inspect 容器ID 获取JSON格式的配置</p>
+<p>Volumes字段</p>
+<h3 id="Dockerfile添加"><a href="#Dockerfile添加" class="headerlink" title="Dockerfile添加"></a>Dockerfile添加</h3><p><strong>Dockerfile:</strong>描述镜像的文件</p>
+<p>VOLUME:[“/dataVoumeContainer”,”/dataVolumeContainer2”,”/dataVolumeContainer3”]</p>
+<p>说明：</p>
+<p>出于可移植和分享的考虑，用-v 主机目录：容器目录这种方法不能够直接在Dockerfile里实现。</p>
+<p>由于宿主机目录是依赖于特定宿主机的，并不能够保证在所有的宿主机上都存在这样的特定目录。</p>
 
     </div>
 
@@ -484,7 +498,7 @@
   <p><span>本文标题:</span><a href="/2020/06/27/1/">Docker学习笔记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 KuangjuX 的个人博客">KuangjuX</a></p>
   <p><span>发布时间:</span>2020年06月27日 - 21:06</p>
-  <p><span>最后更新:</span>2020年06月30日 - 19:06</p>
+  <p><span>最后更新:</span>2020年07月03日 - 22:07</p>
   <p><span>原始链接:</span><a href="/2020/06/27/1/" title="Docker学习笔记">http://yoursite.com/2020/06/27/1/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2020/06/27/1/"  aria-label="复制成功！"></i></span>
   </p>
@@ -602,7 +616,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker是什么"><span class="nav-number">1.</span> <span class="nav-text">Docker是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker能做什么"><span class="nav-number">2.</span> <span class="nav-text">Docker能做什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#之前的虚拟机技术："><span class="nav-number">2.1.</span> <span class="nav-text">之前的虚拟机技术：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器虚拟化技术"><span class="nav-number">2.2.</span> <span class="nav-text">容器虚拟化技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发-运维（DevOps）"><span class="nav-number">2.3.</span> <span class="nav-text">开发&#x2F;运维（DevOps）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker的安装"><span class="nav-number">3.</span> <span class="nav-text">Docker的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS-Docker安装"><span class="nav-number">3.1.</span> <span class="nav-text">CentOS Docker安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前提条件"><span class="nav-number">3.2.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker的基本组成"><span class="nav-number">3.3.</span> <span class="nav-text">Docker的基本组成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS-7安装Docker"><span class="nav-number">4.</span> <span class="nav-text">CentOS 7安装Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker运行底层原理"><span class="nav-number">5.</span> <span class="nav-text">Docker运行底层原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker常用命令"><span class="nav-number">6.</span> <span class="nav-text">Docker常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker帮助命令"><span class="nav-number">6.1.</span> <span class="nav-text">Docker帮助命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker镜像命令"><span class="nav-number">6.2.</span> <span class="nav-text">Docker镜像命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker容器命令"><span class="nav-number">6.3.</span> <span class="nav-text">Docker容器命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要命令"><span class="nav-number">6.4.</span> <span class="nav-text">重要命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker镜像"><span class="nav-number">7.</span> <span class="nav-text">Docker镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UnionFS（联合文件系统）"><span class="nav-number">7.1.</span> <span class="nav-text">UnionFS（联合文件系统）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像加载原理"><span class="nav-number">7.2.</span> <span class="nav-text">镜像加载原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker镜像commit操作"><span class="nav-number">7.3.</span> <span class="nav-text">Docker镜像commit操作</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker是什么"><span class="nav-number">1.</span> <span class="nav-text">Docker是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker能做什么"><span class="nav-number">2.</span> <span class="nav-text">Docker能做什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#之前的虚拟机技术："><span class="nav-number">2.1.</span> <span class="nav-text">之前的虚拟机技术：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器虚拟化技术"><span class="nav-number">2.2.</span> <span class="nav-text">容器虚拟化技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发-运维（DevOps）"><span class="nav-number">2.3.</span> <span class="nav-text">开发&#x2F;运维（DevOps）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker的安装"><span class="nav-number">3.</span> <span class="nav-text">Docker的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS-Docker安装"><span class="nav-number">3.1.</span> <span class="nav-text">CentOS Docker安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前提条件"><span class="nav-number">3.2.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker的基本组成"><span class="nav-number">3.3.</span> <span class="nav-text">Docker的基本组成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS-7安装Docker"><span class="nav-number">4.</span> <span class="nav-text">CentOS 7安装Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker运行底层原理"><span class="nav-number">5.</span> <span class="nav-text">Docker运行底层原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker常用命令"><span class="nav-number">6.</span> <span class="nav-text">Docker常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker帮助命令"><span class="nav-number">6.1.</span> <span class="nav-text">Docker帮助命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker镜像命令"><span class="nav-number">6.2.</span> <span class="nav-text">Docker镜像命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker容器命令"><span class="nav-number">6.3.</span> <span class="nav-text">Docker容器命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要命令"><span class="nav-number">6.4.</span> <span class="nav-text">重要命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker镜像"><span class="nav-number">7.</span> <span class="nav-text">Docker镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UnionFS（联合文件系统）"><span class="nav-number">7.1.</span> <span class="nav-text">UnionFS（联合文件系统）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像加载原理"><span class="nav-number">7.2.</span> <span class="nav-text">镜像加载原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker镜像commit操作"><span class="nav-number">7.3.</span> <span class="nav-text">Docker镜像commit操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容器数据卷"><span class="nav-number">8.</span> <span class="nav-text">容器数据卷</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#作用"><span class="nav-number">8.1.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器内添加数据卷"><span class="nav-number">8.2.</span> <span class="nav-text">容器内添加数据卷</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直接命令添加"><span class="nav-number">8.2.1.</span> <span class="nav-text">直接命令添加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#容器是否挂载成功"><span class="nav-number">8.2.2.</span> <span class="nav-text">容器是否挂载成功</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dockerfile添加"><span class="nav-number">8.3.</span> <span class="nav-text">Dockerfile添加</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -688,7 +702,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">112k</span>
+    <span title="Symbols count total">113k</span>
 </div>
 <!--
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0

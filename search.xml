@@ -204,6 +204,20 @@
 <h3 id="Docker镜像commit操作"><a href="#Docker镜像commit操作" class="headerlink" title="Docker镜像commit操作"></a>Docker镜像commit操作</h3><p>docker commit 提交容器副本使之成为新的镜像</p>
 <p>docker commit -m=”提交的描述信息” -a=”作者” 容器ID 要创建的目标镜像名：[标签名]</p>
 <p>docker run -it p 8080:8080 tomcat</p>
+<h2 id="容器数据卷"><a href="#容器数据卷" class="headerlink" title="容器数据卷"></a>容器数据卷</h2><p>容器的持久化、容器间继承和共享数据。</p>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>1.数据卷可在容器之间共享或重用数据</p>
+<p>2.卷中的更改可以直接生效</p>
+<p>3.数据卷中的更改不会包含在镜像的更新中</p>
+<p>4.数据卷的生命周期一直持续到没有容器使用它为止</p>
+<h3 id="容器内添加数据卷"><a href="#容器内添加数据卷" class="headerlink" title="容器内添加数据卷"></a>容器内添加数据卷</h3><h4 id="直接命令添加"><a href="#直接命令添加" class="headerlink" title="直接命令添加"></a>直接命令添加</h4><p>docker run -it -v /宿主机绝对路径目录:/容器内目录 镜像名</p>
+<p>命令（带权限）:docker run -it -v /宿主机绝对路径目录:/容器内目录:ro 镜像名  (read only)</p>
+<h4 id="容器是否挂载成功"><a href="#容器是否挂载成功" class="headerlink" title="容器是否挂载成功"></a>容器是否挂载成功</h4><p>docker inspect 容器ID 获取JSON格式的配置</p>
+<p>Volumes字段</p>
+<h3 id="Dockerfile添加"><a href="#Dockerfile添加" class="headerlink" title="Dockerfile添加"></a>Dockerfile添加</h3><p><strong>Dockerfile:</strong>描述镜像的文件</p>
+<p>VOLUME:[“/dataVoumeContainer”,”/dataVolumeContainer2”,”/dataVolumeContainer3”]</p>
+<p>说明：</p>
+<p>出于可移植和分享的考虑，用-v 主机目录：容器目录这种方法不能够直接在Dockerfile里实现。</p>
+<p>由于宿主机目录是依赖于特定宿主机的，并不能够保证在所有的宿主机上都存在这样的特定目录。</p>
 ]]></content>
       <categories>
         <category>技术</category>
