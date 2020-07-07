@@ -36,29 +36,33 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="狂且的人文及技术博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="KuangjuX(狂且)">
-<meta property="og:url" content="http://yoursite.com/page/3/">
+  <meta name="description" content="在《重构》这本书里提到了一个改善程序的方法，“以管道取代循环（Replace Loop with Pipeline）”。 12345const names&#x3D;[];for(const i of input)&amp;#123;	if(i.job&#x3D;&#x3D;&#x3D;&quot;programmer&quot;)		names.push(i.name);&amp;#125;  1const names&#x3D;input.filter(i &#x3D;&gt; i.jo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用管道代替循环">
+<meta property="og:url" content="http://yoursite.com/2020/07/07/1/">
 <meta property="og:site_name" content="KuangjuX(狂且)">
-<meta property="og:description" content="狂且的人文及技术博客">
+<meta property="og:description" content="在《重构》这本书里提到了一个改善程序的方法，“以管道取代循环（Replace Loop with Pipeline）”。 12345const names&#x3D;[];for(const i of input)&amp;#123;	if(i.job&#x3D;&#x3D;&#x3D;&quot;programmer&quot;)		names.push(i.name);&amp;#125;  1const names&#x3D;input.filter(i &#x3D;&gt; i.jo">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-07T11:56:16.000Z">
+<meta property="article:modified_time" content="2020-07-07T15:10:18.692Z">
 <meta property="article:author" content="KuangjuX">
+<meta property="article:tag" content="函数式编程">
+<meta property="article:tag" content="重构">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/page/3/">
+<link rel="canonical" href="http://yoursite.com/2020/07/07/1/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false
+    isHome: false,
+    isPost: true
   };
 </script>
 
-  <title>KuangjuX(狂且)</title>
+  <title>使用管道代替循环 | KuangjuX(狂且)</title>
   
 
 
@@ -220,11 +224,11 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/04/1/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/07/1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/KuangjuX.png">
@@ -237,8 +241,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/04/1/" class="post-title-link" itemprop="url">ARM Linux嵌入式系统</a>
+          使用管道代替循环
         </h1>
 
         <div class="post-meta">
@@ -249,7 +252,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-06-04 14:16:40 / Modified: 19:35:44" itemprop="dateCreated datePublished" datetime="2020-06-04T14:16:40+08:00">2020-06-04</time>
+              <time title="Created: 2020-07-07 19:56:16 / Modified: 23:10:18" itemprop="dateCreated datePublished" datetime="2020-07-07T19:56:16+08:00">2020-07-07</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,12 +265,19 @@
             </span>
 
           
-            <span id="/2020/06/04/1/" class="post-meta-item leancloud_visitors" data-flag-title="ARM Linux嵌入式系统" title="Views">
+            <span id="/2020/07/07/1/" class="post-meta-item leancloud_visitors" data-flag-title="使用管道代替循环" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
               <span class="post-meta-item-text">Views: </span>
               <span class="leancloud-visitors-count">℃</span>
+            </span>
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
             </span>
   
   <span class="post-meta-item">
@@ -277,8 +287,8 @@
       </span>
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/06/04/1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/04/1/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/07/07/1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/07/1/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -288,7 +298,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.8k</span>
+              <span>1.1k</span>
             </span>
 
         </div>
@@ -300,480 +310,93 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="ARM指令集"><a href="#ARM指令集" class="headerlink" title="ARM指令集"></a>ARM指令集</h2><h3 id="算术运算指令"><a href="#算术运算指令" class="headerlink" title="算术运算指令"></a>算术运算指令</h3><p><strong>1.ADD指令</strong></p>
-<p><code>ADD{条件} {S} &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ADD   R0, R1, R2	; R0&#x3D;R1+R2</span><br><span class="line">ADD   R0, R1, $256	; R0&#x3D;R1+256</span><br></pre></td></tr></table></figure>
+        <p>在《重构》这本书里提到了一个改善程序的方法，“以管道取代循环（Replace Loop with Pipeline）”。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> names=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> i <span class="keyword">of</span> input)&#123;</span><br><span class="line">	<span class="keyword">if</span>(i.job===<span class="string">"programmer"</span>)</span><br><span class="line">		names.push(i.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>2.ADC指令</strong></p>
-<p>用于带进位的加法运算</p>
-<p><code>ADC{条件}{S} &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ADCS   R0,R2,R3   ;带进位加，结果保存在R0和R1寄存器</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> names=input.filter(<span class="function"><span class="params">i</span> =&gt;</span> i.job===<span class="string">"programmer"</span>).map(<span class="function"><span class="params">i</span>=&gt;</span>i.name);</span><br></pre></td></tr></table></figure>
 
-<p><strong>3.SUB命令</strong></p>
-<p>减法运算</p>
-<p><code>SUB{条件}{S} &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
-<p><strong>4.SBC指令</strong></p>
-<p>用于带借位的减法运算</p>
-<p><code>SBC{条件}{S} &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/04/1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums=[<span class="number">10</span>,<span class="number">20</span>,<span class="number">111</span>,<span class="number">222</span>,<span class="number">444</span>,<span class="number">40</span>,<span class="number">50</span>];</span><br><span class="line"><span class="keyword">let</span> total=nums.filter(<span class="function"><span class="params">n</span>=&gt;</span>n&lt;<span class="number">100</span>).map(<span class="function"><span class="params">n</span>=&gt;</span>n*<span class="number">2</span>).reduce(<span class="function">(<span class="params">pre,n</span>)=&gt;</span>pre+n);</span><br><span class="line"><span class="built_in">console</span>.log(total);</span><br><span class="line">------------------------------------------------------------------------</span><br><span class="line"><span class="number">240</span></span><br></pre></td></tr></table></figure>
+
+<p>集合管道（collection pipeline）允许使用一组运算来描述集合的迭代过程，其中每种运算接受的入参和返回值都是一个集合。这类运算有很多，map是指用一个函数作用于输入集合的每一个元素，将集合变换成另一个集合；filter运算时指用用一个函数从输入集合筛选出符合条件元素子集的过程。运算得到的集合可以供管道的后续流程使用。</p>
+<p>在许多不同的语言中也有函数式编程的方法。</p>
+<p>例如在php中：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> $nums=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>];</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">count</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $nums=<span class="keyword">$this</span>-&gt;nums;</span><br><span class="line">        $result=array_reduce(array_map(<span class="function"><span class="keyword">function</span> <span class="params">($num)</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> $num*$num;</span><br><span class="line">        &#125;,array_filter($nums,<span class="function"><span class="keyword">function</span> <span class="params">($num)</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> $num &gt;= <span class="number">5</span>;</span><br><span class="line">        &#125;)),<span class="function"><span class="keyword">function</span> <span class="params">($preValue,$num)</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> $preValue+$num;</span><br><span class="line">        &#125;,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">echo</span> $result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $test=<span class="keyword">new</span> Test();</span><br><span class="line">    $test-&gt;count();</span><br><span class="line">&#125;</span><br><span class="line">main();</span><br><span class="line">-----------------------------------------------------------------------------------------</span><br><span class="line"><span class="number">110</span></span><br></pre></td></tr></table></figure>
+
+
+
+
     </div>
 
     
     
     
+      
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2020/07/07/1/">使用管道代替循环</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 KuangjuX 的个人博客">KuangjuX</a></p>
+  <p><span>发布时间:</span>2020年07月07日 - 19:07</p>
+  <p><span>最后更新:</span>2020年07月07日 - 23:07</p>
+  <p><span>原始链接:</span><a href="/2020/07/07/1/" title="使用管道代替循环">http://yoursite.com/2020/07/07/1/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2020/07/07/1/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          html: false,
+          timer: 500,
+          showConfirmButton: false
+        });
+      });
+    }));
+</script>
+
+
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/hh.JPG" alt="博主 Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="tag"><i class="fa fa-tags"></i> 函数式编程</a>
+              <a href="/tags/%E9%87%8D%E6%9E%84/" rel="tag"><i class="fa fa-tags"></i> 重构</a>
+          </div>
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/02/1/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/KuangjuX.png">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="狂且的人文及技术博客">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KuangjuX(狂且)">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/02/1/" class="post-title-link" itemprop="url">计算机系统基础大作业</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-06-02 11:38:05 / Modified: 12:10:27" itemprop="dateCreated datePublished" datetime="2020-06-02T11:38:05+08:00">2020-06-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/06/02/1/" class="post-meta-item leancloud_visitors" data-flag-title="计算机系统基础大作业" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count">℃</span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/06/02/1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/02/1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>16k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          Here's something encrypted, password is required to continue reading.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/02/1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/06/1/" rel="prev" title="颂歌">
+      <i class="fa fa-chevron-left"></i> 颂歌
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/29/1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/KuangjuX.png">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="狂且的人文及技术博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KuangjuX(狂且)">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/29/1/" class="post-title-link" itemprop="url">Cache Lab实验报告</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-04-29 23:38:04" itemprop="dateCreated datePublished" datetime="2020-04-29T23:38:04+08:00">2020-04-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-02 15:48:03" itemprop="dateModified" datetime="2020-06-02T15:48:03+08:00">2020-06-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/04/29/1/" class="post-meta-item leancloud_visitors" data-flag-title="Cache Lab实验报告" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count">℃</span>
-            </span>
-  
-  <span class="post-meta-item">
     
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/04/29/1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/04/29/1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>6.9k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/2020/04/29/1/csapp.jpg" alt></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/29/1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/06/1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/KuangjuX.png">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="狂且的人文及技术博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KuangjuX(狂且)">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/06/1/" class="post-title-link" itemprop="url">西方没有资本再傲慢了</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-04-06 17:28:19" itemprop="dateCreated datePublished" datetime="2020-04-06T17:28:19+08:00">2020-04-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-29 23:44:50" itemprop="dateModified" datetime="2020-04-29T23:44:50+08:00">2020-04-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9D%82%E6%96%87/" itemprop="url" rel="index"><span itemprop="name">杂文</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/04/06/1/" class="post-meta-item leancloud_visitors" data-flag-title="西方没有资本再傲慢了" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count">℃</span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/04/06/1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/04/06/1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一种病毒，两种制度？"><a href="#一种病毒，两种制度？" class="headerlink" title="一种病毒，两种制度？"></a>一种病毒，两种制度？</h1><blockquote>
-<p>中国人若想消灭这次新型冠状病毒，需要的药房既不是西药疫苗，也不是中草药，而是自由和民主</p>
-<p>——德国 《明镜》</p>
-</blockquote>
-<blockquote>
-<p>在应对新冠病毒的处理方式上，民主制度显示了无可辩驳的优越性</p>
-<p>——法国 《费加罗报》</p>
-</blockquote>
-<blockquote>
-<p>传染疾病在民主国家的致死率，总是低于像中国这样的专制国家</p>
-<p>专制国家缺少信息的自由流动和与民众的对话，会导致决策的失误</p>
-<p>——英国 《经济学人》</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/06/1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/05/1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/KuangjuX.png">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="狂且的人文及技术博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KuangjuX(狂且)">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/05/1/" class="post-title-link" itemprop="url">Bomb Lab实验报告</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-04-05 09:57:06" itemprop="dateCreated datePublished" datetime="2020-04-05T09:57:06+08:00">2020-04-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-05 09:03:02" itemprop="dateModified" datetime="2020-06-05T09:03:02+08:00">2020-06-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/04/05/1/" class="post-meta-item leancloud_visitors" data-flag-title="Bomb Lab实验报告" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count">℃</span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/04/05/1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/04/05/1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>40k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/2020/04/05/1/csapp.jpg" alt></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/05/1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
   </article>
   
   
@@ -781,15 +404,10 @@
 
   </div>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
-
-
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
