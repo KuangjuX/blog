@@ -4,6 +4,8 @@
     <title>使用管道代替循环</title>
     <url>/2020/07/07/1/</url>
     <content><![CDATA[<p>在《重构》这本书里提到了一个改善程序的方法，“以管道取代循环（Replace Loop with Pipeline）”。</p>
+<a id="more"></a>
+
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> names=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> i <span class="keyword">of</span> input)&#123;</span><br><span class="line">	<span class="keyword">if</span>(i.job===<span class="string">"programmer"</span>)</span><br><span class="line">		names.push(i.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> names=input.filter(<span class="function"><span class="params">i</span> =&gt;</span> i.job===<span class="string">"programmer"</span>).map(<span class="function"><span class="params">i</span>=&gt;</span>i.name);</span><br></pre></td></tr></table></figure>
