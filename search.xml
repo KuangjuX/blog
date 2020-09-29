@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>NEMU</title>
+    <url>/2020/09/29/1/</url>
+    <content><![CDATA[<h2 id="Get-Started-起步"><a href="#Get-Started-起步" class="headerlink" title="Get Started 起步"></a>Get Started 起步</h2><h3 id="Description-描述"><a href="#Description-描述" class="headerlink" title="Description 描述"></a>Description 描述</h3><p>PA讲述的是一个”先驱创造计算机”的故事。</p>
+<p>本实践课程所要设计的“NEMU”一款经过简化的 x86 全系统模拟器。</p>
+<h3 id="PA0"><a href="#PA0" class="headerlink" title="PA0"></a>PA0</h3><p><strong>寄存器结构体</strong></p>
+<p>在框架的源码中，为了考察我们寄存器的结构，作者故意地使用了错误的数据结构来描述寄存器。使用结构体来描述寄存器的内部结构，会错误地计算寄存器的地址空间。因此我们首先需要将结构体改为联合体来描述寄存器的地址。</p>
+<p>在<code>include\cpu\reg.h</code>文件里修改寄存器的描述</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	<span class="keyword">union</span> &#123;</span><br><span class="line">		<span class="keyword">union</span>&#123;</span><br><span class="line">			<span class="keyword">uint32_t</span> _32;</span><br><span class="line">			<span class="keyword">uint16_t</span> _16;</span><br><span class="line">			<span class="keyword">uint8_t</span> _8[<span class="number">2</span>];</span><br><span class="line">		&#125;gpr[<span class="number">8</span>];</span><br><span class="line"></span><br><span class="line">		<span class="class"><span class="keyword">struct</span> </span></span><br><span class="line"><span class="class">		&#123;</span></span><br><span class="line">			<span class="keyword">uint32_t</span> eax, ecx, edx, ebx, esp, ebp, esi, edi;</span><br><span class="line">		&#125;;</span><br><span class="line">		</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="comment">//store </span></span><br><span class="line">	<span class="keyword">swaddr_t</span> eip;</span><br><span class="line"></span><br><span class="line">&#125; CPU_state;</span><br></pre></td></tr></table></figure>
+
+<h3 id="PA1"><a href="#PA1" class="headerlink" title="PA1"></a>PA1</h3><h4 id="单步执行"><a href="#单步执行" class="headerlink" title="单步执行"></a>单步执行</h4><p>完成这个操作很简单，因为框架已经实现了cpu_exec()函数模拟cpu的调用，我们只需读取命令行参数并且进行函数的调用就可以完成。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">cmd_si</span><span class="params">(<span class="keyword">char</span> *args)</span></span>&#123;</span><br><span class="line">	<span class="comment">//initliza the step</span></span><br><span class="line">	<span class="keyword">int</span> <span class="built_in">step</span> = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(args == <span class="literal">NULL</span>)<span class="built_in">step</span>=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">sscanf</span>(args,<span class="string">"%d"</span>,&amp;<span class="built_in">step</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	cpu_exec(<span class="built_in">step</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="打印寄存器"><a href="#打印寄存器" class="headerlink" title="打印寄存器"></a>打印寄存器</h4><p>本题提供两个参数，‘r’表示打印寄存器状态，‘w’表示打印监视点，因为监视点需要和后面的任务有关，这里暂时先不讲。打印寄存器很简单，只需要调用寄存器的状态并将其打印出来即可，我们定义一个<code>printRegisters</code>函数：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printRegisters</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"eax: 0x%-10x  %-10d\n"</span>, cpu.eax, cpu.eax);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"edx: 0x%-10x  %-10d\n"</span>, cpu.edx, cpu.edx);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"ecx: 0x%-10x  %-10d\n"</span>, cpu.ecx, cpu.ecx);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"ebx: 0x%-10x  %-10d\n"</span>, cpu.ebx, cpu.ebx);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"ebp: 0x%-10x  %-10d\n"</span>, cpu.ebp, cpu.ebp);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"esi: 0x%-10x  %-10d\n"</span>, cpu.esi, cpu.esi);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"esp: 0x%-10x  %-10d\n"</span>, cpu.esp, cpu.esp);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"eip: 0x%-10x  %-10d\n"</span>, cpu.eip, cpu.eip);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>CSAPP</tag>
+        <tag>C/C++</tag>
+        <tag>汇编</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>魏晋之际的政治格局简论</title>
     <url>/2020/07/29/1/</url>
     <content><![CDATA[<p>关于东晋之际的门阀政治体系，被视为变态、畸形发展的政治体系，但其出现并非空穴来风。</p>
