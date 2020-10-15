@@ -51,8 +51,8 @@
 <meta property="article:published_time" content="2020-10-15T15:22:13.000Z">
 <meta property="article:modified_time" content="2020-10-15T15:40:10.717Z">
 <meta property="article:author" content="KuangjuX">
-<meta property="article:tag" content="Leetcode">
 <meta property="article:tag" content="算法">
+<meta property="article:tag" content="Leetcode">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/10/15/1/">
@@ -303,7 +303,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.7k</span>
+              <span>2.6k</span>
             </span>
 
         </div>
@@ -324,7 +324,13 @@
 <h2 id="thought"><a class="markdownIt-Anchor" href="#thought"></a> Thought</h2>
 <h3 id="segement-tree线段树"><a class="markdownIt-Anchor" href="#segement-tree线段树"></a> Segement Tree(线段树)</h3>
 <p>一颗线段树的构造就是根据区间的性质的来构造的, 如下是一棵区间<code>[0, 3]</code>的线段树，每个<code>[start, end]</code>都是一个二叉树中的节点。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">graph TD;</span><br><span class="line">	A[&quot;[0,3]&quot;] --&gt; B[&quot;[0,1]&quot;];</span><br><span class="line">	A[&quot;[0,3]&quot;] --&gt; C[&quot;[2,3]&quot;];</span><br><span class="line">	B --&gt; D[&quot;[0,0]&quot;];</span><br><span class="line">	B --&gt; E[&quot;[1,1]&quot;];</span><br><span class="line">	C --&gt; F[&quot;[2,2]&quot;];</span><br><span class="line">	C --&gt; G[&quot;[3,3]&quot;];</span><br></pre></td></tr></table></figure>
+<pre class="mermaid">graph TD;
+	A["[0,3]"] --> B["[0,1]"];
+	A["[0,3]"] --> C["[2,3]"];
+	B --> D["[0,0]"];
+	B --> E["[1,1]"];
+	C --> F["[2,2]"];
+	C --> G["[3,3]"];</pre>
 <p>区间划分大概就是上述的区间划分。可以看出每次都将区间的长度一分为二,数列长度为<code>n</code>,所以线段树的高度是<code>log(n)</code>,这是很多高效操作的基础。<br>
 上述的区间存储的只是区间的左右边界。我们可以将区间的最大值加入进来,也就是树中的<code>Node</code>需要存储<code>left</code>，<code>right</code>左右子节点外，还需要存储<code>start</code>, <code>end</code>, <code>val</code>区间的范围和区间内表示的值。</p>
 <p><strong>可以储存不同的值，例如区间内的最大值，最小值，区间的求和等等。</strong></p>
@@ -389,8 +395,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tags"></i> Leetcode</a>
               <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tags"></i> 算法</a>
+              <a href="/tags/Leetcode/" rel="tag"><i class="fa fa-tags"></i> Leetcode</a>
           </div>
 
         
@@ -536,6 +542,8 @@
   async
   src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"
 ></script>
+
+
 
 <div class="copyright">
   
