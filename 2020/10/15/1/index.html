@@ -49,7 +49,7 @@
 <meta property="og:description" content="Description 给定一个整数数组 nums，求出数组从索引 i 到 j  (i ≤ j) 范围内元素的总和，包含 i,  j 两点。 update(i, val) 函数可以通过将下标为 i 的数值更新为 val，从而对数列进行修改。  Examples 12345Given nums &#x3D; [1, 3, 5]sumRange(0, 2) -&gt; 9update(1, 2)su">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-10-15T15:22:13.000Z">
-<meta property="article:modified_time" content="2020-10-15T15:38:00.771Z">
+<meta property="article:modified_time" content="2020-10-15T15:40:10.717Z">
 <meta property="article:author" content="KuangjuX">
 <meta property="article:tag" content="Leetcode">
 <meta property="article:tag" content="算法">
@@ -257,7 +257,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-10-15 23:22:13 / Modified: 23:38:00" itemprop="dateCreated datePublished" datetime="2020-10-15T23:22:13+08:00">2020-10-15</time>
+              <time title="Created: 2020-10-15 23:22:13 / Modified: 23:40:10" itemprop="dateCreated datePublished" datetime="2020-10-15T23:22:13+08:00">2020-10-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -320,6 +320,7 @@
 <p>update(i, val) 函数可以通过将下标为 i 的数值更新为 val，从而对数列进行修改。</p>
 <h2 id="examples"><a class="markdownIt-Anchor" href="#examples"></a> Examples</h2>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Given nums &#x3D; [1, 3, 5]</span><br><span class="line"></span><br><span class="line">sumRange(0, 2) -&gt; 9</span><br><span class="line">update(1, 2)</span><br><span class="line">sumRange(0, 2) -&gt; 8</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="thought"><a class="markdownIt-Anchor" href="#thought"></a> Thought</h2>
 <h3 id="segement-tree线段树"><a class="markdownIt-Anchor" href="#segement-tree线段树"></a> Segement Tree(线段树)</h3>
 <p>一颗线段树的构造就是根据区间的性质的来构造的, 如下是一棵区间<code>[0, 3]</code>的线段树，每个<code>[start, end]</code>都是一个二叉树中的节点。</p>
