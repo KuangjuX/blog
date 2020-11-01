@@ -1,616 +1,148 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<script>
-     var assetsString = '<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">'
-     var pHead = document.getElementsByTagName('head')[0];
-     pHead.innerHTML = pHead.innerHTML + assetsString;
-</script>
-<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
-<style>
-    .pace .pace-progress {
-        background: #1E92FB; /*进度条颜色*/
-        height: 3px;
-    }
-    .pace .pace-progress-inner {
-         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-    }
-    .pace .pace-activity {
-        border-top-color: #1E92FB;    /*上边框颜色*/
-        border-left-color: #1E92FB;    /*左边框颜色*/
-    }
-</style>
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/KuangjuX.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/KuangjuX.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="狂且的记录仪         .hexo-douban-tabs {     margin-bottom: 15px;     margin-top: 15px; }  .hexo-douban-tab {     padding: 5px; }  .hexo-douban-active {     background: #657b83;     co">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>狂且的观影室 | KuangjuX(狂且)</title><meta name="author" content="KuangjuX"><meta name="copyright" content="KuangjuX"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="狂且的记录仪         .hexo-douban-tabs {     margin-bottom: 15px;     margin-top: 15px; }  .hexo-douban-tab {     padding: 5px; }  .hexo-douban-active {     background: #657b83;     co">
 <meta property="og:type" content="website">
 <meta property="og:title" content="狂且的观影室">
 <meta property="og:url" content="http://yoursite.com/movies/">
 <meta property="og:site_name" content="KuangjuX(狂且)">
 <meta property="og:description" content="狂且的记录仪         .hexo-douban-tabs {     margin-bottom: 15px;     margin-top: 15px; }  .hexo-douban-tab {     padding: 5px; }  .hexo-douban-active {     background: #657b83;     co">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2614081670.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2544988187.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2210568759.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2615284298.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2601766788.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2079334409.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p456692072.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1465235231.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2339592703.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p1505312273.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2329535697.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p802403853.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2461326905.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2574145203.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2517627958.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2609064048.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2603121645.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2498433749.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2316504999.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2385418547.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p492298813.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p661160053.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2514384773.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2285115802.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2567382116.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2323818727.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2511811355.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2215886505.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2151748293.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2186872257.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p1805350599.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2497090967.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2112449528.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2614628862.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p1244017073.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p511447359.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2507377459.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2162863558.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2578097413.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2161532134.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2200540002.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2552522615.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2316209126.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2552418230.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1037533201.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p1397862677.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1308221260.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p892692364.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p1513799776.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2220639306.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2154079590.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2174810950.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2502311890.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2503644828.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2504993947.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p1826486066.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2091221628.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2217557172.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2549648344.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2256702287.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2452970761.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p470419493.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2554916825.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2600142458.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2593883281.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2205471169.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2224403001.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2363255151.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2252471054.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2284639043.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2230484792.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2456180253.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2410887742.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2408394301.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2409022364.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2151897085.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p1172845476.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2265612013.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p465939041.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p571309710.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p1075591188.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2533091683.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2170193684.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p529908155.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2505928032.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p926535516.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2170238828.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p1140984198.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p1344888983.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p767586451.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p1421018669.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570901292.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2215147728.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p1209935896.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p1446261379.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2540924496.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p479682972.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2616355133.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2572847101.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570235120.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2528281606.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2518349518.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p483116745.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p449333567.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1518748581.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2576977981.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2579463811.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2572676219.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2534004692.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2582866849.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2496064819.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2588072875.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2576628266.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2571274882.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2584476257.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2577256090.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p1374786017.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2371311227.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2166892850.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2173648321.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2355555424.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2565607356.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2593729173.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2247111234.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p884763596.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2223011274.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2609063925.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p1910828286.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2373067679.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2363208684.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2434249040.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1963126880.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p477229647.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2169664351.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2004174709.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2189265085.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2414157745.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p792238287.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2016401659.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2194138787.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2262122096.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p1271999126.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2525770523.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2263408369.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p616779645.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2190556408.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1665997400.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2550757929.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2553104888.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1208653481.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p1546987967.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p1903379979.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1784592701.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p492406163.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2513253791.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2070153774.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2504277551.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2317441943.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2506388632.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2517333671.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p1363250216.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p1816276065.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2549558913.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2498971355.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2567198874.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2372307693.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2578474613.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2614359276.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1910824951.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2526297221.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2118532944.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p457760035.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2510956726.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2517518428.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p1675053073.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p501177648.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2540513831.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2556883031.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2507572275.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2551995207.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2561542089.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2555295759.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2545561196.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2544313786.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2456120160.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2546745948.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2039220228.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2606155671.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2620083313.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2620453443.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2614225081.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2620392435.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2455050536.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2561721372.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2561716440.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p1910902213.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2611947895.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2508082006.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2606307565.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2607650553.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p486667524.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2171886373.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2388072355.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2604644737.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2107289058.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2016930906.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2501863104.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p480747492.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p1422970887.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2493079524.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2398141939.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2296954376.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1639170690.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1142370502.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2404553168.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p449897379.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2578045524.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2514119443.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2378140502.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p489336497.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2594430701.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2021984922.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2591946932.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2590101409.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2528842218.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2575887979.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2162224476.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2312267989.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p456666151.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2554541437.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2195469915.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2494275431.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2216353367.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2375882763.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2393044761.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2181207835.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2158166535.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2572166063.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2507227732.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2572429001.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2564458983.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2530599636.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2576482356.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p457521856.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p1454261925.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2499793218.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2542973862.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2561439800.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2551352209.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2508925590.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2581835383.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2247339285.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2511576604.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2577578115.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2580338609.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p657823840.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2579590839.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p689520756.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2549148229.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2167451620.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2224055583.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2219011938.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2359670540.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2181062460.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2372098911.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p1959304567.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2180085848.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2221061003.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p712241453.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2024579845.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p898634801.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p1035097366.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2230413708.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p1034021738.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p1033539605.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2233706697.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2253038483.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2188112867.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p1512562287.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2257944916.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2266145079.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2309171908.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2357915564.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2366057661.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2408342182.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2505577378.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2292976849.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2225660666.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2410569976.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2316177058.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2614500883.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2499135561.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2561713454.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2262236348.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2453197648.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2526405034.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2259298553.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2444256500.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2412371389.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2530249558.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2511436594.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2361036748.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2264377763.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2494950714.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2499052494.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2380677316.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2529365085.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2302930556.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2448676053.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2408407697.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2360940399.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2494701965.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2527484082.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2382076389.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p511118051.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2523437806.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2561542272.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2455810613.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2512717519.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2541901817.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2511434383.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2457983084.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2520331478.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2574713609.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p982896012.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1958733032.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2558022335.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p854757687.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2567998580.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2568258113.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p988260245.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2540444795.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2564369311.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2298762068.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2555084871.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2411844029.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2452241358.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2458656244.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2438256123.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p454143199.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2520095279.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2563780504.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2535260806.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2498558511.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p585477853.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2395733377.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2557573348.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2554613277.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2549177902.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2198811825.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2542268337.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2545472803.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2259282065.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2533384240.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2243803873.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2579932167.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2539661066.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p579729551.jpg">
-<meta property="og:image" content="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2529571873.jpg">
-<meta property="og:image" content="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2529206747.jpg">
-<meta property="og:image" content="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2561305376.jpg">
-<meta property="og:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2530513100.jpg">
+<meta property="og:image" content="http://yoursite.com/null">
 <meta property="article:author" content="KuangjuX">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2614081670.jpg">
+<meta name="twitter:image" content="http://yoursite.com/null"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yoursite.com/movies/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
 
-<link rel="canonical" href="http://yoursite.com/movies/">
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
 
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: false
-  };
-</script>
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
 
-  <title>狂且的观影室 | KuangjuX(狂且)
-  </title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2020-11-01 14:13:01'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">KuangjuX(狂且)</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <p class="site-subtitle">风声雨声读书声 声声入耳 家事国事天下事 事事关心</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
-
-  </li>
-        <li class="menu-item menu-item-message">
-
-    <a href="/message/" rel="section"><i class="fa fa-fw fa-comment"></i>message</a>
-
-  </li>
-        <li class="menu-item menu-item-top">
-
-    <a href="/top/" rel="section"><i class="fa fa-fw fa-signal"></i>排行榜</a>
-
-  </li>
-        <li class="menu-item menu-item-books">
-
-    <a href="/books/" rel="section"><i class="fa fa-fw fa-book"></i>books</a>
-
-  </li>
-        <li class="menu-item menu-item-movies">
-
-    <a href="/movies/" rel="section"><i class="fa fa-fw fa-video-camera"></i>movies</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
-        </a>
-      </li>
-  </ul>
-
-</nav>
-  <div class="site-search">
-    <div class="popup search-popup">
-    <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  <div class="posts-expand">
-    
-    
-    
-    <div class="post-block" lang="en">
-      <header class="post-header">
-
-<h1 class="post-title" itemprop="name headline">狂且的观影室
-</h1>
-
-<div class="post-meta">
-  
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <blockquote>
-    <p>狂且的记录仪</p>
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">28</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div></div></div><hr/></div></div><div id="body-wrap"><header class="not-index-bg" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">KuangjuX(狂且)</a></span><span id="menus"><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="page-site-info"><h1 id="site-title">狂且的观影室</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><blockquote>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><p>狂且的记录仪</p>
 </blockquote>
 
 <style>
@@ -698,7 +230,7 @@
     <a class="hexo-douban-tab" id="hexo-douban-tab2" href="javascript:;"
        rel="external">
         Wish
-        (186)</a>
+        (187)</a>
     <a class="hexo-douban-tab" id="hexo-douban-tab3" href="javascript:;"
        rel="external">
         Watched
@@ -728,6 +260,18 @@
 </div>
     </div>
     <div id="hexo-douban-item2">
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p672536444.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title">
+            <a target="_blank" href="https://movie.douban.com/subject/1464526/">横空出世</a>
+        </div>
+        <div class="hexo-douban-meta">1999-12-12(中国大陆) / 李雪健 / 李幼斌 / 高明 / 陈瑾 / 滕汝骏 / 张勇手 / 刘琳 / 陶海 / 李晓耕 / 李胜源 / 王星瀚 / Chun Wang / 中国大陆 / 陈国星 / 110分钟 / 剧情 / 历史 / 陈怀国 Huaiguo Chen / 彭继超 Jichao Peng / 汉语普通话</div>
+    </div>
+</div>
+
+
         
         <div class="hexo-douban-item">
     <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2544988187.jpg" referrerPolicy="no-referrer" /></div>
@@ -790,7 +334,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p456692072.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p456692072.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/1297052/">侧耳倾听 / 耳をすませば</a>
@@ -987,19 +531,19 @@
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/27018285/">现在去见你 / 지금 만나러 갑니다</a>
         </div>
-        <div class="hexo-douban-meta">2018-03-14(韩国) / 苏志燮 / 孙艺珍 / 金智焕 / 金贤秀 / 李有镇 / 高昌锡 / 李俊赫 / 孙云恩 / 裴侑蓝 / 郑西仁 / 申禹熙 / 韩在河 / 李胜浚 / 赵河硕 / 孔晓振 / 朴叙俊 / 徐正妍 / 甘素贤 / 韩国 / 李章焄 / 132分钟 / 现在去见你 / 剧情 / 爱情 / 奇幻 / 李章焄 Jang-Hoon Lee / 姜秀贞 Soo-Jine Kang / 市川拓司 Takuji Ichikawa / 韩语</div>
+        <div class="hexo-douban-meta">2018-03-14(韩国) / 苏志燮 / 孙艺珍 / 金智焕 / 金贤秀 / 李有镇 / 高昌锡 / 李俊赫 / 孙云恩 / 裴侑蓝 / 韩在河 / 申禹熙 / 赵河硕 / 郑西仁 / 甘素贤 / 李胜浚 / 徐正妍 / 孔晓振 / 朴叙俊 / 韩国 / 李章焄 / 132分钟 / 现在去见你 / 剧情 / 爱情 / 奇幻 / 李章焄 Jang-Hoon Lee / 姜秀贞 Soo-Jine Kang / 市川拓司 Takuji Ichikawa / 韩语</div>
     </div>
 </div>
 
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2285115802.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2285115802.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/26366465/">我的少女时代 / 我的少女時代</a>
         </div>
-        <div class="hexo-douban-meta">2015-08-15(中国台湾) / 2015-11-19(中国大陆) / 宋芸桦 / 王大陆 / 李玉玺 / 简廷芮 / 刘德华 / 陈乔恩 / 言承旭 / 曲家瑞 / 屈中恒 / 钟欣凌 / 许杰辉 / 蔡颐榛 / 郭文颐 / 石知田 / 那维勋 / 林鹤轩 / 陈彦允 / 张立东 / 郑茵声 / 李绍祥 / 张行 / 安晨芯 / 许展荣 / 汪禹丞 / 中国台湾 / 陈玉珊 / 134分钟 / 我的少女时代 / 喜剧 / 爱情 / 曾咏婷 Yung-Ting Tseng / 汉语普通话</div>
+        <div class="hexo-douban-meta">2015-08-15(中国台湾) / 2015-11-19(中国大陆) / 宋芸桦 / 王大陆 / 李玉玺 / 简廷芮 / 刘德华 / 陈乔恩 / 言承旭 / 曲家瑞 / 屈中恒 / 钟欣凌 / 许杰辉 / 蔡颐榛 / 郭文颐 / 石知田 / 那维勋 / 林鹤轩 / 陈彦允 / 张立东 / 郑茵声 / 李绍祥 / 张行 / 安晨芯 / 许展荣 / 汪禹丞 / 林史恩 / 中国台湾 / 陈玉珊 / 134分钟 / 我的少女时代 / 喜剧 / 爱情 / 曾咏婷 Yung-Ting Tseng / 汉语普通话</div>
     </div>
 </div>
 
@@ -1011,7 +555,7 @@
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/26935296/">花椒之味</a>
         </div>
-        <div class="hexo-douban-meta">2019-09-06(中国大陆) / 2019-09-12(香港) / 郑秀文 / 赖雅妍 / 李晓峰 / 钟镇涛 / 任贤齐 / 刘瑞琪 / 吴彦姝 / 刘德华 / 卢镇业 / 蒋祖曼 / 麦子乐 / 袁富华 / 岑珈其 / 姚爱宁 / 许亚琦 / 罗北安 / 梁泳 / 中国香港 / 中国大陆 / 麦曦茵 / 118分钟 / 剧情 / 家庭 / 麦曦茵 Heiward Mak / 雷楚雄 Bill Lui / 杨倩玲 Sin Ling Yeung / 张小娴 Siu-Han Cheung / 汉语普通话 / 粤语</div>
+        <div class="hexo-douban-meta">2019-09-06(中国大陆) / 2019-09-12(香港) / 郑秀文 / 赖雅妍 / 李晓峰 / 钟镇涛 / 任贤齐 / 刘瑞琪 / 吴彦姝 / 刘德华 / 卢镇业 / 蒋祖曼 / 麦子乐 / 袁富华 / 岑珈其 / 姚爱宁 / 许亚琦 / 梁泳 / 罗北安 / 中国香港 / 中国大陆 / 麦曦茵 / 118分钟 / 剧情 / 家庭 / 麦曦茵 Heiward Mak / 雷楚雄 Bill Lui / 杨倩玲 Sin Ling Yeung / 张小娴 Siu-Han Cheung / 汉语普通话 / 粤语</div>
     </div>
 </div>
 
@@ -1114,7 +658,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2614628862.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2614628862.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/30176393/">误杀</a>
@@ -1198,7 +742,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2200540002.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2200540002.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/1433360/">雏菊 / 데이지</a>
@@ -1402,7 +946,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2217557172.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2217557172.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/3821067/">一代宗师 / 一代宗師</a>
@@ -1558,7 +1102,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2230484792.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2230484792.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/26011893/">全能囧爸</a>
@@ -1582,7 +1126,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2410887742.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2410887742.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/25876760/">少年巴比伦</a>
@@ -1726,7 +1270,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2505928032.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2505928032.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/27059130/">大佛普拉斯</a>
@@ -1810,7 +1354,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570901292.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2570901292.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/1303394/">青蛇</a>
@@ -1870,7 +1414,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p479682972.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p479682972.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/1292064/">楚门的世界 / The Truman Show</a>
@@ -1887,7 +1431,7 @@
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/3541415/">盗梦空间 / Inception</a>
         </div>
-        <div class="hexo-douban-meta">2010-07-16(美国) / 2010-09-01(中国大陆) / 2020-08-28(中国大陆重映) / 莱昂纳多·迪卡普里奥 / 约瑟夫·高登-莱维特 / 艾伦·佩吉 / 汤姆·哈迪 / 渡边谦 / 迪利普·劳 / 基里安·墨菲 / 汤姆·贝伦杰 / 玛丽昂·歌迪亚 / 皮特·波斯尔思韦特 / 迈克尔·凯恩 / 卢卡斯·哈斯 / 李太力 / 克莱尔·吉尔蕾 / 马格努斯·诺兰 / 泰勒·吉蕾 / 乔纳森·吉尔 / 水源士郎 / 冈本玉二 / 厄尔·卡梅伦 / 瑞恩·海沃德 / 米兰达·诺兰 / 拉什·费加 / 蒂姆·科勒赫 / 妲露拉·莱莉 / 迈克尔·加斯顿 / 吉尔·马德雷尔 / 玛格丽特·因索利亚 / 美国 / 英国 / 克里斯托弗·诺兰 / 148分钟 / 盗梦空间 / 剧情 / 科幻 / 悬疑 / 冒险 / 克里斯托弗·诺兰 Christopher Nolan / 英语 / 日语 / 法语</div>
+        <div class="hexo-douban-meta">2010-07-16(美国) / 2010-09-01(中国大陆) / 2020-08-28(中国大陆重映) / 莱昂纳多·迪卡普里奥 / 约瑟夫·高登-莱维特 / 艾伦·佩吉 / 汤姆·哈迪 / 渡边谦 / 迪利普·劳 / 基里安·墨菲 / 汤姆·贝伦杰 / 玛丽昂·歌迪亚 / 皮特·波斯尔思韦特 / 迈克尔·凯恩 / 卢卡斯·哈斯 / 李太力 / 克莱尔·吉尔蕾 / 马格努斯·诺兰 / 泰勒·吉蕾 / 乔纳森·吉尔 / 水源士郎 / 冈本玉二 / 厄尔·卡梅伦 / 瑞恩·海沃德 / 米兰达·诺兰 / 拉什·费加 / 蒂姆·科勒赫 / 妲露拉·莱莉 / 迈克尔·加斯顿 / 吉尔·马德雷尔 / 玛格丽特·因索利亚 / Natasha Beaumont / 美国 / 英国 / 克里斯托弗·诺兰 / 148分钟 / 盗梦空间 / 剧情 / 科幻 / 悬疑 / 冒险 / 克里斯托弗·诺兰 Christopher Nolan / 英语 / 日语 / 法语</div>
     </div>
 </div>
 
@@ -2014,7 +1558,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2534004692.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2534004692.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/30163504/">良医 第二季 / The Good Doctor Season 2</a>
@@ -2074,7 +1618,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2571274882.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2571274882.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/30450209/">无耻之徒(美版) 第十季 / Shameless Season 10</a>
@@ -2247,7 +1791,7 @@
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/1291557/">花样年华 / 花樣年華</a>
         </div>
-        <div class="hexo-douban-meta">2000-05-20(戛纳电影节) / 2000-09-29(中国香港) / 梁朝伟 / 张曼玉 / 潘迪华 / 萧炳林 / 张耀扬 / 孙佳君 / 钱似莺 / 顾锦华 / 雷震 / 陈万雷 / 叶清 / 张同祖 / 朱连·卡邦 / 中国香港 / 王家卫 / 98 分钟 / 花样年华 / 剧情 / 爱情 / 王家卫 Kar Wai Wong / 粤语 / 上海话 / 法语</div>
+        <div class="hexo-douban-meta">2000-05-20(戛纳电影节) / 2000-09-29(中国香港) / 梁朝伟 / 张曼玉 / 潘迪华 / 萧炳林 / 张耀扬 / 孙佳君 / 钱似莺 / 顾锦华 / 张同祖 / 陈万雷 / 叶清 / 雷震 / 朱连·卡邦 / 中国香港 / 王家卫 / 98 分钟 / 花样年华 / 剧情 / 爱情 / 王家卫 Kar Wai Wong / 粤语 / 上海话 / 法语</div>
     </div>
 </div>
 
@@ -2403,7 +1947,7 @@
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/1461403/">茶馆</a>
         </div>
-        <div class="hexo-douban-meta">于是之 / 郑榕 / 蓝天野 / 英若诚 / 黄宗洛 / 童超 / 金昭 / 林连昆 / 牛星丽 / 谭宗尧 / 童弟 / 吴淑昆 / 胡宗温 / 程中 / 李大千 / 李源 / 李翔 / 张瞳 / 任宝贤 / 尚丽娟 / 米铁增 / 田春奎 / 冯增祥 / 雷飞 / 林东升 / 孟瑾 / 孙峻峰 / 平原 / 曹世骧 / 王大年 / 张华 / 丁海涛 / 朱旭 / 孙敬修 / 董行佶 / 王淑华 / 中国大陆 / 谢添 / 焦菊隐 / 118分钟 / 剧情 / 历史 / 老舍 Lao-She / 北京话</div>
+        <div class="hexo-douban-meta">于是之 / 郑榕 / 蓝天野 / 英若诚 / 黄宗洛 / 童超 / 金昭 / 林连昆 / 牛星丽 / 谭宗尧 / 童弟 / 吴淑昆 / 胡宗温 / 程中 / 李大千 / 李源 / 李翔 / 张瞳 / 任宝贤 / 尚丽娟 / 米铁增 / 田春奎 / 冯增祥 / 雷飞 / 林东升 / 孟瑾 / 孙峻峰 / 平原 / 曹世骧 / 王大年 / 张华 / 丁海涛 / 朱旭 / 孙敬修 / 董行佶 / 王淑华 / 中国大陆 / 谢添 / 焦菊隐 / 夏淳 / 118分钟 / 剧情 / 历史 / 老舍 Lao-She / 北京话</div>
     </div>
 </div>
 
@@ -2535,7 +2079,7 @@
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/10437779/">新世界 / 신세계</a>
         </div>
-        <div class="hexo-douban-meta">2013-02-21(韩国) / 李政宰 / 崔岷植 / 黄政民 / 宋智孝 / 朴圣雄 / 金秉玉 / 金胤成 / 马东锡 / 朴智勋 / 柳圣贤 / 申成日 / 郑载宪 / 廉东铉 / 金弘波 / 郑基燮 / 李璟荣 / 张光 / 崔日华 / 朱进模 / 郑煐禥 / 安秀浩 / 韩国 / sinsegae2013.co.kr / 朴勋政 / 134分钟 / 新世界 / 剧情 / 犯罪 / 朴勋政 Hoon-jung Park / 韩语 / 汉语普通话</div>
+        <div class="hexo-douban-meta">2013-02-21(韩国) / 李政宰 / 崔岷植 / 黄政民 / 宋智孝 / 朴圣雄 / 金秉玉 / 金胤成 / 申成日 / 郑载宪 / 金弘波 / 廉东铉 / 马东锡 / 安秀浩 / 柳圣贤 / 朴智勋 / 李璟荣 / 张光 / 崔日华 / 朱进模 / 郑煐禥 / 郑基燮 / 韩国 / sinsegae2013.co.kr / 朴勋政 / 134分钟 / 新世界 / 剧情 / 犯罪 / 朴勋政 Hoon-jung Park / 韩语 / 汉语普通话</div>
     </div>
 </div>
 
@@ -2614,7 +2158,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2506388632.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2506388632.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/26752852/">水形物语 / The Shape of Water</a>
@@ -2763,7 +2307,7 @@
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/21937452/">素媛 / 소원</a>
         </div>
-        <div class="hexo-douban-meta">2013-10-02(韩国) / 薛景求 / 严志媛 / 李来 / 金海淑 / 金相浩 / 罗美兰 / 杨真诚 / 权泰元 / 赵福来 / 徐贤宇 / 宋英奎 / 郑敏圣 / 曹文义 / 金美庆 / 韩国 / www.wish-movie.kr / 李濬益 / 122分钟 / 素媛 / 剧情 / 金智慧 Ji-hye Kim / 赵重勋 Joong-Hoon Jo / 金成旭 Seong-wook Kim / 韩语</div>
+        <div class="hexo-douban-meta">2013-10-02(韩国) / 薛景求 / 严志媛 / 李来 / 金海淑 / 金相浩 / 罗美兰 / 杨真诚 / 权泰元 / 赵福来 / 徐贤宇 / 宋英奎 / 郑敏圣 / 曹文义 / 金美庆 / 金道烨 / 韩国 / www.wish-movie.kr / 李濬益 / 122分钟 / 素媛 / 剧情 / 金智慧 Ji-hye Kim / 赵重勋 Joong-Hoon Jo / 金成旭 Seong-wook Kim / 韩语</div>
     </div>
 </div>
 
@@ -3050,7 +2594,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2561721372.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2561721372.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/1299398/">大话西游之月光宝盒 / 西遊記第壹佰零壹回之月光寶盒</a>
@@ -3232,7 +2776,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p480747492.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p480747492.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/1292052/">肖申克的救赎 / The Shawshank Redemption</a>
@@ -3310,7 +2854,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1142370502.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p1142370502.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/5244092/">翻滚吧！阿信 / 翻滾吧！阿信</a>
@@ -3375,7 +2919,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2378140502.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2378140502.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/25827935/">七月与安生</a>
@@ -3414,7 +2958,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2021984922.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2021984922.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/4202127/">读心神探 / 讀心神探</a>
@@ -3427,7 +2971,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2591946932.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2591946932.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/34670218/">大赢家</a>
@@ -3635,7 +3179,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2507227732.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2507227732.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/26862829/">芳华</a>
@@ -3739,7 +3283,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2542973862.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2542973862.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/30163509/">飞驰人生</a>
@@ -4233,7 +3777,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2408342182.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2408342182.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/26630781/">我不是潘金莲</a>
@@ -4597,7 +4141,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2527484082.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2527484082.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/26804147/">摩天营救 / Skyscraper</a>
@@ -4649,7 +4193,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2561542272.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2561542272.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/27163278/">速度与激情：特别行动 / Fast &amp; Furious Presents: Hobbs &amp; Shaw</a>
@@ -4753,7 +4297,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p982896012.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p982896012.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/2043546/">秒速5厘米 / 秒速5センチメートル</a>
@@ -4766,7 +4310,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1958733032.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p1958733032.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/20470074/">言叶之庭 / 言の葉の庭</a>
@@ -5065,7 +4609,7 @@
 
         
         <div class="hexo-douban-item">
-    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2549177902.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-picture"><img src="/assets/douban-loading.gif" data-src="https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2549177902.jpg" referrerPolicy="no-referrer" /></div>
     <div class="hexo-douban-info">
         <div class="hexo-douban-title">
             <a target="_blank" href="https://movie.douban.com/subject/27060077/">绿皮书 / Green Book</a>
@@ -5370,417 +4914,7 @@ for (var i = 0; i < firstpages.length; i++) {
 
 </script>
 
-
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
-  </div>
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="博主"
-      src="/images/KuangjuX.png">
-  <p class="site-author-name" itemprop="name">博主</p>
-  <div class="site-description" itemprop="description">狂且的人文及技术博客</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">28</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">7</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">25</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/KuangjuX" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;KuangjuX" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:qcx@tju.edu.cn" title="E-Mail → mailto:qcx@tju.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope-square"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://weibo.com/6040719620/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;6040719620&#x2F;profile?rightmod&#x3D;1&amp;wvr&#x3D;6&amp;mod&#x3D;personinfo&amp;is_all&#x3D;1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/jLZBEG2R0UJ5zXK" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;jLZBEG2R0UJ5zXK" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.facebook.com/profile.php?id=100038941065555" title="FaceBook → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100038941065555" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FaceBook</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.zhihu.com/people/qi-cheng-xiang-59" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;qi-cheng-xiang-59" rel="noopener" target="_blank"><i class="fa fa-fw fa-snapchat"></i>Zhihu</a>
-      </span>
-  </div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        <script
-  async
-  src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"
-></script>
-
-
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">博主</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
-    </span>
-    <span title="Symbols count total">138k</span>
-</div>
-<!--
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
-  </div>
--->
-  <span class="post-meta-divider">|</span>
-<!--
-  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.1
-  </div>
--->
-
-<div class="powered-by">
-  <i class="fa fa-user-md"></i>
-  <span id="busuanzi_container_site_uv">
-    本站总访客数:<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;|
-  </span>
-  <span id="busuanzi_container_site_pv">
-      &nbsp;本站总访问量<span id="busuanzi_value_site_pv"></span>次
-  </span>
-  </div>
-  </div>
-
- <script>
-      var now = new Date();
-      function createtime() {
-          var grt= new Date("03/12/2019 12:00:00");//此处修改你的建站时间或者网站上线时间
-          now.setTime(now.getTime()+250);
-          days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
-          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
-          if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
-          mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
-          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
-          snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
-          document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
-          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
-      }
-  setInterval("createtime()",250);
-  </script>
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="Total Visitors">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="Total Views">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
-
-
-
-
-
-
-  <script>
-  function leancloudSelector(url) {
-    url = encodeURI(url);
-    return document.getElementById(url).querySelector('.leancloud-visitors-count');
-  }
-  if (CONFIG.page.isPost) {
-    function addCount(Counter) {
-      var visitors = document.querySelector('.leancloud_visitors');
-      var url = decodeURI(visitors.getAttribute('id'));
-      var title = visitors.getAttribute('data-flag-title');
-
-      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
-        .then(response => response.json())
-        .then(({ results }) => {
-          if (results.length > 0) {
-            var counter = results[0];
-            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
-              .then(response => response.json())
-              .then(() => {
-                leancloudSelector(url).innerText = counter.time + 1;
-              })
-              .catch(error => {
-                console.error('Failed to save visitor count', error);
-              })
-          } else {
-              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+</div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">KuangjuX</div><div class="author-info__description">狂且的人文及技术博客</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">28</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><div class="content"><a class="title" href="/2020/10/15/1/" title="LeetCode307-区域和检索">LeetCode307-区域和检索</a><time datetime="2020-10-15T15:22:13.000Z" title="Created 2020-10-15 23:22:13">2020-10-15</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2020/10/11/1/" title="LeetCode416-分割等和子集">LeetCode416-分割等和子集</a><time datetime="2020-10-11T11:31:21.000Z" title="Created 2020-10-11 19:31:21">2020-10-11</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2020/09/29/1/" title="NEMU">NEMU</a><time datetime="2020-09-29T11:34:56.000Z" title="Created 2020-09-29 19:34:56">2020-09-29</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2020/07/29/1/" title="魏晋之际的政治格局简论">魏晋之际的政治格局简论</a><time datetime="2020-07-29T12:18:33.000Z" title="Created 2020-07-29 20:18:33">2020-07-29</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2020/07/07/1/" title="使用管道代替循环">使用管道代替循环</a><time datetime="2020-07-07T11:56:16.000Z" title="Created 2020-07-07 19:56:16">2020-07-07</time></div></div></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fas fa-folder-open"></i><span>Categories</span></div><ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%8E%86%E5%8F%B2/"><span class="card-category-list-name">历史</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B0%8F%E8%AF%B4/"><span class="card-category-list-name">小说</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/"><span class="card-category-list-name">技术</span><span class="card-category-list-count">16</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%97%85%E8%A1%8C/"><span class="card-category-list-name">旅行</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9D%82%E6%96%87/"><span class="card-category-list-name">杂文</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%94%B5%E5%BD%B1/"><span class="card-category-list-name">电影</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6/"><span class="card-category-list-name">读书</span><span class="card-category-list-count">2</span></a></li>
             
-          }
-        })
-        .catch(error => {
-          console.error('LeanCloud Counter Error', error);
-        });
-    }
-  } else {
-    function showTime(Counter) {
-      var visitors = document.querySelectorAll('.leancloud_visitors');
-      var entries = [...visitors].map(element => {
-        return decodeURI(element.getAttribute('id'));
-      });
-
-      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
-        .then(response => response.json())
-        .then(({ results }) => {
-          if (results.length === 0) {
-            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
-              element.innerText = 0;
-            });
-            return;
-          }
-          for (let item of results) {
-            let { url, time } = item;
-            leancloudSelector(url).innerText = time;
-          }
-          for (let url of entries) {
-            var element = leancloudSelector(url);
-            if (element.innerText == '') {
-              element.innerText = 0;
-            }
-          }
-        })
-        .catch(error => {
-          console.error('LeanCloud Counter Error', error);
-        });
-    }
-  }
-
-  fetch('https://app-router.leancloud.cn/2/route?appId=eKljXKTgtsvOEn324j1ORaUs-gzGzoHsz')
-    .then(response => response.json())
-    .then(({ api_server }) => {
-      var Counter = (method, url, data) => {
-        return fetch(`https://${api_server}/1.1${url}`, {
-          method: method,
-          headers: {
-            'X-LC-Id'     : 'eKljXKTgtsvOEn324j1ORaUs-gzGzoHsz',
-            'X-LC-Key'    : 'Jw4A0FzyFHKIw8taE6VXOKzD',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)
-        });
-      };
-      if (CONFIG.page.isPost) {
-        if (CONFIG.hostname !== location.hostname) return;
-        addCount(Counter);
-      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-  <script src="//code.tidio.co/lpgsqeqcpf78423oj25nkj3nsugth3ud.js"></script>
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : 'C9bJJw8aiGhDjMSdFRUE3o8S-gzGzoHsz',
-      appKey     : 'y2X5kwL33MfJiyudCdCtg93C',
-      placeholder: "Just go go",
-      avatar     : 'mm',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : false,
-      lang       : '' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : false,
-      serverURLs : ''
-    });
-  }, window.Valine);
-});
-</script>
-
-   
-<script async src="//code.tidio.co/lpgsqeqcpf78423oj25nkj3nsugth3ud.js"></script>
-
-
-
-
-  <canvas id="evanyou"></canvas>
-  <style>
-    #evanyou {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-  </style>
-  <script src="/js/evan-you.js"></script>
-
-
-
-
-  <script async src="/js/cursor/fireworks.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-
-</body>
-</html>
+            </ul></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/ARM/" style="font-size: 1.1em; color: #999">ARM</a> <a href="/tags/C-C/" style="font-size: 1.34em; color: #99a3b0">C/C++</a> <a href="/tags/CSAPP/" style="font-size: 1.5em; color: #99a9bf">CSAPP</a> <a href="/tags/Docker/" style="font-size: 1.1em; color: #999">Docker</a> <a href="/tags/Javascript/" style="font-size: 1.1em; color: #999">Javascript</a> <a href="/tags/Laravel/" style="font-size: 1.18em; color: #999ca1">Laravel</a> <a href="/tags/Leetcode/" style="font-size: 1.26em; color: #999fa8">Leetcode</a> <a href="/tags/Linux/" style="font-size: 1.26em; color: #999fa8">Linux</a> <a href="/tags/Nginx/" style="font-size: 1.1em; color: #999">Nginx</a> <a href="/tags/PHP/" style="font-size: 1.1em; color: #999">PHP</a> <a href="/tags/%E4%BA%BA%E7%94%9F/" style="font-size: 1.42em; color: #99a6b7">人生</a> <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" style="font-size: 1.1em; color: #999">函数式编程</a> <a href="/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" style="font-size: 1.42em; color: #99a6b7">后端开发</a> <a href="/tags/%E5%90%90%E6%A7%BD/" style="font-size: 1.18em; color: #999ca1">吐槽</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F/" style="font-size: 1.1em; color: #999">嵌入式系统</a> <a href="/tags/%E6%96%87%E5%AD%A6/" style="font-size: 1.26em; color: #999fa8">文学</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 1.1em; color: #999">旅行</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 1.26em; color: #999fa8">服务器</a> <a href="/tags/%E6%9D%82%E8%AE%BA/" style="font-size: 1.26em; color: #999fa8">杂论</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 1.26em; color: #999fa8">汇编</a> <a href="/tags/%E7%88%B1%E5%9B%BD/" style="font-size: 1.1em; color: #999">爱国</a> <a href="/tags/%E7%88%B1%E6%83%85/" style="font-size: 1.34em; color: #99a3b0">爱情</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.18em; color: #999ca1">算法</a> <a href="/tags/%E9%87%8D%E6%9E%84/" style="font-size: 1.1em; color: #999">重构</a> <a href="/tags/%E9%AD%8F%E6%99%8B/" style="font-size: 1.1em; color: #999">魏晋</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/10/"><span class="card-archive-list-date">October 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/09/"><span class="card-archive-list-date">September 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/07/"><span class="card-archive-list-date">July 2020</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/06/"><span class="card-archive-list-date">June 2020</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/04/"><span class="card-archive-list-date">April 2020</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/03/"><span class="card-archive-list-date">March 2020</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/02/"><span class="card-archive-list-date">February 2020</span><span class="card-archive-list-count">4</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">28</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2020-11-01T06:13:01.605Z"></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By KuangjuX</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
