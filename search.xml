@@ -127,8 +127,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>算法</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -161,9 +161,9 @@ dp[i-1][j] \quad|\quad dp[i-1][j-nums[i]]
         <category>技术</category>
       </categories>
       <tags>
+        <tag>算法</tag>
         <tag>Leetcode</tag>
         <tag>Javascript</tag>
-        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -221,8 +221,8 @@ dp[i-1][j] \quad|\quad dp[i-1][j-nums[i]]
         <category>技术</category>
       </categories>
       <tags>
-        <tag>CSAPP</tag>
         <tag>汇编</tag>
+        <tag>CSAPP</tag>
         <tag>C/C++</tag>
       </tags>
   </entry>
@@ -526,8 +526,8 @@ dp[i-1][j] \quad|\quad dp[i-1][j-nums[i]]
       </categories>
       <tags>
         <tag>服务器</tag>
-        <tag>后端开发</tag>
         <tag>Docker</tag>
+        <tag>后端开发</tag>
       </tags>
   </entry>
   <entry>
@@ -595,8 +595,8 @@ dp[i-1][j] \quad|\quad dp[i-1][j-nums[i]]
       </categories>
       <tags>
         <tag>服务器</tag>
-        <tag>Nginx</tag>
         <tag>后端开发</tag>
+        <tag>Nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -718,9 +718,9 @@ dp[i-1][j] \quad|\quad dp[i-1][j-nums[i]]
         <category>技术</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>嵌入式系统</tag>
         <tag>ARM</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -739,8 +739,8 @@ dp[i-1][j] \quad|\quad dp[i-1][j-nums[i]]
         <category>技术</category>
       </categories>
       <tags>
-        <tag>CSAPP</tag>
         <tag>Linux</tag>
+        <tag>CSAPP</tag>
       </tags>
   </entry>
   <entry>
@@ -817,9 +817,9 @@ dp[i-1][j] \quad|\quad dp[i-1][j-nums[i]]
         <category>技术</category>
       </categories>
       <tags>
+        <tag>Linux</tag>
         <tag>服务器</tag>
         <tag>后端开发</tag>
-        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1311,8 +1311,8 @@ p_node6-&gt;val = 443</p>
         <category>技术</category>
       </categories>
       <tags>
-        <tag>CSAPP</tag>
         <tag>汇编</tag>
+        <tag>CSAPP</tag>
       </tags>
   </entry>
   <entry>
@@ -1403,8 +1403,8 @@ p_node6-&gt;val = 443</p>
         <category>技术</category>
       </categories>
       <tags>
-        <tag>CSAPP</tag>
         <tag>汇编</tag>
+        <tag>CSAPP</tag>
       </tags>
   </entry>
   <entry>
@@ -1604,8 +1604,8 @@ p_node6-&gt;val = 443</p>
         <category>技术</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>C/C++</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -1681,9 +1681,9 @@ p_node6-&gt;val = 443</p>
         <category>杂文</category>
       </categories>
       <tags>
-        <tag>杂论</tag>
         <tag>爱情</tag>
         <tag>人生</tag>
+        <tag>杂论</tag>
       </tags>
   </entry>
   <entry>
