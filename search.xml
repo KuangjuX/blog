@@ -81,6 +81,13 @@
     <title>我为什么讨厌考试</title>
     <url>/2020/12/22/Hate-exam/</url>
     <content><![CDATA[]]></content>
+      <categories>
+        <category>杂文</category>
+      </categories>
+      <tags>
+        <tag>杂论</tag>
+        <tag>教育</tag>
+      </tags>
   </entry>
   <entry>
     <title>NEMU PA3</title>
@@ -94,6 +101,14 @@
 <p>5.在段选择符中含有一个 <strong>RPL 域(Requestor’s Privilege Level)</strong>, 它描述了请求者所在的特权级。</p>
 <p>6.**CPL(Current Privilege Level)**指示当前进程的特权级, 一般来说它和当前CS 寄存器所指向的段描述符(也就是当前进程的代码段)的 DPL 相等。</p>
 ]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>CSAPP</tag>
+        <tag>C/C++</tag>
+      </tags>
   </entry>
   <entry>
     <title>LeetCode307-区域和检索</title>
