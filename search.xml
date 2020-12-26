@@ -78,6 +78,18 @@
       </tags>
   </entry>
   <entry>
+    <title>xv6 Bigger Files</title>
+    <url>/2020/12/26/xv6-bigger-files/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>C/C++</tag>
+        <tag>操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>xv6 System Call</title>
     <url>/2020/12/25/xv6-System-Call/</url>
     <content><![CDATA[<h2 id="part-one-system-call-tracing"><a class="markdownIt-Anchor" href="#part-one-system-call-tracing"></a> Part One: System call tracing</h2>
