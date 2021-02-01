@@ -394,8 +394,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>Leetcode</tag>
         <tag>算法</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -428,9 +428,9 @@ dp[i-1][j] \quad|\quad dp[i-1][j-nums[i]]
         <category>技术</category>
       </categories>
       <tags>
+        <tag>算法</tag>
         <tag>Leetcode</tag>
         <tag>Javascript</tag>
-        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
