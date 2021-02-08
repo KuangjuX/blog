@@ -77,12 +77,15 @@
 <p>1.原理：.bss `字段是什么含义？为什么我们要将动态分配的内存（堆）空间放在 .bss 字段？</p>
 <p><code>.bss</code>段：未初始化的全局和静态变量，以及所有被初始化为0的全局或静态变量，在目标文件中这个这个节不占据实际的空间，它仅仅是一个占位符。目标文件格式区分已初始化和未初始化变量是为了空间效率：在目标文件中，未初始化变量不需要占据任何实际的磁盘空间。运行时，在内存中分配这些变量，初始化值为0。</p>
 <p><code>.bss</code>段放堆空间，实际并不是必须的——我们完全可以随意指定一段可以访问的内存空间。不过，在代码中用全局变量来表示堆并将其放在<code>.bss</code>段，是一个很简单的实现：这样堆空间就包含在内核的二进制数据之中了，而自<code>KERNEL_END_ADDRESS</code>以后的空间就可以给进程使用。</p>
-<p>2.分析：我们在动态内存分配中实现了一个堆，它允许我们在内核代码中使用动态分配的内存，例如 <code>Vec</code> <code>Box</code> 等。那么，如果我们在实现这个堆的过程中使用 <code>Vec</code> 而不是 <code>[u8]</code>，会出现什么结果？</p>
+<p>2.分析：我们在动态内存分配中实现了一个堆，它允许我们在内核代码中使用动态分配的内存，例如 <code>Vec</code>、 <code>Box</code> 等。那么，如果我们在实现这个堆的过程中使用 <code>Vec</code> 而不是 <code>[u8]</code>，会出现什么结果？</p>
 <ul>
 <li>无法编译？</li>
 <li>运行时错误？</li>
 <li>正常运行？</li>
 </ul>
+<p>会发生死锁。使用<code>Vec</code>会向堆中申请内存，而<code>Allocator</code>也需要向堆内申请内存（个人感觉<code>Vec</code>的实现需要<code>Allocator</code>，而只有实现了<code>Allocator</code>才能实现堆，这样就会死循环了）。</p>
+<p>3.实验：</p>
+<p>I. 回答：<code>algorithm/src/allocator</code> 下有一个 <code>Allocator</code> trait，我们之前用它实现了物理页面分配。这个算法的时间和空间复杂度是什么？</p>
 ]]></content>
       <categories>
         <category>技术</category>
