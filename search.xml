@@ -72,28 +72,45 @@
   <entry>
     <title>rCore Lab-2</title>
     <url>/2021/02/08/rCore-Lab-2/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h2 id="实验二内存分配"><a class="markdownIt-Anchor" href="#实验二内存分配"></a> 实验二：内存分配</h2>
+<h3 id="实验题"><a class="markdownIt-Anchor" href="#实验题"></a> 实验题</h3>
+<p>1.原理：.bss `字段是什么含义？为什么我们要将动态分配的内存（堆）空间放在 .bss 字段？</p>
+<p><code>.bss</code>段：未初始化的全局和静态变量，以及所有被初始化为0的全局或静态变量，在目标文件中这个这个节不占据实际的空间，它仅仅是一个占位符。目标文件格式区分已初始化和未初始化变量是为了空间效率：在目标文件中，未初始化变量不需要占据任何实际的磁盘空间。运行时，在内存中分配这些变量，初始化值为0。</p>
+<p><code>.bss</code>段放堆空间，实际并不是必须的——我们完全可以随意指定一段可以访问的内存空间。不过，在代码中用全局变量来表示堆并将其放在<code>.bss</code>段，是一个很简单的实现：这样堆空间就包含在内核的二进制数据之中了，而自<code>KERNEL_END_ADDRESS</code>以后的空间就可以给进程使用。</p>
+<p>2.分析：我们在动态内存分配中实现了一个堆，它允许我们在内核代码中使用动态分配的内存，例如 <code>Vec</code> <code>Box</code> 等。那么，如果我们在实现这个堆的过程中使用 <code>Vec</code> 而不是 <code>[u8]</code>，会出现什么结果？</p>
+<ul>
+<li>无法编译？</li>
+<li>运行时错误？</li>
+<li>正常运行？</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+        <tag>RISC -V</tag>
+        <tag>操作系统</tag>
+        <tag>rCore</tag>
+      </tags>
   </entry>
   <entry>
     <title>rCore Lab-1</title>
     <url>/2021/02/07/rCore-Lab-1/</url>
     <content><![CDATA[<h2 id="实验一-中断"><a class="markdownIt-Anchor" href="#实验一-中断"></a> 实验一： 中断</h2>
 <h3 id="实验题"><a class="markdownIt-Anchor" href="#实验题"></a> 实验题：</h3>
-<p>**1.原理：**在rust_main函数中，执行<code>ebreak</code>命令后至函数结束前，<code>sp</code>寄存器的值是怎样变化的？</p>
-<p><strong>答：</strong></p>
-<p>在rust_main函数中执行<code>ebreak</code>进入中断，首先需要在栈上开辟Context所需空间，即将栈顶（即sp寄存器）减去34*8bits。随后在<code>__restore</code>中恢复了sp寄存器中位置。</p>
-<p>**2.分析：**如果去掉 <code>rust_main</code> 后的 <code>panic</code> 会发生什么，为什么？</p>
-<p><strong>答：</strong></p>
+<p>1.原理：在rust_main函数中，执行<code>ebreak</code>命令后至函数结束前，<code>sp</code>寄存器的值是怎样变化的？</p>
+<p>在rust_main函数中执行<code>ebreak</code>进入中断，首先需要在栈上开辟Context所需空间，即将栈顶（即<code>sp</code>寄存器）减去 34*8 bits。随后在<code>__restore</code>中恢复了<code>sp</code>寄存器中位置。</p>
+<p>2.分析：如果去掉 <code>rust_main</code> 后的 <code>panic</code> 会发生什么，为什么？</p>
 <p>去掉rust_main后的<code>panic</code>后程序将不会立刻返回。执行<code>ebreak</code>函数后进入到<code>interrupt_handler</code>函数中，判断为断点后进入<code>breakpoint</code>函数进行处理，在<code>breakpoint</code>函数中打印出断点位置并将<code>sepc</code>寄存器+2后返回，调用<code>__restore</code>函数恢复所有寄存器，并跳转至<code>Context</code>中<code>sepc</code>的位置上，即会回到<code>entry.asm</code>中，此时<code>entry.asm</code>函数后并未做任何处理。</p>
-<p><strong>3.实验：</strong></p>
-<p>**1.**如果程序访问不存在的地址，会得到 <code>Exception::LoadFault</code>。模仿捕获 <code>ebreak</code> 和时钟中断的方法，捕获 <code>LoadFault</code>（之后 <code>panic</code> 即可）</p>
-<p><strong>答：</strong></p>
+<p>3.实验：</p>
+<p>I. 如果程序访问不存在的地址，会得到 <code>Exception::LoadFault</code>。模仿捕获 <code>ebreak</code> 和时钟中断的方法，捕获 <code>LoadFault</code>（之后 <code>panic</code> 即可）</p>
 <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">handle_interrupt</span></span>(context: &amp;<span class="keyword">mut</span> Context, scause: Scause, stval: <span class="built_in">usize</span>) &#123;</span><br><span class="line">    <span class="comment">// panic!(&quot;Interrupted: &#123;:?&#125;&quot;, scause.cause());</span></span><br><span class="line">    <span class="keyword">match</span> scause.cause() &#123;</span><br><span class="line">        <span class="comment">// breakpoint interrupt(ebark)</span></span><br><span class="line">        Trap::Exception(Exception::Breakpoint) =&gt; breakpoint(context),</span><br><span class="line">        <span class="comment">// clock interrupt</span></span><br><span class="line">        Trap::Interrupt(Interrupt::SupervisorTimer) =&gt; supervisor_timer(context),</span><br><span class="line">        <span class="comment">// Visit a non-existent address</span></span><br><span class="line">        Trap::Exception(Exception::LoadFault) =&gt; load_falut(context)</span><br><span class="line">        <span class="comment">// Other Situations: Stop current thread</span></span><br><span class="line">        _ =&gt; fault(context, scause, stval),</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在<code>match</code>中加入对<code>Exception::LoadFault</code>异常的处理。在<code>load_falut</code>函数中直接<code>panic!</code></p>
-<p>**2.**在处理异常的过程中，如果程序想要非法访问的地址是 <code>0x0</code>，则打印 <code>SUCCESS!</code></p>
+<p>II. 在处理异常的过程中，如果程序想要非法访问的地址是 <code>0x0</code>，则打印 <code>SUCCESS!</code></p>
 <p><strong>答：</strong></p>
 <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Handler Load Fault</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">load_falut</span></span>(context: &amp;<span class="keyword">mut</span> Context, scause: Scause, stval: <span class="built_in">usize</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (stval == <span class="number">0x0</span>)&#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Success!&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">panic!</span>(</span><br><span class="line">        <span class="string">&quot;Interrupt: &#123;:?&#125;\n&#123;:x?&#125;\nstval: &#123;:x&#125;&quot;</span>,</span><br><span class="line">        scause.cause(),</span><br><span class="line">        context,</span><br><span class="line">        stval</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>**3.**添加或修改少量代码，使得运行时触发这个异常，并且打印出 <code>SUCCESS!</code>。</p>
+<p>III. 添加或修改少量代码，使得运行时触发这个异常，并且打印出 <code>SUCCESS!</code>。</p>
 <ul>
 <li>要求：不允许添加或修改任何 unsafe 代码</li>
 </ul>
@@ -103,9 +120,9 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>操作系统</tag>
         <tag>Rust</tag>
         <tag>RISC -V</tag>
+        <tag>操作系统</tag>
         <tag>rCore</tag>
       </tags>
   </entry>
