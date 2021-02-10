@@ -70,6 +70,38 @@
       </tags>
   </entry>
   <entry>
+    <title>rCore Lab-3</title>
+    <url>/2021/02/10/rCore-Lab-3/</url>
+    <content><![CDATA[<p><img src="/2021/02/10/rCore-Lab-3/rcore_memory_layout.png" alt></p>
+<h2 id="实验三-虚实地址转换"><a class="markdownIt-Anchor" href="#实验三-虚实地址转换"></a> 实验三 虚实地址转换</h2>
+<h3 id="实验题"><a class="markdownIt-Anchor" href="#实验题"></a> 实验题</h3>
+<p>1.原理： 原理：在 <code>os/src/entry.asm</code> 中，<code>boot_page_table</code> 的意义是什么？当跳转执行 <code>rust_main</code> 时，不考虑缓存，硬件通过哪些地址找到了 <code>rust_main</code> 的第一条指令？</p>
+<p>更改后的<code>entry.asm</code>如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 操作系统启动时所需的指令以及字段</span><br><span class="line">#</span><br><span class="line"># 我们在 linker.ld 中将程序入口设置为了 _start，因此在这里我们将填充这个标签</span><br><span class="line"># 它将会执行一些必要操作，然后跳转至我们用 rust 编写的入口函数</span><br><span class="line">#</span><br><span class="line"># 关于 RISC-V 下的汇编语言，可以参考 https:&#x2F;&#x2F;github.com&#x2F;riscv&#x2F;riscv-asm-manual&#x2F;blob&#x2F;master&#x2F;riscv-asm.md</span><br><span class="line"># %hi 表示取 [12,32) 位，%lo 表示取 [0,12) 位</span><br><span class="line"></span><br><span class="line">    .section .text.entry</span><br><span class="line">    .globl _start</span><br><span class="line"># 目前 _start 的功能：将预留的栈空间写入 $sp，然后跳转至 rust_main</span><br><span class="line">_start:</span><br><span class="line">    # 通过线性映射关系计算 boot_page_table 的物理页号</span><br><span class="line">    lui t0, %hi(boot_page_table)</span><br><span class="line">    li t1, 0xffffffff00000000</span><br><span class="line">    sub t0, t0, t1</span><br><span class="line">    srli t0, t0, 12</span><br><span class="line">    # 8 &lt;&lt; 60 是 satp 中使用 Sv39 模式的记号</span><br><span class="line">    li t1, (8 &lt;&lt; 60)</span><br><span class="line">    or t0, t0, t1</span><br><span class="line">    # 写入 satp 并更新 TLB</span><br><span class="line">    csrw satp, t0</span><br><span class="line">    sfence.vma</span><br><span class="line"></span><br><span class="line">    # 加载栈的虚拟地址</span><br><span class="line">    lui sp, %hi(boot_stack_top)</span><br><span class="line">    addi sp, sp, %lo(boot_stack_top)</span><br><span class="line">    # 跳转至 rust_main</span><br><span class="line">    # 这里同时伴随 hart 和 dtb_pa 两个指针的传入（是 OpenSBI 帮我们完成的）</span><br><span class="line">    lui t0, %hi(rust_main)</span><br><span class="line">    addi t0, t0, %lo(rust_main)</span><br><span class="line">    jr t0</span><br><span class="line"></span><br><span class="line">    # 回忆：bss 段是 ELF 文件中只记录长度，而全部初始化为 0 的一段内存空间</span><br><span class="line">    # 这里声明字段 .bss.stack 作为操作系统启动时的栈</span><br><span class="line">    .section .bss.stack</span><br><span class="line">    .global boot_stack</span><br><span class="line">boot_stack:</span><br><span class="line">    # 16K 启动栈大小</span><br><span class="line">    .space 4096 * 16</span><br><span class="line">    .global boot_stack_top</span><br><span class="line">boot_stack_top:</span><br><span class="line">    # 栈结尾</span><br><span class="line"></span><br><span class="line">    # 初始内核映射所用的页表</span><br><span class="line">    .section .data</span><br><span class="line">    .align 12</span><br><span class="line">    .global boot_page_table</span><br><span class="line">boot_page_table:</span><br><span class="line">    # .8byte表示长度为8个字节的整数</span><br><span class="line">    .8byte 0</span><br><span class="line">    .8byte 0</span><br><span class="line">    # 第 2 项：0x8000_0000 -&gt; 0x8000_0000，0xcf 表示 VRWXAD 均为 1</span><br><span class="line">    .8byte (0x80000 &lt;&lt; 10) | 0xcf</span><br><span class="line">    .zero 505 * 8</span><br><span class="line">    # 第 508 项（外设用）：0xffff_ffff_0000_0000 -&gt; 0x0000_0000，0xcf 表示 VRWXAD 均为 1</span><br><span class="line">    .8byte (0x00000 &lt;&lt; 10) | 0xcf</span><br><span class="line">    .8byte 0</span><br><span class="line">    # 第 510 项：0xffff_ffff_8000_0000 -&gt; 0x8000_0000，0xcf 表示 VRWXAD 均为 1</span><br><span class="line">    .8byte (0x80000 &lt;&lt; 10) | 0xcf</span><br><span class="line">    .8byte 0</span><br></pre></td></tr></table></figure>
+<p>我们一步步讲解<code>entry.asm</code>是如何进行从物理地址到虚拟地址的转变的。首先声明代码段位置并且实现在<code>linker.ld</code>中声明的<code>__start</code>函数，随后我们做的就是把<code>boot_page_table</code>（即页表基址）的虚拟地址转化成物理地址写入<code>satp</code>寄存器中，我们来看是如何把<code>boot_page_table</code>的物理页号写入的：</p>
+<p>由于在<code>rCore</code>中，我们选择了RISC -V本身硬件支持Sv39模式作为页表的实现。</p>
+<p>在 Sv39 模式中，定义物理地址有 56 位，而虚拟地址有 64 位。虽然虚拟地址有 64 位，只有低 39 位有效。不过这不是说高 25 位可以随意取值，规定 63-39 位的值必须等于第 38 位的值，否则会认为该虚拟地址不合法，在访问时会产生异常。</p>
+<p>Sv39 模式同样是基于页的，在物理内存那一节曾经提到<strong>物理页（Frame）<strong>与</strong>物理页号（PPN，Physical Page Number）</strong>。在这里物理页号为 44 位，每个物理页大小为 4KB。同理，我们对于虚拟内存定义<strong>虚拟页（Page）<strong>以及</strong>虚拟页号（VPN, Virtual Page Number)</strong> 。在这里虚拟页号为 27 位，每个虚拟页大小也为 4KB。物理地址和虚拟地址的最后 12 位都表示页内偏移，即表示该地址在所在物理页（虚拟页）上的什么位置。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lui t0, %hi(boot_page_table)</span><br><span class="line">   li t1, 0xffffffff00000000</span><br><span class="line">   sub t0, t0, t1</span><br><span class="line">   srli t0, t0, 12</span><br><span class="line">   # 8 &lt;&lt; 60 是 satp 中使用 Sv39 模式的记号</span><br><span class="line">   li t1, (8 &lt;&lt; 60)</span><br><span class="line">   or t0, t0, t1</span><br><span class="line">   # 写入 satp 并更新 TLB</span><br><span class="line">   csrw satp, t0</span><br><span class="line">   sfence.vma</span><br></pre></td></tr></table></figure>
+<p>首先，我们取<code>boot_page_table</code>地址的12位到32位，此为物理地址的页号，然后将物理地址页号与<code>0xffffffff00000000</code>进行相减存到<code>t0</code>寄存器中，然后将<code>t0</code>寄存器右移12位，然后我们将<code>(8 &lt;&lt; 60)</code>作为Sv39模式的记号存入到<code>t1</code>寄存器中，然后将<code>t0</code>和<code>t1</code>寄存器进行或运算存入到<code>satp</code>寄存器中，并且更新快表。这样我们就可以通过<code>satp</code>寄存器的值来找到页表基址。</p>
+<p>随后我们计算栈起始地址并将其写入<code>sp</code>寄存器中，并且计算出<code>rust_main</code>函数的虚拟地址并写入临时寄存器中。此时我们已经有了<code>rust_main</code>的虚拟地址了，我们可以从虚拟地址（即高地址）首先取其高九位（即VPN3）判断其寻找VPN2的地址（此时应为510），然后再进行不断的映射最后经过<code>satp</code>寄存器找到<code>rust_main</code>的物理地址进行运行。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+        <tag>RISC -V</tag>
+        <tag>操作系统</tag>
+        <tag>rCore</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RISC -V总结</title>
+    <url>/2021/02/09/RISC-V%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>rCore Lab-2</title>
     <url>/2021/02/08/rCore-Lab-2/</url>
     <content><![CDATA[<h2 id="实验二内存分配"><a class="markdownIt-Anchor" href="#实验二内存分配"></a> 实验二：内存分配</h2>
