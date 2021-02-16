@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>KuangjuX(狂且)</title>
+  
+  <subtitle>风声雨声读书声 声声入耳 家事国事天下事 事事关心</subtitle>
+  <link href="http://blog.kuangjux.top/atom.xml" rel="self"/>
+  
+  <link href="http://blog.kuangjux.top/"/>
+  <updated>2021-02-15T07:38:42.286Z</updated>
+  <id>http://blog.kuangjux.top/</id>
+  
+  <author>
+    <name>KuangjuX</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>阳光普照</title>
+    <link href="http://blog.kuangjux.top/2021/02/15/%E9%98%B3%E5%85%89%E6%99%AE%E7%85%A7/"/>
+    <id>http://blog.kuangjux.top/2021/02/15/%E9%98%B3%E5%85%89%E6%99%AE%E7%85%A7/</id>
+    <published>2021-02-15T02:16:18.000Z</published>
+    <updated>2021-02-15T07:38:42.286Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="电影" scheme="http://blog.kuangjux.top/categories/%E7%94%B5%E5%BD%B1/"/>
+    
+    
+    <category term="人生" scheme="http://blog.kuangjux.top/tags/%E4%BA%BA%E7%94%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rCore Lab-4</title>
+    <link href="http://blog.kuangjux.top/2021/02/14/rCore-Lab-4/"/>
+    <id>http://blog.kuangjux.top/2021/02/14/rCore-Lab-4/</id>
+    <published>2021-02-14T07:39:39.000Z</published>
+    <updated>2021-02-15T05:15:04.602Z</updated>
+    
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Rust" scheme="http://blog.kuangjux.top/tags/Rust/"/>
+    
+    <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
+    
+    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="rCore" scheme="http://blog.kuangjux.top/tags/rCore/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rCore Lab-3</title>
+    <link href="http://blog.kuangjux.top/2021/02/10/rCore-Lab-3/"/>
+    <id>http://blog.kuangjux.top/2021/02/10/rCore-Lab-3/</id>
+    <published>2021-02-10T09:01:43.000Z</published>
+    <updated>2021-02-13T12:38:32.907Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Rust" scheme="http://blog.kuangjux.top/tags/Rust/"/>
+    
+    <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
+    
+    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="rCore" scheme="http://blog.kuangjux.top/tags/rCore/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RISC -V总结</title>
+    <link href="http://blog.kuangjux.top/2021/02/09/RISC-V%E6%80%BB%E7%BB%93/"/>
+    <id>http://blog.kuangjux.top/2021/02/09/RISC-V%E6%80%BB%E7%BB%93/</id>
+    <published>2021-02-09T14:20:06.000Z</published>
+    <updated>2021-02-10T10:32:38.461Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>rCore Lab-2</title>
+    <link href="http://blog.kuangjux.top/2021/02/08/rCore-Lab-2/"/>
+    <id>http://blog.kuangjux.top/2021/02/08/rCore-Lab-2/</id>
+    <published>2021-02-08T03:41:12.000Z</published>
+    <updated>2021-02-13T11:18:25.130Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Rust" scheme="http://blog.kuangjux.top/tags/Rust/"/>
+    
+    <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
+    
+    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="rCore" scheme="http://blog.kuangjux.top/tags/rCore/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rCore Lab-1</title>
+    <link href="http://blog.kuangjux.top/2021/02/07/rCore-Lab-1/"/>
+    <id>http://blog.kuangjux.top/2021/02/07/rCore-Lab-1/</id>
+    <published>2021-02-07T07:25:40.000Z</published>
+    <updated>2021-02-08T07:12:07.673Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Rust" scheme="http://blog.kuangjux.top/tags/Rust/"/>
+    
+    <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
+    
+    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="rCore" scheme="http://blog.kuangjux.top/tags/rCore/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一个关于C语言内存分配的误区</title>
+    <link href="http://blog.kuangjux.top/2021/01/04/%E4%B8%80%E4%B8%AA%E5%85%B3%E4%BA%8EC%E8%AF%AD%E8%A8%80%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%9A%84%E8%AF%AF%E5%8C%BA/"/>
+    <id>http://blog.kuangjux.top/2021/01/04/%E4%B8%80%E4%B8%AA%E5%85%B3%E4%BA%8EC%E8%AF%AD%E8%A8%80%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%9A%84%E8%AF%AF%E5%8C%BA/</id>
+    <published>2021-01-04T03:55:43.000Z</published>
+    <updated>2021-01-04T04:25:41.653Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="C/C++" scheme="http://blog.kuangjux.top/tags/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>xv6 Bigger Files</title>
+    <link href="http://blog.kuangjux.top/2020/12/26/xv6-bigger-files/"/>
+    <id>http://blog.kuangjux.top/2020/12/26/xv6-bigger-files/</id>
+    <published>2020-12-26T06:32:06.000Z</published>
+    <updated>2020-12-26T14:00:20.918Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="C/C++" scheme="http://blog.kuangjux.top/tags/C-C/"/>
+    
+    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>xv6 System Call</title>
+    <link href="http://blog.kuangjux.top/2020/12/25/xv6-System-Call/"/>
+    <id>http://blog.kuangjux.top/2020/12/25/xv6-System-Call/</id>
+    <published>2020-12-25T03:06:05.739Z</published>
+    <updated>2020-12-26T04:49:24.917Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="C/C++" scheme="http://blog.kuangjux.top/tags/C-C/"/>
+    
+    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我为什么讨厌考试</title>
+    <link href="http://blog.kuangjux.top/2020/12/22/Hate-exam/"/>
+    <id>http://blog.kuangjux.top/2020/12/22/Hate-exam/</id>
+    <published>2020-12-22T11:50:59.984Z</published>
+    <updated>2021-02-15T05:05:21.437Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="杂文" scheme="http://blog.kuangjux.top/categories/%E6%9D%82%E6%96%87/"/>
+    
+    
+    <category term="杂论" scheme="http://blog.kuangjux.top/tags/%E6%9D%82%E8%AE%BA/"/>
+    
+    <category term="教育" scheme="http://blog.kuangjux.top/tags/%E6%95%99%E8%82%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NEMU PA3</title>
+    <link href="http://blog.kuangjux.top/2020/12/09/NEMU%20PA3/"/>
+    <id>http://blog.kuangjux.top/2020/12/09/NEMU%20PA3/</id>
+    <published>2020-12-09T15:25:09.792Z</published>
+    <updated>2021-02-15T07:47:50.959Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Linux" scheme="http://blog.kuangjux.top/tags/Linux/"/>
+    
+    <category term="CSAPP" scheme="http://blog.kuangjux.top/tags/CSAPP/"/>
+    
+    <category term="C/C++" scheme="http://blog.kuangjux.top/tags/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode307-区域和检索</title>
+    <link href="http://blog.kuangjux.top/2020/10/15/LeetCode307-%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2/"/>
+    <id>http://blog.kuangjux.top/2020/10/15/LeetCode307-%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2/</id>
+    <published>2020-10-15T15:22:13.000Z</published>
+    <updated>2020-12-24T03:54:45.071Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;description&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#description&quot;&gt;&lt;/a&gt; Description&lt;/h2&gt;
+&lt;p&gt;给定一个整数数组 nums，求出数组从索引 i 到 j  (i ≤ j) 范围内元素的总和，包含 i,  j 两点。&lt;/p&gt;
+&lt;p&gt;update(i, val) 函数可以通过将下标为 i 的数值更新为 val，从而对数列进行修改。&lt;/p&gt;
+&lt;h2 id=&quot;examples&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#examples&quot;&gt;&lt;/a&gt; Examples&lt;/h2&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Given nums &amp;#x3D; [1, 3, 5]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sumRange(0, 2) -&amp;gt; 9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;update(1, 2)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sumRange(0, 2) -&amp;gt; 8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="算法" scheme="http://blog.kuangjux.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="Leetcode" scheme="http://blog.kuangjux.top/tags/Leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode416-分割等和子集</title>
+    <link href="http://blog.kuangjux.top/2020/10/11/LeetCode416-%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86/"/>
+    <id>http://blog.kuangjux.top/2020/10/11/LeetCode416-%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86/</id>
+    <published>2020-10-11T11:31:21.000Z</published>
+    <updated>2020-12-24T03:54:57.389Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;description&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#description&quot;&gt;&lt;/a&gt; Description&lt;/h2&gt;
+&lt;p&gt;给定一个&lt;strong&gt;只包含正整数&lt;/strong&gt;的&lt;strong&gt;非空&lt;/strong&gt;数组。是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。&lt;/p&gt;
+&lt;h2 id=&quot;examples&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#examples&quot;&gt;&lt;/a&gt; Examples&lt;/h2&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;输入: [1, 5, 11, 5]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;输出: true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;解释: 数组可以分割成 [1, 5, 5] 和 [11].&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;输入: [1, 2, 3, 5]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;输出: false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;解释: 数组不能分割成两个元素和相等的子集.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="算法" scheme="http://blog.kuangjux.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="Leetcode" scheme="http://blog.kuangjux.top/tags/Leetcode/"/>
+    
+    <category term="Javascript" scheme="http://blog.kuangjux.top/tags/Javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NEMU</title>
+    <link href="http://blog.kuangjux.top/2020/09/29/NEMU/"/>
+    <id>http://blog.kuangjux.top/2020/09/29/NEMU/</id>
+    <published>2020-09-29T11:34:56.000Z</published>
+    <updated>2020-12-24T03:57:07.675Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;get-started-起步&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#get-started-起步&quot;&gt;&lt;/a&gt; Get Started 起步&lt;/h2&gt;
+&lt;h3 id=&quot;description-描述&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#description-描述&quot;&gt;&lt;/a&gt; Description 描述&lt;/h3&gt;
+&lt;p&gt;PA讲述的是一个&amp;quot;先驱创造计算机&amp;quot;的故事。&lt;/p&gt;
+&lt;p&gt;本实践课程所要设计的“NEMU”一款经过简化的 x86 全系统模拟器。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="汇编" scheme="http://blog.kuangjux.top/tags/%E6%B1%87%E7%BC%96/"/>
+    
+    <category term="CSAPP" scheme="http://blog.kuangjux.top/tags/CSAPP/"/>
+    
+    <category term="C/C++" scheme="http://blog.kuangjux.top/tags/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>魏晋之际的政治格局简论</title>
+    <link href="http://blog.kuangjux.top/2020/07/29/%E9%AD%8F%E6%99%8B%E4%B9%8B%E9%99%85%E7%9A%84%E6%94%BF%E6%B2%BB%E6%A0%BC%E5%B1%80%E7%AE%80%E8%AE%BA/"/>
+    <id>http://blog.kuangjux.top/2020/07/29/%E9%AD%8F%E6%99%8B%E4%B9%8B%E9%99%85%E7%9A%84%E6%94%BF%E6%B2%BB%E6%A0%BC%E5%B1%80%E7%AE%80%E8%AE%BA/</id>
+    <published>2020-07-29T12:18:33.000Z</published>
+    <updated>2020-12-24T04:13:22.059Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;关于东晋之际的门阀政治体系，被视为变态、畸形发展的政治体系，但其出现并非空穴来风。&lt;/p&gt;
+&lt;p&gt;其一，东汉末年，士人清议之风盛起，出现了匹夫抗愤，处士横议的局面，士人之间互相品题、共相标榜成为一时风气，普通士人一旦为名士所赞赏、品题，便如登龙门，身价倍增，千里求名之举亦不鲜见。尽管汉末党锢之祸对于士人清议进行了严酷镇压，但却加强了士人群体身份的认同，构成汉晋时代“士的觉醒”的重要面向。后来随着一系列事件，此时进入三国鼎立时代。其时曹魏举荐人才的主要方式之一便是名士品评、提携同郡士人，例如当时司马懿曾被同郡河内杨俊、清河崔琰所举荐。通过互相的举荐和品评，可以加强同乡同郡之间的家族关系，并且品评人和被品评人也可以在朝廷中为自己增加政治资源。例如，《三国志.杨俊传》中写道：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;黄初三年，车驾至宛，以市不丰乐，发怒收（杨）俊。尚书仆射司马宣王、常侍王象、荀纬请俊，叩头流血，帝不许。俊曰：“吾知罪矣。”遂自杀，众冤痛之。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="历史" scheme="http://blog.kuangjux.top/categories/%E5%8E%86%E5%8F%B2/"/>
+    
+    
+    <category term="魏晋" scheme="http://blog.kuangjux.top/tags/%E9%AD%8F%E6%99%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用管道代替循环</title>
+    <link href="http://blog.kuangjux.top/2020/07/07/instead-of-iterate-by-pipeline/"/>
+    <id>http://blog.kuangjux.top/2020/07/07/instead-of-iterate-by-pipeline/</id>
+    <published>2020-07-07T11:56:16.000Z</published>
+    <updated>2020-12-26T03:15:11.075Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;在《重构》这本书里提到了一个改善程序的方法，“以管道取代循环（Replace Loop with Pipeline）”。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="函数式编程" scheme="http://blog.kuangjux.top/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/"/>
+    
+    <category term="重构" scheme="http://blog.kuangjux.top/tags/%E9%87%8D%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>颂歌</title>
+    <link href="http://blog.kuangjux.top/2020/07/06/carol/"/>
+    <id>http://blog.kuangjux.top/2020/07/06/carol/</id>
+    <published>2020-07-06T12:03:19.000Z</published>
+    <updated>2021-02-15T05:16:02.065Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;多年以后，当他躺在一张逼仄的床上，岁月的痕迹无情地刻在他的脸上，浑浊的老眼已经迷瞪地无法睁开的时候，他依然清楚地记得，在他三十三岁那年，他从一场噩梦中惊醒，回忆起很久以前的往事。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="小说" scheme="http://blog.kuangjux.top/categories/%E5%B0%8F%E8%AF%B4/"/>
+    
+    
+    <category term="爱情" scheme="http://blog.kuangjux.top/tags/%E7%88%B1%E6%83%85/"/>
+    
+    <category term="人生" scheme="http://blog.kuangjux.top/tags/%E4%BA%BA%E7%94%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深入理解Laravel</title>
+    <link href="http://blog.kuangjux.top/2020/06/28/deep-understanding-of-laravel/"/>
+    <id>http://blog.kuangjux.top/2020/06/28/deep-understanding-of-laravel/</id>
+    <published>2020-06-28T01:50:08.000Z</published>
+    <updated>2020-12-24T04:07:23.838Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2020/06/28/deep-understanding-of-laravel/deep-understanding-of-laravel%5Claravel.png&quot; alt&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="后端开发" scheme="http://blog.kuangjux.top/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="Laravel" scheme="http://blog.kuangjux.top/tags/Laravel/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker学习笔记</title>
+    <link href="http://blog.kuangjux.top/2020/06/27/Docker/"/>
+    <id>http://blog.kuangjux.top/2020/06/27/Docker/</id>
+    <published>2020-06-27T13:19:02.000Z</published>
+    <updated>2020-12-24T04:00:13.190Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2020/06/27/Docker/docker.png&quot; alt&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="服务器" scheme="http://blog.kuangjux.top/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    <category term="Docker" scheme="http://blog.kuangjux.top/tags/Docker/"/>
+    
+    <category term="后端开发" scheme="http://blog.kuangjux.top/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx学习笔记</title>
+    <link href="http://blog.kuangjux.top/2020/06/26/Nginx/"/>
+    <id>http://blog.kuangjux.top/2020/06/26/Nginx/</id>
+    <published>2020-06-26T10:43:44.000Z</published>
+    <updated>2020-12-24T03:59:26.526Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2020/06/26/Nginx/nginx.png&quot; alt&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="服务器" scheme="http://blog.kuangjux.top/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    <category term="后端开发" scheme="http://blog.kuangjux.top/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="Nginx" scheme="http://blog.kuangjux.top/tags/Nginx/"/>
+    
+  </entry>
+  
+</feed>
