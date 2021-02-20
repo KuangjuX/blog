@@ -6,7 +6,7 @@
   <link href="http://blog.kuangjux.top/atom.xml" rel="self"/>
   
   <link href="http://blog.kuangjux.top/"/>
-  <updated>2021-02-15T07:38:42.286Z</updated>
+  <updated>2021-02-20T07:53:38.381Z</updated>
   <id>http://blog.kuangjux.top/</id>
   
   <author>
@@ -15,6 +15,113 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LeetCode-52-N皇后II</title>
+    <link href="http://blog.kuangjux.top/2021/02/19/LeetCode-52/"/>
+    <id>http://blog.kuangjux.top/2021/02/19/LeetCode-52/</id>
+    <published>2021-02-19T12:33:46.000Z</published>
+    <updated>2021-02-20T07:53:38.381Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="算法" scheme="http://blog.kuangjux.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="Leetcode" scheme="http://blog.kuangjux.top/tags/Leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode-1004-最大连续1的个数III</title>
+    <link href="http://blog.kuangjux.top/2021/02/19/LeetCode-1004/"/>
+    <id>http://blog.kuangjux.top/2021/02/19/LeetCode-1004/</id>
+    <published>2021-02-19T12:33:32.000Z</published>
+    <updated>2021-02-20T07:58:02.107Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="算法" scheme="http://blog.kuangjux.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="leetcode" scheme="http://blog.kuangjux.top/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode995-K连续位的最小翻转次数</title>
+    <link href="http://blog.kuangjux.top/2021/02/19/LeetCode995-K%E8%BF%9E%E7%BB%AD%E4%BD%8D%E7%9A%84%E6%9C%80%E5%B0%8F%E7%BF%BB%E8%BD%AC%E6%AC%A1%E6%95%B0/"/>
+    <id>http://blog.kuangjux.top/2021/02/19/LeetCode995-K%E8%BF%9E%E7%BB%AD%E4%BD%8D%E7%9A%84%E6%9C%80%E5%B0%8F%E7%BF%BB%E8%BD%AC%E6%AC%A1%E6%95%B0/</id>
+    <published>2021-02-19T12:02:40.000Z</published>
+    <updated>2021-02-20T07:51:51.957Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="算法" scheme="http://blog.kuangjux.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="Leetcode" scheme="http://blog.kuangjux.top/tags/Leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rCore Lab-6</title>
+    <link href="http://blog.kuangjux.top/2021/02/19/rCore-Lab-6/"/>
+    <id>http://blog.kuangjux.top/2021/02/19/rCore-Lab-6/</id>
+    <published>2021-02-19T12:01:28.000Z</published>
+    <updated>2021-02-19T12:01:28.840Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>rCore Lab-5</title>
+    <link href="http://blog.kuangjux.top/2021/02/19/rCore-Lab-5/"/>
+    <id>http://blog.kuangjux.top/2021/02/19/rCore-Lab-5/</id>
+    <published>2021-02-19T12:01:16.000Z</published>
+    <updated>2021-02-19T12:01:16.198Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>阳光普照</title>
@@ -100,7 +207,7 @@
     <link href="http://blog.kuangjux.top/2021/02/09/RISC-V%E6%80%BB%E7%BB%93/"/>
     <id>http://blog.kuangjux.top/2021/02/09/RISC-V%E6%80%BB%E7%BB%93/</id>
     <published>2021-02-09T14:20:06.000Z</published>
-    <updated>2021-02-10T10:32:38.461Z</updated>
+    <updated>2021-02-20T07:56:31.375Z</updated>
     
     
     
@@ -403,115 +510,6 @@
     
     
     <category term="魏晋" scheme="http://blog.kuangjux.top/tags/%E9%AD%8F%E6%99%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用管道代替循环</title>
-    <link href="http://blog.kuangjux.top/2020/07/07/instead-of-iterate-by-pipeline/"/>
-    <id>http://blog.kuangjux.top/2020/07/07/instead-of-iterate-by-pipeline/</id>
-    <published>2020-07-07T11:56:16.000Z</published>
-    <updated>2020-12-26T03:15:11.075Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;在《重构》这本书里提到了一个改善程序的方法，“以管道取代循环（Replace Loop with Pipeline）”。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="函数式编程" scheme="http://blog.kuangjux.top/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/"/>
-    
-    <category term="重构" scheme="http://blog.kuangjux.top/tags/%E9%87%8D%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>颂歌</title>
-    <link href="http://blog.kuangjux.top/2020/07/06/carol/"/>
-    <id>http://blog.kuangjux.top/2020/07/06/carol/</id>
-    <published>2020-07-06T12:03:19.000Z</published>
-    <updated>2021-02-15T05:16:02.065Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;多年以后，当他躺在一张逼仄的床上，岁月的痕迹无情地刻在他的脸上，浑浊的老眼已经迷瞪地无法睁开的时候，他依然清楚地记得，在他三十三岁那年，他从一场噩梦中惊醒，回忆起很久以前的往事。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="小说" scheme="http://blog.kuangjux.top/categories/%E5%B0%8F%E8%AF%B4/"/>
-    
-    
-    <category term="爱情" scheme="http://blog.kuangjux.top/tags/%E7%88%B1%E6%83%85/"/>
-    
-    <category term="人生" scheme="http://blog.kuangjux.top/tags/%E4%BA%BA%E7%94%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>深入理解Laravel</title>
-    <link href="http://blog.kuangjux.top/2020/06/28/deep-understanding-of-laravel/"/>
-    <id>http://blog.kuangjux.top/2020/06/28/deep-understanding-of-laravel/</id>
-    <published>2020-06-28T01:50:08.000Z</published>
-    <updated>2020-12-24T04:07:23.838Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2020/06/28/deep-understanding-of-laravel/deep-understanding-of-laravel%5Claravel.png&quot; alt&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="后端开发" scheme="http://blog.kuangjux.top/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    <category term="Laravel" scheme="http://blog.kuangjux.top/tags/Laravel/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker学习笔记</title>
-    <link href="http://blog.kuangjux.top/2020/06/27/Docker/"/>
-    <id>http://blog.kuangjux.top/2020/06/27/Docker/</id>
-    <published>2020-06-27T13:19:02.000Z</published>
-    <updated>2020-12-24T04:00:13.190Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2020/06/27/Docker/docker.png&quot; alt&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="服务器" scheme="http://blog.kuangjux.top/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-    <category term="Docker" scheme="http://blog.kuangjux.top/tags/Docker/"/>
-    
-    <category term="后端开发" scheme="http://blog.kuangjux.top/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Nginx学习笔记</title>
-    <link href="http://blog.kuangjux.top/2020/06/26/Nginx/"/>
-    <id>http://blog.kuangjux.top/2020/06/26/Nginx/</id>
-    <published>2020-06-26T10:43:44.000Z</published>
-    <updated>2020-12-24T03:59:26.526Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2020/06/26/Nginx/nginx.png&quot; alt&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="服务器" scheme="http://blog.kuangjux.top/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-    <category term="后端开发" scheme="http://blog.kuangjux.top/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    <category term="Nginx" scheme="http://blog.kuangjux.top/tags/Nginx/"/>
     
   </entry>
   
