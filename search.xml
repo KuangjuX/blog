@@ -172,11 +172,29 @@
     <title>rCore Lab-6</title>
     <url>/2021/02/19/rCore-Lab-6/</url>
     <content><![CDATA[]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+        <tag>RISC -V</tag>
+        <tag>操作系统</tag>
+        <tag>rCore</tag>
+      </tags>
   </entry>
   <entry>
     <title>rCore Lab-5</title>
     <url>/2021/02/19/rCore-Lab-5/</url>
     <content><![CDATA[]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+        <tag>RISC -V</tag>
+        <tag>操作系统</tag>
+        <tag>rCore</tag>
+      </tags>
   </entry>
   <entry>
     <title>rCore Lab-4</title>
