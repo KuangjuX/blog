@@ -6,7 +6,7 @@
   <link href="http://blog.kuangjux.top/atom.xml" rel="self"/>
   
   <link href="http://blog.kuangjux.top/"/>
-  <updated>2021-02-20T07:53:38.381Z</updated>
+  <updated>2021-04-14T08:38:48.079Z</updated>
   <id>http://blog.kuangjux.top/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何不使用SBI在OS中关闭QEMU</title>
+    <link href="http://blog.kuangjux.top/2021/04/14/shutdown-without-SBI-in-OS/"/>
+    <id>http://blog.kuangjux.top/2021/04/14/shutdown-without-SBI-in-OS/</id>
+    <published>2021-04-14T07:59:19.000Z</published>
+    <updated>2021-04-14T08:38:48.079Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>LeetCode-52-N皇后II</title>
@@ -515,29 +536,6 @@
     <category term="CSAPP" scheme="http://blog.kuangjux.top/tags/CSAPP/"/>
     
     <category term="C/C++" scheme="http://blog.kuangjux.top/tags/C-C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>魏晋之际的政治格局简论</title>
-    <link href="http://blog.kuangjux.top/2020/07/29/%E9%AD%8F%E6%99%8B%E4%B9%8B%E9%99%85%E7%9A%84%E6%94%BF%E6%B2%BB%E6%A0%BC%E5%B1%80%E7%AE%80%E8%AE%BA/"/>
-    <id>http://blog.kuangjux.top/2020/07/29/%E9%AD%8F%E6%99%8B%E4%B9%8B%E9%99%85%E7%9A%84%E6%94%BF%E6%B2%BB%E6%A0%BC%E5%B1%80%E7%AE%80%E8%AE%BA/</id>
-    <published>2020-07-29T12:18:33.000Z</published>
-    <updated>2020-12-24T04:13:22.059Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;关于东晋之际的门阀政治体系，被视为变态、畸形发展的政治体系，但其出现并非空穴来风。&lt;/p&gt;
-&lt;p&gt;其一，东汉末年，士人清议之风盛起，出现了匹夫抗愤，处士横议的局面，士人之间互相品题、共相标榜成为一时风气，普通士人一旦为名士所赞赏、品题，便如登龙门，身价倍增，千里求名之举亦不鲜见。尽管汉末党锢之祸对于士人清议进行了严酷镇压，但却加强了士人群体身份的认同，构成汉晋时代“士的觉醒”的重要面向。后来随着一系列事件，此时进入三国鼎立时代。其时曹魏举荐人才的主要方式之一便是名士品评、提携同郡士人，例如当时司马懿曾被同郡河内杨俊、清河崔琰所举荐。通过互相的举荐和品评，可以加强同乡同郡之间的家族关系，并且品评人和被品评人也可以在朝廷中为自己增加政治资源。例如，《三国志.杨俊传》中写道：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;黄初三年，车驾至宛，以市不丰乐，发怒收（杨）俊。尚书仆射司马宣王、常侍王象、荀纬请俊，叩头流血，帝不许。俊曰：“吾知罪矣。”遂自杀，众冤痛之。&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="历史" scheme="http://blog.kuangjux.top/categories/%E5%8E%86%E5%8F%B2/"/>
-    
-    
-    <category term="魏晋" scheme="http://blog.kuangjux.top/tags/%E9%AD%8F%E6%99%8B/"/>
     
   </entry>
   
