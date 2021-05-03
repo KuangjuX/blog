@@ -6,7 +6,7 @@
   <link href="http://blog.kuangjux.top/atom.xml" rel="self"/>
   
   <link href="http://blog.kuangjux.top/"/>
-  <updated>2021-04-14T08:38:48.079Z</updated>
+  <updated>2021-05-03T08:07:23.144Z</updated>
   <id>http://blog.kuangjux.top/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>xv6-rust中断机制</title>
+    <link href="http://blog.kuangjux.top/2021/05/03/xv6-rust-interrupt/"/>
+    <id>http://blog.kuangjux.top/2021/05/03/xv6-rust-interrupt/</id>
+    <published>2021-05-03T08:03:36.000Z</published>
+    <updated>2021-05-03T08:07:23.144Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="RISC-V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
+    
+    <category term="xv6-rust" scheme="http://blog.kuangjux.top/tags/xv6-rust/"/>
+    
+  </entry>
   
   <entry>
     <title>如何不使用SBI在OS中关闭QEMU</title>
@@ -510,32 +539,6 @@
     <category term="Leetcode" scheme="http://blog.kuangjux.top/tags/Leetcode/"/>
     
     <category term="Javascript" scheme="http://blog.kuangjux.top/tags/Javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NEMU</title>
-    <link href="http://blog.kuangjux.top/2020/09/29/NEMU/"/>
-    <id>http://blog.kuangjux.top/2020/09/29/NEMU/</id>
-    <published>2020-09-29T11:34:56.000Z</published>
-    <updated>2020-12-24T03:57:07.675Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;get-started-起步&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#get-started-起步&quot;&gt;&lt;/a&gt; Get Started 起步&lt;/h2&gt;
-&lt;h3 id=&quot;description-描述&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#description-描述&quot;&gt;&lt;/a&gt; Description 描述&lt;/h3&gt;
-&lt;p&gt;PA讲述的是一个&amp;quot;先驱创造计算机&amp;quot;的故事。&lt;/p&gt;
-&lt;p&gt;本实践课程所要设计的“NEMU”一款经过简化的 x86 全系统模拟器。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="汇编" scheme="http://blog.kuangjux.top/tags/%E6%B1%87%E7%BC%96/"/>
-    
-    <category term="CSAPP" scheme="http://blog.kuangjux.top/tags/CSAPP/"/>
-    
-    <category term="C/C++" scheme="http://blog.kuangjux.top/tags/C-C/"/>
     
   </entry>
   
