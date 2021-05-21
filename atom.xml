@@ -6,7 +6,7 @@
   <link href="http://blog.kuangjux.top/atom.xml" rel="self"/>
   
   <link href="http://blog.kuangjux.top/"/>
-  <updated>2021-05-11T15:05:29.352Z</updated>
+  <updated>2021-05-21T15:59:27.056Z</updated>
   <id>http://blog.kuangjux.top/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>520与伤春悲秋</title>
+    <link href="http://blog.kuangjux.top/2021/05/21/sad-in-521/"/>
+    <id>http://blog.kuangjux.top/2021/05/21/sad-in-521/</id>
+    <published>2021-05-21T14:55:57.000Z</published>
+    <updated>2021-05-21T15:59:27.056Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="杂文" scheme="http://blog.kuangjux.top/categories/%E6%9D%82%E6%96%87/"/>
+    
+    
+    <category term="爱情" scheme="http://blog.kuangjux.top/tags/%E7%88%B1%E6%83%85/"/>
+    
+    <category term="人生" scheme="http://blog.kuangjux.top/tags/%E4%BA%BA%E7%94%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>xv6-rust中断机制</title>
@@ -520,33 +547,6 @@
     <category term="算法" scheme="http://blog.kuangjux.top/tags/%E7%AE%97%E6%B3%95/"/>
     
     <category term="Leetcode" scheme="http://blog.kuangjux.top/tags/Leetcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode416-分割等和子集</title>
-    <link href="http://blog.kuangjux.top/2020/10/11/LeetCode416-%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86/"/>
-    <id>http://blog.kuangjux.top/2020/10/11/LeetCode416-%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86/</id>
-    <published>2020-10-11T11:31:21.000Z</published>
-    <updated>2020-12-24T03:54:57.389Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;description&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#description&quot;&gt;&lt;/a&gt; Description&lt;/h2&gt;
-&lt;p&gt;给定一个&lt;strong&gt;只包含正整数&lt;/strong&gt;的&lt;strong&gt;非空&lt;/strong&gt;数组。是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。&lt;/p&gt;
-&lt;h2 id=&quot;examples&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#examples&quot;&gt;&lt;/a&gt; Examples&lt;/h2&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;输入: [1, 5, 11, 5]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;输出: true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;解释: 数组可以分割成 [1, 5, 5] 和 [11].&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;输入: [1, 2, 3, 5]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;输出: false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;解释: 数组不能分割成两个元素和相等的子集.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
-    
-    
-    
-    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="算法" scheme="http://blog.kuangjux.top/tags/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="Leetcode" scheme="http://blog.kuangjux.top/tags/Leetcode/"/>
-    
-    <category term="Javascript" scheme="http://blog.kuangjux.top/tags/Javascript/"/>
     
   </entry>
   
