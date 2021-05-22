@@ -24,6 +24,77 @@
       </tags>
   </entry>
   <entry>
+    <title>ARM Linux嵌入式系统</title>
+    <url>/2020/06/04/ARM-summary/</url>
+    <content><![CDATA[<h2 id="arm指令集"><a class="markdownIt-Anchor" href="#arm指令集"></a> ARM指令集</h2>
+<h3 id="算术运算指令"><a class="markdownIt-Anchor" href="#算术运算指令"></a> 算术运算指令</h3>
+<p><strong>1.ADD指令</strong></p>
+<p><code>ADD&#123;条件&#125; &#123;S&#125; &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ADD   R0, R1, R2	; R0&#x3D;R1+R2</span><br><span class="line">ADD   R0, R1, $256	; R0&#x3D;R1+256</span><br></pre></td></tr></table></figure>
+<p><strong>2.ADC指令</strong></p>
+<p>用于带进位的加法运算</p>
+<p><code>ADC&#123;条件&#125;&#123;S&#125; &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ADCS   R0,R2,R3   ;带进位加，结果保存在R0和R1寄存器</span><br></pre></td></tr></table></figure>
+<p><strong>3.SUB命令</strong></p>
+<p>减法运算</p>
+<p><code>SUB&#123;条件&#125;&#123;S&#125; &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
+<p><strong>4.SBC指令</strong></p>
+<p>用于带借位的减法运算</p>
+<p><code>SBC&#123;条件&#125;&#123;S&#125; &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
+<a id="more"></a>
+<h3 id="逻辑运算指令"><a class="markdownIt-Anchor" href="#逻辑运算指令"></a> 逻辑运算指令</h3>
+<p><strong>1.AND指令</strong></p>
+<p><code>AND&#123;条件&#125;&#123;S&#125; &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
+<p><strong>2.EOR指令</strong></p>
+<p>异或运算</p>
+<p><code>EOR&#123;条件&#125;&#123;S&#125; &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
+<p><strong>3.MOV指令</strong></p>
+<p>MOV可以在两个操作数之间复制数据</p>
+<p><code>MOV&#123;条件&#125;&#123;S&#125; &lt;dest&gt;, &lt;op_1&gt;</code></p>
+<h3 id="分支指令"><a class="markdownIt-Anchor" href="#分支指令"></a> 分支指令</h3>
+<p><strong>B指令</strong></p>
+<p>B指令可以根据设置的条件跳转带指定的代码位置</p>
+<p><code>B&#123;条件&#125; &lt;地址&gt;</code></p>
+<h3 id="数据传送指令"><a class="markdownIt-Anchor" href="#数据传送指令"></a> 数据传送指令</h3>
+<p><strong>1.单一数据传送指令</strong></p>
+<p>单一数据传送指令用于向内存转载和存储一个字节或者一个字长的数据。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LDR&#123;条件&#125;   Rd，&lt;地址&gt;</span><br><span class="line">STR&#123;条件&#125;   Rd，&lt;地址&gt;</span><br><span class="line">LDR&#123;条件&#125;B   Rd，&lt;地址&gt;</span><br><span class="line">STR&#123;条件&#125;B   Rd，&lt;地址&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">STR   Rd, [Rbase]          ;存储Rd到Rbase所包含的有效地址</span><br><span class="line">STR   Rd, [Rbase, Rindex]  ;存储到Rd到Rbase+Rindex缩合成的有效地址</span><br><span class="line">STR   Rd, [Rbase, $index]  ;存储到Rd到Rbase+index所合成的有效地址</span><br></pre></td></tr></table></figure>
+<p><strong>2.多数据传送指令</strong></p>
+<p>多数据传送指令用于向内存装载和存储多个字节或字的数据。</p>
+<p><code>xxM&#123;条件&#125;&#123;类型&#125; Rn&#123;!&#125;, &lt;寄存器列表&gt;&#123;^&#125;</code></p>
+<p>其中，xx可以是LD，表示装载，也可以为ST，表示存储。多数据传送指令用于寄存器和内存中多个数据的复制。指令包括：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LDMED    LDMED    ;装载前增加地址，相当于C中的++p</span><br><span class="line">LDMFD    LDMIA    ;装载后增加地址，相当于C中的p++</span><br><span class="line">LDMED    LDMED    ;装载前减小值，相当于C中的++*p</span><br><span class="line">LDMED    LDMED    ;装载后减小值，相当于C中的*p++</span><br><span class="line">STMFA    STMIB    ;存储前增加地址</span><br><span class="line">STMEA    STMIA    ;存储后增加地址</span><br><span class="line">STMFD    STMDB    ;存储前增加值</span><br><span class="line">STMED    STMDA    ;存储后增加值</span><br></pre></td></tr></table></figure>
+<h2 id="arm结构"><a class="markdownIt-Anchor" href="#arm结构"></a> ARM结构</h2>
+<h3 id="寻址方式"><a class="markdownIt-Anchor" href="#寻址方式"></a> 寻址方式</h3>
+<p><strong>1.立即寻址</strong></p>
+<p>立即寻址方式中操作数已经写在了指令里面，取出指令时会把操作数也取出来。这是最简单的寻址方式。</p>
+<p><strong>2.寄存器寻址</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MOV R1, R2     ;把R2的值赋给R1</span><br><span class="line">SUB R0, R1, R2 ;把R1-R2的值写给R0</span><br></pre></td></tr></table></figure>
+<p><strong>3.寄存器偏移寻址</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MOV R0, R1, LSL #3       ;把R1的值左移三位写入R0</span><br><span class="line">ANDS R0, R1, R2, LSL #R3 ;把R2的值左移R3位，然后与R1做与操作，结果写入R0</span><br></pre></td></tr></table></figure>
+<p><strong>4.寄存器间接寻址</strong></p>
+<p>该方式把寄存器的值当做地址，然后从对应的内存中取出数据。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LDR R0, [R1]        ;把R1的值当做地址，从内存中取出数据存放到R0</span><br><span class="line">SWP R0, R0, [R1]    ;把R1的值当做地址，从内存中取出数据与R0交换</span><br></pre></td></tr></table></figure>
+<p><strong>5，基址寻址</strong></p>
+<p>该方式把寄存器的内容与指定的偏移相加，得到数据地址，然后从内存取得数据。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LDR R0, [R1, #0xf]      ;把R1的数值与0xf相加得到数据地址</span><br><span class="line">STR R0，[R1, #-2]</span><br></pre></td></tr></table></figure>
+<p><strong>6.多寄存器寻址</strong></p>
+<p>该方式允许一次可以传输多个寄存器的值。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LDMIA R1!, &#123;R2-R7,R12&#125;   ;把R1单元中的数据读出到R2~R7和R12，R1指定的地址自动加1</span><br><span class="line">STMIA R0,  &#123;R3-R6,R10&#125;   ;把R3~R6和R10中的数据保存到R0指向的地址，R0的地址自动加1</span><br></pre></td></tr></table></figure>
+<p><strong>7.栈寻址</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">STMFD SP!, &#123;R0~R7, LR&#125;     ;把R0~R7的内容压入堆栈</span><br><span class="line">LDMFD SP!, &#123;R0,R7, LR&#125;     ;从堆栈中取出数据到R0~R7和LR</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>嵌入式系统</tag>
+        <tag>ARM</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Attack Lab实验报告</title>
     <url>/2020/04/02/Attack-Lab/</url>
     <content><![CDATA[<p><img src="/2020/04/02/Attack-Lab/csapp.jpg" alt></p>
@@ -113,77 +184,6 @@
       <tags>
         <tag>汇编</tag>
         <tag>CSAPP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ARM Linux嵌入式系统</title>
-    <url>/2020/06/04/ARM-summary/</url>
-    <content><![CDATA[<h2 id="arm指令集"><a class="markdownIt-Anchor" href="#arm指令集"></a> ARM指令集</h2>
-<h3 id="算术运算指令"><a class="markdownIt-Anchor" href="#算术运算指令"></a> 算术运算指令</h3>
-<p><strong>1.ADD指令</strong></p>
-<p><code>ADD&#123;条件&#125; &#123;S&#125; &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ADD   R0, R1, R2	; R0&#x3D;R1+R2</span><br><span class="line">ADD   R0, R1, $256	; R0&#x3D;R1+256</span><br></pre></td></tr></table></figure>
-<p><strong>2.ADC指令</strong></p>
-<p>用于带进位的加法运算</p>
-<p><code>ADC&#123;条件&#125;&#123;S&#125; &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ADCS   R0,R2,R3   ;带进位加，结果保存在R0和R1寄存器</span><br></pre></td></tr></table></figure>
-<p><strong>3.SUB命令</strong></p>
-<p>减法运算</p>
-<p><code>SUB&#123;条件&#125;&#123;S&#125; &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
-<p><strong>4.SBC指令</strong></p>
-<p>用于带借位的减法运算</p>
-<p><code>SBC&#123;条件&#125;&#123;S&#125; &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
-<a id="more"></a>
-<h3 id="逻辑运算指令"><a class="markdownIt-Anchor" href="#逻辑运算指令"></a> 逻辑运算指令</h3>
-<p><strong>1.AND指令</strong></p>
-<p><code>AND&#123;条件&#125;&#123;S&#125; &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
-<p><strong>2.EOR指令</strong></p>
-<p>异或运算</p>
-<p><code>EOR&#123;条件&#125;&#123;S&#125; &lt;dest&gt;, &lt;op_1&gt;, &lt;op_2&gt;</code></p>
-<p><strong>3.MOV指令</strong></p>
-<p>MOV可以在两个操作数之间复制数据</p>
-<p><code>MOV&#123;条件&#125;&#123;S&#125; &lt;dest&gt;, &lt;op_1&gt;</code></p>
-<h3 id="分支指令"><a class="markdownIt-Anchor" href="#分支指令"></a> 分支指令</h3>
-<p><strong>B指令</strong></p>
-<p>B指令可以根据设置的条件跳转带指定的代码位置</p>
-<p><code>B&#123;条件&#125; &lt;地址&gt;</code></p>
-<h3 id="数据传送指令"><a class="markdownIt-Anchor" href="#数据传送指令"></a> 数据传送指令</h3>
-<p><strong>1.单一数据传送指令</strong></p>
-<p>单一数据传送指令用于向内存转载和存储一个字节或者一个字长的数据。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LDR&#123;条件&#125;   Rd，&lt;地址&gt;</span><br><span class="line">STR&#123;条件&#125;   Rd，&lt;地址&gt;</span><br><span class="line">LDR&#123;条件&#125;B   Rd，&lt;地址&gt;</span><br><span class="line">STR&#123;条件&#125;B   Rd，&lt;地址&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">STR   Rd, [Rbase]          ;存储Rd到Rbase所包含的有效地址</span><br><span class="line">STR   Rd, [Rbase, Rindex]  ;存储到Rd到Rbase+Rindex缩合成的有效地址</span><br><span class="line">STR   Rd, [Rbase, $index]  ;存储到Rd到Rbase+index所合成的有效地址</span><br></pre></td></tr></table></figure>
-<p><strong>2.多数据传送指令</strong></p>
-<p>多数据传送指令用于向内存装载和存储多个字节或字的数据。</p>
-<p><code>xxM&#123;条件&#125;&#123;类型&#125; Rn&#123;!&#125;, &lt;寄存器列表&gt;&#123;^&#125;</code></p>
-<p>其中，xx可以是LD，表示装载，也可以为ST，表示存储。多数据传送指令用于寄存器和内存中多个数据的复制。指令包括：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LDMED    LDMED    ;装载前增加地址，相当于C中的++p</span><br><span class="line">LDMFD    LDMIA    ;装载后增加地址，相当于C中的p++</span><br><span class="line">LDMED    LDMED    ;装载前减小值，相当于C中的++*p</span><br><span class="line">LDMED    LDMED    ;装载后减小值，相当于C中的*p++</span><br><span class="line">STMFA    STMIB    ;存储前增加地址</span><br><span class="line">STMEA    STMIA    ;存储后增加地址</span><br><span class="line">STMFD    STMDB    ;存储前增加值</span><br><span class="line">STMED    STMDA    ;存储后增加值</span><br></pre></td></tr></table></figure>
-<h2 id="arm结构"><a class="markdownIt-Anchor" href="#arm结构"></a> ARM结构</h2>
-<h3 id="寻址方式"><a class="markdownIt-Anchor" href="#寻址方式"></a> 寻址方式</h3>
-<p><strong>1.立即寻址</strong></p>
-<p>立即寻址方式中操作数已经写在了指令里面，取出指令时会把操作数也取出来。这是最简单的寻址方式。</p>
-<p><strong>2.寄存器寻址</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MOV R1, R2     ;把R2的值赋给R1</span><br><span class="line">SUB R0, R1, R2 ;把R1-R2的值写给R0</span><br></pre></td></tr></table></figure>
-<p><strong>3.寄存器偏移寻址</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MOV R0, R1, LSL #3       ;把R1的值左移三位写入R0</span><br><span class="line">ANDS R0, R1, R2, LSL #R3 ;把R2的值左移R3位，然后与R1做与操作，结果写入R0</span><br></pre></td></tr></table></figure>
-<p><strong>4.寄存器间接寻址</strong></p>
-<p>该方式把寄存器的值当做地址，然后从对应的内存中取出数据。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LDR R0, [R1]        ;把R1的值当做地址，从内存中取出数据存放到R0</span><br><span class="line">SWP R0, R0, [R1]    ;把R1的值当做地址，从内存中取出数据与R0交换</span><br></pre></td></tr></table></figure>
-<p><strong>5，基址寻址</strong></p>
-<p>该方式把寄存器的内容与指定的偏移相加，得到数据地址，然后从内存取得数据。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LDR R0, [R1, #0xf]      ;把R1的数值与0xf相加得到数据地址</span><br><span class="line">STR R0，[R1, #-2]</span><br></pre></td></tr></table></figure>
-<p><strong>6.多寄存器寻址</strong></p>
-<p>该方式允许一次可以传输多个寄存器的值。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LDMIA R1!, &#123;R2-R7,R12&#125;   ;把R1单元中的数据读出到R2~R7和R12，R1指定的地址自动加1</span><br><span class="line">STMIA R0,  &#123;R3-R6,R10&#125;   ;把R3~R6和R10中的数据保存到R0指向的地址，R0的地址自动加1</span><br></pre></td></tr></table></figure>
-<p><strong>7.栈寻址</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">STMFD SP!, &#123;R0~R7, LR&#125;     ;把R0~R7的内容压入堆栈</span><br><span class="line">LDMFD SP!, &#123;R0,R7, LR&#125;     ;从堆栈中取出数据到R0~R7和LR</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>嵌入式系统</tag>
-        <tag>ARM</tag>
-        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -623,6 +623,28 @@
       </tags>
   </entry>
   <entry>
+    <title>LeetCode-1004-最大连续1的个数III</title>
+    <url>/2021/02/19/LeetCode-1004/</url>
+    <content><![CDATA[<h2 id="description"><a class="markdownIt-Anchor" href="#description"></a> Description:</h2>
+<p>给定一个由若干 <code>0</code> 和 <code>1</code> 组成的数组 <code>A</code>，我们最多可以将 <code>K</code> 个值从 0 变成 1 。</p>
+<p>返回仅包含 1 的最长（连续）子数组的长度。</p>
+<h2 id="examples"><a class="markdownIt-Anchor" href="#examples"></a> Examples:</h2>
+<p>示例 1：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：A &#x3D; [1,1,1,0,0,0,1,1,1,1,0], K &#x3D; 2</span><br><span class="line">输出：6</span><br><span class="line">解释： </span><br><span class="line">[1,1,1,0,0,1,1,1,1,1,1]</span><br><span class="line">粗体数字从 0 翻转到 1，最长的子数组长度为 6。</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：A &#x3D; [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], K &#x3D; 3</span><br><span class="line">输出：10</span><br><span class="line">解释：</span><br><span class="line">[0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1]</span><br><span class="line">粗体数字从 0 翻转到 1，最长的子数组长度为 10。</span><br></pre></td></tr></table></figure>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution:</h2>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">longestOnes</span><span class="params">(A []<span class="keyword">int</span>, K <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    size := <span class="built_in">len</span>(A)</span><br><span class="line">    left, right := <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    res, sum := <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> right &lt; size &#123;</span><br><span class="line">        sum += A[right] ^ <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> sum &gt; K &#123;</span><br><span class="line">            sum -= (A[left] ^ <span class="number">1</span>)</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        res = max(res, right-left+<span class="number">1</span>)</span><br><span class="line">        right += <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">max</span><span class="params">(a,b <span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> a &gt; b&#123;</span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LeetCode-52-N皇后II</title>
     <url>/2021/02/19/LeetCode-52/</url>
     <content><![CDATA[<h2 id="description"><a class="markdownIt-Anchor" href="#description"></a> Description:</h2>
@@ -717,28 +739,6 @@ dp[i-1][j] \quad|\quad dp[i-1][j-nums[i]]
       </tags>
   </entry>
   <entry>
-    <title>LeetCode-1004-最大连续1的个数III</title>
-    <url>/2021/02/19/LeetCode-1004/</url>
-    <content><![CDATA[<h2 id="description"><a class="markdownIt-Anchor" href="#description"></a> Description:</h2>
-<p>给定一个由若干 <code>0</code> 和 <code>1</code> 组成的数组 <code>A</code>，我们最多可以将 <code>K</code> 个值从 0 变成 1 。</p>
-<p>返回仅包含 1 的最长（连续）子数组的长度。</p>
-<h2 id="examples"><a class="markdownIt-Anchor" href="#examples"></a> Examples:</h2>
-<p>示例 1：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：A &#x3D; [1,1,1,0,0,0,1,1,1,1,0], K &#x3D; 2</span><br><span class="line">输出：6</span><br><span class="line">解释： </span><br><span class="line">[1,1,1,0,0,1,1,1,1,1,1]</span><br><span class="line">粗体数字从 0 翻转到 1，最长的子数组长度为 6。</span><br></pre></td></tr></table></figure>
-<p>示例 2：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：A &#x3D; [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], K &#x3D; 3</span><br><span class="line">输出：10</span><br><span class="line">解释：</span><br><span class="line">[0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1]</span><br><span class="line">粗体数字从 0 翻转到 1，最长的子数组长度为 10。</span><br></pre></td></tr></table></figure>
-<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution:</h2>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">longestOnes</span><span class="params">(A []<span class="keyword">int</span>, K <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    size := <span class="built_in">len</span>(A)</span><br><span class="line">    left, right := <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    res, sum := <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> right &lt; size &#123;</span><br><span class="line">        sum += A[right] ^ <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> sum &gt; K &#123;</span><br><span class="line">            sum -= (A[left] ^ <span class="number">1</span>)</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        res = max(res, right-left+<span class="number">1</span>)</span><br><span class="line">        right += <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">max</span><span class="params">(a,b <span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> a &gt; b&#123;</span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LeetCode995-K连续位的最小翻转次数</title>
     <url>/2021/02/19/LeetCode995-K%E8%BF%9E%E7%BB%AD%E4%BD%8D%E7%9A%84%E6%9C%80%E5%B0%8F%E7%BF%BB%E8%BD%AC%E6%AC%A1%E6%95%B0/</url>
     <content><![CDATA[<h2 id="description"><a class="markdownIt-Anchor" href="#description"></a> Description</h2>
@@ -808,8 +808,8 @@ dp[i-1][j] \quad|\quad dp[i-1][j-nums[i]]
         <category>技术</category>
       </categories>
       <tags>
-        <tag>CSAPP</tag>
         <tag>Linux</tag>
+        <tag>CSAPP</tag>
         <tag>C/C++</tag>
       </tags>
   </entry>
@@ -1346,18 +1346,18 @@ dp[i-1][j] \quad|\quad dp[i-1][j-nums[i]]
       </tags>
   </entry>
   <entry>
-    <title>520与伤春悲秋</title>
+    <title>520与伤春悲秋与杂感</title>
     <url>/2021/05/21/sad-in-521/</url>
-    <content><![CDATA[<p>每次到了这种日子，我总会有一些特别的感觉。看着别人在QQ空间、朋友圈上形形色色的脱单、分手、秀恩爱之后，我心里总有一些不舒服的滋味。他们的经历好丰富，可是为什么我不能拥有这种经历呢？是啊，尽管在平时，我对这种无聊又琐碎的恋爱嗤之以鼻，认为这种事情会极大地消耗人的精力与耐力，使人会变成不自由的恋爱的附庸。可是，我又何尝不是在某一时刻，对恋爱之时的美好充满幻想呢？</p>
-<p>二十年来，我从未尝试去谈过一场恋爱，仅有的也仅仅是无疾而终的暗恋，在无眠的夜里达到高潮而又随着时间的流逝而渐渐淡忘。这就像我曾经疯狂地迷恋上写小说一样，我一度迷恋上写小说但却因为学业被迫放弃，其中经历的思想斗争与辗转反侧十分痛苦，甚至让我一度到达了抑郁的程度。然而随着时间流逝，以前所苦苦追求的，到现在看来都像是笑话一样。那些暗恋过的过往，也云烟散去，那些我喜欢过的女孩子原来也是那么普通和那么多的缺点，原来只是我的头昏脑热罢了。我不看甚至屏蔽了她们的朋友圈，这或许是由盛转衰的报复性行为吧，从西施到普通人还是有很大落差的。</p>
-<p>在《霍乱时期的爱情》里记载了一段伟大的恋爱，延续了60多年的暗恋，这虽然很伟大和令人动容但更像是自残与斯德哥尔摩式的恋爱，为了一段不知道结果的爱情伤害别人与伤害自己也是利己主义的体现。</p>
-<p>由于经过了很多的思想斗争与思考，使得我看起来对恋爱与人生的理解都看起来比同龄人更加成熟与悲观，但其实我自己完全没有经历过一段完整的恋爱也没有比其他人经历更多的东西，又谈何更加成熟呢？仔细想想我其实只不过是在其他人面前装成熟罢了，一方面轻视那些疯狂地谈恋爱而没有思想底蕴的同龄人，而一方面又自卑于自己没有一段令人向往的恋爱经历，导致我总是想要在他人面前装成人生导师的模样而获取存在感。萨特曾经在《禁闭》中写到过:</p>
+    <content><![CDATA[<p>每次到了这种日子，我总会有一些特殊的感觉。看着别人在QQ空间、朋友圈上形形色色的脱单、分手、秀恩爱之后，我心里总有一些不舒服的滋味。他们的经历好丰富，可是为什么我不能拥有这种经历呢？是啊，尽管在平时，我对这种无聊又琐碎的恋爱嗤之以鼻，认为这种事情会极大地消耗人的精力与耐力，使人会变成不自由的恋爱的附庸。可是，我又何尝不是在某一时刻，对恋爱之时的美好充满幻想呢？</p>
+<p>二十年来，我从未尝试去谈过一场恋爱，仅有的也仅仅是无疾而终的暗恋，在无眠的夜里达到高潮而又随着时间的流逝而渐渐淡忘。这就像我曾经疯狂地迷恋上写小说一样，我一度迷恋上写小说但却因为学业被迫放弃，其中经历的思想斗争与辗转反侧十分痛苦，甚至让我一度到达了抑郁的程度。然而随着时间流逝，以前所苦苦追求的，到现在看来都像是笑话一样。那些暗恋过的过往，也云烟散去，那些我喜欢过的女孩子原来也是那么普通和拥有那么多的缺点，原来只是我的头昏脑热罢了。我不看甚至屏蔽了她们的朋友圈，这或许是由盛转衰的报复性行为吧，从西施到普通人还是有很大落差的。</p>
+<p>在《霍乱时期的爱情》里记载了一段伟大的恋爱，延续了60多年的暗恋，这虽然很伟大和令人动容，但对我而言，这更像是自残式与斯德哥尔摩式的恋爱，为了一段不知道结果的爱情伤害别人也同样伤害自己。</p>
+<p>由于经过了很多的思想斗争与思考，使得我看起来对恋爱与人生的理解都看起来比同龄人更加成熟与悲观，但其实我自己完全没有经历过一段完整的恋爱也没有比其他人经历更多的东西，又谈何更加成熟呢？仔细想想我其实只不过是在其他人面前装成熟罢了，一方面轻视那些不断地恋爱与分手而没有思想底蕴的同龄人，而一方面又自卑于自己没有一段令人向往的恋爱经历，导致我总是想要在他人面前装成人生导师的模样而获取存在感。萨特曾经在《禁闭》中写到过:</p>
 <blockquote>
 <p>l’enfer, c’est les autres （他人即地狱）</p>
 </blockquote>
 <p>现在的我，又何尝不是在地狱之中呢？想要在面前彰显自己的成熟与知识，却又因为自己没有别人的经历而感到自卑，使得自己无法正视自己与他人的关系。，使得在无尽的闭环里痛苦万分。</p>
-<p>我曾经以为爱情是一件神圣的事情，一个人爱一个人就应当白头偕老，那些因为自己的快感而玩弄感情的人都是混蛋。但这种柏拉图式的爱情观更像是五十年前甚至是一百年前的革命之中才会有的事情。但现代社会中，大概不会有人再拿爱情当做很神圣的事情，很多人恋爱都是广撒网，从网恋开始而瞬间闪恋，而结婚似乎也是到了一定年龄所做的任务一样。他们恋爱仿佛也只是为了恋爱，而从不考虑今后的事情与自己所负的责任，这哪里是我理解的恋爱呢？这简直是强迫症患者啊！他们都发了疯，可我却以为我也发了疯，我到底能不能脱离他人，他人的评价而生存？</p>
-<p>科技发达了，经济富裕了，可社会却撕裂了，不仅是阶级撕裂了，连恋爱观都撕裂了。</p>
+<p>我曾经以为爱情是一件神圣的事情，一个人爱一个人就应当白头偕老，那些因为自己的快感而玩弄感情的人都是混蛋。但这种柏拉图式的爱情观更像是五十年前甚至是一百年前的革命之中才会有的事情。但现代社会中，大概不会有人再拿爱情当做很神圣的事情，很多人恋爱都是广撒网，从网恋开始而瞬间闪恋，而结婚似乎也是到了一定年龄所做的任务一样。他们恋爱仿佛也只是为了恋爱，而从不考虑今后的事情与自己所负的责任，这哪里是我理解的恋爱呢？这简直是强迫症患者啊！他们都发了疯，可我却以为我也发了疯，我到底能不能脱离他人，他人的评价而存在？</p>
+<p>科技发达了，经济富裕了，可社会却撕裂了，不仅是阶级撕裂了，连恋爱观都撕裂了。许多人都将活生生的人物化了，就像一个指标一样，不懂得尊重人与爱人的人，最终也会得不到别人尊重。</p>
 <p>我真的失望了，从小我是看《金庸全集》长大的，里面描述的爱情给我留下了深刻的印象，可写下这些的作者都不能保证自己的爱情纯粹。我又到那里去追寻自己想要的Romantic呢？但值得庆幸的是，这也使得我可以有更多的时间醉心于我的专业，有更多的时间去观世界和深刻自己的思想。</p>
 <p>写于2021.5.21，一个狂人的胡言乱语罢了。</p>
 ]]></content>
@@ -1432,44 +1432,6 @@ dp[i-1][j] \quad|\quad dp[i-1][j-nums[i]]
       </tags>
   </entry>
   <entry>
-    <title>从Laravel框架浅谈MVC架构</title>
-    <url>/2020/03/07/talk-MVC/</url>
-    <content><![CDATA[<p>最近应工作室要求学习PHP框架Laravel，接触到了MVC软件架构模式,即Model-View-Controller，这里我将使用Laravel框架介绍MVC架构模式，并且阐述自己对MVC软件架构浅薄的理解。</p>
-<p><img src="/2020/03/07/talk-MVC/MVC.jpg" alt></p>
-<a id="more"></a>
-<h2 id="mvc架构简述"><a class="markdownIt-Anchor" href="#mvc架构简述"></a> MVC架构简述：</h2>
-<h4 id="由图所示简单地理解mvc架构模式可以认为"><a class="markdownIt-Anchor" href="#由图所示简单地理解mvc架构模式可以认为"></a> 由图所示，简单地理解MVC架构模式可以认为：</h4>
-<p>1.View（视图）：是用户直接接触的界面，一般由前端处理，主要用来展示模型中的内容和用来输入表单数据。</p>
-<p>2.Controller（控制器）：主要用于处理视图和模型之间的逻辑关系，例如从视图中post的数据，到底如何进入模型并存入数据库中，我们是否应该对于用户的数据进行过滤以防止SQL注入等问题，又或者从数据库中取出的数据哪些应该展示在视图上，有什么判断标准，都需要控制器进行判断。</p>
-<p>3.Model（模型）：即底层同应用程序的接口，我们可以从Model中获取数据并进行处理。</p>
-<p>以上是我对于MVC的一些理解，因为刚刚接触这种软件架构模式，所以理解不深，如果有兴趣者可以自行去深入了解。</p>
-<h4 id="以下给出mvc的一些友情链接"><a class="markdownIt-Anchor" href="#以下给出mvc的一些友情链接"></a> 以下给出MVC的一些友情链接：</h4>
-<p><a href="%22%5Bhttps://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller%5D">维基百科</a></p>
-<p><a href="%22https://draveness.me/mvx%22">浅谈MVC、MVP和MVVM架构模式</a></p>
-<h2 id="laravel实例"><a class="markdownIt-Anchor" href="#laravel实例"></a> Laravel实例：</h2>
-<h4 id="接下来我将使用laravel对于这一架构模式进行说明laravel只是媒介这里不涉及laravel语法细节"><a class="markdownIt-Anchor" href="#接下来我将使用laravel对于这一架构模式进行说明laravel只是媒介这里不涉及laravel语法细节"></a> 接下来我将使用Laravel对于这一架构模式进行说明（Laravel只是媒介，这里不涉及Laravel语法细节）：</h4>
-<p>假如说我们需要写一个登录界面那么我们使用MVC如何处理呢？</p>
-<p>首先，我们需要一个登陆界面，这个登录界面是需要让用户看到的，并且在这个界面中，我们还需要让用户在登录界面中输入数据并且可以让控制器接收到，因此我们可以写html，php或者Laravel支持的blade模板，总之，不管使用哪种形式，最重要的是让用户有可视化界面并且实现登陆功能。</p>
-<p>我用blade模板进行举例：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@extends(&quot;common.layout&quot;)</span><br><span class="line">@section(&quot;title&quot;)</span><br><span class="line">    Login</span><br><span class="line">@stop</span><br><span class="line"></span><br><span class="line">@section(&quot;content&quot;)</span><br><span class="line"></span><br><span class="line">    &lt;div class&#x3D;&quot;xiao-container&quot;&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;xiao-register-box&quot;&gt;</span><br><span class="line">            &lt;div class&#x3D;&quot;xiao-title-box&quot;&gt;</span><br><span class="line">                &lt;span&gt;登录&lt;&#x2F;span&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;form action&#x3D;&quot;&#123;&#123;url(&#39;at&#x2F;save&#39;)&#125;&#125;&quot; method&#x3D;&quot;post&quot;&gt;</span><br><span class="line">                &#123;&#123;csrf_field()&#125;&#125;</span><br><span class="line">                &lt;div class&#x3D;&quot;xiao-username-box&quot;&gt;</span><br><span class="line">                    &lt;span class&#x3D;&quot;xiao-require&quot;&gt;*&lt;&#x2F;span&gt;</span><br><span class="line">                    &lt;label for&#x3D;&quot;account&quot;&gt;账户&lt;&#x2F;label&gt;</span><br><span class="line">                    &lt;div class&#x3D;&quot;xiao-username-input&quot;&gt;</span><br><span class="line">                        &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;account&quot; name&#x3D;&quot;account&quot; placeholder&#x3D;&quot;账户：&quot;&#x2F;&gt;</span><br><span class="line">                    &lt;&#x2F;div&gt;</span><br><span class="line">                &lt;&#x2F;div&gt;</span><br><span class="line">                &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">                &lt;div class&#x3D;&quot;xiao-userPassword-box&quot;&gt;</span><br><span class="line">                    &lt;span class&#x3D;&quot;xiao-require&quot;&gt;*&lt;&#x2F;span&gt;</span><br><span class="line">                    &lt;label for&#x3D;&quot;password&quot;&gt;密码&lt;&#x2F;label&gt;</span><br><span class="line">                    &lt;div class&#x3D;&quot;xiao-userPassword-input&quot;&gt;</span><br><span class="line">                        &lt;input type&#x3D;&quot;password&quot; id&#x3D;&quot;password&quot; name&#x3D;&quot;password&quot; placeholder&#x3D;&quot;密码：&quot; &#x2F;&gt;</span><br><span class="line">                    &lt;&#x2F;div&gt;</span><br><span class="line">                &lt;&#x2F;div&gt;</span><br><span class="line">                &lt;div class&#x3D;&quot;xiao-submit-box&quot;&gt;</span><br><span class="line">                    &lt;input id &#x3D; &quot;xiao-submit-button&quot; type&#x3D;&quot;submit&quot; value&#x3D;&quot;登录&quot;&gt;</span><br><span class="line">                &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;&#x2F;form&gt;</span><br><span class="line">            @if ($errors-&gt;any())</span><br><span class="line">                &lt;div class&#x3D;&quot;alert alert-danger&quot;&gt;</span><br><span class="line">                    &lt;ul&gt;</span><br><span class="line">                        @foreach ($errors-&gt;all() as $error)</span><br><span class="line">                            &lt;li&gt;&#123;&#123; $error &#125;&#125;&lt;&#x2F;li&gt;</span><br><span class="line">                        @endforeach</span><br><span class="line">                    &lt;&#x2F;ul&gt;</span><br><span class="line">                &lt;&#x2F;div&gt;</span><br><span class="line">            @endif</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">@stop</span><br></pre></td></tr></table></figure>
-<p>我们无需管语法细节，只需要注意，我们在这里设计了一个表单，并且将方法设置为post，因此可以使控制器接收到数据，那么相应地，我们也需要设置相应的路由与控制器方法（路由是用户访问url所必需的）</p>
-<h4 id="路由"><a class="markdownIt-Anchor" href="#路由"></a> 路由：</h4>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">Route::any(<span class="string">&#x27;at/login&#x27;</span>,[<span class="string">&#x27;uses&#x27;</span> =&gt; <span class="string">&#x27;StudentController@login&#x27;</span>]);</span><br><span class="line">Route::any(<span class="string">&#x27;at/save&#x27;</span>,[<span class="string">&quot;uses&quot;</span> =&gt; <span class="string">&quot;StudentController@save&quot;</span>]);</span><br></pre></td></tr></table></figure>
-<h4 id="控制器"><a class="markdownIt-Anchor" href="#控制器"></a> 控制器：</h4>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StudentController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> view(<span class="string">&#x27;student.login&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">save</span>(<span class="params">Request $request</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $validate= $request-&gt;validate(</span><br><span class="line">            [</span><br><span class="line">                <span class="string">&quot;account&quot;</span> =&gt; <span class="string">&quot;required|string|max:20&quot;</span>,</span><br><span class="line">                <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;required|string|max:20&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        );</span><br><span class="line">        <span class="keyword">if</span>($validate)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;judge($request-&gt;input(<span class="string">&quot;account&quot;</span>),$request-&gt;input(<span class="string">&quot;password&quot;</span>)))</span><br><span class="line">            &#123;<span class="keyword">return</span> <span class="literal">true</span>;&#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;账号不存在或密码不正确&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">judge</span>(<span class="params">$account,$password</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;<span class="keyword">return</span> Student::where(<span class="string">&quot;account&quot;</span>,$account)-&gt;value(<span class="string">&#x27;password&#x27;</span>)==$password;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样我们就可以了解到从登录界面post的数据，被控制器中的save的$request变量捕获了，并且将其进行了表单验证，我们需要进行两次验证，第一次验证用户输入是否合法，如果不合法，该方法将会重定向到登录页面要求你重新输入，否则的话，进行第二次验证，从Model里（我们在Model封装了数据库，这里不再展示）取出数据进行比对，如果账号密码都符合条件，就成功验证，否则会告诉你账号或密码输入不正确。</p>
-<p>现在，我们就完成了最简单的MVC与User之间的交互模式。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>后端开发</tag>
-        <tag>Laravel</tag>
-        <tag>PHP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>伴随岁月流逝的“严谨”</title>
     <url>/2020/03/27/strict-of-child/</url>
     <content><![CDATA[<p>两周以前我看了《大赢家》这部电影，想写些东西，奈何太忙而被搁置了，现在我的感受已经只剩那么零零星星的一点了，但我依然想把它们记录下来。说实话，其实《大赢家》这部电影并不能算是好的电影，但是主人公的形象是十分特别的，因为他总能让我想起我年轻的时候（大概是我上小学的时候）。</p>
@@ -1484,84 +1446,6 @@ dp[i-1][j] \quad|\quad dp[i-1][j-nums[i]]
       </categories>
       <tags>
         <tag>人生</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>xv6 System Call</title>
-    <url>/2020/12/25/xv6-System-Call/</url>
-    <content><![CDATA[<h2 id="part-one-system-call-tracing"><a class="markdownIt-Anchor" href="#part-one-system-call-tracing"></a> Part One: System call tracing</h2>
-<h3 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction:</h3>
-<p>Your first task is to modify the xv6 kernel to print out a line for each system call invocation. It is enough to print the name of the system call and the return value; you don’t need to print the system call arguments.</p>
-<p>When you’re done, you should see output like this when booting xv6:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">fork -&gt; 2</span><br><span class="line">exec -&gt; 0</span><br><span class="line">open -&gt; 3</span><br><span class="line">close -&gt; 0</span><br><span class="line">write -&gt; 1</span><br><span class="line">write -&gt; 1</span><br></pre></td></tr></table></figure>
-<p>That’s init forking and execing sh, sh making sure only two file descriptors are open, and sh writing the $ prompt. (Note: the output of the shell and the system call trace are intermixed, because the shell uses the write syscall to print its output.)</p>
-<p><strong>Optional challenge</strong>: print the system call arguments.</p>
-<h3 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution:</h3>
-<p>第一部分需要打印出系统调用函数和返回的结果，根据文档给出的提示，我们知道这部分是定义在<code>syscall.c</code>文件里。接下来我们需要去阅读<code>syscall</code>这个函数的代码：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> num;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">proc</span> *<span class="title">curproc</span> =</span> myproc();</span><br><span class="line"></span><br><span class="line">num = curproc-&gt;tf-&gt;eax;</span><br></pre></td></tr></table></figure>
-<p>根据这几行代码，我们可以知道当操作系统由用户态进入到内核态的时候，需要进行陷阱中断，由用户态进入内核态，用户态的内容在xv6系统中是存在trapframe这个结构体中，这个结构体存的是中断前寄存器的内容,trapframe的结构如下所示：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">trapframe</span> &#123;</span></span><br><span class="line">  <span class="comment">// registers as pushed by pusha</span></span><br><span class="line">  uint edi;</span><br><span class="line">  uint esi;</span><br><span class="line">  uint ebp;</span><br><span class="line">  uint oesp;      <span class="comment">// useless &amp; ignored</span></span><br><span class="line">  uint ebx;</span><br><span class="line">  uint edx;</span><br><span class="line">  uint ecx;</span><br><span class="line">  uint eax;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// rest of trap frame</span></span><br><span class="line">  ushort gs;</span><br><span class="line">  ushort padding1;</span><br><span class="line">  ushort fs;</span><br><span class="line">  ushort padding2;</span><br><span class="line">  ushort es;</span><br><span class="line">  ushort padding3;</span><br><span class="line">  ushort ds;</span><br><span class="line">  ushort padding4;</span><br><span class="line">  uint trapno;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// below here defined by x86 hardware</span></span><br><span class="line">  uint err;</span><br><span class="line">  uint eip;</span><br><span class="line">  ushort cs;</span><br><span class="line">  ushort padding5;</span><br><span class="line">  uint eflags;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// below here only when crossing rings, such as from user to kernel</span></span><br><span class="line">  uint esp;</span><br><span class="line">  ushort ss;</span><br><span class="line">  ushort padding6;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>同样通过阅读源码我们可以知道当前系统调用数是存在eax寄存器中的，因此要打印出系统调用名称我们需要写一个数组进行一一映射：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">char</span>* syscallNames[] = &#123;</span><br><span class="line">  [SYS_fork]  <span class="string">&quot;fork&quot;</span>,</span><br><span class="line">  [SYS_exit]  <span class="string">&quot;exit&quot;</span>,</span><br><span class="line">  [SYS_wait]  <span class="string">&quot;wait&quot;</span>,</span><br><span class="line">  [SYS_pipe]  <span class="string">&quot;pipe&quot;</span>,</span><br><span class="line">  [SYS_read]  <span class="string">&quot;read&quot;</span>,</span><br><span class="line">  [SYS_kill]  <span class="string">&quot;kill&quot;</span>,</span><br><span class="line">  [SYS_exec]  <span class="string">&quot;exec&quot;</span>,</span><br><span class="line">  [SYS_fstat] <span class="string">&quot;fstat&quot;</span>,</span><br><span class="line">  [SYS_chdir] <span class="string">&quot;chdir&quot;</span>,</span><br><span class="line">  [SYS_dup]   <span class="string">&quot;dup&quot;</span>,</span><br><span class="line">  [SYS_getpid]<span class="string">&quot;getpid&quot;</span>,</span><br><span class="line">  [SYS_sbrk]  <span class="string">&quot;sbrk&quot;</span>,</span><br><span class="line">  [SYS_sleep] <span class="string">&quot;sleep&quot;</span>,</span><br><span class="line">  [SYS_uptime]<span class="string">&quot;uptime&quot;</span>,</span><br><span class="line">  [SYS_open]  <span class="string">&quot;open&quot;</span>,</span><br><span class="line">  [SYS_write] <span class="string">&quot;write&quot;</span>,</span><br><span class="line">  [SYS_mknod] <span class="string">&quot;mknod&quot;</span>,</span><br><span class="line">  [SYS_unlink]<span class="string">&quot;unlink&quot;</span>,</span><br><span class="line">  [SYS_link]  <span class="string">&quot;link&quot;</span>,</span><br><span class="line">  [SYS_mkdir] <span class="string">&quot;mkdir&quot;</span>,</span><br><span class="line">  [SYS_close] <span class="string">&quot;close&quot;</span>,</span><br><span class="line">  [SYS_date]  <span class="string">&quot;date&quot;</span>,</span><br><span class="line">  [SYS_alarm] <span class="string">&quot;alarm&quot;</span>,</span><br><span class="line">  [SYS_dup2]  <span class="string">&quot;dup2&quot;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>而返回值结果则被存在eax寄存器中：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">curproc-&gt;tf-&gt;eax = syscalls[num]();</span><br></pre></td></tr></table></figure>
-<p>因此此题解法就呼之欲出：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cprintf(<span class="string">&quot;SYSCALL: name: %s --&gt; return value: %d\n&quot;</span>,syscallNames[num], curproc-&gt;tf-&gt;eax);</span><br></pre></td></tr></table></figure>
-<p>接下来的挑战内容是打印出系统调用参数。</p>
-<p>阅读源码，我们可以发现<code>argint</code>函数及其描述：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Fetch the nth 32-bit system call argument.</span></span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">argint(<span class="keyword">int</span> n, <span class="keyword">int</span> *ip)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> fetchint((myproc()-&gt;tf-&gt;esp) + <span class="number">4</span> + <span class="number">4</span>*n, ip);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以看到这个函数调用了<code>fetchint</code>函数：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// User code makes a system call with INT T_SYSCALL.</span></span><br><span class="line"><span class="comment">// System call number in %eax.</span></span><br><span class="line"><span class="comment">// Arguments on the stack, from the user call to the C</span></span><br><span class="line"><span class="comment">// library system call function. The saved user %esp points</span></span><br><span class="line"><span class="comment">// to a saved program counter, and then the first argument.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Fetch the int at addr from the current process.</span></span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">fetchint(uint addr, <span class="keyword">int</span> *ip)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">proc</span> *<span class="title">curproc</span> =</span> myproc();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(addr &gt;= curproc-&gt;sz || addr+<span class="number">4</span> &gt; curproc-&gt;sz)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  *ip = *(<span class="keyword">int</span>*)(addr);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结合阅读<code>fetchint</code>的源码和其上面的注释，我们可以很轻松地知道系统调用的参数存储在<code>(tf-&gt;esp)+4</code>之上，其中<code>(tf-&gt;esp)+4</code>即为第一个参数所在的位置。由于系统调用参数是在用户态中设置，在陷阱中断的过程中压入栈中，并且由esp寄存器记录栈顶指针。所以我们在内核态中无法知道每个系统调用共有几个参数，因此我们也可以定义一个参数用来记录每个系统调用函数有几个参数：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> syscallArgs[] = &#123;</span><br><span class="line">  [SYS_fork]    <span class="number">0</span>,</span><br><span class="line">  [SYS_exit]    <span class="number">0</span>,</span><br><span class="line">  [SYS_wait]    <span class="number">0</span>,</span><br><span class="line">  [SYS_pipe]    <span class="number">1</span>,</span><br><span class="line">  [SYS_read]    <span class="number">3</span>,</span><br><span class="line">  [SYS_kill]    <span class="number">1</span>,</span><br><span class="line">  [SYS_exec]    <span class="number">2</span>,</span><br><span class="line">  [SYS_fstat]   <span class="number">1</span>,</span><br><span class="line">  [SYS_chdir]   <span class="number">1</span>,</span><br><span class="line">  [SYS_dup]     <span class="number">1</span>,</span><br><span class="line">  [SYS_getpid]  <span class="number">0</span>,</span><br><span class="line">  [SYS_sbrk]    <span class="number">1</span>,</span><br><span class="line">  [SYS_sleep]   <span class="number">1</span>,</span><br><span class="line">  [SYS_uptime]  <span class="number">2</span>,</span><br><span class="line">  [SYS_open]    <span class="number">2</span>,</span><br><span class="line">  [SYS_write]   <span class="number">3</span>,</span><br><span class="line">  [SYS_mknod]   <span class="number">3</span>,</span><br><span class="line">  [SYS_unlink]  <span class="number">1</span>,</span><br><span class="line">  [SYS_link]    <span class="number">2</span>,</span><br><span class="line">  [SYS_mkdir]   <span class="number">1</span>,</span><br><span class="line">  [SYS_close]   <span class="number">1</span>,</span><br><span class="line">  [SYS_date]    <span class="number">1</span>,</span><br><span class="line">  [SYS_alarm]   <span class="number">2</span>,</span><br><span class="line">  [SYS_dup2]    <span class="number">2</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>同时，根据数组的参数个数的记录，我们遍历栈空间去输出参数：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">uint esp = curproc-&gt;tf-&gt;esp;</span><br><span class="line"><span class="keyword">int</span> nums = syscallArgs[num]; </span><br><span class="line"><span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">cprintf(<span class="string">&quot;args: &quot;</span>);</span><br><span class="line"><span class="keyword">if</span>(nums == <span class="number">0</span>)&#123;</span><br><span class="line">    cprintf(<span class="string">&quot;No Arguments&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span>(nums &gt;= <span class="number">1</span>)&#123;</span><br><span class="line">    cprintf(<span class="string">&quot;0x%x &quot;</span>, *((<span class="keyword">int</span> *)(esp + <span class="number">4</span>*i)));</span><br><span class="line">    i++;</span><br><span class="line">    nums--;</span><br><span class="line">&#125;</span><br><span class="line">cprintf(<span class="string">&quot;\n&quot;</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="part-two-data-system-call"><a class="markdownIt-Anchor" href="#part-two-data-system-call"></a> Part Two: Data system call</h2>
-<h3 id="introduction-2"><a class="markdownIt-Anchor" href="#introduction-2"></a> Introduction</h3>
-<p>Your second task is to add a new system call to xv6. The main point of the exercise is for you to see some of the different pieces of the system call machinery. Your new system call will get the current UTC time and return it to the user program. You may want to use the helper function, <code>cmostime()</code> (defined in <code>lapic.c</code>), to read the real time clock. <code>date.h</code> contains the definition of the <code>struct rtcdate</code> struct, which you will provide as an argument to <code>cmostime()</code> as a pointer.</p>
-<p>You should create a user-level program that calls your new date system call; here’s some source you should put in <code>date.c</code>:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;types.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;user.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;date.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">main(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">rtcdate</span> <span class="title">r</span>;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (date(&amp;r)) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="number">2</span>, <span class="string">&quot;date failed\n&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// your code to print the time in any format you like...</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">exit</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>In order to make your new <code>date</code> program available to run from the xv6 shell, add <code>_date</code> to the <code>UPROGS</code> definition in <code>Makefile</code>.</p>
-<p>Your strategy for making a date system call should be to clone all of the pieces of code that are specific to some existing system call, for example the “uptime” system call. You should grep for uptime in all the source files, using <code>grep -n uptime *.[chS]</code>.</p>
-<p>When you’re done, typing <code>date</code> to an xv6 shell prompt should print the current UTC time.</p>
-<p>Write down a few words of explanation for each of the files you had to modify in the process of creating your date system call.</p>
-<p><strong>Optional challenge</strong>: add a <code>dup2()</code> system call and modify the shell to use it.</p>
-<h3 id="solution-2"><a class="markdownIt-Anchor" href="#solution-2"></a> Solution:</h3>
-<p>第二部分要求我们去添加一个系统调用<code>date</code>用来打印当前日期，其中用户态的函数已经给出：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;types.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;user.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;date.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">main(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">rtcdate</span> <span class="title">r</span>;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (date(&amp;r)) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="number">2</span>, <span class="string">&quot;date failed\n&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// your code to print the time in any format you like...</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">exit</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>需要我们写出内核态的系统调用供用户使用。</p>
-<p>根据题目提示，我们知道date系统调用需要接受一个<code>rctdate</code>结构体参数，并且通过<code>cmostime()</code>函数获取当前的时间。因此我们要做的就是把结构体参数压入栈中，并且调用<code>cmostime()</code>去获得当前时间：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span></span><br><span class="line">sys_date(struct rtcdate* r)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (argptr(<span class="number">0</span>, (<span class="keyword">void</span> *)&amp;r, <span class="keyword">sizeof</span>(*r)) &lt; <span class="number">0</span>)</span><br><span class="line">          <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  cmostime(r);  <span class="comment">//从cmos中获取时间</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>值得注意的是，由于<code>rtcdate</code>是个结构体参数，因此我们需要通过<code>argptr</code>而非<code>argint</code>来进行参数的压栈：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Fetch the nth word-sized system call argument as a pointer</span></span><br><span class="line"><span class="comment">// to a block of memory of size bytes.  Check that the pointer</span></span><br><span class="line"><span class="comment">// lies within the process address space.</span></span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">argptr(<span class="keyword">int</span> n, <span class="keyword">char</span> **pp, <span class="keyword">int</span> size)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">proc</span> *<span class="title">curproc</span> =</span> myproc();</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">if</span>(argint(n, &amp;i) &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">if</span>(size &lt; <span class="number">0</span> || (uint)i &gt;= curproc-&gt;sz || (uint)i+size &gt; curproc-&gt;sz)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  *pp = (<span class="keyword">char</span>*)i;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接下来是可选挑战，可选挑战需要我们去实现一个<code>dup2</code>的系统调用，这个挑战有些难度，需要我们文件描述符等概念比较熟悉，在开始实现<code>dup2()</code>之前，我们先讲解一下<code>dup</code>函数：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span></span><br><span class="line">sys_dup(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">file</span> *<span class="title">f</span>;</span></span><br><span class="line">  <span class="keyword">int</span> fd;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(argfd(<span class="number">0</span>, <span class="number">0</span>, &amp;f) &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">if</span>((fd=fdalloc(f)) &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  filedup(f);</span><br><span class="line">  <span class="keyword">return</span> fd;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>利用函数<code>dup</code>，我们可以复制一个描述符。传给该函数一个既有的描述符，它就会返回一个新的描述符， 这个新的描述符是传给它的描述符的拷贝。这意味着，这两个描述符共享同一个数据结构。例如， 如果我们对一个文件描述符执行<code>lseek</code>操作，得到的第一个文件的位置和第二个是一样的。</p>
-<p>注意到<code>sys_dup</code>函数调用了<code>argfd</code>函数：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span></span><br><span class="line">argfd(<span class="keyword">int</span> n, <span class="keyword">int</span> *pfd, struct file **pf)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> fd;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">file</span> *<span class="title">f</span>;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(argint(n, &amp;fd) &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">if</span>(fd &lt; <span class="number">0</span> || fd &gt;= NOFILE || (f=myproc()-&gt;ofile[fd]) == <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">if</span>(pfd)</span><br><span class="line">    *pfd = fd;</span><br><span class="line">  <span class="keyword">if</span>(pf)</span><br><span class="line">    *pf = f;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在这个函数中，我们传入参数位置以及文件，其中<code>argint</code>函数可以通过参数的位置或者文件描述符，再由文件描述符判断传入的文件是否合理。</p>
-<p>其中，<code>fdalloc</code>函数是在<code>ofile</code>（即打开的文件）中选择空位，如果有空位，就把文件插入进去，将数组下标作为文件描述符返回：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">fdalloc(struct file *f)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> fd;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">proc</span> *<span class="title">curproc</span> =</span> myproc();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(fd = <span class="number">0</span>; fd &lt; NOFILE; fd++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(curproc-&gt;ofile[fd] == <span class="number">0</span>)&#123;</span><br><span class="line">      curproc-&gt;ofile[fd] = f;</span><br><span class="line">      <span class="keyword">return</span> fd;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>随后调用<code>filedup</code>函数，将当前复制文件的引用加上一：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Increment ref count for file f.</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">file</span>*</span></span><br><span class="line"><span class="class"><span class="title">filedup</span>(<span class="keyword">struct</span> <span class="title">file</span> *<span class="title">f</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  acquire(&amp;ftable.lock);</span><br><span class="line">  <span class="keyword">if</span>(f-&gt;ref &lt; <span class="number">1</span>)</span><br><span class="line">    panic(<span class="string">&quot;filedup&quot;</span>);</span><br><span class="line">  f-&gt;ref++;</span><br><span class="line">  release(&amp;ftable.lock);</span><br><span class="line">  <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上就是<code>dup</code>的实现过程。</p>
-<p><code>dup2</code>函数跟<code>dup</code>函数相似，但<code>dup2</code>函数允许调用者规定一个有效描述符和目标描述符的id。<code>dup2</code>函数成功返回时，目标描述符（<code>dup2</code>函数的第二个参数）将变成源描述符（<code>dup2</code>函数的第一个参数）的复制品，换句话说，两个文件描述符现在都指向同一个文件，并且是函数第一个参数指向的文件。</p>
-<p>而实现<code>dup2</code>函数就需要将第二个参数的文件描述符指向第一个参数的文件描述符，并将第二个文件描述符所指向的文件关掉。因此需要接受两个文件，老文件和新文件：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">file</span> *<span class="title">oldfile</span>, *<span class="title">newfile</span>;</span></span><br></pre></td></tr></table></figure>
-<p>其中，当有用户态切换到内核态时，新文件是第一个参数，老文件在第二个参数，因此新文件先被压入栈中，老文件后被压入栈中，因此我们需要先对参数进行判断并且取出文件描述符：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(argfd(<span class="number">0</span>, <span class="number">0</span>, &amp;oldfile) &lt; <span class="number">0</span> )&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(argint(<span class="number">1</span>, &amp;newfd) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>其中，我们需要通过<code>argfd</code>函数来获取已经打开了的老文件，通过<code>argint</code>来获取新文件的文件描述符。</p>
-<p>接下来需要判断新文件描述符是否超出范围：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(newfd &lt; <span class="number">0</span> || newfd &gt;= NOFILE)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>最后则将新的文件描述符指向老文件，需要注意的是，这里也需要进行一些不合理情况的判断：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(currproc-&gt;ofile[newfd] == <span class="number">0</span>)&#123;</span><br><span class="line">    currproc-&gt;ofile[newfd] = oldfile;</span><br><span class="line">    filedup(oldfile);</span><br><span class="line">    <span class="keyword">return</span> newfd;</span><br><span class="line"></span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span>(argfd(<span class="number">1</span>, &amp;newfd, &amp;newfile) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(oldfile == newfile)&#123;</span><br><span class="line">    <span class="keyword">return</span> newfd;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(oldfile-&gt;ref &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    fileclose(oldfile);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  currproc-&gt;ofile[newfd] = oldfile;</span><br><span class="line">  filedup(oldfile);</span><br><span class="line">  <span class="keyword">return</span> newfd;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>C/C++</tag>
-        <tag>操作系统</tag>
       </tags>
   </entry>
   <entry>
@@ -1628,6 +1512,44 @@ dp[i-1][j] \quad|\quad dp[i-1][j-nums[i]]
       </categories>
       <tags>
         <tag>C/C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从Laravel框架浅谈MVC架构</title>
+    <url>/2020/03/07/talk-MVC/</url>
+    <content><![CDATA[<p>最近应工作室要求学习PHP框架Laravel，接触到了MVC软件架构模式,即Model-View-Controller，这里我将使用Laravel框架介绍MVC架构模式，并且阐述自己对MVC软件架构浅薄的理解。</p>
+<p><img src="/2020/03/07/talk-MVC/MVC.jpg" alt></p>
+<a id="more"></a>
+<h2 id="mvc架构简述"><a class="markdownIt-Anchor" href="#mvc架构简述"></a> MVC架构简述：</h2>
+<h4 id="由图所示简单地理解mvc架构模式可以认为"><a class="markdownIt-Anchor" href="#由图所示简单地理解mvc架构模式可以认为"></a> 由图所示，简单地理解MVC架构模式可以认为：</h4>
+<p>1.View（视图）：是用户直接接触的界面，一般由前端处理，主要用来展示模型中的内容和用来输入表单数据。</p>
+<p>2.Controller（控制器）：主要用于处理视图和模型之间的逻辑关系，例如从视图中post的数据，到底如何进入模型并存入数据库中，我们是否应该对于用户的数据进行过滤以防止SQL注入等问题，又或者从数据库中取出的数据哪些应该展示在视图上，有什么判断标准，都需要控制器进行判断。</p>
+<p>3.Model（模型）：即底层同应用程序的接口，我们可以从Model中获取数据并进行处理。</p>
+<p>以上是我对于MVC的一些理解，因为刚刚接触这种软件架构模式，所以理解不深，如果有兴趣者可以自行去深入了解。</p>
+<h4 id="以下给出mvc的一些友情链接"><a class="markdownIt-Anchor" href="#以下给出mvc的一些友情链接"></a> 以下给出MVC的一些友情链接：</h4>
+<p><a href="%22%5Bhttps://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller%5D">维基百科</a></p>
+<p><a href="%22https://draveness.me/mvx%22">浅谈MVC、MVP和MVVM架构模式</a></p>
+<h2 id="laravel实例"><a class="markdownIt-Anchor" href="#laravel实例"></a> Laravel实例：</h2>
+<h4 id="接下来我将使用laravel对于这一架构模式进行说明laravel只是媒介这里不涉及laravel语法细节"><a class="markdownIt-Anchor" href="#接下来我将使用laravel对于这一架构模式进行说明laravel只是媒介这里不涉及laravel语法细节"></a> 接下来我将使用Laravel对于这一架构模式进行说明（Laravel只是媒介，这里不涉及Laravel语法细节）：</h4>
+<p>假如说我们需要写一个登录界面那么我们使用MVC如何处理呢？</p>
+<p>首先，我们需要一个登陆界面，这个登录界面是需要让用户看到的，并且在这个界面中，我们还需要让用户在登录界面中输入数据并且可以让控制器接收到，因此我们可以写html，php或者Laravel支持的blade模板，总之，不管使用哪种形式，最重要的是让用户有可视化界面并且实现登陆功能。</p>
+<p>我用blade模板进行举例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@extends(&quot;common.layout&quot;)</span><br><span class="line">@section(&quot;title&quot;)</span><br><span class="line">    Login</span><br><span class="line">@stop</span><br><span class="line"></span><br><span class="line">@section(&quot;content&quot;)</span><br><span class="line"></span><br><span class="line">    &lt;div class&#x3D;&quot;xiao-container&quot;&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;xiao-register-box&quot;&gt;</span><br><span class="line">            &lt;div class&#x3D;&quot;xiao-title-box&quot;&gt;</span><br><span class="line">                &lt;span&gt;登录&lt;&#x2F;span&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;form action&#x3D;&quot;&#123;&#123;url(&#39;at&#x2F;save&#39;)&#125;&#125;&quot; method&#x3D;&quot;post&quot;&gt;</span><br><span class="line">                &#123;&#123;csrf_field()&#125;&#125;</span><br><span class="line">                &lt;div class&#x3D;&quot;xiao-username-box&quot;&gt;</span><br><span class="line">                    &lt;span class&#x3D;&quot;xiao-require&quot;&gt;*&lt;&#x2F;span&gt;</span><br><span class="line">                    &lt;label for&#x3D;&quot;account&quot;&gt;账户&lt;&#x2F;label&gt;</span><br><span class="line">                    &lt;div class&#x3D;&quot;xiao-username-input&quot;&gt;</span><br><span class="line">                        &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;account&quot; name&#x3D;&quot;account&quot; placeholder&#x3D;&quot;账户：&quot;&#x2F;&gt;</span><br><span class="line">                    &lt;&#x2F;div&gt;</span><br><span class="line">                &lt;&#x2F;div&gt;</span><br><span class="line">                &lt;br&#x2F;&gt;&lt;br&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">                &lt;div class&#x3D;&quot;xiao-userPassword-box&quot;&gt;</span><br><span class="line">                    &lt;span class&#x3D;&quot;xiao-require&quot;&gt;*&lt;&#x2F;span&gt;</span><br><span class="line">                    &lt;label for&#x3D;&quot;password&quot;&gt;密码&lt;&#x2F;label&gt;</span><br><span class="line">                    &lt;div class&#x3D;&quot;xiao-userPassword-input&quot;&gt;</span><br><span class="line">                        &lt;input type&#x3D;&quot;password&quot; id&#x3D;&quot;password&quot; name&#x3D;&quot;password&quot; placeholder&#x3D;&quot;密码：&quot; &#x2F;&gt;</span><br><span class="line">                    &lt;&#x2F;div&gt;</span><br><span class="line">                &lt;&#x2F;div&gt;</span><br><span class="line">                &lt;div class&#x3D;&quot;xiao-submit-box&quot;&gt;</span><br><span class="line">                    &lt;input id &#x3D; &quot;xiao-submit-button&quot; type&#x3D;&quot;submit&quot; value&#x3D;&quot;登录&quot;&gt;</span><br><span class="line">                &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;&#x2F;form&gt;</span><br><span class="line">            @if ($errors-&gt;any())</span><br><span class="line">                &lt;div class&#x3D;&quot;alert alert-danger&quot;&gt;</span><br><span class="line">                    &lt;ul&gt;</span><br><span class="line">                        @foreach ($errors-&gt;all() as $error)</span><br><span class="line">                            &lt;li&gt;&#123;&#123; $error &#125;&#125;&lt;&#x2F;li&gt;</span><br><span class="line">                        @endforeach</span><br><span class="line">                    &lt;&#x2F;ul&gt;</span><br><span class="line">                &lt;&#x2F;div&gt;</span><br><span class="line">            @endif</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">@stop</span><br></pre></td></tr></table></figure>
+<p>我们无需管语法细节，只需要注意，我们在这里设计了一个表单，并且将方法设置为post，因此可以使控制器接收到数据，那么相应地，我们也需要设置相应的路由与控制器方法（路由是用户访问url所必需的）</p>
+<h4 id="路由"><a class="markdownIt-Anchor" href="#路由"></a> 路由：</h4>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">Route::any(<span class="string">&#x27;at/login&#x27;</span>,[<span class="string">&#x27;uses&#x27;</span> =&gt; <span class="string">&#x27;StudentController@login&#x27;</span>]);</span><br><span class="line">Route::any(<span class="string">&#x27;at/save&#x27;</span>,[<span class="string">&quot;uses&quot;</span> =&gt; <span class="string">&quot;StudentController@save&quot;</span>]);</span><br></pre></td></tr></table></figure>
+<h4 id="控制器"><a class="markdownIt-Anchor" href="#控制器"></a> 控制器：</h4>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StudentController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> view(<span class="string">&#x27;student.login&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">save</span>(<span class="params">Request $request</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $validate= $request-&gt;validate(</span><br><span class="line">            [</span><br><span class="line">                <span class="string">&quot;account&quot;</span> =&gt; <span class="string">&quot;required|string|max:20&quot;</span>,</span><br><span class="line">                <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;required|string|max:20&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        );</span><br><span class="line">        <span class="keyword">if</span>($validate)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;judge($request-&gt;input(<span class="string">&quot;account&quot;</span>),$request-&gt;input(<span class="string">&quot;password&quot;</span>)))</span><br><span class="line">            &#123;<span class="keyword">return</span> <span class="literal">true</span>;&#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;账号不存在或密码不正确&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">judge</span>(<span class="params">$account,$password</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;<span class="keyword">return</span> Student::where(<span class="string">&quot;account&quot;</span>,$account)-&gt;value(<span class="string">&#x27;password&#x27;</span>)==$password;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样我们就可以了解到从登录界面post的数据，被控制器中的save的$request变量捕获了，并且将其进行了表单验证，我们需要进行两次验证，第一次验证用户输入是否合法，如果不合法，该方法将会重定向到登录页面要求你重新输入，否则的话，进行第二次验证，从Model里（我们在Model封装了数据库，这里不再展示）取出数据进行比对，如果账号密码都符合条件，就成功验证，否则会告诉你账号或密码输入不正确。</p>
+<p>现在，我们就完成了最简单的MVC与User之间的交互模式。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>后端开发</tag>
+        <tag>Laravel</tag>
+        <tag>PHP</tag>
       </tags>
   </entry>
   <entry>
@@ -1715,6 +1637,84 @@ dp[i-1][j] \quad|\quad dp[i-1][j-nums[i]]
       </tags>
   </entry>
   <entry>
+    <title>xv6 System Call</title>
+    <url>/2020/12/25/xv6-System-Call/</url>
+    <content><![CDATA[<h2 id="part-one-system-call-tracing"><a class="markdownIt-Anchor" href="#part-one-system-call-tracing"></a> Part One: System call tracing</h2>
+<h3 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction:</h3>
+<p>Your first task is to modify the xv6 kernel to print out a line for each system call invocation. It is enough to print the name of the system call and the return value; you don’t need to print the system call arguments.</p>
+<p>When you’re done, you should see output like this when booting xv6:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">fork -&gt; 2</span><br><span class="line">exec -&gt; 0</span><br><span class="line">open -&gt; 3</span><br><span class="line">close -&gt; 0</span><br><span class="line">write -&gt; 1</span><br><span class="line">write -&gt; 1</span><br></pre></td></tr></table></figure>
+<p>That’s init forking and execing sh, sh making sure only two file descriptors are open, and sh writing the $ prompt. (Note: the output of the shell and the system call trace are intermixed, because the shell uses the write syscall to print its output.)</p>
+<p><strong>Optional challenge</strong>: print the system call arguments.</p>
+<h3 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution:</h3>
+<p>第一部分需要打印出系统调用函数和返回的结果，根据文档给出的提示，我们知道这部分是定义在<code>syscall.c</code>文件里。接下来我们需要去阅读<code>syscall</code>这个函数的代码：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> num;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">proc</span> *<span class="title">curproc</span> =</span> myproc();</span><br><span class="line"></span><br><span class="line">num = curproc-&gt;tf-&gt;eax;</span><br></pre></td></tr></table></figure>
+<p>根据这几行代码，我们可以知道当操作系统由用户态进入到内核态的时候，需要进行陷阱中断，由用户态进入内核态，用户态的内容在xv6系统中是存在trapframe这个结构体中，这个结构体存的是中断前寄存器的内容,trapframe的结构如下所示：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">trapframe</span> &#123;</span></span><br><span class="line">  <span class="comment">// registers as pushed by pusha</span></span><br><span class="line">  uint edi;</span><br><span class="line">  uint esi;</span><br><span class="line">  uint ebp;</span><br><span class="line">  uint oesp;      <span class="comment">// useless &amp; ignored</span></span><br><span class="line">  uint ebx;</span><br><span class="line">  uint edx;</span><br><span class="line">  uint ecx;</span><br><span class="line">  uint eax;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// rest of trap frame</span></span><br><span class="line">  ushort gs;</span><br><span class="line">  ushort padding1;</span><br><span class="line">  ushort fs;</span><br><span class="line">  ushort padding2;</span><br><span class="line">  ushort es;</span><br><span class="line">  ushort padding3;</span><br><span class="line">  ushort ds;</span><br><span class="line">  ushort padding4;</span><br><span class="line">  uint trapno;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// below here defined by x86 hardware</span></span><br><span class="line">  uint err;</span><br><span class="line">  uint eip;</span><br><span class="line">  ushort cs;</span><br><span class="line">  ushort padding5;</span><br><span class="line">  uint eflags;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// below here only when crossing rings, such as from user to kernel</span></span><br><span class="line">  uint esp;</span><br><span class="line">  ushort ss;</span><br><span class="line">  ushort padding6;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>同样通过阅读源码我们可以知道当前系统调用数是存在eax寄存器中的，因此要打印出系统调用名称我们需要写一个数组进行一一映射：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">char</span>* syscallNames[] = &#123;</span><br><span class="line">  [SYS_fork]  <span class="string">&quot;fork&quot;</span>,</span><br><span class="line">  [SYS_exit]  <span class="string">&quot;exit&quot;</span>,</span><br><span class="line">  [SYS_wait]  <span class="string">&quot;wait&quot;</span>,</span><br><span class="line">  [SYS_pipe]  <span class="string">&quot;pipe&quot;</span>,</span><br><span class="line">  [SYS_read]  <span class="string">&quot;read&quot;</span>,</span><br><span class="line">  [SYS_kill]  <span class="string">&quot;kill&quot;</span>,</span><br><span class="line">  [SYS_exec]  <span class="string">&quot;exec&quot;</span>,</span><br><span class="line">  [SYS_fstat] <span class="string">&quot;fstat&quot;</span>,</span><br><span class="line">  [SYS_chdir] <span class="string">&quot;chdir&quot;</span>,</span><br><span class="line">  [SYS_dup]   <span class="string">&quot;dup&quot;</span>,</span><br><span class="line">  [SYS_getpid]<span class="string">&quot;getpid&quot;</span>,</span><br><span class="line">  [SYS_sbrk]  <span class="string">&quot;sbrk&quot;</span>,</span><br><span class="line">  [SYS_sleep] <span class="string">&quot;sleep&quot;</span>,</span><br><span class="line">  [SYS_uptime]<span class="string">&quot;uptime&quot;</span>,</span><br><span class="line">  [SYS_open]  <span class="string">&quot;open&quot;</span>,</span><br><span class="line">  [SYS_write] <span class="string">&quot;write&quot;</span>,</span><br><span class="line">  [SYS_mknod] <span class="string">&quot;mknod&quot;</span>,</span><br><span class="line">  [SYS_unlink]<span class="string">&quot;unlink&quot;</span>,</span><br><span class="line">  [SYS_link]  <span class="string">&quot;link&quot;</span>,</span><br><span class="line">  [SYS_mkdir] <span class="string">&quot;mkdir&quot;</span>,</span><br><span class="line">  [SYS_close] <span class="string">&quot;close&quot;</span>,</span><br><span class="line">  [SYS_date]  <span class="string">&quot;date&quot;</span>,</span><br><span class="line">  [SYS_alarm] <span class="string">&quot;alarm&quot;</span>,</span><br><span class="line">  [SYS_dup2]  <span class="string">&quot;dup2&quot;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>而返回值结果则被存在eax寄存器中：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">curproc-&gt;tf-&gt;eax = syscalls[num]();</span><br></pre></td></tr></table></figure>
+<p>因此此题解法就呼之欲出：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cprintf(<span class="string">&quot;SYSCALL: name: %s --&gt; return value: %d\n&quot;</span>,syscallNames[num], curproc-&gt;tf-&gt;eax);</span><br></pre></td></tr></table></figure>
+<p>接下来的挑战内容是打印出系统调用参数。</p>
+<p>阅读源码，我们可以发现<code>argint</code>函数及其描述：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Fetch the nth 32-bit system call argument.</span></span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">argint(<span class="keyword">int</span> n, <span class="keyword">int</span> *ip)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> fetchint((myproc()-&gt;tf-&gt;esp) + <span class="number">4</span> + <span class="number">4</span>*n, ip);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到这个函数调用了<code>fetchint</code>函数：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// User code makes a system call with INT T_SYSCALL.</span></span><br><span class="line"><span class="comment">// System call number in %eax.</span></span><br><span class="line"><span class="comment">// Arguments on the stack, from the user call to the C</span></span><br><span class="line"><span class="comment">// library system call function. The saved user %esp points</span></span><br><span class="line"><span class="comment">// to a saved program counter, and then the first argument.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Fetch the int at addr from the current process.</span></span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">fetchint(uint addr, <span class="keyword">int</span> *ip)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">proc</span> *<span class="title">curproc</span> =</span> myproc();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(addr &gt;= curproc-&gt;sz || addr+<span class="number">4</span> &gt; curproc-&gt;sz)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  *ip = *(<span class="keyword">int</span>*)(addr);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结合阅读<code>fetchint</code>的源码和其上面的注释，我们可以很轻松地知道系统调用的参数存储在<code>(tf-&gt;esp)+4</code>之上，其中<code>(tf-&gt;esp)+4</code>即为第一个参数所在的位置。由于系统调用参数是在用户态中设置，在陷阱中断的过程中压入栈中，并且由esp寄存器记录栈顶指针。所以我们在内核态中无法知道每个系统调用共有几个参数，因此我们也可以定义一个参数用来记录每个系统调用函数有几个参数：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> syscallArgs[] = &#123;</span><br><span class="line">  [SYS_fork]    <span class="number">0</span>,</span><br><span class="line">  [SYS_exit]    <span class="number">0</span>,</span><br><span class="line">  [SYS_wait]    <span class="number">0</span>,</span><br><span class="line">  [SYS_pipe]    <span class="number">1</span>,</span><br><span class="line">  [SYS_read]    <span class="number">3</span>,</span><br><span class="line">  [SYS_kill]    <span class="number">1</span>,</span><br><span class="line">  [SYS_exec]    <span class="number">2</span>,</span><br><span class="line">  [SYS_fstat]   <span class="number">1</span>,</span><br><span class="line">  [SYS_chdir]   <span class="number">1</span>,</span><br><span class="line">  [SYS_dup]     <span class="number">1</span>,</span><br><span class="line">  [SYS_getpid]  <span class="number">0</span>,</span><br><span class="line">  [SYS_sbrk]    <span class="number">1</span>,</span><br><span class="line">  [SYS_sleep]   <span class="number">1</span>,</span><br><span class="line">  [SYS_uptime]  <span class="number">2</span>,</span><br><span class="line">  [SYS_open]    <span class="number">2</span>,</span><br><span class="line">  [SYS_write]   <span class="number">3</span>,</span><br><span class="line">  [SYS_mknod]   <span class="number">3</span>,</span><br><span class="line">  [SYS_unlink]  <span class="number">1</span>,</span><br><span class="line">  [SYS_link]    <span class="number">2</span>,</span><br><span class="line">  [SYS_mkdir]   <span class="number">1</span>,</span><br><span class="line">  [SYS_close]   <span class="number">1</span>,</span><br><span class="line">  [SYS_date]    <span class="number">1</span>,</span><br><span class="line">  [SYS_alarm]   <span class="number">2</span>,</span><br><span class="line">  [SYS_dup2]    <span class="number">2</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>同时，根据数组的参数个数的记录，我们遍历栈空间去输出参数：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">uint esp = curproc-&gt;tf-&gt;esp;</span><br><span class="line"><span class="keyword">int</span> nums = syscallArgs[num]; </span><br><span class="line"><span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">cprintf(<span class="string">&quot;args: &quot;</span>);</span><br><span class="line"><span class="keyword">if</span>(nums == <span class="number">0</span>)&#123;</span><br><span class="line">    cprintf(<span class="string">&quot;No Arguments&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span>(nums &gt;= <span class="number">1</span>)&#123;</span><br><span class="line">    cprintf(<span class="string">&quot;0x%x &quot;</span>, *((<span class="keyword">int</span> *)(esp + <span class="number">4</span>*i)));</span><br><span class="line">    i++;</span><br><span class="line">    nums--;</span><br><span class="line">&#125;</span><br><span class="line">cprintf(<span class="string">&quot;\n&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="part-two-data-system-call"><a class="markdownIt-Anchor" href="#part-two-data-system-call"></a> Part Two: Data system call</h2>
+<h3 id="introduction-2"><a class="markdownIt-Anchor" href="#introduction-2"></a> Introduction</h3>
+<p>Your second task is to add a new system call to xv6. The main point of the exercise is for you to see some of the different pieces of the system call machinery. Your new system call will get the current UTC time and return it to the user program. You may want to use the helper function, <code>cmostime()</code> (defined in <code>lapic.c</code>), to read the real time clock. <code>date.h</code> contains the definition of the <code>struct rtcdate</code> struct, which you will provide as an argument to <code>cmostime()</code> as a pointer.</p>
+<p>You should create a user-level program that calls your new date system call; here’s some source you should put in <code>date.c</code>:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;types.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;user.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;date.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">main(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">rtcdate</span> <span class="title">r</span>;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (date(&amp;r)) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="number">2</span>, <span class="string">&quot;date failed\n&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// your code to print the time in any format you like...</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">exit</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>In order to make your new <code>date</code> program available to run from the xv6 shell, add <code>_date</code> to the <code>UPROGS</code> definition in <code>Makefile</code>.</p>
+<p>Your strategy for making a date system call should be to clone all of the pieces of code that are specific to some existing system call, for example the “uptime” system call. You should grep for uptime in all the source files, using <code>grep -n uptime *.[chS]</code>.</p>
+<p>When you’re done, typing <code>date</code> to an xv6 shell prompt should print the current UTC time.</p>
+<p>Write down a few words of explanation for each of the files you had to modify in the process of creating your date system call.</p>
+<p><strong>Optional challenge</strong>: add a <code>dup2()</code> system call and modify the shell to use it.</p>
+<h3 id="solution-2"><a class="markdownIt-Anchor" href="#solution-2"></a> Solution:</h3>
+<p>第二部分要求我们去添加一个系统调用<code>date</code>用来打印当前日期，其中用户态的函数已经给出：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;types.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;user.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;date.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">main(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">rtcdate</span> <span class="title">r</span>;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (date(&amp;r)) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="number">2</span>, <span class="string">&quot;date failed\n&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// your code to print the time in any format you like...</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">exit</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要我们写出内核态的系统调用供用户使用。</p>
+<p>根据题目提示，我们知道date系统调用需要接受一个<code>rctdate</code>结构体参数，并且通过<code>cmostime()</code>函数获取当前的时间。因此我们要做的就是把结构体参数压入栈中，并且调用<code>cmostime()</code>去获得当前时间：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span></span><br><span class="line">sys_date(struct rtcdate* r)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (argptr(<span class="number">0</span>, (<span class="keyword">void</span> *)&amp;r, <span class="keyword">sizeof</span>(*r)) &lt; <span class="number">0</span>)</span><br><span class="line">          <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  cmostime(r);  <span class="comment">//从cmos中获取时间</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>值得注意的是，由于<code>rtcdate</code>是个结构体参数，因此我们需要通过<code>argptr</code>而非<code>argint</code>来进行参数的压栈：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Fetch the nth word-sized system call argument as a pointer</span></span><br><span class="line"><span class="comment">// to a block of memory of size bytes.  Check that the pointer</span></span><br><span class="line"><span class="comment">// lies within the process address space.</span></span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">argptr(<span class="keyword">int</span> n, <span class="keyword">char</span> **pp, <span class="keyword">int</span> size)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">proc</span> *<span class="title">curproc</span> =</span> myproc();</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">if</span>(argint(n, &amp;i) &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">if</span>(size &lt; <span class="number">0</span> || (uint)i &gt;= curproc-&gt;sz || (uint)i+size &gt; curproc-&gt;sz)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  *pp = (<span class="keyword">char</span>*)i;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来是可选挑战，可选挑战需要我们去实现一个<code>dup2</code>的系统调用，这个挑战有些难度，需要我们文件描述符等概念比较熟悉，在开始实现<code>dup2()</code>之前，我们先讲解一下<code>dup</code>函数：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span></span><br><span class="line">sys_dup(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">file</span> *<span class="title">f</span>;</span></span><br><span class="line">  <span class="keyword">int</span> fd;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(argfd(<span class="number">0</span>, <span class="number">0</span>, &amp;f) &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">if</span>((fd=fdalloc(f)) &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  filedup(f);</span><br><span class="line">  <span class="keyword">return</span> fd;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>利用函数<code>dup</code>，我们可以复制一个描述符。传给该函数一个既有的描述符，它就会返回一个新的描述符， 这个新的描述符是传给它的描述符的拷贝。这意味着，这两个描述符共享同一个数据结构。例如， 如果我们对一个文件描述符执行<code>lseek</code>操作，得到的第一个文件的位置和第二个是一样的。</p>
+<p>注意到<code>sys_dup</code>函数调用了<code>argfd</code>函数：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span></span><br><span class="line">argfd(<span class="keyword">int</span> n, <span class="keyword">int</span> *pfd, struct file **pf)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> fd;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">file</span> *<span class="title">f</span>;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(argint(n, &amp;fd) &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">if</span>(fd &lt; <span class="number">0</span> || fd &gt;= NOFILE || (f=myproc()-&gt;ofile[fd]) == <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">if</span>(pfd)</span><br><span class="line">    *pfd = fd;</span><br><span class="line">  <span class="keyword">if</span>(pf)</span><br><span class="line">    *pf = f;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个函数中，我们传入参数位置以及文件，其中<code>argint</code>函数可以通过参数的位置或者文件描述符，再由文件描述符判断传入的文件是否合理。</p>
+<p>其中，<code>fdalloc</code>函数是在<code>ofile</code>（即打开的文件）中选择空位，如果有空位，就把文件插入进去，将数组下标作为文件描述符返回：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">fdalloc(struct file *f)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> fd;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">proc</span> *<span class="title">curproc</span> =</span> myproc();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(fd = <span class="number">0</span>; fd &lt; NOFILE; fd++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(curproc-&gt;ofile[fd] == <span class="number">0</span>)&#123;</span><br><span class="line">      curproc-&gt;ofile[fd] = f;</span><br><span class="line">      <span class="keyword">return</span> fd;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>随后调用<code>filedup</code>函数，将当前复制文件的引用加上一：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Increment ref count for file f.</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">file</span>*</span></span><br><span class="line"><span class="class"><span class="title">filedup</span>(<span class="keyword">struct</span> <span class="title">file</span> *<span class="title">f</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  acquire(&amp;ftable.lock);</span><br><span class="line">  <span class="keyword">if</span>(f-&gt;ref &lt; <span class="number">1</span>)</span><br><span class="line">    panic(<span class="string">&quot;filedup&quot;</span>);</span><br><span class="line">  f-&gt;ref++;</span><br><span class="line">  release(&amp;ftable.lock);</span><br><span class="line">  <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上就是<code>dup</code>的实现过程。</p>
+<p><code>dup2</code>函数跟<code>dup</code>函数相似，但<code>dup2</code>函数允许调用者规定一个有效描述符和目标描述符的id。<code>dup2</code>函数成功返回时，目标描述符（<code>dup2</code>函数的第二个参数）将变成源描述符（<code>dup2</code>函数的第一个参数）的复制品，换句话说，两个文件描述符现在都指向同一个文件，并且是函数第一个参数指向的文件。</p>
+<p>而实现<code>dup2</code>函数就需要将第二个参数的文件描述符指向第一个参数的文件描述符，并将第二个文件描述符所指向的文件关掉。因此需要接受两个文件，老文件和新文件：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">file</span> *<span class="title">oldfile</span>, *<span class="title">newfile</span>;</span></span><br></pre></td></tr></table></figure>
+<p>其中，当有用户态切换到内核态时，新文件是第一个参数，老文件在第二个参数，因此新文件先被压入栈中，老文件后被压入栈中，因此我们需要先对参数进行判断并且取出文件描述符：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(argfd(<span class="number">0</span>, <span class="number">0</span>, &amp;oldfile) &lt; <span class="number">0</span> )&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(argint(<span class="number">1</span>, &amp;newfd) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>其中，我们需要通过<code>argfd</code>函数来获取已经打开了的老文件，通过<code>argint</code>来获取新文件的文件描述符。</p>
+<p>接下来需要判断新文件描述符是否超出范围：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(newfd &lt; <span class="number">0</span> || newfd &gt;= NOFILE)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>最后则将新的文件描述符指向老文件，需要注意的是，这里也需要进行一些不合理情况的判断：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(currproc-&gt;ofile[newfd] == <span class="number">0</span>)&#123;</span><br><span class="line">    currproc-&gt;ofile[newfd] = oldfile;</span><br><span class="line">    filedup(oldfile);</span><br><span class="line">    <span class="keyword">return</span> newfd;</span><br><span class="line"></span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span>(argfd(<span class="number">1</span>, &amp;newfd, &amp;newfile) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(oldfile == newfile)&#123;</span><br><span class="line">    <span class="keyword">return</span> newfd;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(oldfile-&gt;ref &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    fileclose(oldfile);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  currproc-&gt;ofile[newfd] = oldfile;</span><br><span class="line">  filedup(oldfile);</span><br><span class="line">  <span class="keyword">return</span> newfd;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>C/C++</tag>
+        <tag>操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计算机系统基础大作业</title>
     <url>/2020/06/02/CS-System-Final-Work/</url>
     <content><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
@@ -1730,8 +1730,8 @@ dp[i-1][j] \quad|\quad dp[i-1][j-nums[i]]
         <category>技术</category>
       </categories>
       <tags>
-        <tag>CSAPP</tag>
         <tag>Linux</tag>
+        <tag>CSAPP</tag>
       </tags>
   </entry>
   <entry>
