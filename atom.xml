@@ -6,7 +6,7 @@
   <link href="http://blog.kuangjux.top/atom.xml" rel="self"/>
   
   <link href="http://blog.kuangjux.top/"/>
-  <updated>2021-06-06T12:41:38.450Z</updated>
+  <updated>2021-06-09T08:44:27.263Z</updated>
   <id>http://blog.kuangjux.top/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mini MIPS 32-bits CPU</title>
+    <link href="http://blog.kuangjux.top/2021/06/09/Mini-MIPS-32-bits-CPU/"/>
+    <id>http://blog.kuangjux.top/2021/06/09/Mini-MIPS-32-bits-CPU/</id>
+    <published>2021-06-09T08:30:17.000Z</published>
+    <updated>2021-06-09T08:44:27.263Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="计算机体系结构" scheme="http://blog.kuangjux.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>武侠已死</title>
@@ -516,35 +541,6 @@
     <category term="杂论" scheme="http://blog.kuangjux.top/tags/%E6%9D%82%E8%AE%BA/"/>
     
     <category term="教育" scheme="http://blog.kuangjux.top/tags/%E6%95%99%E8%82%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NEMU PA3</title>
-    <link href="http://blog.kuangjux.top/2020/12/09/NEMU%20PA3/"/>
-    <id>http://blog.kuangjux.top/2020/12/09/NEMU%20PA3/</id>
-    <published>2020-12-09T15:25:09.792Z</published>
-    <updated>2021-02-15T07:47:50.959Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="Linux" scheme="http://blog.kuangjux.top/tags/Linux/"/>
-    
-    <category term="CSAPP" scheme="http://blog.kuangjux.top/tags/CSAPP/"/>
-    
-    <category term="C/C++" scheme="http://blog.kuangjux.top/tags/C-C/"/>
     
   </entry>
   
