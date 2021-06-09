@@ -100,6 +100,35 @@
       </tags>
   </entry>
   <entry>
+    <title>xv6-rust锁机制</title>
+    <url>/2021/06/09/xv6-rust-lock/</url>
+    <content><![CDATA[<h1 id="锁"><a class="markdownIt-Anchor" href="#锁"></a> 锁</h1>
+<h2 id="自旋锁spinlock"><a class="markdownIt-Anchor" href="#自旋锁spinlock"></a> 自旋锁（Spinlock）</h2>
+<p>我们实现的自旋锁的定义如下：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug,Default)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Spinlock</span></span>&lt;T: ?<span class="built_in">Sized</span>&gt;&#123;</span><br><span class="line">    locked:AtomicBool,</span><br><span class="line">    name: &amp;<span class="symbol">&#x27;static</span> <span class="built_in">str</span>,</span><br><span class="line">    cpu_id: Cell&lt;<span class="built_in">isize</span>&gt;,</span><br><span class="line">    data:UnsafeCell&lt;T&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>locked</code>由<code>core::atmoic::AtomicBool</code>来声明，这是一个原子布尔类型，即这是一个线程安全的值。而data的值则有<code>UnsafeCell</code>来包裹（wrap），这表明将有一些不安全的操作将作用在内部包裹的值中，使用该类型我们将没有办法获取内部变量的可变引用。我们可以通过<code>.get()</code>方法获取<code>*mut T</code>来对其内部进行操作。</p>
+<p>对于一个锁变量，我们需要对其实现<code>acquire()</code>和<code>release()</code>方法：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">acquire</span></span>(&amp;<span class="keyword">self</span>) -&gt; SpinlockGuard&lt;<span class="symbol">&#x27;_</span>, T&gt; &#123;</span><br><span class="line"></span><br><span class="line">    push_off();</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">self</span>.holding() &#123;</span><br><span class="line">        <span class="built_in">panic!</span>(<span class="string">&quot;acquire&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">self</span>.locked.swap(<span class="literal">true</span>, Ordering::Acquire)&#123;</span><br><span class="line">        <span class="comment">// Now we signals the processor that it is inside a busy-wait spin-loop </span></span><br><span class="line">        spin_loop();</span><br><span class="line">    &#125;</span><br><span class="line">    fence(Ordering::SeqCst);</span><br><span class="line">    <span class="keyword">unsafe</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.cpu_id.set(cpuid() <span class="keyword">as</span> <span class="built_in">isize</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    SpinlockGuard&#123;spinlock: &amp;<span class="keyword">self</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">release</span></span>(&amp;<span class="keyword">self</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> !<span class="keyword">self</span>.holding() &#123;</span><br><span class="line">        <span class="built_in">panic!</span>(<span class="string">&quot;release&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">self</span>.cpu_id.set(-<span class="number">1</span>);</span><br><span class="line">    fence(Ordering::SeqCst);</span><br><span class="line">    <span class="keyword">self</span>.locked.store(<span class="literal">false</span>, Ordering::Release);</span><br><span class="line"></span><br><span class="line">    pop_off();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在我们的实现中，对于<code>acquire</code>方法，我们首先需要关闭中断并等待获取锁变量并对其进行原子上锁操作，在对变量上锁之后返回一个<code>SpinlockGuard</code>变量。</p>
+<p>而对于<code>release</code>方法，我们则首先需要判断当前锁的状态，当锁为<code>acquire</code>状态时我们将其解锁并进行开启中断。</p>
+<p>而<code>SpinlockGuard</code>的定义如下：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">SpinlockGuard</span></span>&lt;<span class="symbol">&#x27;a</span>, T&gt;&#123;</span><br><span class="line">    spinlock:&amp;<span class="symbol">&#x27;a</span> Spinlock&lt;T&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>锁守卫者返回一个锁变量供获得锁的线程进行操作。同时我们对解引用操作符进行重载，从而能够使得获得锁的线程调用data的方法进行操作:</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">impl</span>&lt;T&gt; Deref <span class="keyword">for</span> SpinlockGuard&lt;<span class="symbol">&#x27;_</span>, T&gt;&#123;</span><br><span class="line">    <span class="class"><span class="keyword">type</span> <span class="title">Target</span></span> = T;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">deref</span></span>(&amp;<span class="keyword">self</span>) -&gt; &amp;Self::Target &#123;</span><br><span class="line">        <span class="keyword">unsafe</span>&#123;</span><br><span class="line">            &amp;*<span class="keyword">self</span>.spinlock.data.get()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;   </span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span>&lt;T&gt; DerefMut <span class="keyword">for</span> SpinlockGuard&lt;<span class="symbol">&#x27;_</span>, T&gt;&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">deref_mut</span></span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) -&gt; &amp;<span class="keyword">mut</span> Self::Target&#123;</span><br><span class="line">        <span class="keyword">unsafe</span>&#123;</span><br><span class="line">            &amp;<span class="keyword">mut</span> *<span class="keyword">self</span>.spinlock.data.get()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="睡眠锁sleeplock"><a class="markdownIt-Anchor" href="#睡眠锁sleeplock"></a> 睡眠锁（Sleeplock）</h2>
+<p>待开发…</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+        <tag>RISC -V</tag>
+        <tag>操作系统</tag>
+        <tag>xv6-rust</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Mini MIPS 32-bits CPU</title>
     <url>/2021/06/09/Mini-MIPS-32-bits-CPU/</url>
     <content><![CDATA[<h1 id="mini-mips-32-bits-cpu"><a class="markdownIt-Anchor" href="#mini-mips-32-bits-cpu"></a> Mini MIPS 32-bits CPU</h1>
@@ -375,16 +404,16 @@
         <category>技术</category>
       </categories>
       <tags>
+        <tag>Rust</tag>
         <tag>RISC -V</tag>
         <tag>操作系统</tag>
         <tag>xv6-rust</tag>
       </tags>
   </entry>
   <entry>
-    <title>如何不使用SBI在OS中关闭QEMU</title>
+    <title>xv6-rust关机机制</title>
     <url>/2021/04/14/shutdown-without-SBI-in-OS/</url>
-    <content><![CDATA[<p><img src="/2021/04/14/shutdown-without-SBI-in-OS/1.jpg" alt></p>
-<p>之前在做rCore的时候发现里面的<code>panic()</code>会直接调用sbi_call直接实现<code>shutdown()</code>。由于这次我自己写的OS自己写的bootloader没有使用SBI，于是想去自己去实现一个<code>shutdown</code>的功能。</p>
+    <content><![CDATA[<p>之前在做rCore的时候发现里面的<code>panic()</code>会直接调用sbi_call直接实现<code>shutdown()</code>。由于这次我自己写的OS自己写的bootloader没有使用SBI，于是想去自己去实现一个<code>shutdown</code>的功能。</p>
 <p>由于我用的是<code>QEMU</code>来做硬件模拟，于是我去看了一下RustSBI关于<code>shutdown</code>的处理部分：</p>
 <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">handle_ecall</span></span>(extension: <span class="built_in">usize</span>, function: <span class="built_in">usize</span>, param: [<span class="built_in">usize</span>; <span class="number">5</span>]) -&gt; SbiRet &#123;</span><br><span class="line">    <span class="keyword">match</span> extension &#123;</span><br><span class="line">        EXTENSION_RFENCE =&gt; rfence::handle_ecall_rfence(function, param[<span class="number">0</span>], param[<span class="number">1</span>], param[<span class="number">2</span>], param[<span class="number">3</span>], param[<span class="number">4</span>]),</span><br><span class="line">        EXTENSION_TIMER =&gt; <span class="keyword">match</span> () &#123;</span><br><span class="line">            <span class="meta">#[cfg(target_pointer_width = <span class="meta-string">&quot;64&quot;</span>)]</span></span><br><span class="line">            () =&gt; timer::handle_ecall_timer_64(function, param[<span class="number">0</span>]),</span><br><span class="line">            <span class="meta">#[cfg(target_pointer_width = <span class="meta-string">&quot;32&quot;</span>)]</span></span><br><span class="line">            () =&gt; timer::handle_ecall_timer_32(function, param[<span class="number">0</span>], param[<span class="number">1</span>]),</span><br><span class="line">        &#125;,</span><br><span class="line">        EXTENSION_IPI =&gt; ipi::handle_ecall_ipi(function, param[<span class="number">0</span>], param[<span class="number">1</span>]),</span><br><span class="line">        EXTENSION_BASE =&gt; base::handle_ecall_base(function, param[<span class="number">0</span>]),</span><br><span class="line">        EXTENSION_HSM =&gt; hsm::handle_ecall_hsm(function, param[<span class="number">0</span>], param[<span class="number">1</span>], param[<span class="number">2</span>]),</span><br><span class="line">        EXTENSION_SRST =&gt; srst::handle_ecall_srst(function, param[<span class="number">0</span>], param[<span class="number">1</span>]),</span><br><span class="line">        LEGACY_SET_TIMER =&gt; <span class="keyword">match</span> () &#123;</span><br><span class="line">            <span class="meta">#[cfg(target_pointer_width = <span class="meta-string">&quot;64&quot;</span>)]</span></span><br><span class="line">            () =&gt; legacy::set_timer_64(param[<span class="number">0</span>]),</span><br><span class="line">            <span class="meta">#[cfg(target_pointer_width = <span class="meta-string">&quot;32&quot;</span>)]</span></span><br><span class="line">            () =&gt; legacy::set_timer_32(param[<span class="number">0</span>], param[<span class="number">1</span>]),</span><br><span class="line">        &#125;</span><br><span class="line">        .legacy_void(param[<span class="number">0</span>], param[<span class="number">1</span>]),</span><br><span class="line">        LEGACY_CONSOLE_PUTCHAR =&gt; legacy::console_putchar(param[<span class="number">0</span>]).legacy_void(param[<span class="number">0</span>], param[<span class="number">1</span>]),</span><br><span class="line">        LEGACY_CONSOLE_GETCHAR =&gt; legacy::console_getchar().legacy_return(param[<span class="number">1</span>]),</span><br><span class="line">        LEGACY_SEND_IPI =&gt; legacy::send_ipi(param[<span class="number">0</span>]).legacy_void(param[<span class="number">0</span>], param[<span class="number">1</span>]),</span><br><span class="line">        LEGACY_SHUTDOWN =&gt; legacy::shutdown().legacy_void(param[<span class="number">0</span>], param[<span class="number">1</span>]),</span><br><span class="line">        _ =&gt; SbiRet::not_supported(),</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[inline]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">shutdown</span></span>() -&gt; SbiRet &#123;</span><br><span class="line">    crate::reset::legacy_reset()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -411,6 +440,7 @@
         <category>技术</category>
       </categories>
       <tags>
+        <tag>Rust</tag>
         <tag>RISC -V</tag>
         <tag>操作系统</tag>
         <tag>xv6-rust</tag>

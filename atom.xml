@@ -6,7 +6,7 @@
   <link href="http://blog.kuangjux.top/atom.xml" rel="self"/>
   
   <link href="http://blog.kuangjux.top/"/>
-  <updated>2021-06-09T08:50:52.071Z</updated>
+  <updated>2021-06-09T10:33:07.089Z</updated>
   <id>http://blog.kuangjux.top/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>xv6-rust锁机制</title>
+    <link href="http://blog.kuangjux.top/2021/06/09/xv6-rust-lock/"/>
+    <id>http://blog.kuangjux.top/2021/06/09/xv6-rust-lock/</id>
+    <published>2021-06-09T10:29:39.000Z</published>
+    <updated>2021-06-09T10:33:07.089Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Rust" scheme="http://blog.kuangjux.top/tags/Rust/"/>
+    
+    <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
+    
+    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="xv6-rust" scheme="http://blog.kuangjux.top/tags/xv6-rust/"/>
+    
+  </entry>
   
   <entry>
     <title>Mini MIPS 32-bits CPU</title>
@@ -100,7 +131,7 @@
     <link href="http://blog.kuangjux.top/2021/05/03/xv6-rust-interrupt/"/>
     <id>http://blog.kuangjux.top/2021/05/03/xv6-rust-interrupt/</id>
     <published>2021-05-03T08:03:36.000Z</published>
-    <updated>2021-06-09T08:52:34.367Z</updated>
+    <updated>2021-06-09T10:31:38.683Z</updated>
     
     
       
@@ -115,6 +146,8 @@
     
     <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
+    
+    <category term="Rust" scheme="http://blog.kuangjux.top/tags/Rust/"/>
     
     <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
     
@@ -125,11 +158,11 @@
   </entry>
   
   <entry>
-    <title>如何不使用SBI在OS中关闭QEMU</title>
+    <title>xv6-rust关机机制</title>
     <link href="http://blog.kuangjux.top/2021/04/14/shutdown-without-SBI-in-OS/"/>
     <id>http://blog.kuangjux.top/2021/04/14/shutdown-without-SBI-in-OS/</id>
     <published>2021-04-14T07:59:19.000Z</published>
-    <updated>2021-05-11T15:05:56.898Z</updated>
+    <updated>2021-06-09T10:32:16.019Z</updated>
     
     
       
@@ -144,6 +177,8 @@
     
     <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
+    
+    <category term="Rust" scheme="http://blog.kuangjux.top/tags/Rust/"/>
     
     <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
     
@@ -518,33 +553,6 @@
     <category term="C/C++" scheme="http://blog.kuangjux.top/tags/C-C/"/>
     
     <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>我为什么讨厌考试</title>
-    <link href="http://blog.kuangjux.top/2020/12/22/Hate-exam/"/>
-    <id>http://blog.kuangjux.top/2020/12/22/Hate-exam/</id>
-    <published>2020-12-22T11:50:59.984Z</published>
-    <updated>2021-02-15T05:05:21.437Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    <category term="杂文" scheme="http://blog.kuangjux.top/categories/%E6%9D%82%E6%96%87/"/>
-    
-    
-    <category term="杂论" scheme="http://blog.kuangjux.top/tags/%E6%9D%82%E8%AE%BA/"/>
-    
-    <category term="教育" scheme="http://blog.kuangjux.top/tags/%E6%95%99%E8%82%B2/"/>
     
   </entry>
   
