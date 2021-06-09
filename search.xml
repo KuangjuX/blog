@@ -375,9 +375,9 @@
         <category>技术</category>
       </categories>
       <tags>
+        <tag>RISC -V</tag>
         <tag>操作系统</tag>
         <tag>xv6-rust</tag>
-        <tag>RISC-V</tag>
       </tags>
   </entry>
   <entry>
