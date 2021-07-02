@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>使用Rust一步步实现一个FAT32文件系统 | KuangjuX(狂且)</title><meta name="author" content="KuangjuX"><meta name="copyright" content="KuangjuX"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="FAT文件系统知识概览 文件，其实就是数据。数据在计算机内以 0&#x2F;1 表示，最基本的单位是bit（比特）。8 bit &#x3D; 1 Byte，1024 Byte &#x3D; 1 KB，1024 KB &#x3D; 1 MB，如此如此。文件内容也是若干01串的组合。在读写文件的时候，我们会调用 kernel 中的函数 read()&#x2F;write()，它们接受文件的描述符，然后读&#x2F;写指定长度的数据。所有数据也都是 0&#x2F;1 的">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta property="og:type" content="article">
+<meta property="og:title" content="使用Rust一步步实现一个FAT32文件系统">
+<meta property="og:url" content="http://blog.kuangjux.top/2021/07/02/implement-FAT32-FS-step-by-step/">
+<meta property="og:site_name" content="KuangjuX(狂且)">
+<meta property="og:description" content="FAT文件系统知识概览 文件，其实就是数据。数据在计算机内以 0&#x2F;1 表示，最基本的单位是bit（比特）。8 bit &#x3D; 1 Byte，1024 Byte &#x3D; 1 KB，1024 KB &#x3D; 1 MB，如此如此。文件内容也是若干01串的组合。在读写文件的时候，我们会调用 kernel 中的函数 read()&#x2F;write()，它们接受文件的描述符，然后读&#x2F;写指定长度的数据。所有数据也都是 0&#x2F;1 的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/KuangjuX/Blog-Images/blob/main/computer-backtrace.jpg?raw=true">
+<meta property="article:published_time" content="2021-07-02T14:25:19.000Z">
+<meta property="article:modified_time" content="2021-07-02T14:42:51.287Z">
+<meta property="article:author" content="KuangjuX">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/KuangjuX/Blog-Images/blob/main/computer-backtrace.jpg?raw=true"><link rel="shortcut icon" href="/img/KuangjuX.png"><link rel="canonical" href="http://blog.kuangjux.top/2021/07/02/implement-FAT32-FS-step-by-step/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-07-02 22:42:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="KuangjuX(狂且)" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/KuangjuX.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">51</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">35</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw video-camera"></i><span> Movies</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw book"></i><span> Books</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://github.com/KuangjuX/Blog-Images/blob/main/computer-backtrace.jpg?raw=true)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">KuangjuX(狂且)</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw video-camera"></i><span> Movies</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw book"></i><span> Books</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">使用Rust一步步实现一个FAT32文件系统</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-07-02T14:25:19.000Z" title="Created 2021-07-02 22:25:19">2021-07-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-07-02T14:42:51.287Z" title="Updated 2021-07-02 22:42:51">2021-07-02</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="fat文件系统知识概览"><a class="markdownIt-Anchor" href="#fat文件系统知识概览"></a> FAT文件系统知识概览</h1>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><p>文件，其实就是数据。数据在计算机内以 0/1 表示，最基本的单位是bit（比特）。8 bit = 1 Byte，1024 Byte = 1 KB，1024 KB = 1 MB，如此如此。文件内容也是若干01串的组合。在读写文件的时候，我们会调用 kernel 中的函数 read()/write()，它们接受文件的描述符，然后读/写指定长度的数据。所有数据也都是 0/1 的形式，只不过我们在运用这些函数的时候，这些数据被转成了更加高级的表示，例如 char，int 或者其他类型。</p>
+<h2 id="磁盘是什么"><a class="markdownIt-Anchor" href="#磁盘是什么"></a> 磁盘是什么</h2>
+<p>现在的硬盘容量已经达到了TB的级别，它们的物理实现与原理又是怎样的呢？我就简单地带过一下，具体细节可以去 <a target="_blank" rel="noopener" href="http://www.explainthatstuff.com/harddrive.html">How a hard disk work?</a>，里面很简洁地说明了他的工作原理。</p>
+<p>磁盘最重要的就是扇面，扇面上面有一圈圈的磁道，这些磁道中储存着信息。如何进行读写呢？物理层面上，是通过用磁头改变磁道中每个存储单元的极性来实现的。</p>
+<p>磁盘中的物理储存单位叫做sector(扇区)，而文件系统中一个储存单位叫做block(FAT系统叫cluster)，每一个cluster对应1到多个扇区。维基上有更详细的解释 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Disk_sector">Disk Sector</a></p>
+<h2 id="fat32-的文件存储"><a class="markdownIt-Anchor" href="#fat32-的文件存储"></a> FAT32 的文件存储</h2>
+<p>平常操作文件的时候，例如你打开一个doc文件，增加一些内容然后保存，或者删除某个文件到回收站，它们的内部操作是如何实现的呢？不同的文件系统有不同的实现方式。但所有的操作都离不开存储作为基础，问题来了：如何设计一个文件系统，让它既能高效读写文件，又能快速对文件定位？</p>
+<p>我们来看看最原始的想法：直接连续添加，也就是把文件一个挨着一个地加到储存空间（硬盘）中去。但是，这样实现，既不利于查找，也不利于删除、添加与修改。想一想，如果把一些文件删除，就会产生缺口，再次添加文件的时候，单独的缺口可能不足以容纳新的文件，从而产生浪费。而且只要查找某个文件，就需要遍历所有的文件结构，这个是要花相当长的时间。</p>
+<p>我们来看一看 FAT32 的实现方式：它将储存空间分成了一个个小块(cluster),存储文件的时候，会把文件切分成对应长度的小块，然后填充到硬盘中去：</p>
+<p>这样一来，我们就不用担心文件太大以至于不能放进缺口中，因为我们可以把一部分小块放在一个缺口，把另一部分小块放在另外的地方，这样很高效地利用了磁盘的空间。</p>
+<p>第二个概念，FAT32  采用了链表的数据结构。也就是说，磁盘中的每一个 cluster 都是链表中的一个节点，它们记录着下一个 cluster 的位置（next pointer）。什么叫下一个 cluster？如果一个文件被放在了储存空间中，如果他所占用了超过一个cluster，那么我们就需要把这些cluster连接起来。FAT32中，只记录了每一个文件开始的cluster，所以我们需要用链表来完成访问整个文件的操作。</p>
+<p>用来存储这个链表信息的表格叫做FAT(FILE ALLOCATE TABLE),真正存放数据的地方与FAT是相互分离的。FAT的作用就是方便查找。</p>
+<p>接下来我们看看，删除的操作。这会引出另一个专有结构：FILE ENTRY</p>
+<p>首先你来回想一下，删除文件和写入一个新的文件（比如复制粘贴），哪个更快些？删除。几乎是互逆过程，为何时间不同？实际上，在你删除文件的时候，文件系统并没有真正地把数据从磁盘上抹去（这也是为什么我们有希望恢复删除文件的原因），而只是修改了它的FILE ENTRY信息。</p>
+<p>何谓FILE ENTRY?简单些讲，就是记录文件属性的一个小结构。它们被统一存储在ROOT DIRECTORY中。我们先看一下 FAT32 的磁盘整体面貌</p>
+<p><img src="/2021/07/02/implement-FAT32-FS-step-by-step/fat32_structure_1.png" alt></p>
+<p>我们先忽略最前面的几个sector，从FAT看起。一个FAT系统有若干个FAT结构（因为磁盘大小不同，所需要的链表节点数也不同），紧挨FAT区域的是ROOT DIRECTORY,它是整个磁盘的目录结构，而这之中存储的就是我们说的FILE ENTRY,也就是每个文件的属性。ROOT DIRECTORY后，才是真正地DATA FIELD，用来存储真正地文件内容。</p>
+<p>在我们查看某个文件信息而非打开它时，我们并不需要直接访问文件的数据。文件系统会在ROOT DIRECTORY找到相应的FILE ENTRY，然后把相关信息显示出来。这包括：文件名，创建、修改时间，文件大小，文件的第一个cluster的位置，只读/隐藏等等。请注意，文件夹在文件系统中也表示成一个文件，也有相应的FILE ENTRY，只是他们储存的是一批文件而已(FILE ENTRY中会有相应的标志显示是否是文件夹)。</p>
+<p>回到我们删除文件的话题，当一个文件被删除的时候，系统会找到相应的FILE ENTRY，把文件名第一个字符改为0xE5——完毕。就是这么简单，只是把文件属性修改，一点内部数据都没有改动。这时候如果我们再添加一个文件进去，由于系统会通过查找ROOT DIRECTORY来确定可用的空间，因此如果发现一些FILE ENTRY文件名是未分配或者已经删除的标志，那么对应的cluster就会被占用。但是在被覆盖之前，这些删除的文件依然存在在你的硬盘里（只是你丢失了如何获取他们信息的渠道）。这就是为什么删除要更快些。</p>
+<h1 id="引用"><a class="markdownIt-Anchor" href="#引用"></a> 引用</h1>
+<p><a target="_blank" rel="noopener" href="https://drustz.com/posts/2015/11/17/filesystem/">一步一步了解FAT32文件系统</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">KuangjuX</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://blog.kuangjux.top/2021/07/02/implement-FAT32-FS-step-by-step/">http://blog.kuangjux.top/2021/07/02/implement-FAT32-FS-step-by-step/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://github.com/KuangjuX/Blog-Images/blob/main/computer-backtrace.jpg?raw=true" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/06/09/xv6-rust-lock/"><img class="next-cover" src="https://github.com/KuangjuX/Blog-Images/blob/main/shutdown.jpg?raw=true" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">xv6-rust锁机制</div></div></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/KuangjuX.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">KuangjuX</div><div class="author-info__description">狂且的人文及技术博客</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">51</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">35</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/KuangjuX"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/KuangjuX" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/zhjyyjjmjy666@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">风声雨声读书声，声声入耳 </br> 家事国事天下事，事事关心</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#fat%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E6%A6%82%E8%A7%88"><span class="toc-text"> FAT文件系统知识概览</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text"> 磁盘是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fat32-%E7%9A%84%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8"><span class="toc-text"> FAT32 的文件存储</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-text"> 引用</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/07/02/implement-FAT32-FS-step-by-step/" title="使用Rust一步步实现一个FAT32文件系统"><img src="https://github.com/KuangjuX/Blog-Images/blob/main/computer-backtrace.jpg?raw=true" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用Rust一步步实现一个FAT32文件系统"/></a><div class="content"><a class="title" href="/2021/07/02/implement-FAT32-FS-step-by-step/" title="使用Rust一步步实现一个FAT32文件系统">使用Rust一步步实现一个FAT32文件系统</a><time datetime="2021-07-02T14:25:19.000Z" title="Created 2021-07-02 22:25:19">2021-07-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/09/xv6-rust-lock/" title="xv6-rust锁机制"><img src="https://github.com/KuangjuX/Blog-Images/blob/main/shutdown.jpg?raw=true" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="xv6-rust锁机制"/></a><div class="content"><a class="title" href="/2021/06/09/xv6-rust-lock/" title="xv6-rust锁机制">xv6-rust锁机制</a><time datetime="2021-06-09T10:29:39.000Z" title="Created 2021-06-09 18:29:39">2021-06-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/09/Mini-MIPS-32-bits-CPU/" title="Mini MIPS 32-bits CPU"><img src="https://github.com/KuangjuX/Blog-Images/blob/main/wallhaven-492jmd.png?raw=true" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mini MIPS 32-bits CPU"/></a><div class="content"><a class="title" href="/2021/06/09/Mini-MIPS-32-bits-CPU/" title="Mini MIPS 32-bits CPU">Mini MIPS 32-bits CPU</a><time datetime="2021-06-09T08:30:17.000Z" title="Created 2021-06-09 16:30:17">2021-06-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/06/hero-die-now/" title="武侠已死"><img src="https://github.com/KuangjuX/Blog-Images/blob/main/wallhaven-95kepd.jpg?raw=true" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="武侠已死"/></a><div class="content"><a class="title" href="/2021/06/06/hero-die-now/" title="武侠已死">武侠已死</a><time datetime="2021-06-06T11:16:56.000Z" title="Created 2021-06-06 19:16:56">2021-06-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/21/sad-in-521/" title="520与伤春悲秋与杂感"><img src="https://github.com/KuangjuX/Blog-Images/blob/main/wallhaven-x16oxo.jpg?raw=true" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="520与伤春悲秋与杂感"/></a><div class="content"><a class="title" href="/2021/05/21/sad-in-521/" title="520与伤春悲秋与杂感">520与伤春悲秋与杂感</a><time datetime="2021-05-21T14:55:57.000Z" title="Created 2021-05-21 22:55:57">2021-05-21</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By KuangjuX</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="icp"><a><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>津ICP备20003770号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
