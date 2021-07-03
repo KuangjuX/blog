@@ -6,7 +6,7 @@
   <link href="http://blog.kuangjux.top/atom.xml" rel="self"/>
   
   <link href="http://blog.kuangjux.top/"/>
-  <updated>2021-07-02T14:42:51.287Z</updated>
+  <updated>2021-07-03T13:25:24.676Z</updated>
   <id>http://blog.kuangjux.top/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>使用Rust一步步实现一个FAT32文件系统</title>
+    <title>使用Rust实现FAT32文件系统</title>
     <link href="http://blog.kuangjux.top/2021/07/02/implement-FAT32-FS-step-by-step/"/>
     <id>http://blog.kuangjux.top/2021/07/02/implement-FAT32-FS-step-by-step/</id>
     <published>2021-07-02T14:25:19.000Z</published>
-    <updated>2021-07-02T14:42:51.287Z</updated>
+    <updated>2021-07-03T13:25:24.676Z</updated>
     
     
       
