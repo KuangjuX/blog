@@ -153,13 +153,64 @@
 <p>我们使用如下结构来描述 BPB 的结构：</p>
 <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">BiosParameterBlock</span></span> &#123;</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) bytes_per_sector: <span class="built_in">u16</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) sectors_per_cluster: <span class="built_in">u16</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) reversed_sector: <span class="built_in">u16</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) fats: <span class="built_in">u8</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) root_entries: <span class="built_in">u16</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) total_sectors_16: <span class="built_in">u16</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) media: <span class="built_in">u8</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) sectors_per_fat_16: <span class="built_in">u16</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) sectors_per_track: <span class="built_in">u16</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) heads: <span class="built_in">u16</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) hidden_sectors: <span class="built_in">u32</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) total_sectors_32: <span class="built_in">u32</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Extended BIOS Paramter Block</span></span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) sectors_per_fat_32: <span class="built_in">u32</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) extended_flags: <span class="built_in">u16</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) fs_version: <span class="built_in">u16</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) root_dir_first_cluster: <span class="built_in">u32</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) fs_info_sector: <span class="built_in">u16</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) backup_boot_sector: <span class="built_in">u16</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) reserved_0: [<span class="built_in">u8</span>;<span class="number">12</span>],</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) drive_num: <span class="built_in">u8</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) ext_sig: <span class="built_in">u8</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) volume_id: <span class="built_in">u32</span>,</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) volume_label: [<span class="built_in">u8</span>;<span class="number">11</span>],</span><br><span class="line">    <span class="keyword">pub</span>(<span class="keyword">crate</span>) fs_type_label: [<span class="built_in">u8</span>;<span class="number">8</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>由于启动扇区位于数据卷第0个簇( cluster )，因此我们只需将其读出来并按照内存布局读取相应的域即可，不需要传入对应的位置。</p>
+<p><strong>BIOSParameterBlock 一些 field 的说明：</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bytes_per_sector</td>
+<td>每个sector 的字节数，仅适用以下值：512/1024/2048/4096</td>
+</tr>
+<tr>
+<td>sectors_per_cluster</td>
+<td>每个 cluster 中的 sector 数， 此值必须是2的幂，合法值为2/4/8/16/32/64/128，不能另每个 cluster 的字节数大于32K</td>
+</tr>
+<tr>
+<td>reserved_sector</td>
+<td>从卷的第一个 sector 开始的 voulme 保留区域中的保留 sector 数目，该字段不得为0，对于 FAT32 来说，此值通常为32。</td>
+</tr>
+<tr>
+<td>fat_nums</td>
+<td>在 volume 上 FAT32 sector 的计数，理论上任何大于等于1的值都有效，但推荐设置为2</td>
+</tr>
+<tr>
+<td>root_entry_cnt</td>
+<td>对于 FAT32 来说此值应设置为0</td>
+</tr>
+<tr>
+<td>fat_size</td>
+<td>对于 FAT32 来说此值应为32（每个 FAT entry 有32 bits）</td>
+</tr>
+<tr>
+<td>root_cluster</td>
+<td>root cluster 的 cluster 号， 仅在 FAT32 文件系统中存在，通常设置为2， 但不强制要求为2</td>
+</tr>
+<tr>
+<td>root_dir_sector</td>
+<td>0</td>
+</tr>
+<tr>
+<td>volume_id</td>
+<td>volume id，通过该值与 volume_label 一起可支持可移动媒体上的卷跟踪，这些值允许 FAT 文件系统驱动程序检测到错误的磁盘插入到可移动驱动器中，这个 ID 是通常简单地将当前时期和时间组合成一个32位的值来生成</td>
+</tr>
+<tr>
+<td>volume_label</td>
+<td>该字段与在根目录中的11字节的 volume label 相匹配。FAT 文件系统驱动程序应确保在根目录中的 volume label 更改或创建其名称时更新此字段。 当没有卷标时，此字段的设置是字符串 “No Name”</td>
+</tr>
+</tbody>
+</table>
 <h2 id="root-directory"><a class="markdownIt-Anchor" href="#root-directory"></a> Root Directory</h2>
 <p>在获得 boot sector 的信息后，我们就可以读取 Root Directory的结构了。由于在 boot sector 中已经有了 FAT 占用 cluster 总数以及 reserved clusters 总数的信息，因此我们可以越过前面这些簇找到 Root Directory, 因此在我们的实现中定义了如下方法：</p>
 <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// Get the first sector offset bytes of the cluster from the cluster number</span></span><br><span class="line"><span class="keyword">pub</span>(<span class="keyword">crate</span>) <span class="function"><span class="keyword">fn</span> <span class="title">offset</span></span>(&amp;<span class="keyword">self</span>, cluster: <span class="built_in">u32</span>) -&gt; <span class="built_in">usize</span> &#123;</span><br><span class="line">    ((<span class="keyword">self</span>.reversed_sector <span class="keyword">as</span> <span class="built_in">usize</span>)</span><br><span class="line">    + (<span class="keyword">self</span>.fats <span class="keyword">as</span> <span class="built_in">usize</span>) * (<span class="keyword">self</span>.sectors_per_fat_32 <span class="keyword">as</span> <span class="built_in">usize</span>)</span><br><span class="line">    + (cluster <span class="keyword">as</span> <span class="built_in">usize</span> - <span class="number">2</span>) * (<span class="keyword">self</span>.sectors_per_cluster <span class="keyword">as</span> <span class="built_in">usize</span>))</span><br><span class="line">    * (<span class="keyword">self</span>.bytes_per_sector <span class="keyword">as</span> <span class="built_in">usize</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="fat-and-cluster"><a class="markdownIt-Anchor" href="#fat-and-cluster"></a> FAT and Cluster</h2>
 <p>FAT(File Allocate Table) 是另一个重要的组成部分， 这个部分使用链表描述了一个文件的扩展信息。这个结构的作用是定义一个文件范围（簇链）的链表。 请注意，directroy 和 file 都包含在文件中，在 FAT 上没有什么不同。 目录实际上是一个具有特殊属性的文件，表明其内容是目录表。</p>
 <p>数据区被分成称为簇的一定数量的扇区块，数据区在这个单元中进行管理。 FAT 的每一项都与数据区中的每个簇相关联，FAT 值表示相应簇的状态。 但是，前两个 FAT 项 FAT[0] 和 FAT[1] 是保留的，不与任何簇相关联。 第三个 FAT 项 FAT[2] 是与数据区第一个簇关联的项，有效簇号从2开始。</p>
-<p>FAT 通常是为了冗余而复制的，因为任何 FAT 扇区的损坏都会导致严重的数据丢失。 BPB_NumFATs 表示的 FAT 副本数和 FAT 区域的大小变为 <code>fats * sectors_per_fat_32</code>。 FAT 驱动程序通常只引用第一个 FAT 副本，并且对 FAT 项的任何更新都反映在每个 FAT 副本中。</p>
+<p>FAT 通常是为了冗余而复制的，因为任何 FAT 扇区的损坏都会导致严重的数据丢失。 BPB_NumFATs 表示的 FAT 副本数和 FAT 区域的大小变为 <code>fat_nums * sectors_per_fat_32</code>。 FAT 驱动程序通常只引用第一个 FAT 副本，并且对 FAT 项的任何更新都反映在每个 FAT 副本中。</p>
 <p>FAT 卷上的文件由目录管理，即 32 字节目录项结构的数组。 目录条目的详细信息如下所述。 目录条目具有文件数据的文件名、文件大小、时间戳和第一个簇号。 簇号是跟随文件数据簇链的入口点。 如果文件大小为零，则第一个簇号设置为零，并且没有数据簇分配给该文件。</p>
 <p>如上所述，簇号0和1是保留的，有效簇号从2开始。簇号2对应数据区的第一个簇。 因此，在具有 N 个簇的卷中，有效的簇号是从 2 到 N+1，FAT 条目的数量是 N+2。 数据簇 N 的位置计算如下：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">FirstSectorofCluster &#x3D; DataStartSector + (N - 2) * BPB_SecPerClus;</span><br></pre></td></tr></table></figure>
@@ -227,7 +278,27 @@
 </tr>
 </tbody>
 </table>
+<p><strong>Note:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data_sectors &#x3D; total_sectors - (reserved_sectors_cnt + (fat_nums * fat_size)) -2 ?</span><br><span class="line">count_of_clusters &#x3D; data_sectors &#x2F; sectors_per_clusters</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fat_offset &#x3D; N * 4(N为簇号)</span><br><span class="line">fat_sectors_offset &#x3D; reserved_sectors_count + (fat_offset &#x2F; bytes_per_sectors)</span><br><span class="line">fat_entry_offset &#x3D; fat_offset % bytes_per_sectors</span><br></pre></td></tr></table></figure>
+<p>FAT32 Entry 的高4 bit 是不被使用的。</p>
+<p>我们知道，FAT32 文件系统数据簇的前两个簇被设置为保留的簇，那么FAT 的前两个 entry 应当被设置为什么呢？对于FAT32 文件系统来说，FAT[0] = 0x0FFFFFF8，第二个保留簇 FAT[1] 由 FORMAT 设置为 EOC 标志，对于 FAT32 来说，文件系统驱动程序可以使用 FAT[1] entry 高两位作为脏卷标志（所有其他位始终设置为1）。</p>
+<p>clean_shut_bit_mask = 0x080000000;</p>
+<ul>
+<li>bit 为 1 表明clean</li>
+<li>bit 为 0 表明 dirty</li>
+</ul>
+<p>hard_err_bit_mask = 0x04000000；</p>
+<ul>
+<li>bit 为 1 表明 没有磁盘IO错误</li>
+<li>bit 为 0 表明发生了磁盘IO错误</li>
+</ul>
+<h2 id="fat-volume-initialization"><a class="markdownIt-Anchor" href="#fat-volume-initialization"></a> FAT Volume Initialization</h2>
+<h2 id="fat-directory-structure"><a class="markdownIt-Anchor" href="#fat-directory-structure"></a> FAT Directory Structure</h2>
+<p>FAT 目录是一个文件，由一个32 bytes 所组成的线性表组成。而根目录是一个较为特殊的存在。</p>
+<p>对于 FAT32 来说， 根目录是可变大小并且是一个簇链，这点和其他的目录项相同。 FAT32 volume 根目录第一个簇存储在 root_cluster 中， 任何 FAT 类型上的根目录本身都没有任何日期或时间戳，没有文件名（隐含文件名 “/” 除外），也不包括&quot;.&quot; 和 “…”。 根目录的一个特殊之处在于他的文件设置了 volume_id_attr 属性的标志位。</p>
 <h1 id="引用"><a class="markdownIt-Anchor" href="#引用"></a> 引用</h1>
+<p><a href="https://download.microsoft.com/download/1/6/1/161ba512-40e2-4cc9-843a-923143f3456c/fatgen103.doc">FAT32 File System Specification</a></p>
 <p><a href="https://drustz.com/posts/2015/11/17/filesystem/">一步一步了解FAT32文件系统</a></p>
 <p><a href="http://elm-chan.org/docs/fat_e.html">FAT Filesystem</a></p>
 ]]></content>
