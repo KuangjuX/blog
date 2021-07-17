@@ -297,6 +297,103 @@
 <h2 id="fat-directory-structure"><a class="markdownIt-Anchor" href="#fat-directory-structure"></a> FAT Directory Structure</h2>
 <p>FAT 目录是一个文件，由一个32 bytes 所组成的线性表组成。而根目录是一个较为特殊的存在。</p>
 <p>对于 FAT32 来说， 根目录是可变大小并且是一个簇链，这点和其他的目录项相同。 FAT32 volume 根目录第一个簇存储在 root_cluster 中， 任何 FAT 类型上的根目录本身都没有任何日期或时间戳，没有文件名（隐含文件名 “/” 除外），也不包括&quot;.&quot; 和 “…”。 根目录的一个特殊之处在于他的文件设置了 volume_id_attr 属性的标志位。</p>
+<table>
+<thead>
+<tr>
+<th>域</th>
+<th>偏移量</th>
+<th>大小</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>0</td>
+<td>11</td>
+<td></td>
+</tr>
+<tr>
+<td>attribute</td>
+<td>11</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>NT_reverse</td>
+<td>12</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>creation_time_tenth</td>
+<td>13</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>creation_time</td>
+<td>14</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>creation_date</td>
+<td>16</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>last_access_date</td>
+<td>18</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>first_cluster_high</td>
+<td>20</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>write_time</td>
+<td>22</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>write_date</td>
+<td>24</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>first_cluster_low</td>
+<td>26</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>file_size</td>
+<td>28</td>
+<td>4</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note</strong></p>
+<p>name[0] = 0xE5, 表明该目录项是空的</p>
+<p>name[0] = 0x00, 同样表明目录项为空，同时目录项的剩余部分都为空</p>
+<p>name[0] = 0x05，表明该目录项表示为 0xE5 的字符</p>
+<p>接下来字符在 dir_name 中无效：</p>
+<ul>
+<li>小于 0x20 除了0x05</li>
+<li>·0x22, 0x2A, 0x2B, 0x2C, 0x2E, 0x2F, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F, 0x5B, 0x5C, 0x5D, a和 0x7C.</li>
+</ul>
+<p>当 attribute 字段为 ATTR_DIRECTORY 时表明该 entry 为一个目录 (0x10)，此时应设置 file_size 属性为0表明 file_size 不被使用，通过跟随它的 cluster 直到找到 EOC标志。</p>
+<p>一个簇分配给该目录，然后将first_cluster_low 和 first_cluster_high 设置为该簇号，并在 FAT 的该簇条目放置一个 EOC 标记。接下来，将该簇的所有字节初始化为0，如果该目录不是根目录，如果该目录不是根目录，你需要在该目录的前32字节的 Directory Entry (即刚刚分配的 cluster 的数据区域的前2个32字节区域)创建两个特殊条目。</p>
+<p>这两个目录条目即为 ‘.’ 和 ‘…’。</p>
+<h2 id="fat-long-directory-entries"><a class="markdownIt-Anchor" href="#fat-long-directory-entries"></a> FAT Long Directory Entries</h2>
 <h1 id="引用"><a class="markdownIt-Anchor" href="#引用"></a> 引用</h1>
 <p><a href="https://download.microsoft.com/download/1/6/1/161ba512-40e2-4cc9-843a-923143f3456c/fatgen103.doc">FAT32 File System Specification</a></p>
 <p><a href="https://drustz.com/posts/2015/11/17/filesystem/">一步一步了解FAT32文件系统</a></p>
