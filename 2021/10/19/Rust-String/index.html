@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Rust String 用法总结 | KuangjuX(狂且)</title><meta name="keywords" content="Rust"><meta name="author" content="KuangjuX"><meta name="copyright" content="KuangjuX"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="String + String -&gt; String:  123let s1 &#x3D; &quot;0&quot;;let s2 &#x3D; &quot;1&quot;;let s &#x3D; format!(&quot;&amp;#123;&amp;#125;&amp;#123;&amp;#125;&quot;, s1, s2);  String + &amp;str -&gt; String:  123let s1: &amp;str;le">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta property="og:type" content="article">
+<meta property="og:title" content="Rust String 用法总结">
+<meta property="og:url" content="http://blog.kuangjux.top/2021/10/19/Rust-String/">
+<meta property="og:site_name" content="KuangjuX(狂且)">
+<meta property="og:description" content="String + String -&gt; String:  123let s1 &#x3D; &quot;0&quot;;let s2 &#x3D; &quot;1&quot;;let s &#x3D; format!(&quot;&amp;#123;&amp;#125;&amp;#123;&amp;#125;&quot;, s1, s2);  String + &amp;str -&gt; String:  123let s1: &amp;str;le">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/KuangjuX/Blog-Images/blob/main/Rust.png?raw=true">
+<meta property="article:published_time" content="2021-10-19T07:25:02.000Z">
+<meta property="article:modified_time" content="2021-10-19T08:03:43.828Z">
+<meta property="article:author" content="KuangjuX">
+<meta property="article:tag" content="Rust">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/KuangjuX/Blog-Images/blob/main/Rust.png?raw=true"><link rel="shortcut icon" href="/img/KuangjuX.png"><link rel="canonical" href="http://blog.kuangjux.top/2021/10/19/Rust-String/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-10-19 16:03:43'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="KuangjuX(狂且)" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/KuangjuX.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">55</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw video-camera"></i><span> Movies</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw book"></i><span> Books</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://github.com/KuangjuX/Blog-Images/blob/main/Rust.png?raw=true)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">KuangjuX(狂且)</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw video-camera"></i><span> Movies</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw book"></i><span> Books</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">Rust String 用法总结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-10-19T07:25:02.000Z" title="Created 2021-10-19 15:25:02">2021-10-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-10-19T08:03:43.828Z" title="Updated 2021-10-19 16:03:43">2021-10-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ul>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><li>String + String -&gt; String:</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s1 = <span class="string">&quot;0&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> s2 = <span class="string">&quot;1&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> s = <span class="built_in">format!</span>(<span class="string">&quot;&#123;&#125;&#123;&#125;&quot;</span>, s1, s2);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>String + &amp;str -&gt; String:</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s1: &amp;<span class="built_in">str</span>;</span><br><span class="line"><span class="keyword">let</span> s: <span class="built_in">String</span>;</span><br><span class="line">s.push_str(s1);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>&amp;str + &amp;str -&gt; String:</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s1: &amp;<span class="built_in">str</span>;</span><br><span class="line"><span class="keyword">let</span> s2: &amp;<span class="built_in">str</span>;</span><br><span class="line"><span class="keyword">let</span> s = <span class="built_in">String</span>::from_str(s1);</span><br><span class="line">s.push_str(s2);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>String -&gt; &amp;str:</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s: <span class="built_in">String</span>;</span><br><span class="line"><span class="keyword">let</span> s1: &amp;<span class="built_in">str</span> = s.as_str();</span><br><span class="line"><span class="keyword">let</span> s2: &amp;<span class="keyword">mut</span> <span class="built_in">str</span> = s.as_mut_str();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>String -&gt; &amp;[u8]:</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s: <span class="built_in">String</span>;</span><br><span class="line"><span class="keyword">let</span> s1: &amp;[<span class="built_in">u8</span>] = s.as_bytes();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>String -&gt; &amp;mut Vec&lt; u8 &gt;</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s: <span class="built_in">String</span></span><br><span class="line"><span class="keyword">let</span> s1: &amp;<span class="keyword">mut</span> <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt; = s.as_mut_vec();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>&amp;str -&gt; String:</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s: &amp;<span class="built_in">str</span>;</span><br><span class="line"><span class="keyword">let</span> s1 = <span class="built_in">String</span>::from_str(s);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>&amp;[u8] -&gt; String:</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s: &amp;[<span class="built_in">u8</span>];</span><br><span class="line"><span class="keyword">let</span> s1 = <span class="built_in">String</span>::from_utf8_lossy(s);</span><br><span class="line"><span class="keyword">let</span> s2 = <span class="built_in">String</span>::from_utf8(s.to_vec()).unwrap();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Vec&lt; u8 &gt; -&gt; String:</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;;</span><br><span class="line"><span class="keyword">let</span> s1 = <span class="built_in">String</span>::from_utf8(s).unwrap();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过索引获取 String 中的 字符</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s: <span class="built_in">String</span>;</span><br><span class="line"><span class="keyword">let</span> c = s.chars().nth(index).unwrap();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>遍历 String</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s: <span class="built_in">String</span>;</span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> s.chars() &#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">KuangjuX</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://blog.kuangjux.top/2021/10/19/Rust-String/">http://blog.kuangjux.top/2021/10/19/Rust-String/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Rust/">Rust</a></div><div class="post_share"><div class="social-share" data-image="https://github.com/KuangjuX/Blog-Images/blob/main/Rust.png?raw=true" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/10/16/6-824-Lab2A/"><img class="next-cover" src="https://github.com/KuangjuX/Blog-Images/blob/main/Raft.png?raw=true" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">6.824 Lab2 Leader Election</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2021/06/09/xv6-rust-lock/" title="xv6-rust锁机制"><img class="cover" src="https://github.com/KuangjuX/Blog-Images/blob/main/shutdown.jpg?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-09</div><div class="title">xv6-rust锁机制</div></div></a></div><div><a href="/2021/05/03/xv6-rust-interrupt/" title="xv6-rust中断机制"><img class="cover" src="https://github.com/KuangjuX/Blog-Images/blob/main/shutdown.jpg?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-03</div><div class="title">xv6-rust中断机制</div></div></a></div><div><a href="/2021/04/14/shutdown-without-SBI-in-OS/" title="xv6-rust关机机制"><img class="cover" src="https://github.com/KuangjuX/Blog-Images/blob/main/shutdown.jpg?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-14</div><div class="title">xv6-rust关机机制</div></div></a></div><div><a href="/2021/02/19/rCore-Lab-6/" title="rCore Lab-6"><img class="cover" src="https://github.com/KuangjuX/Blog-Images/blob/main/Rust.png?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-19</div><div class="title">rCore Lab-6</div></div></a></div><div><a href="/2021/02/19/rCore-Lab-5/" title="rCore Lab-5"><img class="cover" src="https://github.com/KuangjuX/Blog-Images/blob/main/Rust.png?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-19</div><div class="title">rCore Lab-5</div></div></a></div><div><a href="/2021/02/14/rCore-Lab-4/" title="rCore Lab-4"><img class="cover" src="https://github.com/KuangjuX/Blog-Images/blob/main/Rust.png?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-14</div><div class="title">rCore Lab-4</div></div></a></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/KuangjuX.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">KuangjuX</div><div class="author-info__description">狂且的人文及技术博客</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">55</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">38</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/KuangjuX"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/KuangjuX" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/zhjyyjjmjy666@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">风声雨声读书声，声声入耳 </br> 家事国事天下事，事事关心</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/10/19/Rust-String/" title="Rust String 用法总结"><img src="https://github.com/KuangjuX/Blog-Images/blob/main/Rust.png?raw=true" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Rust String 用法总结"/></a><div class="content"><a class="title" href="/2021/10/19/Rust-String/" title="Rust String 用法总结">Rust String 用法总结</a><time datetime="2021-10-19T07:25:02.000Z" title="Created 2021-10-19 15:25:02">2021-10-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/16/6-824-Lab2A/" title="6.824 Lab2 Leader Election"><img src="https://github.com/KuangjuX/Blog-Images/blob/main/Raft.png?raw=true" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="6.824 Lab2 Leader Election"/></a><div class="content"><a class="title" href="/2021/10/16/6-824-Lab2A/" title="6.824 Lab2 Leader Election">6.824 Lab2 Leader Election</a><time datetime="2021-10-16T13:43:26.000Z" title="Created 2021-10-16 21:43:26">2021-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/16/6-824-MapReduce/" title="6.824 MapReduce"><img src="https://github.com/KuangjuX/Blog-Images/blob/main/MapReduce.png?raw=true" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="6.824 MapReduce"/></a><div class="content"><a class="title" href="/2021/10/16/6-824-MapReduce/" title="6.824 MapReduce">6.824 MapReduce</a><time datetime="2021-10-16T13:43:13.000Z" title="Created 2021-10-16 21:43:13">2021-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/07/The-forest-in-Norway/" title="挪威的森林"><img src="https://github.com/KuangjuX/Blog-Images/blob/main/The-forests-in-Norway.jpg?raw=true" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="挪威的森林"/></a><div class="content"><a class="title" href="/2021/07/07/The-forest-in-Norway/" title="挪威的森林">挪威的森林</a><time datetime="2021-07-07T13:07:40.000Z" title="Created 2021-07-07 21:07:40">2021-07-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/02/implement-FAT32-FS-step-by-step/" title="使用Rust实现FAT32文件系统"><img src="https://github.com/KuangjuX/Blog-Images/blob/main/computer-backtrace.jpg?raw=true" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用Rust实现FAT32文件系统"/></a><div class="content"><a class="title" href="/2021/07/02/implement-FAT32-FS-step-by-step/" title="使用Rust实现FAT32文件系统">使用Rust实现FAT32文件系统</a><time datetime="2021-07-02T14:25:19.000Z" title="Created 2021-07-02 22:25:19">2021-07-02</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By KuangjuX</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="icp"><a><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>津ICP备20003770号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
