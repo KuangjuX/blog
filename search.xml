@@ -105,7 +105,7 @@
     <content><![CDATA[<h2 id="一面"><a class="markdownIt-Anchor" href="#一面"></a> 一面</h2>
 <p>首先聊项目，主要让我讲了讲我 <code>xv6-rust</code> 的项目，然后讲到我用 <code>Buddy System Allocator</code> 替换了 <code>xv6-riscv</code> 的内存分配算法的时候，他问了我关于 <code>Buddy System</code> 算法相关的内容，我说伙伴内存分配算法使用多个链表和位图维护，然后举了个例子，说如果想去分配 512 bytes 的内存但是512 bytes 的链表为空，则去 1024 bytes 去找，如果 1024 bytes 的链表也为空，则向 2048 bytes 去找，找到了的话就把其分成两个 1024 bytes 的内存块，其中一块加入 1024 bytes 的链表中，另一块分为两块 512 bytes 的，一块供程序使用，另一块加入链表中，并更新位图。当回收时更新位图，并判断是否存在连续内存可以合并。</p>
 <p>之后面试官问我伙伴内存系统解决了什么问题，我说可以有效减少内存碎片，然后他问伙伴内存分配算法真的可以完全解决吗，我说应该不可以，然后他说为啥不可以，我想了会没说上来，然后他说比如 513 bytes 这种，我说这种可以 2 的幂次对齐进行分配（但当时我记错了，我应该说 <code>slab</code> 的）,之后又问我知道什么算法可以解决内存碎片，当时没想起来，其实应该是 <code>slab</code> 的2333。</p>
-<p>之后我又开始讲了锁的设计，说我使用 Rust 实现的相比于 <code>xv6-riscv</code> 可以完全实现 <code>RAII</code>,然后他问我为什么可以实现 <code>RAII</code>，我说使用了 <code>Drop</code> trait，之后问我关于 <code>spinlock</code> 和 <code>sleeploc</code>k 的区别，我说 <code>spinlock</code> 需要自旋，一直占用 CPU 的时间，所以一般是多进程/线程 访问内存的中的数据时，占用时间不长使用的，而 <code>sleeplock</code> 则是一般做 IO 这种需要较长时间的，这段时间需要把 CPU 调度出去运行其他线程，等到 IO 结束后唤醒并调度回来这个线程。</p>
+<p>之后我又开始讲了锁的设计，说我使用 Rust 实现的相比于 <code>xv6-riscv</code> 可以完全实现 <code>RAII</code>,然后他问我为什么可以实现 <code>RAII</code>，我说使用了 <code>Drop</code> trait，之后问我关于 <code>spinlock</code> 和 <code>sleeplock</code> 的区别，我说 <code>spinlock</code> 需要自旋，一直占用 CPU 的时间，所以一般是多进程/线程 访问内存的中的数据时，占用时间不长使用的，而 <code>sleeplock</code> 则是一般做 IO 这种需要较长时间的，这段时间需要把 CPU 调度出去运行其他线程，等到 IO 结束后唤醒并调度回来这个线程。</p>
 <p>之后我又介绍了一下我的进程调度和文件系统的设计，然后他问我 buffer 和 cache 的区别（比较奇怪），我说 buffer 一般是软件来做的，用在内存里，cache 一般是体系结构里的东西，一般从磁盘取出来的东西要放在 cache 里做缓存，当发现脏数据的时候需要写回磁盘中，但感觉没答到点上。</p>
 <p>之后又说了说我 <code>rCore-fat</code> 的项目，然后问了问我 <code>fat32</code> 文件系统的结构，然后问了我如何计算 <code>fat32</code> 能够存储文件的最大容量。之后又问了问我知不知道其它文件系统，我说了 <code>ext2</code> 和 <code>ext4</code>，并表示细节并不清楚。</p>
 <p>之后开始问关于 Rust 内容了，首先问我 <code>trait</code> 和 <code>dyn trait</code> 的区别是啥，我说一个是动态派发一个是静态派发。然后问我它们在编译时和运行时有啥区别，我说静态派发一般是固定类型大小的，而动态派发在运行时是有一个 <code>vtable</code> 维护的，编译时不需要知道大小是多少，再往深了问就不知道了(</p>
@@ -120,7 +120,7 @@
 <p>然后问我 <code>Send</code>, <code>Sync</code> 的问题，都答上来了。</p>
 <p>之后问我 <code>trait</code> 和 <code>trait object</code> 的问题，和一面说的差不多。</p>
 <p>之后问我如果想在函数调用前和调用后都打印消息应该怎么做，我说过程宏，他说应该怎么写，我说我不会过程宏(雾)。</p>
-<p>之后问我 <code>Box&lt;dyn(Fn() + Send + 'static)&gt;</code> 的表达式的意思，我说是做并发用的，<code>‘static</code> 是静态生命周期，因为在多线程的时候很可能主线程结束了，多线程仍然在跑，没有 'static 的话生命周期会随着主线程 drop， <code>Send</code> 是用来标记可以把其所有权传递到线程中，<code>Fn()</code> 表示用 &amp;self 当做参数，<code>dyn</code> 是因为在编译期不知道大小，需要动态派发，<code>Box</code> 是用来包裹 <code>dyn</code> 生成的胖指针的。</p>
+<p>之后问我 <code>Box&lt;dyn(Fn() + Send + 'static)&gt;</code> 的表达式的意思，我说是做并发用的，‘static 是静态生命周期，因为在多线程的时候很可能主线程结束了，多线程仍然在跑，没有 'static 的话生命周期会随着主线程 drop， <code>Send</code> 是用来标记可以把其所有权传递到线程中，<code>Fn()</code> 表示用 &amp;self 当做参数，<code>dyn</code> 是因为在编译期不知道大小，需要动态派发，<code>Box</code> 是用来包裹 <code>dyn</code> 生成的胖指针的。</p>
 <p>之后问了我关于  分页和分段的问题，我说分段是 Intel 8086 为了扩大寻址空间干的事，因为当时只有16位寻址空间，但是地址总线有20位，于是搞了个段表，每次从段表里取基址左移然后再加上实际的地址。分页是操作系统为了管理内存，并且让多个程序有一种独占地址空间的错觉，更便于进行管理，后面说了一对细节巴拉巴拉…</p>
 <p>然后是一道链表的算法题，面试官让我用熟悉的语言写，可能是考虑到 Rust 写比较困难，但我还是用 Rust 写的，最后写出来了，虽然复杂度不咋地。</p>
 ]]></content>
