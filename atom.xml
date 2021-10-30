@@ -6,7 +6,7 @@
   <link href="http://blog.kuangjux.top/atom.xml" rel="self"/>
   
   <link href="http://blog.kuangjux.top/"/>
-  <updated>2021-10-27T07:21:41.872Z</updated>
+  <updated>2021-10-30T02:26:32.169Z</updated>
   <id>http://blog.kuangjux.top/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>io_uring 阅读笔记</title>
+    <link href="http://blog.kuangjux.top/2021/10/30/io-uring%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
+    <id>http://blog.kuangjux.top/2021/10/30/io-uring%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</id>
+    <published>2021-10-30T01:14:18.000Z</published>
+    <updated>2021-10-30T02:26:32.169Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Linux" scheme="http://blog.kuangjux.top/tags/Linux/"/>
+    
+    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="异步IO" scheme="http://blog.kuangjux.top/tags/%E5%BC%82%E6%AD%A5IO/"/>
+    
+  </entry>
   
   <entry>
     <title>在Ubuntu中升级Linux内核</title>
@@ -516,31 +545,6 @@
     <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
     <category term="rCore" scheme="http://blog.kuangjux.top/tags/rCore/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>阳光普照</title>
-    <link href="http://blog.kuangjux.top/2021/02/15/%E9%98%B3%E5%85%89%E6%99%AE%E7%85%A7/"/>
-    <id>http://blog.kuangjux.top/2021/02/15/%E9%98%B3%E5%85%89%E6%99%AE%E7%85%A7/</id>
-    <published>2021-02-15T02:16:18.000Z</published>
-    <updated>2021-02-15T07:38:42.286Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    <category term="电影" scheme="http://blog.kuangjux.top/categories/%E7%94%B5%E5%BD%B1/"/>
-    
-    
-    <category term="人生" scheme="http://blog.kuangjux.top/tags/%E4%BA%BA%E7%94%9F/"/>
     
   </entry>
   
