@@ -1,0 +1,184 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MIT-6.S081 User Level Threads | KuangjuX(狂且)</title><meta name="keywords" content="操作系统,RISC -V,6.S081"><meta name="author" content="KuangjuX"><meta name="copyright" content="KuangjuX"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="Warmup: RISC-V Assembly  Which registers contain arguments to functions? For example, which register holds 13 in main’s call to printf?  在 main 函数中 a0, a1, a2 寄存器保存着调用参数， 13 放在 a2 中。  Where is the fu">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta property="og:type" content="article">
+<meta property="og:title" content="MIT-6.S081 User Level Threads">
+<meta property="og:url" content="http://blog.kuangjux.top/2022/01/31/6-S081-uthread/">
+<meta property="og:site_name" content="KuangjuX(狂且)">
+<meta property="og:description" content="Warmup: RISC-V Assembly  Which registers contain arguments to functions? For example, which register holds 13 in main’s call to printf?  在 main 函数中 a0, a1, a2 寄存器保存着调用参数， 13 放在 a2 中。  Where is the fu">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/KuangjuX/Blog-Images/blob/main/6.S081-uthread.png?raw=true">
+<meta property="article:published_time" content="2022-01-31T07:23:18.000Z">
+<meta property="article:modified_time" content="2022-01-31T07:33:07.524Z">
+<meta property="article:author" content="KuangjuX">
+<meta property="article:tag" content="操作系统">
+<meta property="article:tag" content="RISC -V">
+<meta property="article:tag" content="6.S081">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/KuangjuX/Blog-Images/blob/main/6.S081-uthread.png?raw=true"><link rel="shortcut icon" href="/img/KuangjuX.png"><link rel="canonical" href="http://blog.kuangjux.top/2022/01/31/6-S081-uthread/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-31 15:33:07'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="KuangjuX(狂且)" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/KuangjuX.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">63</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">43</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw video-camera"></i><span> Movies</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw book"></i><span> Books</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://github.com/KuangjuX/Blog-Images/blob/main/6.S081-uthread.png?raw=true)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">KuangjuX(狂且)</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw video-camera"></i><span> Movies</span></a></div><div class="menus_item"><a class="site-page" href="/books/"><i class="fa-fw book"></i><span> Books</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">MIT-6.S081 User Level Threads</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-01-31T07:23:18.000Z" title="Created 2022-01-31 15:23:18">2022-01-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-01-31T07:33:07.524Z" title="Updated 2022-01-31 15:33:07">2022-01-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="warmup-risc-v-assembly"><a class="markdownIt-Anchor" href="#warmup-risc-v-assembly"></a> Warmup: RISC-V Assembly</h2>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><ol>
+<li>Which registers contain arguments to functions? For example, which register holds 13 in main’s call to printf?</li>
+</ol>
+<p>在 <code>main</code> 函数中 a0, a1, a2 寄存器保存着调用参数， 13 放在 a2 中。</p>
+<ol>
+<li>Where is the function call to f from main? Where is the call to g? (Hint: the compiler may inline functions.)</li>
+</ol>
+<p>在 <code>main</code> 函数中直接将调用 <code>f</code> 的结果计算了出来:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">24:	4635                	li	a2,13</span><br><span class="line">26:	45b1                	li	a1,12</span><br></pre></td></tr></table></figure>
+<ol>
+<li>At what address is the function printf located?</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">30:	00000097          	auipc	ra,0x0</span><br><span class="line">34:	620080e7          	jalr	1568(ra) # 650 &lt;printf&gt;</span><br></pre></td></tr></table></figure>
+<p><code>printf</code> 函数的地址为: 48 + 1568 = 1616 = 650(16)</p>
+<ol>
+<li>What value is in the register ra just after the jalr to printf in main?</li>
+</ol>
+<p>返回地址是 <code>0x38</code></p>
+<h2 id="实现"><a class="markdownIt-Anchor" href="#实现"></a> 实现</h2>
+<p>用户态线程，又叫做协程，是相对内核态线程更加轻量化的线程。而用户态线程也分为有栈协程和无栈协程，在本实验中我们将去实现有栈协程。大部分代码已经给好了，我们需要做的就是去实现线程调度和上下文切换的过程。在实现之前，我们需要为 <code>thread</code> 结构体添加上下文切换所需的寄存器，在上下文切换中我们需要保存 <code>callee saved registers</code>，这是由于 <code>caller saved registers</code> 由调用者来保存，一般被保存在栈中，而 <code>callee saved registers</code> 由被调用者进行保存，因此在上下文切换我们需要去保存这些寄存器，除了 <code>callee saved registers</code>，我们还需要去保存 <code>sp</code> 和 <code>ra</code> 寄存器，这是由于在上下文切换之后需要根据 <code>ra</code> 寄存器的值进行保存，如果不进行切换，则无法进行函数的切换，而 <code>sp</code> 表示栈指针，也是在函数调用时必要的地址。</p>
+<p>我们线程上下文的结构如下所示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 线程上下文，用于保存寄存器</span><br><span class="line">struct thread_context&#123;</span><br><span class="line">  uint64 ra;</span><br><span class="line">  uint64 sp;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; callee-saved</span><br><span class="line">  uint64 s0;</span><br><span class="line">  uint64 s1;</span><br><span class="line">  uint64 s2;</span><br><span class="line">  uint64 s3;</span><br><span class="line">  uint64 s4;</span><br><span class="line">  uint64 s5;</span><br><span class="line">  uint64 s6;</span><br><span class="line">  uint64 s7;</span><br><span class="line">  uint64 s8;</span><br><span class="line">  uint64 s9;</span><br><span class="line">  uint64 s10;</span><br><span class="line">  uint64 s11;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>线程的结构如下所示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct thread &#123;</span><br><span class="line">  struct     thread_context context; &#x2F;&#x2F; 线程上下文</span><br><span class="line">  char       stack[STACK_SIZE]; &#x2F;* the thread&#39;s stack *&#x2F;</span><br><span class="line">  int        state;             &#x2F;* FREE, RUNNING, RUNNABLE *&#x2F;</span><br><span class="line">  char       name[10]; &#x2F;&#x2F; For Debug</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>而上下文切换的过程则只需要将当前的寄存器堆存入旧的上下文中，并将新的上下文中的寄存器读入寄存器堆即可:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* Switch from current_thread to next thread_thread, and make</span><br><span class="line"> * next_thread the current_thread.  Use t0 as a temporary register,</span><br><span class="line"> * which should be caller saved. *&#x2F;</span><br><span class="line"></span><br><span class="line">	.globl thread_switch</span><br><span class="line">thread_switch:</span><br><span class="line">	&#x2F;* YOUR CODE HERE *&#x2F;</span><br><span class="line">	&#x2F;&#x2F; a0, a1分别为老进程与新进程</span><br><span class="line">	sd ra, 0(a0)</span><br><span class="line">	sd sp, 8(a0)</span><br><span class="line">	sd s0, 16(a0)</span><br><span class="line">	sd s1, 24(a0)</span><br><span class="line">	sd s2, 32(a0)</span><br><span class="line">	sd s3, 40(a0)</span><br><span class="line">	sd s4, 48(a0)</span><br><span class="line">	sd s5, 56(a0)</span><br><span class="line">	sd s6, 64(a0)</span><br><span class="line">	sd s7, 72(a0)</span><br><span class="line">	sd s8, 80(a0)</span><br><span class="line">	sd s9, 88(a0)</span><br><span class="line">	sd s10, 96(a0)</span><br><span class="line">	sd s11, 104(a0)</span><br><span class="line"></span><br><span class="line">	ld ra, 0(a1)</span><br><span class="line">	ld sp, 8(a1)</span><br><span class="line">	ld s0, 16(a1)</span><br><span class="line">	ld s1, 24(a1)</span><br><span class="line">	ld s2, 32(a1)</span><br><span class="line">	ld s3, 40(a1)</span><br><span class="line">	ld s4, 48(a1)</span><br><span class="line">	ld s5, 56(a1)</span><br><span class="line">	ld s6, 64(a1)</span><br><span class="line">	ld s7, 72(a1)</span><br><span class="line">	ld s8, 80(a1)</span><br><span class="line">	ld s9, 88(a1)</span><br><span class="line">	ld s10, 96(a1)</span><br><span class="line">	ld s11, 104(a1)</span><br><span class="line"></span><br><span class="line">	ret    &#x2F;* return to ra *&#x2F;</span><br></pre></td></tr></table></figure>
+<p>在用户态线程初始化的过程中，我们只需要初始化线程的状态以及 <code>ra</code>、<code>sp</code> 寄存器的值即可:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建线程, 参数为函数指针</span><br><span class="line">void </span><br><span class="line">thread_create(void (*func)())</span><br><span class="line">&#123;</span><br><span class="line">  struct thread *t;</span><br><span class="line"></span><br><span class="line">  for (t &#x3D; all_thread; t &lt; all_thread + MAX_THREAD; t++) &#123;</span><br><span class="line">    if (t-&gt;state &#x3D;&#x3D; FREE) break;</span><br><span class="line">  &#125;</span><br><span class="line">  t-&gt;name[0] &#x3D; name;</span><br><span class="line">  name++;</span><br><span class="line">  &#x2F;&#x2F; 将线程状态设置为可运行</span><br><span class="line">  t-&gt;state &#x3D; RUNNABLE;</span><br><span class="line">  &#x2F;&#x2F; 将上下文的函数返回值设置为函数指针的地址</span><br><span class="line">  t-&gt;context.ra &#x3D; (uint64)func;</span><br><span class="line">  &#x2F;&#x2F; 设置上下文的栈地址</span><br><span class="line">  t-&gt;context.sp &#x3D; (uint64)&amp;t-&gt;stack[STACK_SIZE];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里要注意, 一定要将 <code>sp</code> 设置为栈的最后一个字节的地址，因为在编译调用函数的时候会将栈寄存器减去一部分，如果设置为第一个字节的地址则会发生栈溢出，这样就会破坏其他内存地址的值。</p>
+<p>最后进行线程调度时我们只需要顺序找到一个 <code>RUNNABLE</code> 的线程并进行上下文切换即可:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 线程调度</span><br><span class="line">void </span><br><span class="line">thread_schedule(void)</span><br><span class="line">&#123;</span><br><span class="line">  struct thread *t, *next_thread;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; thread_dump();</span><br><span class="line">  &#x2F;* Find another runnable thread. *&#x2F;</span><br><span class="line">  next_thread &#x3D; 0;</span><br><span class="line">  t &#x3D; current_thread + 1;</span><br><span class="line">  for(int i &#x3D; 0; i &lt; MAX_THREAD; i++)&#123;</span><br><span class="line">    if(t &gt;&#x3D; all_thread + MAX_THREAD)</span><br><span class="line">      t &#x3D; all_thread;</span><br><span class="line">    if(t-&gt;state &#x3D;&#x3D; RUNNABLE) &#123;</span><br><span class="line">      next_thread &#x3D; t;</span><br><span class="line">      break;</span><br><span class="line">    &#125;</span><br><span class="line">    t &#x3D; t + 1;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (next_thread &#x3D;&#x3D; 0) &#123;</span><br><span class="line">    printf(&quot;thread_schedule: no runnable threads\n&quot;);</span><br><span class="line">    exit(-1);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (current_thread !&#x3D; next_thread) &#123;         &#x2F;* switch threads?  *&#x2F;</span><br><span class="line">    &#x2F;&#x2F; 找到下一个调度的线程并执行上下文切换</span><br><span class="line">    next_thread-&gt;state &#x3D; RUNNING;</span><br><span class="line">    t &#x3D; current_thread;</span><br><span class="line">    current_thread &#x3D; next_thread;</span><br><span class="line">    &#x2F;&#x2F; 进行上下文切换</span><br><span class="line">    thread_switch((uint64)&amp;t-&gt;context, (uint64)&amp;current_thread-&gt;context);</span><br><span class="line">  &#125; else&#123;</span><br><span class="line">    next_thread &#x3D; 0;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">KuangjuX</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://blog.kuangjux.top/2022/01/31/6-S081-uthread/">http://blog.kuangjux.top/2022/01/31/6-S081-uthread/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="post-meta__tags" href="/tags/RISC-V/">RISC -V</a><a class="post-meta__tags" href="/tags/6-S081/">6.S081</a></div><div class="post_share"><div class="social-share" data-image="https://github.com/KuangjuX/Blog-Images/blob/main/6.S081-uthread.png?raw=true" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/01/11/2021%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"><img class="next-cover" src="https://github.com/KuangjuX/Blog-Images/blob/main/2022.jpg?raw=true" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">2021年终总结</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2021/11/19/xv6-riscv中的KPTI机制/" title="xv6-riscv中的KPTI机制"><img class="cover" src="https://github.com/KuangjuX/Blog-Images/blob/main/xv6.png?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-19</div><div class="title">xv6-riscv中的KPTI机制</div></div></a></div><div><a href="/2021/11/14/RISC-V-N扩展/" title="RISC -V N扩展"><img class="cover" src="https://github.com/KuangjuX/Blog-Images/blob/main/RISC.jpeg?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-14</div><div class="title">RISC -V N扩展</div></div></a></div><div><a href="/2021/06/09/xv6-rust-lock/" title="xv6-rust锁机制"><img class="cover" src="https://github.com/KuangjuX/Blog-Images/blob/main/shutdown.jpg?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-09</div><div class="title">xv6-rust锁机制</div></div></a></div><div><a href="/2021/05/03/xv6-rust-interrupt/" title="xv6-rust中断机制"><img class="cover" src="https://github.com/KuangjuX/Blog-Images/blob/main/shutdown.jpg?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-03</div><div class="title">xv6-rust中断机制</div></div></a></div><div><a href="/2021/04/14/shutdown-without-SBI-in-OS/" title="xv6-rust关机机制"><img class="cover" src="https://github.com/KuangjuX/Blog-Images/blob/main/shutdown.jpg?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-14</div><div class="title">xv6-rust关机机制</div></div></a></div><div><a href="/2021/02/19/rCore-Lab-6/" title="rCore Lab-6"><img class="cover" src="https://github.com/KuangjuX/Blog-Images/blob/main/Rust.png?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-19</div><div class="title">rCore Lab-6</div></div></a></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/KuangjuX.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">KuangjuX</div><div class="author-info__description">狂且的人文及技术博客</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">63</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">43</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/KuangjuX"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/KuangjuX" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/zhjyyjjmjy666@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">风声雨声读书声，声声入耳 </br> 家事国事天下事，事事关心</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#warmup-risc-v-assembly"><span class="toc-text"> Warmup: RISC-V Assembly</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-text"> 实现</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/01/31/6-S081-uthread/" title="MIT-6.S081 User Level Threads"><img src="https://github.com/KuangjuX/Blog-Images/blob/main/6.S081-uthread.png?raw=true" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MIT-6.S081 User Level Threads"/></a><div class="content"><a class="title" href="/2022/01/31/6-S081-uthread/" title="MIT-6.S081 User Level Threads">MIT-6.S081 User Level Threads</a><time datetime="2022-01-31T07:23:18.000Z" title="Created 2022-01-31 15:23:18">2022-01-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/11/2021%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2021年终总结"><img src="https://github.com/KuangjuX/Blog-Images/blob/main/2022.jpg?raw=true" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021年终总结"/></a><div class="content"><a class="title" href="/2022/01/11/2021%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2021年终总结">2021年终总结</a><time datetime="2022-01-11T07:37:32.000Z" title="Created 2022-01-11 15:37:32">2022-01-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/19/xv6-riscv%E4%B8%AD%E7%9A%84KPTI%E6%9C%BA%E5%88%B6/" title="xv6-riscv中的KPTI机制"><img src="https://github.com/KuangjuX/Blog-Images/blob/main/xv6.png?raw=true" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="xv6-riscv中的KPTI机制"/></a><div class="content"><a class="title" href="/2021/11/19/xv6-riscv%E4%B8%AD%E7%9A%84KPTI%E6%9C%BA%E5%88%B6/" title="xv6-riscv中的KPTI机制">xv6-riscv中的KPTI机制</a><time datetime="2021-11-19T08:18:43.000Z" title="Created 2021-11-19 16:18:43">2021-11-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/14/RISC-V-N%E6%89%A9%E5%B1%95/" title="RISC -V N扩展"><img src="https://github.com/KuangjuX/Blog-Images/blob/main/RISC.jpeg?raw=true" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RISC -V N扩展"/></a><div class="content"><a class="title" href="/2021/11/14/RISC-V-N%E6%89%A9%E5%B1%95/" title="RISC -V N扩展">RISC -V N扩展</a><time datetime="2021-11-14T14:44:29.000Z" title="Created 2021-11-14 22:44:29">2021-11-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/30/io-uring%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="io_uring 阅读笔记"><img src="https://raw.githubusercontent.com/KuangjuX/Blog-Images/23ae19dcb10bd2e87ce49123c1f5c2b22bd2871f/linux.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="io_uring 阅读笔记"/></a><div class="content"><a class="title" href="/2021/10/30/io-uring%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="io_uring 阅读笔记">io_uring 阅读笔记</a><time datetime="2021-10-30T01:14:18.000Z" title="Created 2021-10-30 09:14:18">2021-10-30</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By KuangjuX</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="icp"><a><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>津ICP备20003770号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>

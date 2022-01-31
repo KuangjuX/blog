@@ -100,6 +100,51 @@
       </tags>
   </entry>
   <entry>
+    <title>MIT-6.S081 User Level Threads</title>
+    <url>/2022/01/31/6-S081-uthread/</url>
+    <content><![CDATA[<h2 id="warmup-risc-v-assembly"><a class="markdownIt-Anchor" href="#warmup-risc-v-assembly"></a> Warmup: RISC-V Assembly</h2>
+<ol>
+<li>Which registers contain arguments to functions? For example, which register holds 13 in main’s call to printf?</li>
+</ol>
+<p>在 <code>main</code> 函数中 a0, a1, a2 寄存器保存着调用参数， 13 放在 a2 中。</p>
+<ol>
+<li>Where is the function call to f from main? Where is the call to g? (Hint: the compiler may inline functions.)</li>
+</ol>
+<p>在 <code>main</code> 函数中直接将调用 <code>f</code> 的结果计算了出来:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">24:	4635                	li	a2,13</span><br><span class="line">26:	45b1                	li	a1,12</span><br></pre></td></tr></table></figure>
+<ol>
+<li>At what address is the function printf located?</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">30:	00000097          	auipc	ra,0x0</span><br><span class="line">34:	620080e7          	jalr	1568(ra) # 650 &lt;printf&gt;</span><br></pre></td></tr></table></figure>
+<p><code>printf</code> 函数的地址为: 48 + 1568 = 1616 = 650(16)</p>
+<ol>
+<li>What value is in the register ra just after the jalr to printf in main?</li>
+</ol>
+<p>返回地址是 <code>0x38</code></p>
+<h2 id="实现"><a class="markdownIt-Anchor" href="#实现"></a> 实现</h2>
+<p>用户态线程，又叫做协程，是相对内核态线程更加轻量化的线程。而用户态线程也分为有栈协程和无栈协程，在本实验中我们将去实现有栈协程。大部分代码已经给好了，我们需要做的就是去实现线程调度和上下文切换的过程。在实现之前，我们需要为 <code>thread</code> 结构体添加上下文切换所需的寄存器，在上下文切换中我们需要保存 <code>callee saved registers</code>，这是由于 <code>caller saved registers</code> 由调用者来保存，一般被保存在栈中，而 <code>callee saved registers</code> 由被调用者进行保存，因此在上下文切换我们需要去保存这些寄存器，除了 <code>callee saved registers</code>，我们还需要去保存 <code>sp</code> 和 <code>ra</code> 寄存器，这是由于在上下文切换之后需要根据 <code>ra</code> 寄存器的值进行保存，如果不进行切换，则无法进行函数的切换，而 <code>sp</code> 表示栈指针，也是在函数调用时必要的地址。</p>
+<p>我们线程上下文的结构如下所示:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 线程上下文，用于保存寄存器</span><br><span class="line">struct thread_context&#123;</span><br><span class="line">  uint64 ra;</span><br><span class="line">  uint64 sp;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; callee-saved</span><br><span class="line">  uint64 s0;</span><br><span class="line">  uint64 s1;</span><br><span class="line">  uint64 s2;</span><br><span class="line">  uint64 s3;</span><br><span class="line">  uint64 s4;</span><br><span class="line">  uint64 s5;</span><br><span class="line">  uint64 s6;</span><br><span class="line">  uint64 s7;</span><br><span class="line">  uint64 s8;</span><br><span class="line">  uint64 s9;</span><br><span class="line">  uint64 s10;</span><br><span class="line">  uint64 s11;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>线程的结构如下所示:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">struct thread &#123;</span><br><span class="line">  struct     thread_context context; &#x2F;&#x2F; 线程上下文</span><br><span class="line">  char       stack[STACK_SIZE]; &#x2F;* the thread&#39;s stack *&#x2F;</span><br><span class="line">  int        state;             &#x2F;* FREE, RUNNING, RUNNABLE *&#x2F;</span><br><span class="line">  char       name[10]; &#x2F;&#x2F; For Debug</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>而上下文切换的过程则只需要将当前的寄存器堆存入旧的上下文中，并将新的上下文中的寄存器读入寄存器堆即可:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;* Switch from current_thread to next thread_thread, and make</span><br><span class="line"> * next_thread the current_thread.  Use t0 as a temporary register,</span><br><span class="line"> * which should be caller saved. *&#x2F;</span><br><span class="line"></span><br><span class="line">	.globl thread_switch</span><br><span class="line">thread_switch:</span><br><span class="line">	&#x2F;* YOUR CODE HERE *&#x2F;</span><br><span class="line">	&#x2F;&#x2F; a0, a1分别为老进程与新进程</span><br><span class="line">	sd ra, 0(a0)</span><br><span class="line">	sd sp, 8(a0)</span><br><span class="line">	sd s0, 16(a0)</span><br><span class="line">	sd s1, 24(a0)</span><br><span class="line">	sd s2, 32(a0)</span><br><span class="line">	sd s3, 40(a0)</span><br><span class="line">	sd s4, 48(a0)</span><br><span class="line">	sd s5, 56(a0)</span><br><span class="line">	sd s6, 64(a0)</span><br><span class="line">	sd s7, 72(a0)</span><br><span class="line">	sd s8, 80(a0)</span><br><span class="line">	sd s9, 88(a0)</span><br><span class="line">	sd s10, 96(a0)</span><br><span class="line">	sd s11, 104(a0)</span><br><span class="line"></span><br><span class="line">	ld ra, 0(a1)</span><br><span class="line">	ld sp, 8(a1)</span><br><span class="line">	ld s0, 16(a1)</span><br><span class="line">	ld s1, 24(a1)</span><br><span class="line">	ld s2, 32(a1)</span><br><span class="line">	ld s3, 40(a1)</span><br><span class="line">	ld s4, 48(a1)</span><br><span class="line">	ld s5, 56(a1)</span><br><span class="line">	ld s6, 64(a1)</span><br><span class="line">	ld s7, 72(a1)</span><br><span class="line">	ld s8, 80(a1)</span><br><span class="line">	ld s9, 88(a1)</span><br><span class="line">	ld s10, 96(a1)</span><br><span class="line">	ld s11, 104(a1)</span><br><span class="line"></span><br><span class="line">	ret    &#x2F;* return to ra *&#x2F;</span><br></pre></td></tr></table></figure>
+<p>在用户态线程初始化的过程中，我们只需要初始化线程的状态以及 <code>ra</code>、<code>sp</code> 寄存器的值即可:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建线程, 参数为函数指针</span><br><span class="line">void </span><br><span class="line">thread_create(void (*func)())</span><br><span class="line">&#123;</span><br><span class="line">  struct thread *t;</span><br><span class="line"></span><br><span class="line">  for (t &#x3D; all_thread; t &lt; all_thread + MAX_THREAD; t++) &#123;</span><br><span class="line">    if (t-&gt;state &#x3D;&#x3D; FREE) break;</span><br><span class="line">  &#125;</span><br><span class="line">  t-&gt;name[0] &#x3D; name;</span><br><span class="line">  name++;</span><br><span class="line">  &#x2F;&#x2F; 将线程状态设置为可运行</span><br><span class="line">  t-&gt;state &#x3D; RUNNABLE;</span><br><span class="line">  &#x2F;&#x2F; 将上下文的函数返回值设置为函数指针的地址</span><br><span class="line">  t-&gt;context.ra &#x3D; (uint64)func;</span><br><span class="line">  &#x2F;&#x2F; 设置上下文的栈地址</span><br><span class="line">  t-&gt;context.sp &#x3D; (uint64)&amp;t-&gt;stack[STACK_SIZE];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里要注意, 一定要将 <code>sp</code> 设置为栈的最后一个字节的地址，因为在编译调用函数的时候会将栈寄存器减去一部分，如果设置为第一个字节的地址则会发生栈溢出，这样就会破坏其他内存地址的值。</p>
+<p>最后进行线程调度时我们只需要顺序找到一个 <code>RUNNABLE</code> 的线程并进行上下文切换即可:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 线程调度</span><br><span class="line">void </span><br><span class="line">thread_schedule(void)</span><br><span class="line">&#123;</span><br><span class="line">  struct thread *t, *next_thread;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; thread_dump();</span><br><span class="line">  &#x2F;* Find another runnable thread. *&#x2F;</span><br><span class="line">  next_thread &#x3D; 0;</span><br><span class="line">  t &#x3D; current_thread + 1;</span><br><span class="line">  for(int i &#x3D; 0; i &lt; MAX_THREAD; i++)&#123;</span><br><span class="line">    if(t &gt;&#x3D; all_thread + MAX_THREAD)</span><br><span class="line">      t &#x3D; all_thread;</span><br><span class="line">    if(t-&gt;state &#x3D;&#x3D; RUNNABLE) &#123;</span><br><span class="line">      next_thread &#x3D; t;</span><br><span class="line">      break;</span><br><span class="line">    &#125;</span><br><span class="line">    t &#x3D; t + 1;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (next_thread &#x3D;&#x3D; 0) &#123;</span><br><span class="line">    printf(&quot;thread_schedule: no runnable threads\n&quot;);</span><br><span class="line">    exit(-1);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (current_thread !&#x3D; next_thread) &#123;         &#x2F;* switch threads?  *&#x2F;</span><br><span class="line">    &#x2F;&#x2F; 找到下一个调度的线程并执行上下文切换</span><br><span class="line">    next_thread-&gt;state &#x3D; RUNNING;</span><br><span class="line">    t &#x3D; current_thread;</span><br><span class="line">    current_thread &#x3D; next_thread;</span><br><span class="line">    &#x2F;&#x2F; 进行上下文切换</span><br><span class="line">    thread_switch((uint64)&amp;t-&gt;context, (uint64)&amp;current_thread-&gt;context);</span><br><span class="line">  &#125; else&#123;</span><br><span class="line">    next_thread &#x3D; 0;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>操作系统</tag>
+        <tag>RISC -V</tag>
+        <tag>6.S081</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2021年终总结</title>
     <url>/2022/01/11/2021%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p>好像之前从来没有写过年终总结，这次主要是上网看到了很多人都写了年终总结的博客，于是趁着疫情隔离在家写一下去年的年终总结。</p>
@@ -148,8 +193,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>RISC -V</tag>
         <tag>操作系统</tag>
+        <tag>RISC -V</tag>
       </tags>
   </entry>
   <entry>
@@ -379,8 +424,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>RISC -V</tag>
         <tag>操作系统</tag>
+        <tag>RISC -V</tag>
       </tags>
   </entry>
   <entry>
@@ -461,8 +506,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>操作系统</tag>
+        <tag>Linux</tag>
         <tag>异步IO</tag>
       </tags>
   </entry>
@@ -1083,9 +1128,9 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>Rust</tag>
-        <tag>RISC -V</tag>
         <tag>操作系统</tag>
+        <tag>RISC -V</tag>
+        <tag>Rust</tag>
         <tag>xv6-rust</tag>
       </tags>
   </entry>
@@ -1365,9 +1410,9 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>Rust</tag>
-        <tag>RISC -V</tag>
         <tag>操作系统</tag>
+        <tag>RISC -V</tag>
+        <tag>Rust</tag>
         <tag>xv6-rust</tag>
       </tags>
   </entry>
@@ -1401,9 +1446,9 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>Rust</tag>
-        <tag>RISC -V</tag>
         <tag>操作系统</tag>
+        <tag>RISC -V</tag>
+        <tag>Rust</tag>
         <tag>xv6-rust</tag>
       </tags>
   </entry>
@@ -1484,9 +1529,9 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>Rust</tag>
-        <tag>RISC -V</tag>
         <tag>操作系统</tag>
+        <tag>RISC -V</tag>
+        <tag>Rust</tag>
         <tag>rCore</tag>
       </tags>
   </entry>
@@ -1498,9 +1543,9 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>Rust</tag>
-        <tag>RISC -V</tag>
         <tag>操作系统</tag>
+        <tag>RISC -V</tag>
+        <tag>Rust</tag>
         <tag>rCore</tag>
       </tags>
   </entry>
@@ -1563,9 +1608,9 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>Rust</tag>
-        <tag>RISC -V</tag>
         <tag>操作系统</tag>
+        <tag>RISC -V</tag>
+        <tag>Rust</tag>
         <tag>rCore</tag>
       </tags>
   </entry>
@@ -1600,9 +1645,9 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>Rust</tag>
-        <tag>RISC -V</tag>
         <tag>操作系统</tag>
+        <tag>RISC -V</tag>
+        <tag>Rust</tag>
         <tag>rCore</tag>
       </tags>
   </entry>
@@ -1642,9 +1687,9 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>Rust</tag>
-        <tag>RISC -V</tag>
         <tag>操作系统</tag>
+        <tag>RISC -V</tag>
+        <tag>Rust</tag>
         <tag>rCore</tag>
       </tags>
   </entry>
@@ -1674,9 +1719,9 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>Rust</tag>
-        <tag>RISC -V</tag>
         <tag>操作系统</tag>
+        <tag>RISC -V</tag>
+        <tag>Rust</tag>
         <tag>rCore</tag>
       </tags>
   </entry>
@@ -1870,8 +1915,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>C/C++</tag>
         <tag>操作系统</tag>
+        <tag>C/C++</tag>
       </tags>
   </entry>
   <entry>
@@ -1948,8 +1993,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>C/C++</tag>
         <tag>操作系统</tag>
+        <tag>C/C++</tag>
       </tags>
   </entry>
   <entry>

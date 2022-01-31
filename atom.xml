@@ -6,7 +6,7 @@
   <link href="http://blog.kuangjux.top/atom.xml" rel="self"/>
   
   <link href="http://blog.kuangjux.top/"/>
-  <updated>2022-01-11T10:33:35.401Z</updated>
+  <updated>2022-01-31T07:33:07.524Z</updated>
   <id>http://blog.kuangjux.top/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MIT-6.S081 User Level Threads</title>
+    <link href="http://blog.kuangjux.top/2022/01/31/6-S081-uthread/"/>
+    <id>http://blog.kuangjux.top/2022/01/31/6-S081-uthread/</id>
+    <published>2022-01-31T07:23:18.000Z</published>
+    <updated>2022-01-31T07:33:07.524Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
+    
+    <category term="6.S081" scheme="http://blog.kuangjux.top/tags/6-S081/"/>
+    
+  </entry>
   
   <entry>
     <title>2021年终总结</title>
@@ -62,9 +91,9 @@
     <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-    <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
-    
     <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
     
   </entry>
   
@@ -89,9 +118,9 @@
     <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-    <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
-    
     <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
     
   </entry>
   
@@ -116,9 +145,9 @@
     <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-    <category term="Linux" scheme="http://blog.kuangjux.top/tags/Linux/"/>
-    
     <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="Linux" scheme="http://blog.kuangjux.top/tags/Linux/"/>
     
     <category term="异步IO" scheme="http://blog.kuangjux.top/tags/%E5%BC%82%E6%AD%A5IO/"/>
     
@@ -154,7 +183,7 @@
     <link href="http://blog.kuangjux.top/2021/10/22/%E9%A3%9E%E4%B9%A6Rust%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95/"/>
     <id>http://blog.kuangjux.top/2021/10/22/%E9%A3%9E%E4%B9%A6Rust%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95/</id>
     <published>2021-10-22T11:25:35.000Z</published>
-    <updated>2021-10-23T11:30:24.525Z</updated>
+    <updated>2021-10-23T15:40:46.792Z</updated>
     
     
       
@@ -349,11 +378,11 @@
     <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-    <category term="Rust" scheme="http://blog.kuangjux.top/tags/Rust/"/>
+    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
     <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
     
-    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    <category term="Rust" scheme="http://blog.kuangjux.top/tags/Rust/"/>
     
     <category term="xv6-rust" scheme="http://blog.kuangjux.top/tags/xv6-rust/"/>
     
@@ -459,11 +488,11 @@
     <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-    <category term="Rust" scheme="http://blog.kuangjux.top/tags/Rust/"/>
+    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
     <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
     
-    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    <category term="Rust" scheme="http://blog.kuangjux.top/tags/Rust/"/>
     
     <category term="xv6-rust" scheme="http://blog.kuangjux.top/tags/xv6-rust/"/>
     
@@ -490,11 +519,11 @@
     <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-    <category term="Rust" scheme="http://blog.kuangjux.top/tags/Rust/"/>
+    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
     <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
     
-    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    <category term="Rust" scheme="http://blog.kuangjux.top/tags/Rust/"/>
     
     <category term="xv6-rust" scheme="http://blog.kuangjux.top/tags/xv6-rust/"/>
     
@@ -524,33 +553,6 @@
     <category term="算法" scheme="http://blog.kuangjux.top/tags/%E7%AE%97%E6%B3%95/"/>
     
     <category term="Leetcode" scheme="http://blog.kuangjux.top/tags/Leetcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode-1004-最大连续1的个数III</title>
-    <link href="http://blog.kuangjux.top/2021/02/19/LeetCode-1004/"/>
-    <id>http://blog.kuangjux.top/2021/02/19/LeetCode-1004/</id>
-    <published>2021-02-19T12:33:32.000Z</published>
-    <updated>2021-02-20T07:58:02.107Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="算法" scheme="http://blog.kuangjux.top/tags/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="leetcode" scheme="http://blog.kuangjux.top/tags/leetcode/"/>
     
   </entry>
   
