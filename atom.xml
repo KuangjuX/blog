@@ -6,7 +6,7 @@
   <link href="http://blog.kuangjux.top/atom.xml" rel="self"/>
   
   <link href="http://blog.kuangjux.top/"/>
-  <updated>2022-01-31T07:33:07.524Z</updated>
+  <updated>2022-01-31T08:02:04.896Z</updated>
   <id>http://blog.kuangjux.top/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>6.S081 Copy on Write Fork</title>
+    <link href="http://blog.kuangjux.top/2022/01/31/6-S081-cow/"/>
+    <id>http://blog.kuangjux.top/2022/01/31/6-S081-cow/</id>
+    <published>2022-01-31T07:59:23.000Z</published>
+    <updated>2022-01-31T08:02:04.896Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
+    
+    <category term="6.S081" scheme="http://blog.kuangjux.top/tags/6-S081/"/>
+    
+  </entry>
   
   <entry>
     <title>MIT-6.S081 User Level Threads</title>
@@ -526,33 +555,6 @@
     <category term="Rust" scheme="http://blog.kuangjux.top/tags/Rust/"/>
     
     <category term="xv6-rust" scheme="http://blog.kuangjux.top/tags/xv6-rust/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode-52-N皇后II</title>
-    <link href="http://blog.kuangjux.top/2021/02/19/LeetCode-52/"/>
-    <id>http://blog.kuangjux.top/2021/02/19/LeetCode-52/</id>
-    <published>2021-02-19T12:33:46.000Z</published>
-    <updated>2021-02-20T07:53:38.381Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="算法" scheme="http://blog.kuangjux.top/tags/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="Leetcode" scheme="http://blog.kuangjux.top/tags/Leetcode/"/>
     
   </entry>
   
