@@ -100,7 +100,7 @@
       </tags>
   </entry>
   <entry>
-    <title>6.S081 Copy on Write Fork</title>
+    <title>MIT-6.S081 Copy on Write Fork</title>
     <url>/2022/01/31/6-S081-cow/</url>
     <content><![CDATA[<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
 <p>思路相对来说比较简单，<code>copy on write</code> 主要实现是效果是在 <code>fork</code> 的时候并不要为子进程额外分配物理地址，而是与父进程共享物理地址，并且将物理地址的页表项(即最后一级页表项)设为不可写，这样，如果父进程与子进程如果不被写的话就可以完全正常执行，当设计到写操作时，硬件的 MMU 将会检测到页表项不可写，此时会产生 <code>Page Fault</code> 异常，而操作系统在异常处理中需要重新分配私有的物理页，并将原有的物理页拷贝到私有物理页并进行重新映射，并将页表项重新设置为可写即可。而原有的物理页则可能被多个进程所引用，所以由引用计数来决定是否被释放，具体过程见实现部分。</p>
