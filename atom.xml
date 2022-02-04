@@ -6,7 +6,7 @@
   <link href="http://blog.kuangjux.top/atom.xml" rel="self"/>
   
   <link href="http://blog.kuangjux.top/"/>
-  <updated>2022-02-01T15:43:59.635Z</updated>
+  <updated>2022-02-04T06:59:14.295Z</updated>
   <id>http://blog.kuangjux.top/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MIT-6.S081 Networking</title>
+    <link href="http://blog.kuangjux.top/2022/02/04/6-S081-net/"/>
+    <id>http://blog.kuangjux.top/2022/02/04/6-S081-net/</id>
+    <published>2022-02-04T06:48:18.000Z</published>
+    <updated>2022-02-04T06:59:14.295Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
+    
+    <category term="6.S081" scheme="http://blog.kuangjux.top/tags/6-S081/"/>
+    
+  </entry>
   
   <entry>
     <title>MIT-6.S081 Lazy Page Allocation</title>
@@ -522,37 +551,6 @@
     <category term="爱情" scheme="http://blog.kuangjux.top/tags/%E7%88%B1%E6%83%85/"/>
     
     <category term="人生" scheme="http://blog.kuangjux.top/tags/%E4%BA%BA%E7%94%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>xv6-rust中断机制</title>
-    <link href="http://blog.kuangjux.top/2021/05/03/xv6-rust-interrupt/"/>
-    <id>http://blog.kuangjux.top/2021/05/03/xv6-rust-interrupt/</id>
-    <published>2021-05-03T08:03:36.000Z</published>
-    <updated>2021-06-09T10:31:38.683Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-    <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
-    
-    <category term="Rust" scheme="http://blog.kuangjux.top/tags/Rust/"/>
-    
-    <category term="xv6-rust" scheme="http://blog.kuangjux.top/tags/xv6-rust/"/>
     
   </entry>
   
