@@ -6,7 +6,7 @@
   <link href="http://blog.kuangjux.top/atom.xml" rel="self"/>
   
   <link href="http://blog.kuangjux.top/"/>
-  <updated>2022-02-04T07:03:14.289Z</updated>
+  <updated>2022-02-08T07:28:23.232Z</updated>
   <id>http://blog.kuangjux.top/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MIT-6.S081-mmap</title>
+    <link href="http://blog.kuangjux.top/2022/02/08/6-S081-mmap/"/>
+    <id>http://blog.kuangjux.top/2022/02/08/6-S081-mmap/</id>
+    <published>2022-02-08T07:07:57.000Z</published>
+    <updated>2022-02-08T07:28:23.232Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="操作系统" scheme="http://blog.kuangjux.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="RISC -V" scheme="http://blog.kuangjux.top/tags/RISC-V/"/>
+    
+    <category term="6.S081" scheme="http://blog.kuangjux.top/tags/6-S081/"/>
+    
+  </entry>
   
   <entry>
     <title>MIT-6.S081 Networking</title>
@@ -524,33 +553,6 @@
     
     <category term="杂文" scheme="http://blog.kuangjux.top/categories/%E6%9D%82%E6%96%87/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>520与伤春悲秋与杂感</title>
-    <link href="http://blog.kuangjux.top/2021/05/21/sad-in-521/"/>
-    <id>http://blog.kuangjux.top/2021/05/21/sad-in-521/</id>
-    <published>2021-05-21T14:55:57.000Z</published>
-    <updated>2021-05-22T03:19:01.430Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    <category term="杂文" scheme="http://blog.kuangjux.top/categories/%E6%9D%82%E6%96%87/"/>
-    
-    
-    <category term="爱情" scheme="http://blog.kuangjux.top/tags/%E7%88%B1%E6%83%85/"/>
-    
-    <category term="人生" scheme="http://blog.kuangjux.top/tags/%E4%BA%BA%E7%94%9F/"/>
     
   </entry>
   
