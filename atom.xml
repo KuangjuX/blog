@@ -6,7 +6,7 @@
   <link href="http://blog.kuangjux.top/atom.xml" rel="self"/>
   
   <link href="http://blog.kuangjux.top/"/>
-  <updated>2022-02-08T07:33:31.766Z</updated>
+  <updated>2022-02-20T13:21:39.690Z</updated>
   <id>http://blog.kuangjux.top/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Verilator 学习笔记</title>
+    <link href="http://blog.kuangjux.top/2022/02/20/verilator-learning/"/>
+    <id>http://blog.kuangjux.top/2022/02/20/verilator-learning/</id>
+    <published>2022-02-20T13:18:54.000Z</published>
+    <updated>2022-02-20T13:21:39.690Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="计算机体系结构" scheme="http://blog.kuangjux.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="龙芯杯" scheme="http://blog.kuangjux.top/tags/%E9%BE%99%E8%8A%AF%E6%9D%AF/"/>
+    
+    <category term="FPGA" scheme="http://blog.kuangjux.top/tags/FPGA/"/>
+    
+  </entry>
   
   <entry>
     <title>MIT-6.S081-mmap</title>
@@ -50,7 +79,7 @@
     <link href="http://blog.kuangjux.top/2022/02/04/6-S081-net/"/>
     <id>http://blog.kuangjux.top/2022/02/04/6-S081-net/</id>
     <published>2022-02-04T06:48:18.000Z</published>
-    <updated>2022-02-04T07:03:14.289Z</updated>
+    <updated>2022-02-20T13:22:00.785Z</updated>
     
     
       
@@ -530,29 +559,6 @@
     <category term="CPU" scheme="http://blog.kuangjux.top/tags/CPU/"/>
     
     <category term="MIPS" scheme="http://blog.kuangjux.top/tags/MIPS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>武侠已死</title>
-    <link href="http://blog.kuangjux.top/2021/06/06/hero-die-now/"/>
-    <id>http://blog.kuangjux.top/2021/06/06/hero-die-now/</id>
-    <published>2021-06-06T11:16:56.000Z</published>
-    <updated>2021-06-06T12:41:38.450Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    <category term="杂文" scheme="http://blog.kuangjux.top/categories/%E6%9D%82%E6%96%87/"/>
-    
     
   </entry>
   
