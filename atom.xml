@@ -6,7 +6,7 @@
   <link href="http://blog.kuangjux.top/atom.xml" rel="self"/>
   
   <link href="http://blog.kuangjux.top/"/>
-  <updated>2022-03-04T14:17:40.801Z</updated>
+  <updated>2022-03-05T13:57:08.655Z</updated>
   <id>http://blog.kuangjux.top/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Chisel 学习笔记</title>
+    <link href="http://blog.kuangjux.top/2022/03/05/Chisel-learning/"/>
+    <id>http://blog.kuangjux.top/2022/03/05/Chisel-learning/</id>
+    <published>2022-03-05T13:31:07.000Z</published>
+    <updated>2022-03-05T13:57:08.655Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="计算机体系结构" scheme="http://blog.kuangjux.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="Scala" scheme="http://blog.kuangjux.top/tags/Scala/"/>
+    
+    <category term="Chisel" scheme="http://blog.kuangjux.top/tags/Chisel/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>随笔（一）</title>
+    <link href="http://blog.kuangjux.top/2022/03/04/essay/"/>
+    <id>http://blog.kuangjux.top/2022/03/04/essay/</id>
+    <published>2022-03-04T14:22:51.000Z</published>
+    <updated>2022-03-05T13:56:27.807Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="杂文" scheme="http://blog.kuangjux.top/categories/%E6%9D%82%E6%96%87/"/>
+    
+    
+    <category term="随笔" scheme="http://blog.kuangjux.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>指令级并行</title>
@@ -507,56 +561,6 @@
     <category term="6.824" scheme="http://blog.kuangjux.top/tags/6-824/"/>
     
     <category term="go" scheme="http://blog.kuangjux.top/tags/go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>挪威的森林</title>
-    <link href="http://blog.kuangjux.top/2021/07/07/The-forest-in-Norway/"/>
-    <id>http://blog.kuangjux.top/2021/07/07/The-forest-in-Norway/</id>
-    <published>2021-07-07T13:07:40.000Z</published>
-    <updated>2021-07-07T15:12:04.279Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    <category term="读书" scheme="http://blog.kuangjux.top/categories/%E8%AF%BB%E4%B9%A6/"/>
-    
-    
-    <category term="文学" scheme="http://blog.kuangjux.top/tags/%E6%96%87%E5%AD%A6/"/>
-    
-    <category term="爱情" scheme="http://blog.kuangjux.top/tags/%E7%88%B1%E6%83%85/"/>
-    
-    <category term="人生" scheme="http://blog.kuangjux.top/tags/%E4%BA%BA%E7%94%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用Rust实现FAT32文件系统</title>
-    <link href="http://blog.kuangjux.top/2021/07/02/implement-FAT32-FS-step-by-step/"/>
-    <id>http://blog.kuangjux.top/2021/07/02/implement-FAT32-FS-step-by-step/</id>
-    <published>2021-07-02T14:25:19.000Z</published>
-    <updated>2021-07-18T13:28:20.223Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
     
   </entry>
   
