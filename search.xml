@@ -4302,6 +4302,21 @@ p_node6-&gt;val = 443</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-------------------------------------</span><br><span class="line">|   Tag   |   Index   |    Offset   |</span><br><span class="line">-------------------------------------</span><br></pre></td></tr></table></figure>
 <p>其中 <code>Index</code> 用来选择包含所需地址的组，该组中的所有块都要被索引，所以被选中的组中的所有块的标记并行检索。</p>
 <p>首先 Cache 获取到需要读取的地址，随后根据 <code>Index</code> 找到对应的组，根据 <code>Tag</code> 并行找到对应的行（可能出现 Cache Miss），最后根据 <code>Offset</code> 获取到读取的字节数。</p>
+<h2 id="cache-的设计"><a class="markdownIt-Anchor" href="#cache-的设计"></a> Cache 的设计</h2>
+<h3 id="cache-模块的数据通路设计"><a class="markdownIt-Anchor" href="#cache-模块的数据通路设计"></a> Cache 模块的数据通路设计</h3>
+<h4 id="1-读写操作访问的-cache-执行过程"><a class="markdownIt-Anchor" href="#1-读写操作访问的-cache-执行过程"></a> 1. 读写操作访问的 Cache 执行过程</h4>
+<ul>
+<li>第一拍：首先将 <code>Index</code> 读出来同时找到对应的组，并将组里的所有块读出来。同时将虚地址送向 TLB 并获取到物理地址，此时需要将物理地址锁存起来供第二拍使用</li>
+<li>第二拍：得到 Cache RAM 读出的两个 Cache line 的 Tag 信息，将其与锁存下来的物理地址的 <code>Tag</code> 进行对比，如果某个 Cache line 上面的 <code>Tag</code> 相等，且该 Cache line 的有效位等于 1 时，则表示访问命中在这个 Cache line 上面。在进行 Tag 比较的同时，可以根据锁存下来的虚地址对 Cache line 的 Data 信息进行选择。</li>
+</ul>
+<p><strong>读写缺失时的操作步骤：</strong></p>
+<ul>
+<li>将 Cache 缺失的地址和操作类型记录下来</li>
+<li>通过 AXI 总线接口向外发起对缺失 Cache line 的访问。这个访问的地址是缺失 Cache line 的起始地址，大小是一个 Cache line 的大小。</li>
+<li>在等待读请求数据返回的时候，根据替换算法从 Cache Miss 地址对应的 index 的中的 Cache line 中选择一个。将其整个读出。如果发现该 Cache line 的 V = 1，D = 1，意味着这是一个有小脏数据的 Cache line，那么需要将这个 Cache line 的数据通过 AXI 总线接口模块写出去；否则直接丢弃。</li>
+<li>待缺失请求的数据从总线返回后，生成将要填入 Cache 的 Cache line 信息，其中 Cache line 的 V 置为 1，Tag 信息来自之前保存的 Cache 缺失的地址。如果这个 Cache Miss 请求操作是由写操作引起的，那么 Cache line 的 D 置为 1，Data 信息是 store 操作待写入值部分覆盖总线返回数据之后形成的新数据；否则 D 置为 0，Data 信息金来自总线返回的数据。</li>
+<li>将这个 Cache line 填入之前第三步所记录下来的那个位置。</li>
+</ul>
 ]]></content>
       <categories>
         <category>技术</category>
