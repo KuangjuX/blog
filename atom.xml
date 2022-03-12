@@ -6,7 +6,7 @@
   <link href="http://blog.kuangjux.top/atom.xml" rel="self"/>
   
   <link href="http://blog.kuangjux.top/"/>
-  <updated>2022-03-07T12:47:22.185Z</updated>
+  <updated>2022-03-12T07:04:32.020Z</updated>
   <id>http://blog.kuangjux.top/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>高速缓存技术(Cache)</title>
+    <link href="http://blog.kuangjux.top/2022/03/12/Cache/"/>
+    <id>http://blog.kuangjux.top/2022/03/12/Cache/</id>
+    <published>2022-03-12T06:27:41.000Z</published>
+    <updated>2022-03-12T07:04:32.020Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="计算机体系结构" scheme="http://blog.kuangjux.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>Chisel 学习笔记</title>
@@ -512,35 +537,6 @@
     <id>http://blog.kuangjux.top/2021/10/16/6-824-Lab2A/</id>
     <published>2021-10-16T13:43:26.000Z</published>
     <updated>2021-10-19T07:30:35.430Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    <category term="技术" scheme="http://blog.kuangjux.top/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="分布式系统" scheme="http://blog.kuangjux.top/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/"/>
-    
-    <category term="6.824" scheme="http://blog.kuangjux.top/tags/6-824/"/>
-    
-    <category term="go" scheme="http://blog.kuangjux.top/tags/go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>6.824 MapReduce</title>
-    <link href="http://blog.kuangjux.top/2021/10/16/6-824-MapReduce/"/>
-    <id>http://blog.kuangjux.top/2021/10/16/6-824-MapReduce/</id>
-    <published>2021-10-16T13:43:13.000Z</published>
-    <updated>2021-10-16T13:51:37.328Z</updated>
     
     
       

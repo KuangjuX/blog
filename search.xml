@@ -4287,4 +4287,27 @@ p_node6-&gt;val = 443</p>
         <tag>随笔</tag>
       </tags>
   </entry>
+  <entry>
+    <title>高速缓存技术(Cache)</title>
+    <url>/2022/03/12/Cache/</url>
+    <content><![CDATA[<h2 id="cache-基本原理"><a class="markdownIt-Anchor" href="#cache-基本原理"></a> Cache 基本原理</h2>
+<ul>
+<li>直接映射</li>
+<li>组相联映射</li>
+<li>全相联映射</li>
+</ul>
+<h3 id="组相联高速缓存"><a class="markdownIt-Anchor" href="#组相联高速缓存"></a> 组相联高速缓存</h3>
+<p>在组相联 Cache 中，每个块可悲放置的位置数是固定的。每个块有 n 个位置可放的 Cache 被称为 n 路组相联 Cache。一个 n 路组相联 Cache 中有 n 个组，每个组里有 n 块。</p>
+<p>以下是被解析了的地址：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-------------------------------------</span><br><span class="line">|   Tag   |   Index   |    Offset   |</span><br><span class="line">-------------------------------------</span><br></pre></td></tr></table></figure>
+<p>其中 <code>Index</code> 用来选择包含所需地址的组，该组中的所有块都要被索引，所以被选中的组中的所有块的标记并行检索。</p>
+<p>首先 Cache 获取到需要读取的地址，随后根据 <code>Index</code> 找到对应的组，根据 <code>Tag</code> 并行找到对应的行（可能出现 Cache Miss），最后根据 <code>Offset</code> 获取到读取的字节数。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>计算机体系结构</tag>
+      </tags>
+  </entry>
 </search>
